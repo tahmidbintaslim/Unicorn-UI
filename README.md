@@ -1,4 +1,4 @@
-# 🎨 shadcn/ui Components Collection
+# 🎨 Unicorn UI Components Collection
 
 A curated collection of **6 beautiful, accessible, and reusable components** built with React, TypeScript, and Tailwind CSS. Each component includes live interactive previews and copy-paste ready code examples.
 
@@ -6,6 +6,26 @@ A curated collection of **6 beautiful, accessible, and reusable components** bui
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)
+![npm](https://img.shields.io/npm/v/unicorn-ui?style=for-the-badge&logo=npm)
+
+## 🌟 Why Choose Unicorn UI?
+
+Unicorn UI provides a modern, accessible, and highly customizable component library designed for developers who want to build beautiful user interfaces quickly. Inspired by the success of Tailwind CSS and DaisyUI, we offer a free open-source core with premium commercial options.
+
+### 🚀 Key Benefits
+
+- **Developer Experience**: Intuitive API with full TypeScript support and comprehensive documentation
+- **Accessibility First**: All components follow WCAG guidelines with proper ARIA attributes
+- **Performance Optimized**: Tree-shakeable exports and minimal bundle size impact
+- **Themeable**: Built-in light/dark mode support with easy customization
+- **Copy-Paste Ready**: One-click code copying for instant integration
+
+## 🌟 Open Source & Commercial
+
+Unicorn UI is **free and open source** under the MIT license. We believe in empowering developers with high-quality UI components.
+
+For teams and businesses looking for additional features, premium support, or custom components, we offer commercial solutions. Similar to Tailwind CSS, the core library is free, while advanced tools and services are available commercially.
 
 ## ✨ Features
 
@@ -24,8 +44,8 @@ A curated collection of **6 beautiful, accessible, and reusable components** bui
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/tahmidbintaslim/shadcn-ui-library.git
-cd shadcn-ui-library
+git clone https://github.com/tahmidbintaslim/unicorn-ui.git
+cd unicorn-ui
 ```
 
 2. **Install dependencies:**
@@ -249,7 +269,7 @@ src/
     │   ├── feature-card/
     │   ├── blog-card/
     │   └── index.ts       # Component exports
-    └── ui/               # Base shadcn/ui components
+    └── ui/               # Base UI components
 ```
 
 ## 🚀 Production Deployment
@@ -334,7 +354,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- [shadcn/ui](https://ui.shadcn.com/) for the foundational component system
+- Open-source component systems and libraries that inspired this project
 - [Radix UI](https://www.radix-ui.com/) for accessible primitives
 - [Tailwind CSS](https://tailwindcss.com/) for utility-first styling
 - [Lucide React](https://lucide.dev/) for beautiful icons

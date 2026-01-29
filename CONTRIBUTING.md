@@ -1,4 +1,4 @@
-# Contributing to shadcn/ui Components Collection
+# Contributing to Unicorn UI Components Collection
 
 Thank you for your interest in contributing to our component library! We welcome contributions from developers of all skill levels.
 
@@ -7,8 +7,8 @@ Thank you for your interest in contributing to our component library! We welcome
 1. **Fork the repository** to your GitHub account
 2. **Clone your fork** locally
    ```bash
-   git clone https://github.com/your-username/shadcn-ui-library.git
-   cd shadcn-ui-library
+   git clone https://github.com/your-username/unicorn-ui.git
+   cd unicorn-ui
    ```
 3. **Install dependencies**
    ```bash
@@ -106,7 +106,7 @@ export const YourComponent = React.memo<YourComponentProps>(
         {description && <p>{description}</p>}
       </div>
     );
-  }
+  },
 );
 
 YourComponent.displayName = "YourComponent";
@@ -150,7 +150,6 @@ Before submitting your contribution:
    ```
 
 2. **Make your changes**
-
    - Follow the component guidelines
    - Add your component to the showcase page
    - Update the main index.ts export file

@@ -4,13 +4,13 @@
 
 ## Project Context
 
-This is a shadcn/ui components library project built with Next.js, TypeScript, and Tailwind CSS. The goal is to create reusable, accessible, and beautifully designed components that can be shared with the open-source community.
+This is a Unicorn UI components library project built with Next.js, TypeScript, and Tailwind CSS. The goal is to create reusable, accessible, and beautifully designed components that can be shared with the open-source community.
 
 ## Code Standards
 
 - Use TypeScript for all components with proper type definitions
 - Follow React best practices and modern patterns
-- Use Tailwind CSS for styling with the shadcn/ui design system
+- Use Tailwind CSS for styling with the Unicorn UI design system
 - Ensure all components are accessible (ARIA attributes, keyboard navigation)
 - Write comprehensive JSDoc comments for all components
 - Use consistent naming conventions (PascalCase for components, camelCase for props)
