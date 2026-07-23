@@ -22,3 +22,11 @@ onlyBuiltDependencies:
   - unrs-resolver
   - w
   - x
+overrides:
+  "js-yaml": ">=4.2.0 <5"
+  "postcss": ">=8.5.10 <9"
+  "picomatch": ">=4.0.4 <5"
+  "brace-expansion": ">=2.0.3 <3"
+  "flatted": ">=3.4.2 <4"
+  "minimatch": ">=9.0.7 <10"
+  "ajv": ">=6.14.0 <7"
