@@ -16,7 +16,7 @@ export interface PricingFeature {
     included: boolean;
 }
 
-export interface PricingCardProps {
+export interface PricingCardProps extends Omit<React.ComponentProps<"div">, "children" | "onSelect"> {
     /**
      * Plan name
      */
@@ -60,8 +60,10 @@ export interface PricingCardProps {
 }
 
 /**
- * PricingCard component for displaying pricing plans
- * 
+ * PricingCard component for displaying pricing plans.
+ * Features render as a list; each item tells screen readers whether it is
+ * included. Other props (`id`, `aria-*`, `data-*`, `ref`) go to the root element.
+ *
  * @example
  * ```tsx
  * <PricingCard
@@ -91,9 +93,13 @@ export const PricingCard = React.memo<PricingCardProps>(({
     popular = false,
     className,
     onSelect,
+    ...props
 }) => {
+    const nameId = React.useId();
+
     return (
         <Card
+            {...props}
             className={cn(
                 "relative border-2 transition-all duration-300 hover:shadow-lg",
                 popular && "border-primary shadow-lg scale-105",
@@ -109,27 +115,31 @@ export const PricingCard = React.memo<PricingCardProps>(({
             )}
 
             <CardHeader className="text-center">
-                <CardTitle className="text-2xl">{name}</CardTitle>
+                <CardTitle id={nameId} className="text-2xl">{name}</CardTitle>
                 {description && (
                     <CardDescription className="text-base">{description}</CardDescription>
                 )}
                 <div className="mt-4">
                     <div className="flex items-baseline justify-center">
                         <span className="text-4xl font-bold">{currency}{price}</span>
-                        <span className="text-muted-foreground ml-2">/{period}</span>
+                        <span className="text-muted-foreground ml-2">
+                            <span aria-hidden="true">/</span>
+                            <span className="sr-only">per </span>
+                            {period}
+                        </span>
                     </div>
                 </div>
             </CardHeader>
 
             <CardContent className="space-y-6">
-                {/* Features List */}
-                <div className="space-y-3">
+                {/* role="list": Safari drops list semantics once list-style is none */}
+                <ul role="list" className="space-y-3">
                     {features.map((feature, index) => (
-                        <div key={index} className="flex items-center space-x-3">
+                        <li key={index} className="flex items-center space-x-3">
                             {feature.included ? (
-                                <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
+                                <Check aria-hidden="true" className="w-5 h-5 text-success flex-shrink-0" />
                             ) : (
-                                <X className="w-5 h-5 text-red-500 flex-shrink-0" />
+                                <X aria-hidden="true" className="w-5 h-5 text-destructive flex-shrink-0" />
                             )}
                             <span
                                 className={cn(
@@ -137,15 +147,20 @@ export const PricingCard = React.memo<PricingCardProps>(({
                                     !feature.included && "text-muted-foreground line-through"
                                 )}
                             >
+                                <span className="sr-only">
+                                    {feature.included ? "Included: " : "Not included: "}
+                                </span>
                                 {feature.text}
                             </span>
-                        </div>
+                        </li>
                     ))}
-                </div>
+                </ul>
 
                 {/* CTA Button */}
                 <Button
+                    type="button"
                     onClick={onSelect}
+                    aria-describedby={nameId}
                     className="w-full"
                     variant={popular ? "default" : "outline"}
                     size="lg"

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { LucideIcon, Minus, TrendingDown, TrendingUp } from "lucide-react";
 import React from "react";
 
-export interface StatisticsCardProps {
+export interface StatisticsCardProps extends Omit<React.ComponentProps<"div">, "title" | "prefix" | "children"> {
     /**
      * The statistic title
      */
@@ -17,7 +17,7 @@ export interface StatisticsCardProps {
      */
     description?: string;
     /**
-     * Percentage change
+     * Percentage change. Positive renders as up, negative as down, 0 as no change.
      */
     change?: number;
     /**
@@ -47,8 +47,10 @@ export interface StatisticsCardProps {
 }
 
 /**
- * StatisticsCard component for displaying key metrics and KPIs
- * 
+ * StatisticsCard component for displaying key metrics and KPIs.
+ * The trend is announced in words ("Up", "Down", "No change"), not by color
+ * or icon alone. Other props (`id`, `aria-*`, `data-*`, `ref`) go to the root element.
+ *
  * @example
  * ```tsx
  * <StatisticsCard
@@ -73,44 +75,24 @@ export const StatisticsCard = React.memo<StatisticsCardProps>(({
     className,
     prefix = "",
     suffix = "",
+    ...props
 }) => {
+    // A fixed locale keeps server and client output identical (no hydration mismatch).
     const formatValue = (val: string | number) => {
         if (typeof val === 'number') {
-            return val.toLocaleString();
+            return val.toLocaleString('en-US');
         }
         return val;
     };
 
-    const getTrendIcon = () => {
-        if (!change) return null;
-
-        if (change > 0) {
-            return <TrendingUp className="w-4 h-4 text-green-600" />;
-        } else if (change < 0) {
-            return <TrendingDown className="w-4 h-4 text-red-600" />;
-        } else {
-            return <Minus className="w-4 h-4 text-gray-500" />;
-        }
-    };
-
-    const getChangeColor = () => {
-        if (!change) return "text-muted-foreground";
-
-        if (change > 0) {
-            return "text-green-600";
-        } else if (change < 0) {
-            return "text-red-600";
-        } else {
-            return "text-gray-500";
-        }
-    };
+    const trend = getTrend(change);
 
     return (
-        <Card className={cn("hover:shadow-md transition-shadow", className)}>
+        <Card {...props} className={cn("hover:shadow-md transition-shadow", className)}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">{title}</CardTitle>
                 {Icon && (
-                    <Icon className={cn("w-4 h-4", iconColor)} />
+                    <Icon aria-hidden="true" className={cn("w-4 h-4", iconColor)} />
                 )}
             </CardHeader>
             <CardContent>
@@ -122,18 +104,34 @@ export const StatisticsCard = React.memo<StatisticsCardProps>(({
                         {description}
                     </CardDescription>
                 )}
-                {change !== undefined && (
-                    <div className={cn("text-xs flex items-center mt-1", getChangeColor())}>
-                        {getTrendIcon()}
+                {trend && change !== undefined && (
+                    <p className={cn("text-xs flex items-center mt-1", trend.colorClass)}>
+                        <trend.Icon aria-hidden="true" className="w-4 h-4" />
+                        <span className="sr-only">{trend.label}</span>
                         <span className="ml-1">
                             {change > 0 ? '+' : ''}{change}% {changePeriod}
                         </span>
-                    </div>
+                    </p>
                 )}
             </CardContent>
         </Card>
     );
 });
+
+/**
+ * Maps a percentage change to its icon, color token and screen-reader label.
+ * Returns null when there is no change value to show.
+ */
+function getTrend(change: number | undefined) {
+    if (change === undefined || Number.isNaN(change)) return null;
+    if (change > 0) {
+        return { direction: "up", label: "Up", Icon: TrendingUp, colorClass: "text-success" } as const;
+    }
+    if (change < 0) {
+        return { direction: "down", label: "Down", Icon: TrendingDown, colorClass: "text-destructive" } as const;
+    }
+    return { direction: "flat", label: "No change", Icon: Minus, colorClass: "text-muted-foreground" } as const;
+}
 
 StatisticsCard.displayName = "StatisticsCard";
 

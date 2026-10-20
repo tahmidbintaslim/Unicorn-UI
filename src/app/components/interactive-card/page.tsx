@@ -57,7 +57,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export interface InteractiveCardProps {
+export interface InteractiveCardProps extends Omit<React.ComponentProps<"div">, "title"> {
   title: string;
   description: string;
   badge?: string;
@@ -79,18 +79,22 @@ export const InteractiveCard = React.memo<InteractiveCardProps>(({
   hoverEffect = true,
   actionText,
   onAction,
+  ...props
 }) => {
+  const titleId = React.useId();
+
   return (
-    <Card 
+    <Card
+      {...props}
       className={cn(
-        "border-2 transition-all duration-300 cursor-pointer",
+        "border-2 transition-all duration-300",
         hoverEffect && "hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1",
         className
       )}
     >
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg">{title}</CardTitle>
+          <CardTitle id={titleId} className="text-lg">{title}</CardTitle>
           {badge && (
             <Badge variant={badgeVariant}>{badge}</Badge>
           )}
@@ -101,8 +105,10 @@ export const InteractiveCard = React.memo<InteractiveCardProps>(({
         <CardContent>
           {children}
           {actionText && (
-            <Button 
-              onClick={onAction} 
+            <Button
+              type="button"
+              onClick={onAction}
+              aria-describedby={titleId}
               className="w-full mt-4"
               variant="outline"
             >
