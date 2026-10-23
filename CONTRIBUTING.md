@@ -10,13 +10,15 @@ Thank you for your interest in contributing to our component library! We welcome
    git clone https://github.com/your-username/unicorn-ui.git
    cd unicorn-ui
    ```
-3. **Install dependencies**
+3. **Install dependencies** (pnpm only: the lockfile and the security
+   overrides in `pnpm-workspace.yaml` are pnpm's, and npm ignores them)
    ```bash
-   npm install
+   corepack enable
+   pnpm install
    ```
 4. **Start the development server**
    ```bash
-   npm run dev
+   pnpm dev
    ```
 
 ## 📝 Component Guidelines
@@ -121,19 +123,19 @@ Before submitting your contribution:
 1. **Build the project**
 
    ```bash
-   npm run build
+   pnpm build
    ```
 
 2. **Check TypeScript**
 
    ```bash
-   npx tsc --noEmit
+   pnpm typecheck
    ```
 
 3. **Run linting**
 
    ```bash
-   npm run lint
+   pnpm lint
    ```
 
 4. **Test in browser**

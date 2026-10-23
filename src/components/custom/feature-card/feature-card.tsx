@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { ArrowRight, LucideIcon } from "lucide-react";
 import React from "react";
 
-export interface FeatureCardProps {
+export interface FeatureCardProps extends Omit<React.ComponentProps<"div">, "title" | "children"> {
     /**
      * Feature title
      */
@@ -57,8 +57,9 @@ export interface FeatureCardProps {
 }
 
 /**
- * FeatureCard component for showcasing product features
- * 
+ * FeatureCard component for showcasing product features.
+ * Other props (`id`, `aria-*`, `data-*`, `ref`) go to the root element.
+ *
  * @example
  * ```tsx
  * <FeatureCard
@@ -86,9 +87,13 @@ export const FeatureCard = React.memo<FeatureCardProps>(({
     className,
     orientation = "vertical",
     hoverEffect = true,
+    ...props
 }) => {
+    const titleId = React.useId();
+
     return (
         <Card
+            {...props}
             className={cn(
                 "transition-all duration-300",
                 hoverEffect && "hover:shadow-lg hover:-translate-y-1",
@@ -108,7 +113,7 @@ export const FeatureCard = React.memo<FeatureCardProps>(({
                         "w-16 h-16 rounded-xl flex items-center justify-center",
                         iconBg
                     )}>
-                        <Icon className={cn("w-8 h-8", iconColor)} />
+                        <Icon aria-hidden="true" className={cn("w-8 h-8", iconColor)} />
                     </div>
                 </div>
 
@@ -116,7 +121,7 @@ export const FeatureCard = React.memo<FeatureCardProps>(({
                     orientation === "horizontal" && "flex-1"
                 )}>
                     <div className="flex items-center justify-between mb-2">
-                        <CardTitle className={cn(
+                        <CardTitle id={titleId} className={cn(
                             orientation === "vertical" ? "text-xl" : "text-lg"
                         )}>
                             {title}
@@ -140,12 +145,14 @@ export const FeatureCard = React.memo<FeatureCardProps>(({
                     orientation === "vertical" ? "text-center" : "flex items-center"
                 )}>
                     <Button
+                        type="button"
                         onClick={onCtaClick}
+                        aria-describedby={titleId}
                         variant="ghost"
                         className="group"
                     >
                         {ctaText}
-                        <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight aria-hidden="true" className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
                     </Button>
                 </CardContent>
             )}

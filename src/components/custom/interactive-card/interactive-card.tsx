@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { cn } from "@/lib/utils";
 import React from "react";
 
-export interface InteractiveCardProps {
+export interface InteractiveCardProps extends Omit<React.ComponentProps<"div">, "title"> {
     /**
      * The card title
      */
@@ -44,8 +44,9 @@ export interface InteractiveCardProps {
 }
 
 /**
- * InteractiveCard component with hover effects and flexible content
- * 
+ * InteractiveCard component with hover effects and flexible content.
+ * Other props (`id`, `aria-*`, `data-*`, `ref`) go to the root element.
+ *
  * @example
  * ```tsx
  * <InteractiveCard
@@ -69,18 +70,22 @@ export const InteractiveCard = React.memo<InteractiveCardProps>(({
     hoverEffect = true,
     actionText,
     onAction,
+    ...props
 }) => {
+    const titleId = React.useId();
+
     return (
         <Card
+            {...props}
             className={cn(
-                "border-2 transition-all duration-300 cursor-pointer",
+                "border-2 transition-all duration-300",
                 hoverEffect && "hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1",
                 className
             )}
         >
             <CardHeader>
                 <div className="flex items-center justify-between">
-                    <CardTitle className="text-lg">{title}</CardTitle>
+                    <CardTitle id={titleId} className="text-lg">{title}</CardTitle>
                     {badge && (
                         <Badge variant={badgeVariant}>{badge}</Badge>
                     )}
@@ -92,7 +97,9 @@ export const InteractiveCard = React.memo<InteractiveCardProps>(({
                     {children}
                     {actionText && (
                         <Button
+                            type="button"
                             onClick={onAction}
+                            aria-describedby={titleId}
                             className="w-full mt-4"
                             variant="outline"
                         >
