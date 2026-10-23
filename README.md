@@ -18,7 +18,9 @@ is a Next.js app that shows each card with a live preview and copy-paste code.
 - Working demo. It is not published to npm and has no releases yet.
 - To use a card, copy its folder from `src/components/custom/` into a Next.js
   app that has shadcn/ui set up, plus the primitives it imports
-  (`card`, `button`, `badge`).
+  (`card`, `button`, `badge`). The pricing and statistics cards also use the
+  `--success` color: copy `--success` from the `:root` and `.dark` blocks and
+  `--color-success` from the `@theme inline` block in `src/app/globals.css`.
 - CI runs lint, typecheck and build. There are no automated tests yet.
 
 ## What is in the box
@@ -37,7 +39,8 @@ is a Next.js app that shows each card with a live preview and copy-paste code.
 What the cards do today:
 
 - Every card forwards `ref` and root props (`id`, `aria-*`, `data-*`, event
-  handlers) to its root element.
+  handlers) to its root element. On the testimonial card, `role` is the
+  author's job title, so it is not passed to the root.
 - Pricing features are a real list, and each item tells screen readers whether
   it is included; the check and cross icons are hidden from them.
 - The statistics trend is announced in words ("Up", "Down", "No change"), not by
@@ -197,6 +200,10 @@ Each card accepts a `className` that is merged onto its root element with
   className="bg-primary text-primary-foreground border-0"
 />
 ```
+
+The blog card is the exception: its root is an `<article>` that wraps the
+card, so `className` there sets layout (width, margin, grid placement) and does
+not restyle the card surface. Use `variant` for that, or edit the copied file.
 
 Colors come from the shadcn/ui CSS variables in `src/app/globals.css`, plus a
 `--success` variable for positive states. Light and dark themes are switched
