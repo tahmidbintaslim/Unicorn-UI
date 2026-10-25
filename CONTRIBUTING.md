@@ -1,255 +1,72 @@
-# Contributing to Unicorn UI Components Collection
+# Contributing to Unicorn UI
 
-Thank you for your interest in contributing to our component library! We welcome contributions from developers of all skill levels.
+Issues and pull requests are welcome. This file covers setup, the checks a pull
+request must pass, and how a card is laid out.
 
-## 🚀 Getting Started
+## Setup
 
-1. **Fork the repository** to your GitHub account
-2. **Clone your fork** locally
-   ```bash
-   git clone https://github.com/your-username/unicorn-ui.git
-   cd unicorn-ui
-   ```
-3. **Install dependencies** (pnpm only: the lockfile and the security
-   overrides in `pnpm-workspace.yaml` are pnpm's, and npm ignores them)
-   ```bash
-   corepack enable
-   pnpm install
-   ```
-4. **Start the development server**
-   ```bash
-   pnpm dev
-   ```
+You need Node.js 22.13 or later (or 20.19 or later) and pnpm. Use pnpm only:
+the lockfile and the security overrides in `pnpm-workspace.yaml` are pnpm's,
+and npm ignores them.
 
-## 📝 Component Guidelines
-
-When creating or modifying components, please follow these guidelines:
-
-### TypeScript
-
-- Use comprehensive TypeScript interfaces for all props
-- Include JSDoc comments for all props and functions
-- Ensure type safety throughout the component
-
-### Design
-
-- Follow the existing design patterns and styling
-- Use Tailwind CSS for all styling
-- Ensure responsive design (mobile-first approach)
-- Include hover and focus states
-
-### Accessibility
-
-- Add proper ARIA attributes
-- Ensure keyboard navigation works
-- Use semantic HTML elements
-- Test with screen readers when possible
-
-### Documentation
-
-- Include comprehensive JSDoc comments
-- Provide multiple usage examples
-- Document all props with descriptions
-- Include accessibility notes when relevant
-
-## 🏗️ Component Structure
-
-Each component should follow this structure:
-
-```
-src/components/custom/your-component/
-├── index.ts                 # Export file
-├── your-component.tsx       # Main component
-└── your-component.stories.tsx  # Storybook stories (optional)
+```bash
+git clone https://github.com/<your-username>/Unicorn-UI.git
+cd Unicorn-UI
+corepack enable
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-### Component Template
+## Checks
 
-````tsx
-import { cn } from "@/lib/utils";
-import React from "react";
+CI runs these on every push and pull request to `main`. Run them locally
+first:
 
-export interface YourComponentProps {
-  /**
-   * Component title
-   */
-  title: string;
-  /**
-   * Optional description
-   */
-  description?: string;
-  /**
-   * Additional CSS classes
-   */
-  className?: string;
-  /**
-   * Click handler
-   */
-  onClick?: () => void;
-}
-
-/**
- * YourComponent description
- *
- * @example
- * ```tsx
- * <YourComponent
- *   title="Example"
- *   description="This is an example"
- *   onClick={() => console.log("clicked")}
- * />
- * ```
- */
-export const YourComponent = React.memo<YourComponentProps>(
-  ({ title, description, className, onClick }) => {
-    return (
-      <div className={cn("base-styles", className)} onClick={onClick}>
-        <h3>{title}</h3>
-        {description && <p>{description}</p>}
-      </div>
-    );
-  },
-);
-
-YourComponent.displayName = "YourComponent";
-
-export default YourComponent;
-````
-
-## 🧪 Testing
-
-Before submitting your contribution:
-
-1. **Build the project**
-
-   ```bash
-   pnpm build
-   ```
-
-2. **Check TypeScript**
-
-   ```bash
-   pnpm typecheck
-   ```
-
-3. **Run linting**
-
-   ```bash
-   pnpm lint
-   ```
-
-4. **Test in browser**
-   - Verify your component works in the showcase
-   - Test responsive behavior
-   - Check accessibility features
-
-## 📤 Submitting Changes
-
-1. **Create a feature branch**
-
-   ```bash
-   git checkout -b feature/amazing-component
-   ```
-
-2. **Make your changes**
-   - Follow the component guidelines
-   - Add your component to the showcase page
-   - Update the main index.ts export file
-
-3. **Commit your changes**
-
-   ```bash
-   git add .
-   git commit -m "feat: add amazing component with accessibility features"
-   ```
-
-4. **Push to your fork**
-
-   ```bash
-   git push origin feature/amazing-component
-   ```
-
-5. **Create a Pull Request**
-   - Provide a clear description of your changes
-   - Include screenshots or GIFs if applicable
-   - Reference any related issues
-
-## 🎯 Pull Request Guidelines
-
-### Title Format
-
-- `feat: add new component name`
-- `fix: resolve issue with component`
-- `docs: update component documentation`
-- `style: improve component styling`
-
-### Description Template
-
-```markdown
-## Changes Made
-
-- [ ] Added new component: ComponentName
-- [ ] Updated existing component
-- [ ] Fixed accessibility issue
-- [ ] Improved documentation
-
-## Component Features
-
-- Feature 1
-- Feature 2
-- Feature 3
-
-## Testing
-
-- [ ] Component builds successfully
-- [ ] TypeScript checks pass
-- [ ] Responsive design verified
-- [ ] Accessibility tested
-
-## Screenshots
-
-[Add screenshots or GIFs showing your component]
+```bash
+pnpm lint
+pnpm typecheck
+pnpm test
+pnpm build
 ```
 
-## 🔍 Code Review Process
+Then open the demo and check your change in both the light and dark themes and
+at phone width (about 390px). No page should scroll sideways.
 
-1. **Automated Checks**: Your PR will run automated builds and checks
-2. **Manual Review**: Maintainers will review your code and provide feedback
-3. **Testing**: We'll test your component across different devices and browsers
-4. **Merge**: Once approved, your contribution will be merged!
+## Card structure
 
-## 🐛 Bug Reports
+```
+src/components/custom/your-card/
+├── index.ts              # Re-exports the card
+├── your-card.tsx         # The component
+└── your-card.test.tsx    # Vitest + Testing Library tests
+```
 
-When reporting bugs, please include:
+Follow the existing cards:
 
-- **Component name** and version
-- **Steps to reproduce** the issue
-- **Expected behavior**
-- **Actual behavior**
-- **Screenshots** (if applicable)
-- **Browser/device** information
+- Extend `React.ComponentProps<"div">` (or the root element's props), spread
+  the rest props onto the root so `ref`, `id`, `aria-*` and `data-*` reach it,
+  and merge `className` last with `cn()`.
+- Use theme tokens (`text-muted-foreground`, `bg-muted`, `text-success`), not
+  fixed colors such as `text-gray-500`, so both themes keep WCAG AA contrast.
+- Use semantic elements (lists, `figure`, `time`, real `button` and `a`), hide
+  decorative icons with `aria-hidden="true"`, and never nest a button inside a
+  link.
+- Format numbers and dates with a fixed locale so the server and the browser
+  render the same text.
+- Add tests for the behavior a screen reader user depends on, and add the card
+  to `src/components/custom/index.ts`, the gallery and a detail page.
 
-## 💡 Feature Requests
+## Pull requests
 
-For new component ideas:
+- Branch from `main` and use conventional commit messages, for example
+  `feat(pricing-card): add a yearly toggle` or `fix(blog-card): keep the date
+  in UTC`.
+- Describe what changed and how you checked it, and add a screenshot for
+  visual changes.
+- Keep sample content clearly fictional. Do not write quotes that praise this
+  project.
 
-1. **Check existing issues** to avoid duplicates
-2. **Describe the component** and its use cases
-3. **Provide examples** or mockups if possible
-4. **Explain the benefits** it would bring to the library
+## Bug reports and ideas
 
-## 📞 Getting Help
-
-- **GitHub Issues**: For bugs and feature requests
-- **GitHub Discussions**: For questions and general discussion
-- **Documentation**: Check the README and component documentation
-
-## 🙏 Recognition
-
-Contributors will be:
-
-- Listed in the README
-- Credited in release notes
-- Invited to be maintainers (for regular contributors)
-
-Thank you for helping make this component library better! 🎉
+Use the issue templates. For a bug, include the card, the steps to reproduce,
+what you expected, what happened, and your browser and OS.

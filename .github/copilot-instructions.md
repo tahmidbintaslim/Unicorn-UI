@@ -1,39 +1,32 @@
 # Copilot Instructions
 
-<!-- Use this file to provide workspace-specific custom instructions to Copilot. For more details, visit https://code.visualstudio.com/docs/copilot/copilot-customization#_use-a-githubcopilotinstructionsmd-file -->
+<!-- Workspace-specific instructions for Copilot. See https://code.visualstudio.com/docs/copilot/copilot-customization -->
 
-## Project Context
+## Project context
 
-This is a Unicorn UI components library project built with Next.js, TypeScript, and Tailwind CSS. The goal is to create reusable, accessible, and beautifully designed components that can be shared with the open-source community.
+Unicorn UI is a Next.js 15 app that showcases six card components built with
+React 19, TypeScript and Tailwind CSS 4 on shadcn/ui primitives. The cards are
+meant to be copied into other shadcn/ui projects. Use pnpm.
 
-## Code Standards
+## Code standards
 
-- Use TypeScript for all components with proper type definitions
-- Follow React best practices and modern patterns
-- Use Tailwind CSS for styling with the Unicorn UI design system
-- Ensure all components are accessible (ARIA attributes, keyboard navigation)
-- Write comprehensive JSDoc comments for all components
-- Use consistent naming conventions (PascalCase for components, camelCase for props)
+- TypeScript strict mode; give every prop a type and a JSDoc comment.
+- Style with Tailwind and the theme tokens in `src/app/globals.css`
+  (`text-muted-foreground`, `bg-muted`, `text-success`), not fixed colors.
+- Accessibility: semantic elements, `aria-hidden` on decorative icons, no
+  button nested inside a link, information never conveyed by color alone.
+- Spread rest props onto the root element so `ref`, `id`, `aria-*` and
+  `data-*` reach it, and merge `className` last with `cn()`.
 
-## Component Structure
+## Component structure
 
-- Create components in `src/components/custom/` directory
-- Each component should have its own folder with:
-  - `index.ts` - Main component export
-  - `component-name.tsx` - Component implementation
-  - `component-name.stories.tsx` - Storybook stories (if applicable)
-  - `component-name.test.tsx` - Unit tests (if applicable)
+Each card lives in `src/components/custom/<name>/`:
 
-## Documentation
+- `index.ts`: re-exports the card
+- `<name>.tsx`: the component
+- `<name>.test.tsx`: Vitest + Testing Library tests
 
-- Include comprehensive README.md files
-- Add inline documentation for complex logic
-- Provide usage examples for each component
-- Include prop tables and API documentation
+## Checks
 
-## Performance
-
-- Use React.memo for components that don't need frequent re-renders
-- Implement proper prop destructuring and default values
-- Use lazy loading for heavy components
-- Optimize bundle size with tree-shaking friendly exports
+`pnpm lint`, `pnpm typecheck`, `pnpm test` and `pnpm build` must pass; CI runs
+the same.
