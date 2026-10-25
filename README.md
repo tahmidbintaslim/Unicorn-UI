@@ -77,7 +77,7 @@ Radix UI primitives.
 | UI | React 19, shadcn/ui primitives (new-york style), Radix UI Slot and Tabs |
 | Styling | Tailwind CSS 4, `tailwind-merge`, `class-variance-authority`, `next-themes` |
 | Icons and motion | lucide-react, GSAP with ScrollTrigger (home page only) |
-| Tests | Vitest 4, Testing Library, jsdom |
+| Tests | Vitest 5, Testing Library, jsdom |
 | Tooling | TypeScript 5 (strict), ESLint 9 with `eslint-config-next`, pnpm 10 |
 
 ## How it fits together
@@ -98,7 +98,8 @@ Radix UI primitives.
 
 ### Prerequisites
 
-- Node.js 22.13 or later (CI uses Node 22). Node 20.19 or later also works.
+- Node.js 22.13 or later (CI uses Node 22). The test tools (Vitest 5,
+  jsdom 29) do not support Node 20, which reached end of life in April 2026.
 - pnpm 10.34.6. The version is pinned in `package.json`, and
   `corepack enable` installs it for you.
 
