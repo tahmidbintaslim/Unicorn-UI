@@ -14,7 +14,6 @@ import { Accessibility, Code, Github, Palette, Star } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Import components for live preview
 import { InteractiveCard } from "@/components/custom/interactive-card";
@@ -29,41 +28,57 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Registered here, before the timelines below, so scrollTrigger is never
-    // ignored. A deferred import used to race it and the sections played on load.
-    gsap.registerPlugin(ScrollTrigger);
+    let mm: gsap.MatchMedia | undefined;
+    let cancelled = false;
 
-    // Animate only when the visitor has not asked for reduced motion.
-    const mm = gsap.matchMedia(containerRef);
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const sections = gsap.utils.toArray<Element>(
-        ".story-section",
-        containerRef.current,
-      );
-      sections.forEach((section, index: number) => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-          },
-        });
+    // ScrollTrigger loads on demand to stay out of the first-load bundle. The
+    // timelines are built only after it is registered; building them before
+    // registration makes GSAP ignore scrollTrigger and play them on load.
+    import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+      if (cancelled) return;
+      gsap.registerPlugin(ScrollTrigger);
 
-        tl.fromTo(
-          section.querySelector(".story-text"),
-          { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
-          { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" },
-        ).fromTo(
-          section.querySelector(".story-preview"),
-          { opacity: 0, scale: 0.8, y: 30 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" },
-          "-=0.4",
+      // Animate only when the visitor has not asked for reduced motion.
+      mm = gsap.matchMedia(containerRef);
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const sections = gsap.utils.toArray<Element>(
+          ".story-section",
+          containerRef.current,
         );
+        sections.forEach((section, index: number) => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse",
+            },
+          });
+
+          tl.fromTo(
+            section.querySelector(".story-text"),
+            { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
+            { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" },
+          ).fromTo(
+            section.querySelector(".story-preview"),
+            { opacity: 0, scale: 0.8, y: 30 },
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "back.out(1.7)",
+            },
+            "-=0.4",
+          );
+        });
       });
     });
 
-    return () => mm.revert();
+    return () => {
+      cancelled = true;
+      mm?.revert();
+    };
   }, []);
 
   const stories = [
@@ -72,7 +87,7 @@ export default function Home() {
       title: "Interactive Card",
       subtitle: "Engage Your Users",
       description:
-        "Create captivating card components with smooth hover effects, dynamic animations, and flexible content layouts that respond to user interactions.",
+        "A card with a title, description, optional badge, custom content and an action button, with an optional hover effect.",
       features: [
         "Hover animations",
         "Flexible layouts",
@@ -93,7 +108,7 @@ export default function Home() {
       title: "Pricing Card",
       subtitle: "Convert Visitors to Customers",
       description:
-        "Professional pricing tables that clearly communicate value, features, and pricing tiers to help your users make informed decisions.",
+        "A plan card with the price and period, a list of included and not included features, an optional popular badge and a call to action.",
       features: [
         "Feature lists",
         "Popular badges",
@@ -145,7 +160,7 @@ export default function Home() {
       title: "Testimonial Card",
       subtitle: "Build Trust & Credibility",
       description:
-        "Show a customer quote with the author's name, role, company, an optional avatar and a star rating that screen readers announce as \"Rated N out of 5\".",
+        'Show a customer quote with the author\'s name, role, company, an optional avatar and a star rating that screen readers announce as "Rated N out of 5".',
       features: [
         "Avatar support",
         "Rating display",
@@ -168,7 +183,7 @@ export default function Home() {
       title: "Feature Card",
       subtitle: "Highlight Your Strengths",
       description:
-        "Showcase product features, capabilities, and benefits with visually appealing cards that guide users through your value proposition.",
+        "An icon, title, description, optional badge and call to action, in a vertical or horizontal layout.",
       features: [
         "Icon integration",
         "Flexible layouts",
@@ -251,8 +266,8 @@ export default function Home() {
             Unicorn UI Components
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Six card components built with React, TypeScript and Tailwind CSS
-            on top of shadcn/ui. Preview each one live, then copy its code into
+            Six card components built with React, TypeScript and Tailwind CSS on
+            top of shadcn/ui. Preview each one live, then copy its code into
             your project.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
@@ -333,8 +348,8 @@ export default function Home() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Component Stories</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Scroll through the six cards. Each one has a live preview here and
-            a detail page with its props and code.
+            Scroll through the six cards. Each one has a live preview here and a
+            detail page with its props and code.
           </p>
         </div>
 
