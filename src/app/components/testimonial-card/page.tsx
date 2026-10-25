@@ -21,7 +21,7 @@ export default function TestimonialCardPage() {
 export default function Example() {
   return (
     <TestimonialCard
-      testimonial="This component library has saved our team countless hours. The components are beautiful, accessible, and easy to use!"
+      testimonial="Your customer's quote goes here: what they used, what changed for them, and why it mattered."
       author="Alex Chen"
       role="Frontend Developer"
       company="InnovateTech"
@@ -37,7 +37,7 @@ export default function Example() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <TestimonialCard
-        testimonial="The attention to detail and accessibility features are outstanding. Our users love the smooth interactions."
+        testimonial="A quote from a product manager about the result they cared about."
         author="Sarah Johnson"
         role="Product Manager"
         company="TechCorp"
@@ -46,7 +46,7 @@ export default function Example() {
       />
 
       <TestimonialCard
-        testimonial="Implementation was seamless. The TypeScript support and documentation made integration a breeze."
+        testimonial="A quote from an engineer about how setup went."
         author="Mike Rodriguez"
         role="Lead Developer"
         company="StartupXYZ"
@@ -55,7 +55,7 @@ export default function Example() {
       />
 
       <TestimonialCard
-        testimonial="Beautiful design that matches our brand perfectly. The customization options are exactly what we needed."
+        testimonial="A quote from a designer about how the product fits their brand."
         author="Emma Davis"
         role="Design Director"
         company="CreativeAgency"
@@ -64,7 +64,7 @@ export default function Example() {
       />
 
       <TestimonialCard
-        testimonial="Performance is excellent and the bundle size impact is minimal. Highly recommended for production use."
+        testimonial="A quote from a CTO about running the product in production."
         author="David Kim"
         role="CTO"
         company="ScaleUp Inc"
@@ -154,7 +154,7 @@ export default function Example() {
                 <div>
                   <h1 className="text-2xl font-bold">Testimonial Card</h1>
                   <p className="text-sm text-muted-foreground">
-                    Beautiful testimonials with ratings and avatars
+                    Customer quotes with ratings and avatars
                   </p>
                 </div>
               </div>
@@ -186,7 +186,7 @@ export default function Example() {
               <CardContent>
                 <div className="flex justify-center">
                   <TestimonialCard
-                    testimonial="This component library has saved our team countless hours. The components are beautiful, accessible, and easy to use!"
+                    testimonial="Your customer's quote goes here: what they used, what changed for them, and why it mattered."
                     author="Alex Chen"
                     role="Frontend Developer"
                     company="InnovateTech"

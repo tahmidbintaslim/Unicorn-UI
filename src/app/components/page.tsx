@@ -71,9 +71,8 @@ export default function ComponentsPage() {
         <div className="mb-8">
           <h2 className="text-3xl font-bold mb-4">Component Library</h2>
           <p className="text-muted-foreground max-w-2xl">
-            Browse our collection of 6 beautiful, accessible, and customizable
-            components. Each component is built with TypeScript, includes live
-            interactive previews, and comes with copy-paste code examples.
+            Six card components built with TypeScript on shadcn/ui. Each one
+            has a live preview and copy-paste code.
           </p>
         </div>
 
@@ -338,8 +337,8 @@ import { DollarSign } from "lucide-react";
                 <Badge variant="outline">Social</Badge>
               </div>
               <CardDescription>
-                Beautiful testimonial cards with ratings, user avatars, and
-                authentic customer feedback.
+                Customer quotes with a star rating, the author&apos;s name, role and
+                company, and an optional avatar.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -347,7 +346,7 @@ import { DollarSign } from "lucide-react";
                 {/* Live Preview */}
                 <div className="border rounded-lg p-4 bg-muted/50">
                   <TestimonialCard
-                    testimonial="This component library has saved our team countless hours. The components are beautiful, accessible, and easy to use!"
+                    testimonial="Your customer's quote goes here: what they used, what changed for them, and why it mattered."
                     author="Alex Chen"
                     role="Frontend Developer"
                     company="InnovateTech"
@@ -360,7 +359,7 @@ import { DollarSign } from "lucide-react";
                 {/* Code Example */}
                 <div className="text-xs bg-gray-100 rounded p-2 font-mono">
                   <code>{`<TestimonialCard
-  testimonial="Amazing components!"
+  testimonial="Your customer's quote goes here."
   author="Alex Chen"
   role="Frontend Developer"
   rating={5}
@@ -377,7 +376,7 @@ import { DollarSign } from "lucide-react";
                         .writeText(`import { TestimonialCard } from "@/components/custom/testimonial-card";
 
 <TestimonialCard
-  testimonial="This component library has saved our team countless hours. The components are beautiful, accessible, and easy to use!"
+  testimonial="Your customer's quote goes here: what they used, what changed for them, and why it mattered."
   author="Alex Chen"
   role="Frontend Developer"
   company="InnovateTech"
