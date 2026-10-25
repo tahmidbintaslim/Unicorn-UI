@@ -89,8 +89,8 @@ export default function ComponentsPage() {
                 <Badge variant="secondary">New</Badge>
               </div>
               <CardDescription>
-                A beautiful card component with hover effects, animations, and
-                flexible content layout.
+                A title, description, optional badge, custom content and an
+                action button, with an optional hover effect.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -165,8 +165,8 @@ export default function ComponentsPage() {
                 <Badge variant="outline">Popular</Badge>
               </div>
               <CardDescription>
-                Professional pricing cards with features list, call-to-action
-                buttons, and responsive design.
+                A plan name, price, a list of included and not included
+                features, and a call to action.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -253,8 +253,8 @@ export default function ComponentsPage() {
                 <Badge variant="secondary">Analytics</Badge>
               </div>
               <CardDescription>
-                Display key metrics and statistics with beautiful icons and
-                trend indicators.
+                A metric with an optional icon and a percentage change that is
+                announced in words.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -500,8 +500,8 @@ import { BarChart3 } from "lucide-react";
                 <Badge variant="outline">Content</Badge>
               </div>
               <CardDescription>
-                Perfect for blog posts, articles, and news content with images,
-                metadata, and multiple layout variants.
+                Title, excerpt, author, date, read time, category, likes and an
+                optional cover image, in three layouts.
               </CardDescription>
             </CardHeader>
             <CardContent>

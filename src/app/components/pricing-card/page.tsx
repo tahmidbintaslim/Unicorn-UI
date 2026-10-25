@@ -189,7 +189,7 @@ export default function Example() {
                 <div>
                   <h1 className="text-2xl font-bold">Pricing Card</h1>
                   <p className="text-sm text-muted-foreground">
-                    Professional pricing cards with features and CTA
+                    Pricing cards with a feature list and a call to action
                   </p>
                 </div>
               </div>

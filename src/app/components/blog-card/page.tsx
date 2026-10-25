@@ -217,7 +217,7 @@ export default function Example() {
                 <div>
                   <h1 className="text-2xl font-bold">Blog Card</h1>
                   <p className="text-sm text-muted-foreground">
-                    Beautiful blog post cards with metadata
+                    Blog post cards with metadata
                   </p>
                 </div>
               </div>

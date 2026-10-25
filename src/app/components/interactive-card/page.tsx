@@ -149,7 +149,7 @@ InteractiveCard.displayName = "InteractiveCard";`;
                             <div className="h-6 w-px bg-border" />
                             <div>
                                 <h1 className="text-2xl font-bold">Interactive Card</h1>
-                                <p className="text-sm text-muted-foreground">A beautiful card component with hover effects and flexible content</p>
+                                <p className="text-sm text-muted-foreground">A card with an optional hover effect and custom content</p>
                             </div>
                         </div>
                         <Badge variant="outline">Custom Component</Badge>
