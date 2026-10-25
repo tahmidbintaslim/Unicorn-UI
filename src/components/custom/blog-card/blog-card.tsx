@@ -143,6 +143,8 @@ export const BlogCard = React.memo<BlogCardProps>(({
                     src={image}
                     alt=""
                     fill
+                    // Without sizes, next/image assumes 100vw and fetches a full-screen-width file
+                    sizes={variant === "horizontal" ? "192px" : "(min-width: 768px) 50vw, 100vw"}
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
                 {category && (
@@ -243,6 +245,8 @@ export const BlogCard = React.memo<BlogCardProps>(({
                     "group relative h-full hover:shadow-lg transition-all duration-300 overflow-hidden",
                     interactive && "has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/50",
                     variant === "horizontal" && "flex flex-row",
+                    // A cover image sits flush with the top edge instead of below the card padding
+                    image && variant !== "horizontal" && "pt-0",
                     variant === "minimal" && "border-0 shadow-none hover:shadow-md"
                 )}
             >
