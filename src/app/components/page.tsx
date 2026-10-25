@@ -110,7 +110,7 @@ export default function ComponentsPage() {
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<InteractiveCard
   title="Product Launch"
   description="Join us for the biggest tech event"
@@ -193,7 +193,7 @@ export default function ComponentsPage() {
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<PricingCard
   name="Pro Plan"
   price={29}
@@ -283,7 +283,7 @@ export default function ComponentsPage() {
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<StatisticsCard
   title="Total Revenue"
   value={45231}
@@ -357,7 +357,7 @@ import { DollarSign } from "lucide-react";
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<TestimonialCard
   testimonial="Your customer's quote goes here."
   author="Alex Chen"
@@ -444,7 +444,7 @@ import { DollarSign } from "lucide-react";
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<FeatureCard
   title="Advanced Analytics"
   description="Get detailed insights..."
@@ -535,7 +535,7 @@ import { BarChart3 } from "lucide-react";
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<BlogCard
   title="Building Modern UI Components"
   excerpt="Learn how to create beautiful..."

@@ -335,7 +335,7 @@ export default function Example() {
                               </Badge>
                             )}
                           </td>
-                          <td className="p-2 font-mono text-gray-500">
+                          <td className="p-2 font-mono text-muted-foreground">
                             {prop.default || "-"}
                           </td>
                           <td className="p-2">{prop.description}</td>
