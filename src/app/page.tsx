@@ -161,7 +161,7 @@ export default function Home() {
           role="Product Manager"
           company="TechCorp"
           rating={5}
-          avatar="/api/placeholder/64/64"
+          avatar="/demo/avatar.webp"
         />
       ),
     },
@@ -207,7 +207,7 @@ export default function Home() {
           date="2024-01-15"
           readTime="5 min read"
           category="Tutorial"
-          image="/api/placeholder/400/250"
+          image="/demo/blog-cover.webp"
         />
       ),
     },
