@@ -2,8 +2,10 @@ import { render, screen } from "@testing-library/react";
 import { Zap } from "lucide-react";
 import { createRef } from "react";
 import { describe, expect, it, vi } from "vitest";
+import { BlogCard } from "./blog-card";
 import { FeatureCard } from "./feature-card";
 import { InteractiveCard } from "./interactive-card";
+import { StatisticsCard } from "./statistics-card";
 
 describe("InteractiveCard", () => {
   it("forwards ref and root props and calls onAction", () => {
@@ -66,5 +68,38 @@ describe("FeatureCard", () => {
     expect(document.getElementById(describedBy!)?.textContent).toContain(
       "Advanced analytics",
     );
+  });
+});
+
+describe("StatisticsCard and BlogCard", () => {
+  it("forward ref and root props", () => {
+    const statsRef = createRef<HTMLDivElement>();
+    const blogRef = createRef<HTMLElement>();
+    render(
+      <>
+        <StatisticsCard
+          ref={statsRef}
+          data-testid="stats"
+          aria-label="Revenue"
+          title="Revenue"
+          value={1}
+        />
+        <BlogCard
+          ref={blogRef}
+          data-testid="blog"
+          title="Post"
+          excerpt="Sample excerpt."
+          author="Sarah Wilson"
+          date="2024-01-15"
+        />
+      </>,
+    );
+
+    const stats = screen.getByTestId("stats");
+    expect(statsRef.current).toBe(stats);
+    expect(stats.getAttribute("aria-label")).toBe("Revenue");
+    const blog = screen.getByTestId("blog");
+    expect(blogRef.current).toBe(blog);
+    expect(blog.tagName).toBe("ARTICLE");
   });
 });
