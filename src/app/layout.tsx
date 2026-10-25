@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Unicorn UI Components Collection",
   description:
-    "A curated collection of beautiful, accessible, and reusable components built with React, TypeScript, and Tailwind CSS",
+    "Six card components built with React, TypeScript and Tailwind CSS on top of shadcn/ui, with live previews and copy-paste code.",
   keywords: [
     "unicorn-ui",
     "ui",
@@ -27,14 +27,16 @@ export const metadata: Metadata = {
     "tailwind",
     "nextjs",
   ],
-  authors: [{ name: "Unicorn UI Team" }],
-  creator: "Unicorn UI Team",
-  publisher: "Unicorn UI Team",
-  metadataBase: new URL("https://unicorn-ui.vercel.app"),
+  authors: [
+    { name: "Tahmid Bin Taslim Rafi", url: "https://github.com/tahmidbintaslim" },
+  ],
+  creator: "Tahmid Bin Taslim Rafi",
+  // The deployed demo. unicorn-ui.vercel.app is someone else's site.
+  metadataBase: new URL("https://shadcn-ui-library.vercel.app"),
   openGraph: {
     title: "Unicorn UI Components Collection",
     description:
-      "A curated collection of beautiful, accessible, and reusable components built with React, TypeScript, and Tailwind CSS",
+      "Six card components built with React, TypeScript and Tailwind CSS on top of shadcn/ui, with live previews and copy-paste code.",
     type: "website",
     locale: "en_US",
   },
@@ -42,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Unicorn UI Components Collection",
     description:
-      "A curated collection of beautiful, accessible, and reusable components built with React, TypeScript, and Tailwind CSS",
+      "Six card components built with React, TypeScript and Tailwind CSS on top of shadcn/ui, with live previews and copy-paste code.",
   },
 };
 
