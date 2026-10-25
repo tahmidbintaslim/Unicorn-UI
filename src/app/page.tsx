@@ -14,15 +14,7 @@ import { Accessibility, Code, Github, Palette, Star } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-
-// Register ScrollTrigger plugin
-if (typeof window !== "undefined") {
-  import("gsap").then(({ gsap }) => {
-    import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
-      gsap.registerPlugin(ScrollTrigger);
-    });
-  });
-}
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Import components for live preview
 import { InteractiveCard } from "@/components/custom/interactive-card";
@@ -37,11 +29,17 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    // Registered here, before the timelines below, so scrollTrigger is never
+    // ignored. A deferred import used to race it and the sections played on load.
+    gsap.registerPlugin(ScrollTrigger);
 
-    const ctx = gsap.context(() => {
-      // Story sections animation
-      const sections = gsap.utils.toArray(".story-section") as Element[];
+    // Animate only when the visitor has not asked for reduced motion.
+    const mm = gsap.matchMedia(containerRef);
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const sections = gsap.utils.toArray<Element>(
+        ".story-section",
+        containerRef.current,
+      );
       sections.forEach((section, index: number) => {
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -63,9 +61,9 @@ export default function Home() {
           "-=0.4",
         );
       });
-    }, containerRef);
+    });
 
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   const stories = [
@@ -216,7 +214,8 @@ export default function Home() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen bg-gradient-to-br from-background to-muted/50"
+      // clip: the story columns start 50px off to the side before they slide in
+      className="min-h-screen overflow-x-clip bg-gradient-to-br from-background to-muted/50"
     >
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
