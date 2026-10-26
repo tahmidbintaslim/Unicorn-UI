@@ -38,15 +38,15 @@ export default function ComponentsPage() {
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
               <Button variant="ghost" size="sm" asChild>
                 <Link href="/">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back to Home
                 </Link>
               </Button>
-              <div className="h-6 w-px bg-border" />
+              <div className="hidden h-6 w-px bg-border sm:block" />
               <h1 className="text-2xl font-bold">Components</h1>
             </div>
             <div className="flex items-center gap-2">
@@ -71,9 +71,8 @@ export default function ComponentsPage() {
         <div className="mb-8">
           <h2 className="text-3xl font-bold mb-4">Component Library</h2>
           <p className="text-muted-foreground max-w-2xl">
-            Browse our collection of 6 beautiful, accessible, and customizable
-            components. Each component is built with TypeScript, includes live
-            interactive previews, and comes with copy-paste code examples.
+            Six card components built with TypeScript on shadcn/ui. Each one
+            has a live preview and copy-paste code.
           </p>
         </div>
 
@@ -90,8 +89,8 @@ export default function ComponentsPage() {
                 <Badge variant="secondary">New</Badge>
               </div>
               <CardDescription>
-                A beautiful card component with hover effects, animations, and
-                flexible content layout.
+                A title, description, optional badge, custom content and an
+                action button, with an optional hover effect.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -111,7 +110,7 @@ export default function ComponentsPage() {
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<InteractiveCard
   title="Product Launch"
   description="Join us for the biggest tech event"
@@ -166,8 +165,8 @@ export default function ComponentsPage() {
                 <Badge variant="outline">Popular</Badge>
               </div>
               <CardDescription>
-                Professional pricing cards with features list, call-to-action
-                buttons, and responsive design.
+                A plan name, price, a list of included and not included
+                features, and a call to action.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -194,7 +193,7 @@ export default function ComponentsPage() {
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<PricingCard
   name="Pro Plan"
   price={29}
@@ -254,8 +253,8 @@ export default function ComponentsPage() {
                 <Badge variant="secondary">Analytics</Badge>
               </div>
               <CardDescription>
-                Display key metrics and statistics with beautiful icons and
-                trend indicators.
+                A metric with an optional icon and a percentage change that is
+                announced in words.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -284,7 +283,7 @@ export default function ComponentsPage() {
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<StatisticsCard
   title="Total Revenue"
   value={45231}
@@ -338,8 +337,8 @@ import { DollarSign } from "lucide-react";
                 <Badge variant="outline">Social</Badge>
               </div>
               <CardDescription>
-                Beautiful testimonial cards with ratings, user avatars, and
-                authentic customer feedback.
+                Customer quotes with a star rating, the author&apos;s name, role and
+                company, and an optional avatar.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -347,7 +346,7 @@ import { DollarSign } from "lucide-react";
                 {/* Live Preview */}
                 <div className="border rounded-lg p-4 bg-muted/50">
                   <TestimonialCard
-                    testimonial="This component library has saved our team countless hours. The components are beautiful, accessible, and easy to use!"
+                    testimonial="Your customer's quote goes here: what they used, what changed for them, and why it mattered."
                     author="Alex Chen"
                     role="Frontend Developer"
                     company="InnovateTech"
@@ -358,9 +357,9 @@ import { DollarSign } from "lucide-react";
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<TestimonialCard
-  testimonial="Amazing components!"
+  testimonial="Your customer's quote goes here."
   author="Alex Chen"
   role="Frontend Developer"
   rating={5}
@@ -377,7 +376,7 @@ import { DollarSign } from "lucide-react";
                         .writeText(`import { TestimonialCard } from "@/components/custom/testimonial-card";
 
 <TestimonialCard
-  testimonial="This component library has saved our team countless hours. The components are beautiful, accessible, and easy to use!"
+  testimonial="Your customer's quote goes here: what they used, what changed for them, and why it mattered."
   author="Alex Chen"
   role="Frontend Developer"
   company="InnovateTech"
@@ -445,7 +444,7 @@ import { DollarSign } from "lucide-react";
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<FeatureCard
   title="Advanced Analytics"
   description="Get detailed insights..."
@@ -501,8 +500,8 @@ import { BarChart3 } from "lucide-react";
                 <Badge variant="outline">Content</Badge>
               </div>
               <CardDescription>
-                Perfect for blog posts, articles, and news content with images,
-                metadata, and multiple layout variants.
+                Title, excerpt, author, date, read time, category, likes and an
+                optional cover image, in three layouts.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -536,7 +535,7 @@ import { BarChart3 } from "lucide-react";
                 </div>
 
                 {/* Code Example */}
-                <div className="text-xs bg-gray-100 rounded p-2 font-mono">
+                <div className="text-xs bg-muted rounded p-2 font-mono">
                   <code>{`<BlogCard
   title="Building Modern UI Components"
   excerpt="Learn how to create beautiful..."

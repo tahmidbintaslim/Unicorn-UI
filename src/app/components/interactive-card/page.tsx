@@ -138,18 +138,18 @@ InteractiveCard.displayName = "InteractiveCard";`;
             {/* Header */}
             <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
                 <div className="container mx-auto px-4 py-4">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                             <Button variant="ghost" size="sm" asChild>
                                 <Link href="/components">
                                     <ArrowLeft className="w-4 h-4 mr-2" />
                                     Back to Components
                                 </Link>
                             </Button>
-                            <div className="h-6 w-px bg-border" />
+                            <div className="hidden h-6 w-px bg-border sm:block" />
                             <div>
                                 <h1 className="text-2xl font-bold">Interactive Card</h1>
-                                <p className="text-sm text-muted-foreground">A beautiful card component with hover effects and flexible content</p>
+                                <p className="text-sm text-muted-foreground">A card with an optional hover effect and custom content</p>
                             </div>
                         </div>
                         <Badge variant="outline">Custom Component</Badge>

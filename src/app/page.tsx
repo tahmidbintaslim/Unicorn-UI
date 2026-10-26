@@ -10,19 +10,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { Code, Github, Palette, Star } from "lucide-react";
+import { Accessibility, Code, Github, Palette, Star } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-
-// Register ScrollTrigger plugin
-if (typeof window !== "undefined") {
-  import("gsap").then(({ gsap }) => {
-    import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
-      gsap.registerPlugin(ScrollTrigger);
-    });
-  });
-}
 
 // Import components for live preview
 import { InteractiveCard } from "@/components/custom/interactive-card";
@@ -31,41 +22,63 @@ import { StatisticsCard } from "@/components/custom/statistics-card";
 import { TestimonialCard } from "@/components/custom/testimonial-card";
 import { FeatureCard } from "@/components/custom/feature-card";
 import { BlogCard } from "@/components/custom/blog-card";
-import { Users, Zap } from "lucide-react";
+import { Copy, Users } from "lucide-react";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    let mm: gsap.MatchMedia | undefined;
+    let cancelled = false;
 
-    const ctx = gsap.context(() => {
-      // Story sections animation
-      const sections = gsap.utils.toArray(".story-section") as Element[];
-      sections.forEach((section, index: number) => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse",
-          },
-        });
+    // ScrollTrigger loads on demand to stay out of the first-load bundle. The
+    // timelines are built only after it is registered; building them before
+    // registration makes GSAP ignore scrollTrigger and play them on load.
+    import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+      if (cancelled) return;
+      gsap.registerPlugin(ScrollTrigger);
 
-        tl.fromTo(
-          section.querySelector(".story-text"),
-          { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
-          { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" },
-        ).fromTo(
-          section.querySelector(".story-preview"),
-          { opacity: 0, scale: 0.8, y: 30 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" },
-          "-=0.4",
+      // Animate only when the visitor has not asked for reduced motion.
+      mm = gsap.matchMedia(containerRef);
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const sections = gsap.utils.toArray<Element>(
+          ".story-section",
+          containerRef.current,
         );
-      });
-    }, containerRef);
+        sections.forEach((section, index: number) => {
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse",
+            },
+          });
 
-    return () => ctx.revert();
+          tl.fromTo(
+            section.querySelector(".story-text"),
+            { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
+            { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" },
+          ).fromTo(
+            section.querySelector(".story-preview"),
+            { opacity: 0, scale: 0.8, y: 30 },
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "back.out(1.7)",
+            },
+            "-=0.4",
+          );
+        });
+      });
+    });
+
+    return () => {
+      cancelled = true;
+      mm?.revert();
+    };
   }, []);
 
   const stories = [
@@ -74,7 +87,7 @@ export default function Home() {
       title: "Interactive Card",
       subtitle: "Engage Your Users",
       description:
-        "Create captivating card components with smooth hover effects, dynamic animations, and flexible content layouts that respond to user interactions.",
+        "A card with a title, description, optional badge, custom content and an action button, with an optional hover effect.",
       features: [
         "Hover animations",
         "Flexible layouts",
@@ -95,7 +108,7 @@ export default function Home() {
       title: "Pricing Card",
       subtitle: "Convert Visitors to Customers",
       description:
-        "Professional pricing tables that clearly communicate value, features, and pricing tiers to help your users make informed decisions.",
+        "A plan card with the price and period, a list of included and not included features, an optional popular badge and a call to action.",
       features: [
         "Feature lists",
         "Popular badges",
@@ -125,12 +138,12 @@ export default function Home() {
       title: "Statistics Card",
       subtitle: "Show Your Impact",
       description:
-        "Display key metrics and KPIs with beautiful visualizations, trend indicators, and contextual information that tells your story.",
+        "Display a key metric with an optional icon and a percentage change that is announced in words, not by color alone.",
       features: [
         "Trend indicators",
         "Custom icons",
         "Flexible layouts",
-        "Data visualization",
+        "Trend in words",
       ],
       component: (
         <StatisticsCard
@@ -147,7 +160,7 @@ export default function Home() {
       title: "Testimonial Card",
       subtitle: "Build Trust & Credibility",
       description:
-        "Showcase customer testimonials, reviews, and social proof with elegant card designs that highlight what your users love about your product.",
+        'Show a customer quote with the author\'s name, role, company, an optional avatar and a star rating that screen readers announce as "Rated N out of 5".',
       features: [
         "Avatar support",
         "Rating display",
@@ -156,12 +169,12 @@ export default function Home() {
       ],
       component: (
         <TestimonialCard
-          testimonial="Unicorn UI components have transformed our development workflow. The quality and consistency are unmatched."
+          testimonial="Your customer's quote goes here: what they used, what changed for them, and why it mattered."
           author="Sarah Johnson"
           role="Product Manager"
           company="TechCorp"
           rating={5}
-          avatar="/api/placeholder/64/64"
+          avatar="/demo/avatar.webp"
         />
       ),
     },
@@ -170,7 +183,7 @@ export default function Home() {
       title: "Feature Card",
       subtitle: "Highlight Your Strengths",
       description:
-        "Showcase product features, capabilities, and benefits with visually appealing cards that guide users through your value proposition.",
+        "An icon, title, description, optional badge and call to action, in a vertical or horizontal layout.",
       features: [
         "Icon integration",
         "Flexible layouts",
@@ -179,9 +192,9 @@ export default function Home() {
       ],
       component: (
         <FeatureCard
-          title="Lightning Fast"
-          description="Built for performance with optimized rendering and minimal bundle size impact."
-          icon={Zap}
+          title="Copy and paste"
+          description="Copy the card's folder into a shadcn/ui project, import it and pass your content as props."
+          icon={Copy}
           ctaText="Learn More"
           onCtaClick={() => console.log("Feature clicked")}
         />
@@ -192,7 +205,7 @@ export default function Home() {
       title: "Blog Card",
       subtitle: "Share Your Stories",
       description:
-        "Beautiful article cards that display blog posts, news, and content with rich metadata, reading time, and engaging previews.",
+        "An article card with title, excerpt, author, date, read time, category and likes, in default, horizontal and minimal layouts.",
       features: [
         "Rich metadata",
         "Reading time",
@@ -203,11 +216,11 @@ export default function Home() {
         <BlogCard
           title="Building Modern UIs with React and TypeScript"
           excerpt="Learn how to create scalable, maintainable user interfaces using modern React patterns and TypeScript best practices."
-          author="Unicorn UI Team"
+          author="Sarah Wilson"
           date="2024-01-15"
           readTime="5 min read"
           category="Tutorial"
-          image="/api/placeholder/400/250"
+          image="/demo/blog-cover.webp"
         />
       ),
     },
@@ -216,14 +229,15 @@ export default function Home() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen bg-gradient-to-br from-background to-muted/50"
+      // clip: the story columns start 50px off to the side before they slide in
+      className="min-h-screen overflow-x-clip bg-gradient-to-br from-background to-muted/50"
     >
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <h1 className="text-xl font-bold">Unicorn UI</h1>
+              <span className="text-xl font-bold">Unicorn UI</span>
             </div>
             <div className="flex items-center gap-2">
               <ThemeToggle />
@@ -252,9 +266,9 @@ export default function Home() {
             Unicorn UI Components
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            A curated collection of beautiful, accessible, and reusable
-            components built with React, TypeScript, and Tailwind CSS. Ready to
-            copy, paste, and customize.
+            Six card components built with React, TypeScript and Tailwind CSS on
+            top of shadcn/ui. Preview each one live, then copy its code into
+            your project.
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Button size="lg" asChild>
@@ -280,12 +294,10 @@ export default function Home() {
       {/* Features Section */}
       <section className="container mx-auto px-4 py-20">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">
-            Why Choose Our Components?
-          </h2>
+          <h2 className="text-3xl font-bold mb-4">What the cards give you</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Built with modern technologies and best practices to help you create
-            amazing user interfaces faster.
+            Plain React components that use the shadcn/ui theme variables, so
+            they follow your light and dark themes.
           </p>
         </div>
 
@@ -295,10 +307,10 @@ export default function Home() {
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                 <Palette className="w-6 h-6 text-primary" />
               </div>
-              <CardTitle>Beautiful Design</CardTitle>
+              <CardTitle>Built on shadcn/ui</CardTitle>
               <CardDescription>
-                Carefully crafted components with attention to detail and modern
-                aesthetics
+                Each card is made from the shadcn/ui card, button and badge
+                primitives and the same theme variables.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -306,12 +318,12 @@ export default function Home() {
           <Card className="border-2 hover:border-primary/50 transition-colors">
             <CardHeader>
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                <Zap className="w-6 h-6 text-primary" />
+                <Accessibility className="w-6 h-6 text-primary" />
               </div>
-              <CardTitle>Performance First</CardTitle>
+              <CardTitle>Accessible markup</CardTitle>
               <CardDescription>
-                Optimized for speed and efficiency with minimal bundle size
-                impact
+                Real lists, figure and blockquote, a time element, ratings and
+                trends in words, and no button nested in a link.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -321,10 +333,10 @@ export default function Home() {
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                 <Code className="w-6 h-6 text-primary" />
               </div>
-              <CardTitle>Developer Experience</CardTitle>
+              <CardTitle>Typed and customizable</CardTitle>
               <CardDescription>
-                TypeScript support, comprehensive documentation, and easy
-                customization
+                Typed props, forwarded refs, and a className that is merged over
+                the defaults with tailwind-merge.
               </CardDescription>
             </CardHeader>
           </Card>
@@ -336,8 +348,8 @@ export default function Home() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Component Stories</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Scroll through our component library and see how each piece tells
-            its own story
+            Scroll through the six cards. Each one has a live preview here and a
+            detail page with its props and code.
           </p>
         </div>
 
@@ -415,9 +427,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="container mx-auto px-4 py-20 text-center">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6">
-            Start Building Amazing UIs Today
-          </h2>
+          <h2 className="text-3xl font-bold mb-6">Try the cards</h2>
           <p className="text-muted-foreground mb-8">
             Browse the six cards, try them in the live previews and copy the
             code into your Next.js and shadcn/ui project.

@@ -8,8 +8,7 @@ that code.
 - Source: https://github.com/shadcn-ui/ui
 - License: MIT
 - Files: the primitives in `src/components/ui/` (`badge.tsx`, `button.tsx`,
-  `card.tsx`, `dialog.tsx`, `input.tsx`, `label.tsx`, `tabs.tsx`,
-  `textarea.tsx`), the `cn` helper in `src/lib/utils.ts`, and the theme
+  `card.tsx`, `tabs.tsx`), the `cn` helper in `src/lib/utils.ts`, and the theme
   variables in `src/app/globals.css`. They were generated with the shadcn CLI
   (new-york style, neutral base color, see `components.json`). The six cards in
   `src/components/custom/` are built on these primitives.

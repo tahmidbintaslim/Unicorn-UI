@@ -201,15 +201,15 @@ export default function Example() {
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
               <Button variant="ghost" size="sm" asChild>
                 <Link href="/components">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back to Components
                 </Link>
               </Button>
-              <div className="h-6 w-px bg-border" />
+              <div className="hidden h-6 w-px bg-border sm:block" />
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center">
                   <BookOpen className="w-4 h-4 text-blue-600" />
@@ -217,12 +217,12 @@ export default function Example() {
                 <div>
                   <h1 className="text-2xl font-bold">Blog Card</h1>
                   <p className="text-sm text-muted-foreground">
-                    Beautiful blog post cards with metadata
+                    Blog post cards with metadata
                   </p>
                 </div>
               </div>
             </div>
-            <Badge variant="secondary">Component</Badge>
+            <Badge variant="secondary" className="hidden sm:inline-flex">Component</Badge>
           </div>
         </div>
       </header>
@@ -358,7 +358,7 @@ export default function Example() {
                               </Badge>
                             )}
                           </td>
-                          <td className="p-2 font-mono text-gray-500">
+                          <td className="p-2 font-mono text-muted-foreground">
                             {prop.default || "-"}
                           </td>
                           <td className="p-2">{prop.description}</td>
