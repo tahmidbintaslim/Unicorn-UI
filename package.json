@@ -20,7 +20,7 @@
   "private": true,
   "packageManager": "pnpm@10.34.6",
   "engines": {
-    "node": ">=20.9.0"
+    "node": "^22.13.0 || ^24.0.0 || >=26.0.0"
   },
   "scripts": {
     "dev": "next dev --turbopack",

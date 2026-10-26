@@ -5,8 +5,8 @@ request must pass, and how a card is laid out.
 
 ## Setup
 
-You need Node.js 22.13 or later and pnpm. Use pnpm only:
-the lockfile and the security overrides in `pnpm-workspace.yaml` are pnpm's,
+You need Node.js 22 (22.13 or later), 24, or 26 and later, and pnpm. Use pnpm
+only: the lockfile and the security overrides in `pnpm-workspace.yaml` are pnpm's,
 and npm ignores them.
 
 ```bash

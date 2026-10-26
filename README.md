@@ -11,8 +11,8 @@ TypeScript and Tailwind CSS on top of [shadcn/ui](https://ui.shadcn.com/).
 
 **Live demo:** https://shadcn-ui-library.vercel.app
 
-The repo is a Next.js app that shows each card with a live preview, its props
-and copy-paste code. The cards are interactive, pricing, statistics,
+The repo is a Next.js app that shows each card with a live preview and
+copy-paste code, and five of the six with a props table. The cards are interactive, pricing, statistics,
 testimonial, feature and blog.
 
 ![Unicorn UI home page in the light theme: the title "Unicorn UI Components", a one-line description and buttons to browse the components or view the code on GitHub](docs/images/home-light.png)
@@ -31,7 +31,7 @@ testimonial, feature and blog.
 - CI runs lint, typecheck, unit tests and a production build on every push and
   pull request to `main`.
 - The cards have not been tested with screen readers yet. The Playground tab
-  on five of the six detail pages is a placeholder.
+  is a placeholder on the five detail pages that have one.
 
 ## What is in the box
 
@@ -89,17 +89,23 @@ Radix UI primitives.
 - `src/app/page.tsx` is the home page: one scroll section per card with a live
   preview.
 - `src/app/components/page.tsx` is the gallery, and
-  `src/app/components/<card>/page.tsx` is a detail page with Preview, Usage,
-  Props and Playground tabs.
+  `src/app/components/<card>/page.tsx` is a detail page. Five of them have
+  Preview, Usage, Props and a placeholder Playground tab; the interactive card
+  page shows a preview with Usage, Advanced and Component code tabs.
 - Colors come from the shadcn/ui CSS variables in `src/app/globals.css`, plus
-  a `--success` variable for positive states.
+  a `--success` variable for positive states. Two defaults use fixed Tailwind
+  colors that do not follow the theme: the blog card's category badge
+  (`bg-gray-100 text-gray-800`, change it with `categoryColor`) and the
+  testimonial card's stars (`text-yellow-400`, `text-gray-300`).
 
 ## Getting started
 
 ### Prerequisites
 
-- Node.js 22.13 or later (CI uses Node 22). The test tools (Vitest 5,
-  jsdom 29) do not support Node 20, which reached end of life in April 2026.
+- Node.js 22 (22.13 or later), 24, or 26 and later (CI uses Node 22). This is
+  the `engines` range in `package.json`. Vitest 5 does not run on Node 20,
+  which reached end of life in April 2026, or on Node 23 and 25, and jsdom 29
+  needs 22.13 or later on the 22 line.
 - pnpm 10.34.6. The version is pinned in `package.json`, and
   `corepack enable` installs it for you.
 
@@ -271,13 +277,19 @@ Light and dark themes are switched with `next-themes`.
 - `BlogCard` and `TestimonialCard` render images with `next/image`, so they need
   Next.js. Images must be files in `public/` or URLs allowed in
   `images.remotePatterns` in `next.config.ts`.
-- The Playground tab on five of the six detail pages is a placeholder.
+- `PricingCard`, `FeatureCard`, `InteractiveCard` and `BlogCard` import the
+  `button` or `badge` primitive, which uses `@radix-ui/react-slot`. That
+  package creates a React context when it loads, so these cards crash in an
+  App Router Server Component. Render them from a Client Component (a file
+  that starts with `"use client"`).
+- The Playground tab is a placeholder on the five detail pages that have one.
 
 ## Deployment
 
 The demo is deployed on Vercel (project `shadcn-ui-library`) through Vercel's
 GitHub integration: pushes to `main` update https://shadcn-ui-library.vercel.app
-and each pull request gets a preview URL. Vercel detects Next.js and runs
+and each pull request gets a preview URL (it needs a Vercel login with access
+to the project). Vercel detects Next.js and runs
 `pnpm install` and `pnpm build`; no environment variables are set.
 
 To run the production build anywhere else:
