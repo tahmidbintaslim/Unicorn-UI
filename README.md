@@ -1,21 +1,22 @@
-# Unicorn UI
+# Tapas UI
 
-Six copy-paste card components for marketing and SaaS pages, built with React,
-TypeScript and Tailwind CSS on top of [shadcn/ui](https://ui.shadcn.com/).
+Small plates for your landing page: copy-paste cards and sections for marketing
+and SaaS pages, built with React, TypeScript and Tailwind CSS on top of
+[shadcn/ui](https://ui.shadcn.com/).
 
-[![CI](https://github.com/tahmidbintaslim/Unicorn-UI/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tahmidbintaslim/Unicorn-UI/actions/workflows/ci.yml)
+[![CI](https://github.com/tahmidbintaslim/tapas-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tahmidbintaslim/tapas-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Live demo](https://img.shields.io/badge/demo-shadcn--ui--library.vercel.app-black?logo=vercel)](https://shadcn-ui-library.vercel.app)
+[![Live demo](https://img.shields.io/badge/demo-tapas--ui.vercel.app-black?logo=vercel)](https://tapas-ui.vercel.app)
 ![Next.js 15.5](https://img.shields.io/badge/Next.js-15.5-black?logo=next.js)
 ![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
 
-**Live demo:** https://shadcn-ui-library.vercel.app
+**Live demo:** https://tapas-ui.vercel.app
 
 The repo is a Next.js app that shows each card with a live preview and
 copy-paste code, and five of the six with a props table. The cards are interactive, pricing, statistics,
 testimonial, feature and blog.
 
-![Unicorn UI home page in the light theme: the title "Unicorn UI Components", a one-line description and buttons to browse the components or view the code on GitHub](docs/images/home-light.png)
+![Tapas UI home page in the light theme: the title "Tapas UI", a one-line description and buttons to browse the components or view the code on GitHub](docs/images/home-light.png)
 
 | Gallery (dark theme) | Blog card with a cover image (dark theme) |
 | --- | --- |
@@ -112,8 +113,8 @@ Radix UI primitives.
 ### Install and run
 
 ```bash
-git clone https://github.com/tahmidbintaslim/Unicorn-UI.git
-cd Unicorn-UI
+git clone https://github.com/tahmidbintaslim/tapas-ui.git
+cd tapas-ui
 corepack enable
 pnpm install --frozen-lockfile
 pnpm dev
@@ -137,6 +138,22 @@ out of Next.js telemetry, set `NEXT_TELEMETRY_DISABLED=1`.
 
 CI runs `pnpm install --frozen-lockfile`, `lint`, `typecheck`, `test` and
 `build`, in that order. Run the same before you open a pull request.
+
+## Install with the shadcn CLI
+
+Every card is a shadcn registry item, served by the demo site. In a project
+that already has shadcn/ui set up:
+
+```bash
+npx shadcn@latest add https://tapas-ui.vercel.app/r/pricing-card.json
+```
+
+Items: `interactive-card`, `pricing-card`, `statistics-card`,
+`testimonial-card`, `feature-card`, `blog-card`, plus the landing blocks `hero`,
+`faq` and `cta-banner` (demo at `/blocks`). The CLI also adds the `card`,
+`button` and `badge` primitives each card needs. The testimonial and blog cards
+use `next/image`, so they need Next.js. `pnpm build` regenerates `public/r/`
+from `registry.json`.
 
 ## Usage
 
@@ -286,8 +303,8 @@ Light and dark themes are switched with `next-themes`.
 
 ## Deployment
 
-The demo is deployed on Vercel (project `shadcn-ui-library`) through Vercel's
-GitHub integration: pushes to `main` update https://shadcn-ui-library.vercel.app
+The demo is deployed on Vercel (project `tapas-ui`) through Vercel's
+GitHub integration: pushes to `main` update https://tapas-ui.vercel.app
 and each pull request gets a preview URL (it needs a Vercel login with access
 to the project). Vercel detects Next.js and runs
 `pnpm install` and `pnpm build`; no environment variables are set.
@@ -327,6 +344,8 @@ pnpm start
 - Test the cards with VoiceOver and NVDA and record the results here.
 
 ## Contributing
+
+If Tapas UI saves you time, a star on GitHub helps other people find it. Want to help? See the [good first issues](https://github.com/tahmidbintaslim/tapas-ui/labels/good%20first%20issue) and [help wanted](https://github.com/tahmidbintaslim/tapas-ui/labels/help%20wanted).
 
 Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 

@@ -4,7 +4,7 @@
 
 ## Project context
 
-Unicorn UI is a Next.js 15 app that showcases six card components built with
+Tapas UI is a Next.js 15 app that showcases six card components built with
 React 19, TypeScript and Tailwind CSS 4 on shadcn/ui primitives. The cards are
 meant to be copied into other shadcn/ui projects. Use pnpm.
 

@@ -1,4 +1,4 @@
-# Contributing to Unicorn UI
+# Contributing to Tapas UI
 
 Issues and pull requests are welcome. This file covers setup, the checks a pull
 request must pass, and how a card is laid out.
@@ -10,8 +10,8 @@ only: the lockfile and the security overrides in `pnpm-workspace.yaml` are pnpm'
 and npm ignores them.
 
 ```bash
-git clone https://github.com/<your-username>/Unicorn-UI.git
-cd Unicorn-UI
+git clone https://github.com/<your-username>/tapas-ui.git
+cd tapas-ui
 corepack enable
 pnpm install --frozen-lockfile
 pnpm dev
