@@ -162,6 +162,32 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "logo-cloud",
+      "type": "registry:component",
+      "title": "Logo cloud",
+      "description": "A 'trusted by' strip of logos or company names.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/custom/logo-cloud/logo-cloud.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "registry:component",
+      "title": "Footer",
+      "description": "Site footer with a brand name, link columns and a small-print line.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/custom/footer/footer.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
