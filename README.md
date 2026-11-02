@@ -345,6 +345,8 @@ pnpm start
 
 ## Contributing
 
+If Tapas UI saves you time, a star on GitHub helps other people find it. Want to help? See the [good first issues](https://github.com/tahmidbintaslim/tapas-ui/labels/good%20first%20issue) and [help wanted](https://github.com/tahmidbintaslim/tapas-ui/labels/help%20wanted).
+
 Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
