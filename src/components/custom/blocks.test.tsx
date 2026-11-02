@@ -63,3 +63,39 @@ describe("logo cloud and footer", () => {
     expect(screen.getByRole("contentinfo")).toBeTruthy();
   });
 });
+
+import { Zap } from "lucide-react";
+import { BentoGrid } from "./bento-grid";
+import { Navbar } from "./navbar";
+
+describe("navbar and bento grid", () => {
+  it("Navbar renders a labelled main nav, every link twice (desktop and mobile) and the action", () => {
+    render(
+      <Navbar
+        brand="Tapas"
+        links={[{ label: "Blocks", href: "/blocks" }]}
+        action={{ label: "Get started", href: "/start" }}
+      />,
+    );
+    expect(screen.getByRole("navigation", { name: "Main" })).toBeTruthy();
+    expect(screen.getAllByRole("link", { name: "Blocks" })).toHaveLength(2);
+    expect(screen.getByRole("link", { name: "Get started" }).getAttribute("href")).toBe("/start");
+    expect(screen.getByText("Menu").className).toContain("sr-only");
+  });
+
+  it("BentoGrid renders tiles as list items, applies spans and hides icons", () => {
+    const { container } = render(
+      <BentoGrid
+        title="Features"
+        items={[
+          { title: "Fast", description: "Ships quickly", icon: Zap, size: "large" },
+          { title: "Small", description: "Tiny" },
+        ]}
+      />,
+    );
+    const tiles = screen.getAllByRole("listitem");
+    expect(tiles).toHaveLength(2);
+    expect(tiles[0].className).toContain("md:col-span-2");
+    expect(container.querySelector("svg")?.getAttribute("aria-hidden")).toBe("true");
+  });
+});

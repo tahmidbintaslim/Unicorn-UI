@@ -188,6 +188,40 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "navbar",
+      "type": "registry:component",
+      "title": "Navbar",
+      "description": "Top navigation with a brand, links and an action; links fold into a no-JS menu on phones.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/navbar/navbar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bento-grid",
+      "type": "registry:component",
+      "title": "Bento grid",
+      "description": "Feature grid with tiles of mixed sizes that stack on phones.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/custom/bento-grid/bento-grid.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
