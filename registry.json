@@ -115,6 +115,53 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "hero",
+      "type": "registry:component",
+      "title": "Hero",
+      "description": "Centered landing-page hero with an optional badge and up to two links.",
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero/hero.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "faq",
+      "type": "registry:component",
+      "title": "FAQ",
+      "description": "Accordion-style FAQ built on native details and summary.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/custom/faq/faq.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-banner",
+      "type": "registry:component",
+      "title": "CTA banner",
+      "description": "Full-width call-to-action band with a heading, text and one button.",
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/cta-banner/cta-banner.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

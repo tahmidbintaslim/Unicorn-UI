@@ -6,3 +6,6 @@ export * from "./pricing-card";
 export * from "./statistics-card";
 export * from "./testimonial-card";
 
+export * from "./hero";
+export * from "./faq";
+export * from "./cta-banner";
