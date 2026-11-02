@@ -266,7 +266,7 @@ export default function Home() {
             <Github className="w-4 h-4 mr-2" />
             Open source · MIT
           </Badge>
-          <h1 className="text-5xl font-bold mb-6 bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+          <h1 className="text-5xl leading-tight font-bold mb-6 bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent">
             Small plates for your landing page
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">

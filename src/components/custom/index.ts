@@ -9,3 +9,5 @@ export * from "./testimonial-card";
 export * from "./hero";
 export * from "./faq";
 export * from "./cta-banner";
+export * from "./logo-cloud";
+export * from "./footer";

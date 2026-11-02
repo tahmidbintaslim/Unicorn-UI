@@ -150,7 +150,7 @@ npx shadcn@latest add https://tapas-ui.vercel.app/r/pricing-card.json
 
 Items: `interactive-card`, `pricing-card`, `statistics-card`,
 `testimonial-card`, `feature-card`, `blog-card`, plus the landing blocks `hero`,
-`faq` and `cta-banner` (demo at `/blocks`). The CLI also adds the `card`,
+`faq`, `cta-banner`, `logo-cloud` and `footer` (demo at `/blocks`). The CLI also adds the `card`,
 `button` and `badge` primitives each card needs. The testimonial and blog cards
 use `next/image`, so they need Next.js. `pnpm build` regenerates `public/r/`
 from `registry.json`.

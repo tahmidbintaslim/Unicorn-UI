@@ -34,3 +34,32 @@ describe("landing blocks", () => {
     expect(screen.getByRole("link", { name: "Go" }).getAttribute("href")).toBe("/go");
   });
 });
+
+import { Footer } from "./footer";
+import { LogoCloud } from "./logo-cloud";
+
+describe("logo cloud and footer", () => {
+  it("LogoCloud lists names and keeps the name readable behind a logo", () => {
+    render(
+      <LogoCloud
+        logos={[{ name: "Acme" }, { name: "Globex", logo: <svg data-testid="g" /> }]}
+      />,
+    );
+    expect(screen.getAllByRole("listitem")).toHaveLength(2);
+    expect(screen.getByText("Acme")).toBeTruthy();
+    expect(screen.getByText("Globex").className).toContain("sr-only");
+  });
+
+  it("Footer renders columns inside a labelled nav", () => {
+    render(
+      <Footer
+        brand="Tapas"
+        note="MIT"
+        columns={[{ title: "Product", links: [{ label: "Blocks", href: "/blocks" }] }]}
+      />,
+    );
+    expect(screen.getByRole("navigation", { name: "Footer" })).toBeTruthy();
+    expect(screen.getByRole("link", { name: "Blocks" }).getAttribute("href")).toBe("/blocks");
+    expect(screen.getByRole("contentinfo")).toBeTruthy();
+  });
+});
