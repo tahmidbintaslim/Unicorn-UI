@@ -15,11 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Unicorn UI Components Collection",
+  title: "Tapas UI: copy-paste cards and landing blocks",
   description:
-    "Six card components built with React, TypeScript and Tailwind CSS on top of shadcn/ui, with live previews and copy-paste code.",
+    "Copy-paste cards and landing blocks for React, Tailwind and shadcn/ui. Install each with one command.",
   keywords: [
-    "unicorn-ui",
+    "tapas-ui",
     "ui",
     "components",
     "react",
@@ -31,20 +31,20 @@ export const metadata: Metadata = {
     { name: "Tahmid Bin Taslim Rafi", url: "https://github.com/tahmidbintaslim" },
   ],
   creator: "Tahmid Bin Taslim Rafi",
-  // The deployed demo. unicorn-ui.vercel.app is someone else's site.
+  // The deployed demo. Update this when the Vercel project or domain is renamed.
   metadataBase: new URL("https://shadcn-ui-library.vercel.app"),
   openGraph: {
-    title: "Unicorn UI Components Collection",
+    title: "Tapas UI: copy-paste cards and landing blocks",
     description:
-      "Six card components built with React, TypeScript and Tailwind CSS on top of shadcn/ui, with live previews and copy-paste code.",
+      "Copy-paste cards and landing blocks for React, Tailwind and shadcn/ui. Install each with one command.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Unicorn UI Components Collection",
+    title: "Tapas UI: copy-paste cards and landing blocks",
     description:
-      "Six card components built with React, TypeScript and Tailwind CSS on top of shadcn/ui, with live previews and copy-paste code.",
+      "Copy-paste cards and landing blocks for React, Tailwind and shadcn/ui. Install each with one command.",
   },
 };
 

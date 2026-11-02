@@ -23,6 +23,10 @@ import { TestimonialCard } from "@/components/custom/testimonial-card";
 import { FeatureCard } from "@/components/custom/feature-card";
 import { BlogCard } from "@/components/custom/blog-card";
 import { Copy, Users } from "lucide-react";
+import toast from "react-hot-toast";
+
+const INSTALL_COMMAND =
+  "npx shadcn@latest add https://shadcn-ui-library.vercel.app/r/pricing-card.json";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -237,13 +241,13 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <span className="text-xl font-bold">Unicorn UI</span>
+              <span className="text-xl font-bold">Tapas UI</span>
             </div>
             <div className="flex items-center gap-2">
               <ThemeToggle />
               <Button variant="outline" size="sm" asChild>
                 <a
-                  href="https://github.com/tahmidbintaslim/unicorn-ui"
+                  href="https://github.com/tahmidbintaslim/tapas-ui"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -260,26 +264,42 @@ export default function Home() {
         <div className="max-w-4xl mx-auto">
           <Badge variant="outline" className="mb-4">
             <Github className="w-4 h-4 mr-2" />
-            Open Source
+            Open source · MIT
           </Badge>
           <h1 className="text-5xl font-bold mb-6 bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Unicorn UI Components
+            Small plates for your landing page
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Six card components built with React, TypeScript and Tailwind CSS on
-            top of shadcn/ui. Preview each one live, then copy its code into
-            your project.
+            Copy-paste cards and sections for React, Tailwind and shadcn/ui.
+            Pick the ones you need and install each with one command.
           </p>
+          <button
+            type="button"
+            onClick={() => {
+              navigator.clipboard
+                ?.writeText(INSTALL_COMMAND)
+                .then(() => toast.success("Copied"))
+                .catch(() => toast.error("Could not copy"));
+            }}
+            className="mx-auto mb-8 flex max-w-full items-center gap-3 rounded-lg border bg-muted px-4 py-3 font-mono text-sm hover:border-primary/50 focus-visible:outline-2 focus-visible:outline-ring"
+            aria-label={`Copy install command: ${INSTALL_COMMAND}`}
+          >
+            <span className="truncate">{INSTALL_COMMAND}</span>
+            <Copy aria-hidden="true" className="size-4 shrink-0" />
+          </button>
           <div className="flex gap-4 justify-center flex-wrap">
             <Button size="lg" asChild>
               <Link href="/components">
                 <Code className="w-4 h-4 mr-2" />
-                Browse Components
+                Browse cards
               </Link>
+            </Button>
+            <Button size="lg" variant="secondary" asChild>
+              <Link href="/blocks">Landing blocks</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <a
-                href="https://github.com/tahmidbintaslim/unicorn-ui"
+                href="https://github.com/tahmidbintaslim/tapas-ui"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -438,7 +458,7 @@ export default function Home() {
             </Button>
             <Button size="lg" variant="outline" asChild>
               <a
-                href="https://github.com/tahmidbintaslim/unicorn-ui"
+                href="https://github.com/tahmidbintaslim/tapas-ui"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -53,7 +53,7 @@ export default function ComponentsPage() {
               <ThemeToggle />
               <Button variant="outline" size="sm" asChild>
                 <a
-                  href="https://github.com/tahmidbintaslim/unicorn-ui"
+                  href="https://github.com/tahmidbintaslim/tapas-ui"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -595,7 +595,7 @@ import { BarChart3 } from "lucide-react";
               <div className="flex gap-4 justify-center">
                 <Button asChild>
                   <a
-                    href="https://github.com/tahmidbintaslim/unicorn-ui"
+                    href="https://github.com/tahmidbintaslim/tapas-ui"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

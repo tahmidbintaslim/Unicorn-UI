@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "unicorn-ui",
+  "name": "tapas-ui",
   "homepage": "https://shadcn-ui-library.vercel.app",
   "items": [
     {

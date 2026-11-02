@@ -1,9 +1,10 @@
-# Unicorn UI
+# Tapas UI
 
-Six copy-paste card components for marketing and SaaS pages, built with React,
-TypeScript and Tailwind CSS on top of [shadcn/ui](https://ui.shadcn.com/).
+Small plates for your landing page: copy-paste cards and sections for marketing
+and SaaS pages, built with React, TypeScript and Tailwind CSS on top of
+[shadcn/ui](https://ui.shadcn.com/).
 
-[![CI](https://github.com/tahmidbintaslim/Unicorn-UI/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tahmidbintaslim/Unicorn-UI/actions/workflows/ci.yml)
+[![CI](https://github.com/tahmidbintaslim/tapas-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tahmidbintaslim/tapas-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Live demo](https://img.shields.io/badge/demo-shadcn--ui--library.vercel.app-black?logo=vercel)](https://shadcn-ui-library.vercel.app)
 ![Next.js 15.5](https://img.shields.io/badge/Next.js-15.5-black?logo=next.js)
@@ -15,7 +16,7 @@ The repo is a Next.js app that shows each card with a live preview and
 copy-paste code, and five of the six with a props table. The cards are interactive, pricing, statistics,
 testimonial, feature and blog.
 
-![Unicorn UI home page in the light theme: the title "Unicorn UI Components", a one-line description and buttons to browse the components or view the code on GitHub](docs/images/home-light.png)
+![Tapas UI home page in the light theme: the title "Tapas UI", a one-line description and buttons to browse the components or view the code on GitHub](docs/images/home-light.png)
 
 | Gallery (dark theme) | Blog card with a cover image (dark theme) |
 | --- | --- |
@@ -112,8 +113,8 @@ Radix UI primitives.
 ### Install and run
 
 ```bash
-git clone https://github.com/tahmidbintaslim/Unicorn-UI.git
-cd Unicorn-UI
+git clone https://github.com/tahmidbintaslim/tapas-ui.git
+cd tapas-ui
 corepack enable
 pnpm install --frozen-lockfile
 pnpm dev

@@ -13,7 +13,7 @@ export default function BlocksPage() {
         title="Landing blocks you install with one command"
         description="Hero, FAQ and call-to-action sections for marketing pages."
         primaryAction={{ label: "Browse cards", href: "/components" }}
-        secondaryAction={{ label: "View source", href: "https://github.com/tahmidbintaslim/Unicorn-UI" }}
+        secondaryAction={{ label: "View source", href: "https://github.com/tahmidbintaslim/tapas-ui" }}
       />
       <Faq
         items={[
