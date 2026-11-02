@@ -6,11 +6,11 @@ and SaaS pages, built with React, TypeScript and Tailwind CSS on top of
 
 [![CI](https://github.com/tahmidbintaslim/tapas-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tahmidbintaslim/tapas-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Live demo](https://img.shields.io/badge/demo-shadcn--ui--library.vercel.app-black?logo=vercel)](https://shadcn-ui-library.vercel.app)
+[![Live demo](https://img.shields.io/badge/demo-tapas--ui.vercel.app-black?logo=vercel)](https://tapas-ui.vercel.app)
 ![Next.js 15.5](https://img.shields.io/badge/Next.js-15.5-black?logo=next.js)
 ![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
 
-**Live demo:** https://shadcn-ui-library.vercel.app
+**Live demo:** https://tapas-ui.vercel.app
 
 The repo is a Next.js app that shows each card with a live preview and
 copy-paste code, and five of the six with a props table. The cards are interactive, pricing, statistics,
@@ -145,7 +145,7 @@ Every card is a shadcn registry item, served by the demo site. In a project
 that already has shadcn/ui set up:
 
 ```bash
-npx shadcn@latest add https://shadcn-ui-library.vercel.app/r/pricing-card.json
+npx shadcn@latest add https://tapas-ui.vercel.app/r/pricing-card.json
 ```
 
 Items: `interactive-card`, `pricing-card`, `statistics-card`,
@@ -303,8 +303,8 @@ Light and dark themes are switched with `next-themes`.
 
 ## Deployment
 
-The demo is deployed on Vercel (project `shadcn-ui-library`) through Vercel's
-GitHub integration: pushes to `main` update https://shadcn-ui-library.vercel.app
+The demo is deployed on Vercel (project `tapas-ui`) through Vercel's
+GitHub integration: pushes to `main` update https://tapas-ui.vercel.app
 and each pull request gets a preview URL (it needs a Vercel login with access
 to the project). Vercel detects Next.js and runs
 `pnpm install` and `pnpm build`; no environment variables are set.

@@ -26,7 +26,7 @@ import { Copy, Users } from "lucide-react";
 import toast from "react-hot-toast";
 
 const INSTALL_COMMAND =
-  "npx shadcn@latest add https://shadcn-ui-library.vercel.app/r/pricing-card.json";
+  "npx shadcn@latest add https://tapas-ui.vercel.app/r/pricing-card.json";
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);

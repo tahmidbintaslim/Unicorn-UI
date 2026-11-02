@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "tapas-ui",
-  "homepage": "https://shadcn-ui-library.vercel.app",
+  "homepage": "https://tapas-ui.vercel.app",
   "items": [
     {
       "name": "interactive-card",

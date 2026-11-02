@@ -11,7 +11,7 @@
     "tailwind",
     "nextjs"
   ],
-  "homepage": "https://shadcn-ui-library.vercel.app",
+  "homepage": "https://tapas-ui.vercel.app",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tahmidbintaslim/tapas-ui.git"
