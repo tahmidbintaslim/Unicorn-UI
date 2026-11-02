@@ -1,0 +1,120 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "unicorn-ui",
+  "homepage": "https://shadcn-ui-library.vercel.app",
+  "items": [
+    {
+      "name": "interactive-card",
+      "type": "registry:component",
+      "title": "Interactive card",
+      "description": "Title, description, optional badge, custom content and an action button.",
+      "registryDependencies": [
+        "card",
+        "button",
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/interactive-card/interactive-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pricing-card",
+      "type": "registry:component",
+      "title": "Pricing card",
+      "description": "Plan name, price, included and excluded features, and a call to action.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "button",
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/pricing-card/pricing-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "statistics-card",
+      "type": "registry:component",
+      "title": "Statistics card",
+      "description": "A metric with an optional icon and an up, down or flat percentage change.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/statistics-card/statistics-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-card",
+      "type": "registry:component",
+      "title": "Testimonial card",
+      "description": "A quote with author, role, company, optional avatar and a star rating. Uses next/image.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/testimonial-card/testimonial-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "feature-card",
+      "type": "registry:component",
+      "title": "Feature card",
+      "description": "An icon, title, description, optional badge and call to action, vertical or horizontal.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "badge",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/feature-card/feature-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "blog-card",
+      "type": "registry:component",
+      "title": "Blog card",
+      "description": "Title, excerpt, author, date, read time, category and cover image in three layouts. Uses next/image.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "badge",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/blog-card/blog-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

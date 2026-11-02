@@ -138,6 +138,21 @@ out of Next.js telemetry, set `NEXT_TELEMETRY_DISABLED=1`.
 CI runs `pnpm install --frozen-lockfile`, `lint`, `typecheck`, `test` and
 `build`, in that order. Run the same before you open a pull request.
 
+## Install with the shadcn CLI
+
+Every card is a shadcn registry item, served by the demo site. In a project
+that already has shadcn/ui set up:
+
+```bash
+npx shadcn@latest add https://shadcn-ui-library.vercel.app/r/pricing-card.json
+```
+
+Items: `interactive-card`, `pricing-card`, `statistics-card`,
+`testimonial-card`, `feature-card`, `blog-card`. The CLI also adds the `card`,
+`button` and `badge` primitives each card needs. The testimonial and blog cards
+use `next/image`, so they need Next.js. `pnpm build` regenerates `public/r/`
+from `registry.json`.
+
 ## Usage
 
 ### Interactive card
