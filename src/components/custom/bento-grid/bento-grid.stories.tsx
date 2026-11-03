@@ -4,6 +4,7 @@ import { BentoGrid } from "./bento-grid";
 
 const meta = {
   title: "Page sections/Bento grid",
+  parameters: { design: { type: "figma", url: "https://www.figma.com/design/gAmq9l9IOIKCbvxlWwGX4o/Tapas-UI---Sorbet-UI-%E2%80%94-Website-Design?node-id=6-62" } },
   component: BentoGrid,
   args: {
     title: "Why teams pick it",

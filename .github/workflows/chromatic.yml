@@ -1,0 +1,53 @@
+name: Chromatic
+
+# Publishes Storybook to Chromatic for a hosted, versioned Storybook URL and
+# visual review. Needs a CHROMATIC_PROJECT_TOKEN repository secret; without it
+# the job skips instead of failing.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: chromatic-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  chromatic:
+    runs-on: ubuntu-latest
+    env:
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+    steps:
+      - name: Skip when no Chromatic token is configured
+        if: env.CHROMATIC_PROJECT_TOKEN == ''
+        run: echo "CHROMATIC_PROJECT_TOKEN is not set; skipping Chromatic."
+
+      - uses: actions/checkout@v5
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        with:
+          # Chromatic compares against git history to find baselines.
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v5
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+
+      - uses: actions/setup-node@v5
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - if: env.CHROMATIC_PROJECT_TOKEN != ''
+        run: pnpm install --frozen-lockfile
+
+      - if: env.CHROMATIC_PROJECT_TOKEN != ''
+        run: pnpm build-storybook --quiet
+
+      - name: Publish to Chromatic
+        if: env.CHROMATIC_PROJECT_TOKEN != ''
+        # Visual changes are reviewed in Chromatic, so they don't fail CI here.
+        run: pnpm exec chromatic --storybook-build-dir public/storybook --exit-zero-on-changes

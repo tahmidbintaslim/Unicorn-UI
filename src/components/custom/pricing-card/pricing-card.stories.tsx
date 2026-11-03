@@ -4,7 +4,7 @@ import { PricingCard } from "./pricing-card";
 const meta = {
   title: "Cards/Pricing card",
   component: PricingCard,
-  parameters: { layout: "centered" },
+  parameters: { design: { type: "figma", url: "https://www.figma.com/design/gAmq9l9IOIKCbvxlWwGX4o/Tapas-UI---Sorbet-UI-%E2%80%94-Website-Design?node-id=6-69" },  layout: "centered" },
   decorators: [(Story) => <div className="w-80 p-8"><Story /></div>],
   args: {
     name: "Pro",

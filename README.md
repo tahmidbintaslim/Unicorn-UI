@@ -145,6 +145,23 @@ out of Next.js telemetry, set `NEXT_TELEMETRY_DISABLED=1`.
 CI runs `pnpm install --frozen-lockfile`, `lint`, `typecheck`, `test` and
 `build`, in that order. Run the same before you open a pull request.
 
+## Storybook
+
+Every section has stories with light and dark themes, at
+[tapas-ui.vercel.app/storybook](https://tapas-ui.vercel.app/storybook).
+
+- **Design panel:** stories link to their frames in the
+  [website Figma file](https://www.figma.com/design/gAmq9l9IOIKCbvxlWwGX4o)
+  through `@storybook/addon-designs` (`parameters.design`).
+- **Accessibility panel:** axe runs on every story and fails on violations.
+- **Storybook MCP:** `pnpm storybook` also serves an MCP server at
+  `http://localhost:6006/mcp` (`@storybook/addon-mcp`). It lists components,
+  their docs and stories for AI agents; `.mcp.json` registers it for Claude Code.
+- **Chromatic:** `.github/workflows/chromatic.yml` publishes Storybook to
+  Chromatic on every push and pull request once a `CHROMATIC_PROJECT_TOKEN`
+  repository secret exists, giving a hosted Storybook per branch and visual
+  review. Without the secret the job skips.
+
 ## Install with the shadcn CLI
 
 Every card is a shadcn registry item, served by the demo site. In a project

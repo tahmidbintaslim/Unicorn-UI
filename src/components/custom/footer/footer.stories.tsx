@@ -3,6 +3,7 @@ import { Footer } from "./footer";
 
 const meta = {
   title: "Page sections/Footer",
+  parameters: { design: { type: "figma", url: "https://www.figma.com/design/gAmq9l9IOIKCbvxlWwGX4o/Tapas-UI---Sorbet-UI-%E2%80%94-Website-Design?node-id=6-126" } },
   component: Footer,
   args: {
     brand: "Acme",

@@ -19,7 +19,7 @@ const COLUMNS = [
       { label: "Introduction", href: "/docs" },
       { label: "Installation", href: "/docs/installation" },
       { label: "Theming", href: "/docs/theming" },
-      { label: "Storybook", href: "/storybook" },
+      { label: "Storybook", href: "/storybook/index.html" },
     ],
   },
   {
