@@ -8,6 +8,7 @@ import { SiteFooter } from "./_site/site-footer";
 import { SiteHeader } from "./_site/site-header";
 import { SectionSketch } from "./_landing/section-sketch";
 import { ThemeShowcase } from "./_landing/theme-showcase";
+import { Reveal } from "./_site/reveal";
 
 /** Sections shown in the catalogue grid, in reading order. */
 const MENU = [
@@ -129,7 +130,7 @@ export default function Home() {
 
         {/* How it works */}
         <section aria-labelledby="how-title" className="border-t">
-          <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+          <Reveal className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
             <h2 id="how-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
               From blank page to launch in three steps.
             </h2>
@@ -148,12 +149,12 @@ export default function Home() {
                 </li>
               ))}
             </ol>
-          </div>
+          </Reveal>
         </section>
 
         {/* Catalogue */}
         <section aria-labelledby="menu-title" className="border-t">
-          <div className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
+          <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <div className="space-y-4">
                 <h2 id="menu-title" className="text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
@@ -192,12 +193,12 @@ export default function Home() {
                 );
               })}
             </ul>
-          </div>
+          </Reveal>
         </section>
 
         {/* Why */}
         <section aria-labelledby="why-title" className="border-t">
-          <div className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
+          <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
             <h2 id="why-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
               Built like shadcn/ui. Made for marketing pages.
             </h2>
@@ -210,7 +211,7 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </section>
 
         {/* Open source */}

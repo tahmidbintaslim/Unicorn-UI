@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { BrandMark } from "./brand-mark";
+import { getStarCount } from "./github-stars";
+import { StarButton } from "./star-button";
 import { CONTRIBUTING_URL, GITHUB_URL, GOOD_FIRST_ISSUES_URL } from "./links";
 
 const COLUMNS = [
@@ -33,7 +35,8 @@ const COLUMNS = [
 const linkClass =
   "rounded-sm transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const stars = await getStarCount();
   return (
     <footer className="border-t">
       <div className="mx-auto flex max-w-7xl flex-col gap-12 px-4 py-14 sm:px-6 md:flex-row md:justify-between lg:px-8">
@@ -45,6 +48,7 @@ export function SiteFooter() {
           <p className="text-sm leading-relaxed text-muted-foreground">
             Small plates for your landing page. MIT licensed. Built by Tahmid Bin Taslim.
           </p>
+          <StarButton count={stars} />
         </div>
         <nav aria-label="Footer" className="grid grid-cols-2 gap-10 sm:grid-cols-3 sm:gap-16">
           {COLUMNS.map((column) => (

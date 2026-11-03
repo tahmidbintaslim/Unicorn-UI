@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { cn } from "@/lib/utils";
-import { Github } from "lucide-react";
 import Link from "next/link";
 import { BrandMark } from "./brand-mark";
-import { CONTRIBUTING_URL, GITHUB_URL } from "./links";
+import { getStarCount } from "./github-stars";
+import { CONTRIBUTING_URL } from "./links";
+import { StarButton } from "./star-button";
 
 const NAV = [
   { label: "Sections", href: "/docs/sections" },
@@ -13,7 +14,7 @@ const NAV = [
 ];
 
 /** Top bar shared by the landing page and the docs. */
-export function SiteHeader({
+export async function SiteHeader({
   showThemeToggle = false,
   className,
 }: {
@@ -21,6 +22,7 @@ export function SiteHeader({
   showThemeToggle?: boolean;
   className?: string;
 }) {
+  const stars = await getStarCount();
   return (
     <header
       className={cn(
@@ -52,12 +54,7 @@ export function SiteHeader({
         </nav>
         <div className="flex items-center gap-2">
           {showThemeToggle && <ThemeToggle />}
-          <Button asChild variant="outline" size="sm" className="hidden sm:inline-flex">
-            <a href={GITHUB_URL}>
-              <Github aria-hidden="true" />
-              Star on GitHub
-            </a>
-          </Button>
+          <StarButton count={stars} className="hidden sm:inline-flex" />
           <Button asChild size="sm">
             <Link href="/docs">Get started</Link>
           </Button>
