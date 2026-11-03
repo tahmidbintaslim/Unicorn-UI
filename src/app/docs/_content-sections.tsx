@@ -1,0 +1,145 @@
+import { ComparisonTable } from "@/components/custom/comparison-table";
+import { CtaSplit, CtaSplitMotion } from "@/components/custom/cta-split";
+import { Newsletter, NewsletterMotion } from "@/components/custom/newsletter";
+import { PricingTable, PricingTableMotion } from "@/components/custom/pricing-table";
+import type { PropDoc, SectionDoc } from "./_content";
+import { DemoScreen } from "./_content-heroes";
+
+const ROOT: PropDoc = {
+  name: "...props",
+  type: `React.ComponentProps<"section">`,
+  description: "Any other section attribute (id, aria-*, data-*, ref) goes to the root element.",
+};
+
+export const samplePlans = [
+  { name: "Hobby", description: "For side projects", monthly: 0, yearly: 0, features: ["1 project", "Community support"], cta: { label: "Start free", href: "#start" } },
+  { name: "Pro", description: "For growing products", monthly: 19, yearly: 190, popular: true, features: ["10 projects", "Feature reports", "Email support"], cta: { label: "Start trial", href: "#trial" } },
+  { name: "Team", description: "For companies", monthly: 49, yearly: 490, features: ["Unlimited projects", "SSO", "Priority support"], cta: { label: "Contact sales", href: "#sales" } },
+];
+
+const comparison = {
+  title: "Compare plans",
+  caption: "Plans compared feature by feature",
+  plans: ["Hobby", "Pro", "Team"],
+  rows: [
+    { feature: "Projects", values: ["1", "10", "Unlimited"] },
+    { feature: "Feature reports", values: [false, true, true] },
+    { feature: "Single sign-on", values: [false, false, true] },
+    { feature: "Support", values: ["Community", "Email", "Priority"] },
+  ],
+};
+
+const cta = {
+  title: "Ready to see your own usage?",
+  description: "Start free and send your first event in five minutes. Sample copy.",
+  primaryAction: { label: "Start free", href: "#start" },
+  secondaryAction: { label: "Talk to us", href: "#contact" },
+};
+
+const newsletter = {
+  title: "One email a month",
+  description: "New sections and templates, nothing else. Sample copy.",
+  action: "#subscribe",
+  note: "Unsubscribe anytime.",
+};
+
+export const SECTION_DOCS: Record<string, SectionDoc> = {
+  "pricing-table": {
+    preview: <PricingTable title="Simple pricing" description="Sample prices." plans={samplePlans} yearlyNote="2 months free" />,
+    importLine: `import { PricingTable } from "@/components/custom/pricing-table";`,
+    usage: `<PricingTable
+  title="Simple pricing"
+  yearlyNote="2 months free"
+  plans={[
+    { name: "Pro", monthly: 19, yearly: 190, popular: true,
+      features: ["10 projects"], cta: { label: "Start trial", href: "/signup" } },
+  ]}
+/>`,
+    props: [
+      { name: "plans", type: "PricingPlan[]", required: true, description: "{ name, description?, monthly, yearly, features, cta, popular? }." },
+      { name: "title", type: "string", default: `"Pricing"`, description: "Heading (h2)." },
+      { name: "description", type: "string", description: "Line under the heading." },
+      { name: "currency", type: "string", default: `"$"`, description: "Symbol before prices." },
+      { name: "monthlyLabel / yearlyLabel", type: "string", default: `"Monthly" / "Yearly"`, description: "Switch labels." },
+      { name: "yearlyNote", type: "string", description: "Note beside the switch, such as “2 months free”." },
+      ROOT,
+    ],
+    a11y: ["The period switch is a labelled radio group and works without JavaScript.", "Prices read as “$19 per month”."],
+    motion: {
+      summary: "Switching the period rolls each price to its new value.",
+      preview: <PricingTableMotion title="Simple pricing" description="Sample prices." plans={samplePlans} yearlyNote="2 months free" />,
+      importLine: `import { PricingTableMotion } from "@/components/custom/pricing-table/pricing-table-motion";`,
+      usage: `<PricingTableMotion title="Simple pricing" plans={plans} />`,
+    },
+  },
+  "comparison-table": {
+    preview: <ComparisonTable {...comparison} />,
+    importLine: `import { ComparisonTable } from "@/components/custom/comparison-table";`,
+    usage: `<ComparisonTable
+  caption="Plans compared feature by feature"
+  plans={["Free", "Pro"]}
+  rows={[
+    { feature: "Projects", values: ["1", "Unlimited"] },
+    { feature: "Reports", values: [false, true] },
+  ]}
+/>`,
+    props: [
+      { name: "caption", type: "string", required: true, description: "Names the table for screen readers." },
+      { name: "plans", type: "string[]", required: true, description: "Column headers." },
+      { name: "rows", type: "{ feature: string; values: (boolean | string)[] }[]", required: true, description: "One value per plan." },
+      { name: "title", type: "string", description: "Optional heading (h2)." },
+      { name: "featureLabel", type: "string", default: `"Feature"`, description: "Header over the feature column." },
+      ROOT,
+    ],
+    a11y: ["Real table markup with a caption, column headers and row headers.", "Checks and dashes read as “Included” and “Not included”.", "On narrow screens the table scrolls inside a focusable region."],
+  },
+  "cta-split": {
+    preview: <CtaSplit {...cta} media={<DemoScreen />} />,
+    importLine: `import { CtaSplit } from "@/components/custom/cta-split";`,
+    usage: `<CtaSplit
+  title="Ready to see your own usage?"
+  primaryAction={{ label: "Start free", href: "/signup" }}
+  media={<img src={screenshotUrl} alt="The dashboard" />}
+/>`,
+    props: [
+      { name: "title", type: "string", required: true, description: "Heading (h2)." },
+      { name: "primaryAction", type: "{ label; href }", required: true, description: "Filled button." },
+      { name: "secondaryAction", type: "{ label; href }", description: "Outline button." },
+      { name: "media", type: "ReactNode", required: true, description: "Image or component beside the copy." },
+      { name: "description", type: "string", description: "Line under the heading." },
+      ROOT,
+    ],
+    a11y: ["Give the media its own text alternative."],
+    motion: {
+      summary: "The media floats up and straightens as the band scrolls into view.",
+      preview: <CtaSplitMotion {...cta} media={<DemoScreen />} />,
+      importLine: `import { CtaSplitMotion } from "@/components/custom/cta-split/cta-split-motion";`,
+      usage: `<CtaSplitMotion title="Ready?" primaryAction={{ label: "Start", href: "/signup" }} media={<Screenshot />} />`,
+    },
+  },
+  newsletter: {
+    preview: <Newsletter {...newsletter} />,
+    importLine: `import { Newsletter } from "@/components/custom/newsletter";`,
+    usage: `<Newsletter title="One email a month" action="/api/subscribe" note="Unsubscribe anytime." />`,
+    props: [
+      { name: "title", type: "string", required: true, description: "Heading (h2)." },
+      { name: "action", type: "string", required: true, description: "Where the form posts." },
+      { name: "method", type: `"post" | "get"`, default: `"post"`, description: "Form method." },
+      { name: "inputLabel", type: "string", default: `"Email address"`, description: "Field label (visually hidden)." },
+      { name: "buttonLabel", type: "string", default: `"Subscribe"`, description: "Button text." },
+      { name: "note", type: "string", description: "Small print." },
+      ROOT,
+    ],
+    a11y: ["A labelled email field with autocomplete; the form works without JavaScript."],
+    motion: {
+      summary: "With onSubmit, the form morphs into a success message; a live region announces the result.",
+      preview: <NewsletterMotion {...newsletter} />,
+      importLine: `import { NewsletterMotion } from "@/components/custom/newsletter/newsletter-motion";`,
+      usage: `<NewsletterMotion title="One email a month" action="/api/subscribe" onSubmit={subscribe} />`,
+      extraProps: [
+        { name: "onSubmit", type: "(email: string) => Promise<void>", description: "Handle the signup yourself; shows sending, success and error states." },
+        { name: "successMessage", type: "string", default: `"Thanks, you're subscribed."`, description: "Shown after onSubmit resolves." },
+      ],
+    },
+  },
+};

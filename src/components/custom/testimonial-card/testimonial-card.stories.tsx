@@ -4,7 +4,7 @@ import { TestimonialCard } from "./testimonial-card";
 const meta = {
   title: "Cards/Testimonial card",
   component: TestimonialCard,
-  parameters: { layout: "centered" },
+  parameters: { design: { type: "figma", url: "https://www.figma.com/design/gAmq9l9IOIKCbvxlWwGX4o/Tapas-UI---Sorbet-UI-%E2%80%94-Website-Design?node-id=6-117" },  layout: "centered" },
   decorators: [(Story) => <div className="w-[26rem] p-8"><Story /></div>],
   args: {
     testimonial: "We swapped our hand-built landing page for Tapas sections in an afternoon. Sample quote.",

@@ -3,6 +3,7 @@ import { CtaBanner } from "./cta-banner";
 
 const meta = {
   title: "Page sections/CTA banner",
+  parameters: { design: { type: "figma", url: "https://www.figma.com/design/gAmq9l9IOIKCbvxlWwGX4o/Tapas-UI---Sorbet-UI-%E2%80%94-Website-Design?node-id=6-105" } },
   component: CtaBanner,
   args: {
     title: "Start building",

@@ -12,6 +12,62 @@ function Line({ className }: { className: string }) {
 }
 
 const SKETCHES: Record<string, React.ReactNode> = {
+  "hero-split": (
+    <div className="flex w-60 items-center gap-3">
+      <div className="flex flex-1 flex-col gap-1.5">
+        <Line className={cn(ink, "h-3 w-24")} />
+        <Line className={cn(ink, "h-3 w-16")} />
+        <Line className={cn(bar, "mt-1 h-1.5 w-20")} />
+        <Line className="mt-2 h-4 w-11 rounded-[5px] bg-brand" />
+      </div>
+      <div className="flex h-24 w-24 items-end gap-1 rounded-lg bg-muted p-2">
+        {[40, 60, 50, 80, 100].map((h) => (
+          <span key={h} className="flex-1 rounded-t-sm bg-brand/70" style={{ height: `${h}%` }} />
+        ))}
+      </div>
+    </div>
+  ),
+  "hero-command": (
+    <div className="flex w-56 flex-col items-center gap-2">
+      <Line className={cn(ink, "h-3.5 w-44")} />
+      <Line className={cn(bar, "h-1.5 w-28")} />
+      <div className="mt-2 flex w-full items-center gap-1.5 rounded-md bg-muted px-2.5 py-2">
+        <span className="font-mono text-[9px] text-muted-foreground">$</span>
+        <Line className="h-1.5 w-32 rounded-[3px] bg-foreground/70" />
+        <span className="h-2.5 w-1 animate-pulse bg-brand" />
+      </div>
+    </div>
+  ),
+  "hero-spotlight": (
+    <div className="relative grid h-28 w-60 place-items-center overflow-hidden rounded-lg bg-[linear-gradient(to_right,var(--border)_1px,transparent_1px),linear-gradient(to_bottom,var(--border)_1px,transparent_1px)] bg-[size:16px_16px]">
+      <span className="absolute size-24 rounded-full bg-brand/25 blur-2xl" />
+      <div className="relative flex flex-col items-center gap-1.5">
+        <Line className={cn(ink, "h-3 w-36")} />
+        <Line className={cn(bar, "h-1.5 w-24")} />
+      </div>
+    </div>
+  ),
+  "hero-theme-cycle": (
+    <div className="flex flex-col items-center gap-2">
+      <div className="flex items-center gap-1.5">
+        <Line className={cn(ink, "h-3.5 w-16")} />
+        <Line className="h-3.5 w-14 rounded-[4px] bg-brand" />
+        <Line className={cn(ink, "h-3.5 w-12")} />
+      </div>
+      <div className="mt-2 flex gap-1.5">
+        {["bg-blue-500", "bg-rose-500", "bg-green-600", "bg-brand", "bg-violet-500"].map((c) => (
+          <span key={c} className={cn("size-3 rounded-full", c)} />
+        ))}
+      </div>
+    </div>
+  ),
+  "hero-plates": (
+    <div className="flex w-48 flex-col gap-1.5">
+      {["w-40", "ml-5 w-40", "w-40", "ml-5 w-40"].map((c, i) => (
+        <span key={i} className={cn("h-5 rounded-md bg-muted", c, i === 1 && "bg-brand/70")} />
+      ))}
+    </div>
+  ),
   hero: (
     <div className="flex w-56 flex-col items-center gap-2">
       <Line className={cn(bar, "h-1.5 w-24")} />

@@ -145,6 +145,23 @@ out of Next.js telemetry, set `NEXT_TELEMETRY_DISABLED=1`.
 CI runs `pnpm install --frozen-lockfile`, `lint`, `typecheck`, `test` and
 `build`, in that order. Run the same before you open a pull request.
 
+## Storybook
+
+Every section has stories with light and dark themes, at
+[tapas-ui.vercel.app/storybook](https://tapas-ui.vercel.app/storybook).
+
+- **Design panel:** stories link to their frames in the
+  [website Figma file](https://www.figma.com/design/gAmq9l9IOIKCbvxlWwGX4o)
+  through `@storybook/addon-designs` (`parameters.design`).
+- **Accessibility panel:** axe runs on every story and fails on violations.
+- **Storybook MCP:** `pnpm storybook` also serves an MCP server at
+  `http://localhost:6006/mcp` (`@storybook/addon-mcp`). It lists components,
+  their docs and stories for AI agents; `.mcp.json` registers it for Claude Code.
+- **Chromatic:** `.github/workflows/chromatic.yml` publishes Storybook to
+  Chromatic on every push and pull request once a `CHROMATIC_PROJECT_TOKEN`
+  repository secret exists, giving a hosted Storybook per branch and visual
+  review. Without the secret the job skips.
+
 ## Install with the shadcn CLI
 
 Every card is a shadcn registry item, served by the demo site. In a project
@@ -160,6 +177,37 @@ Items: `interactive-card`, `pricing-card`, `statistics-card`,
 `button` and `badge` primitives each card needs. The testimonial and blog cards
 use `next/image`, so they need Next.js. `pnpm build` regenerates `public/r/`
 from `registry.json`.
+
+## Heroes
+
+Ten heroes, each in a **plain** version (CSS only, renders as a server component,
+no extra packages) and a **motion** version (a client component built on
+[`motion`](https://motion.dev)). Preview them at
+[tapas-ui.vercel.app/docs/sections](https://tapas-ui.vercel.app/docs/sections).
+
+| Hero | What it does | Plain | Motion |
+| --- | --- | --- | --- |
+| `hero` | Centered headline, badge and two links | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero.json` | `…/r/hero-motion.json` |
+| `hero-split` | Copy beside your product image or component | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-split.json` | `…/r/hero-split-motion.json` |
+| `hero-command` | Built around one copyable command | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-command.json` | `…/r/hero-command-motion.json` |
+| `hero-spotlight` | Grid canvas with a glow in your primary color | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-spotlight.json` | `…/r/hero-spotlight-motion.json` |
+| `hero-showcase` | Headline over a framed live component | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-showcase.json` | `…/r/hero-showcase-motion.json` |
+| `hero-waitlist` | Email signup that works without JavaScript | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-waitlist.json` | `…/r/hero-waitlist-motion.json` |
+| `hero-marquee` | Headline over an endless logo row | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-marquee.json` | `…/r/hero-marquee-motion.json` |
+| `hero-video` | Poster and video that never autoplays | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-video.json` | `…/r/hero-video-motion.json` |
+| `hero-theme-cycle` | The whole hero cycles through color themes | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-theme-cycle.json` | `…/r/hero-theme-cycle-motion.json` |
+| `hero-plates` | Sections stack into a page as you scroll | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-plates.json` | `…/r/hero-plates-motion.json` |
+
+### Plain and motion
+
+- Both versions take the same props. Installing `<name>-motion` also installs
+  `<name>` and the `motion` package.
+- Motion versions follow the visitor's reduced-motion setting and render the
+  plain layout when it is on.
+- Nothing is hidden before it animates: server HTML shows every heading, line
+  and button, so the page reads fine before JavaScript loads.
+- Anything that moves on its own (the marquee, the theme cycle) has a visible
+  pause button and stops on hover and keyboard focus.
 
 ## Landing blocks
 

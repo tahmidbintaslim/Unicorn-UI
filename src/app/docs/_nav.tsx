@@ -18,6 +18,10 @@ export function DocsNav({ sections }: { sections: SectionMeta[] }) {
       ],
     },
     {
+      title: "Heroes",
+      links: sections.filter((s) => s.kind === "hero").map((s) => ({ label: s.title, href: `/docs/sections/${s.slug}` })),
+    },
+    {
       title: "Page sections",
       links: sections.filter((s) => s.kind === "block").map((s) => ({ label: s.title, href: `/docs/sections/${s.slug}` })),
     },
