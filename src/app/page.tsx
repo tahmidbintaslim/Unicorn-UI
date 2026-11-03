@@ -7,7 +7,8 @@ import { getSection } from "./_site/sections";
 import { SiteFooter } from "./_site/site-footer";
 import { SiteHeader } from "./_site/site-header";
 import { SectionSketch } from "./_landing/section-sketch";
-import { ThemeShowcase } from "./_landing/theme-showcase";
+import { HeroCanvas } from "./_landing/hero-canvas";
+import { PageBuilder } from "./_landing/page-builder";
 import { Reveal } from "./_site/reveal";
 
 /** Sections shown in the catalogue grid, in reading order. */
@@ -73,48 +74,37 @@ export default function Home() {
     <div className="dark min-h-screen bg-background text-foreground [color-scheme:dark]">
       <SiteHeader />
       <main>
-        {/* Hero */}
-        <section
-          aria-labelledby="hero-title"
-          className="relative isolate overflow-hidden px-4 pt-24 pb-14 text-center sm:pt-28"
-        >
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 -top-40 -z-10 mx-auto h-[36rem] max-w-5xl rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--brand)_22%,transparent),transparent)]"
-          />
-          <Link
-            href="/docs/sections/navbar"
-            className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-          >
-            <span aria-hidden="true" className="size-1.5 rounded-full bg-brand" />
-            New: Navbar and Bento grid sections
-            <ArrowRight aria-hidden="true" className="size-3.5" />
-          </Link>
-          <h1
-            id="hero-title"
-            className="mx-auto mt-7 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.05] font-semibold tracking-[-0.035em] text-balance"
-          >
-            Landing page sections you copy, <span className="text-brand">own</span> and ship.
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-[19px]">
-            Free, open-source hero, pricing, FAQ, footer and more for Next.js and shadcn/ui. One command
-            installs the code into your project, and it picks up your theme.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Button asChild size="lg" className="h-11 px-6 text-[15px]">
-              <Link href="/docs/sections">Browse sections</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="h-11 px-6 text-[15px]">
-              <a href={GITHUB_URL}>
-                <Github aria-hidden="true" />
-                Star on GitHub
-              </a>
-            </Button>
+        <HeroCanvas>
+          <section aria-labelledby="hero-title" className="px-4 pt-24 pb-14 text-center sm:pt-28">
+            <Link
+              href="/docs/sections/hero-theme-cycle"
+              className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            >
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-brand" />
+              New: 10 heroes, each with a motion version
+              <ArrowRight aria-hidden="true" className="size-3.5" />
+            </Link>
+            <h1
+              id="hero-title"
+              className="mx-auto mt-7 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.05] font-semibold tracking-[-0.035em] text-balance"
+            >
+              Landing page sections you copy, <span className="text-brand">own</span> and ship.
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-[19px]">
+              Free, open-source heroes, pricing, FAQ, footer and more for Next.js and shadcn/ui. Each comes plain or
+              with motion, installs with one command and picks up your theme.
+            </p>
+            <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button asChild size="lg" className="h-11 px-6 text-[15px]">
+                <Link href="/docs/installation">Get started (free)</Link>
+              </Button>
+              <CopyCommand command={installCommand("hero")} className="h-11 w-full sm:w-auto sm:max-w-md" />
+            </div>
+          </section>
+          <div className="mx-auto max-w-6xl px-4 pb-6 sm:px-6 lg:px-8">
+            <PageBuilder />
           </div>
-          <CopyCommand command={installCommand("hero")} className="mx-auto mt-7 w-fit" />
-        </section>
-
-        <ThemeShowcase />
+        </HeroCanvas>
 
         {/* Built for */}
         <section aria-labelledby="stack-title" className="px-4 pt-24 pb-24 text-center">
