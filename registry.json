@@ -324,6 +324,117 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "hero-spotlight",
+      "type": "registry:component",
+      "title": "Hero: spotlight",
+      "description": "Hero on a grid canvas with a soft glow in your primary color.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-spotlight/hero-spotlight.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-spotlight-motion",
+      "type": "registry:component",
+      "title": "Hero: spotlight (motion)",
+      "description": "The spotlight hero with the glow following the pointer across the grid.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-spotlight.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-spotlight/hero-spotlight-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-showcase",
+      "type": "registry:component",
+      "title": "Hero: showcase",
+      "description": "Headline over a framed slot for a real, working component.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-showcase/hero-showcase.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-showcase-motion",
+      "type": "registry:component",
+      "title": "Hero: showcase (motion)",
+      "description": "The showcase hero with the frame rising into place and lifting on hover.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-showcase.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-showcase/hero-showcase-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-waitlist",
+      "type": "registry:component",
+      "title": "Hero: waitlist",
+      "description": "Hero with an email signup form that works without JavaScript.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-waitlist/hero-waitlist.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-waitlist-motion",
+      "type": "registry:component",
+      "title": "Hero: waitlist (motion)",
+      "description": "The waitlist hero with a focus glow and a button that morphs into a success message.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-waitlist.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-waitlist/hero-waitlist-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

@@ -15,3 +15,6 @@ export * from "./navbar";
 export * from "./bento-grid";
 export * from "./hero-split";
 export * from "./hero-command";
+export * from "./hero-spotlight";
+export * from "./hero-showcase";
+export * from "./hero-waitlist";
