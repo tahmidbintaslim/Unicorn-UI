@@ -148,22 +148,7 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
   },
   "comparison-table": {
     preview: <ComparisonTable {...comparison} />,
-    importLine: `import { AnnouncementBar } from "@/components/custom/announcement-bar";
-import { BlogGrid, BlogGridMotion } from "@/components/custom/blog-grid";
-import { ComingSoon } from "@/components/custom/coming-soon";
-import { FooterSimple } from "@/components/custom/footer-simple";
-import { NavbarFloating, NavbarFloatingMotion } from "@/components/custom/navbar-floating";
-import { NotFound, NotFoundMotion } from "@/components/custom/not-found";
-import { Changelog } from "@/components/custom/changelog";
-import { ComparisonTable } from "@/components/custom/comparison-table";
-import { Contact } from "@/components/custom/contact";
-import { FaqTwoColumn } from "@/components/custom/faq-two-column";
-import { Team } from "@/components/custom/team";
-import { FeatureGrid, FeatureGridMotion } from "@/components/custom/feature-grid";
-import { FeatureRows, FeatureRowsMotion } from "@/components/custom/feature-rows";
-import { IntegrationsGrid, IntegrationsGridMotion } from "@/components/custom/integrations-grid";
-import { Steps, StepsMotion } from "@/components/custom/steps";
-import { Accessibility, Moon, Palette, Server, Terminal, Zap } from "lucide-react";`,
+    importLine: `import { ComparisonTable } from "@/components/custom/comparison-table";`,
     usage: `<ComparisonTable
   caption="Plans compared feature by feature"
   plans={["Free", "Pro"]}

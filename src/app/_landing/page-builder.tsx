@@ -77,7 +77,7 @@ function Section({ id, heroLayout }: { id: SectionId; heroLayout: "centered" | "
         <Hero {...hero} className="py-12" />
       );
     case "logos":
-      return <LogoCloud logos={["Northwind", "Globex", "Initech", "Umbrella", "Hooli"].map((name) => ({ name }))} className="py-8" />;
+      return <LogoCloud title="Sample logos: made-up teams" logos={["Northwind", "Globex", "Initech", "Umbrella", "Hooli"].map((name) => ({ name }))} className="py-8" />;
     case "features":
       return (
         <FeatureGrid

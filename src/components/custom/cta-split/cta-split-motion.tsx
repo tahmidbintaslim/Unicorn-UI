@@ -18,7 +18,9 @@ export function CtaSplitMotion({ media, className, ...props }: CtaSplitProps) {
     <section className={cn("mx-auto max-w-6xl px-4 py-16", className)} {...rest}>
       <div className="grid items-center gap-10 overflow-hidden rounded-2xl border bg-muted/40 p-8 sm:p-12 lg:grid-cols-2">
         <CtaSplitCopy {...{ title, description, primaryAction, secondaryAction }} />
+        {/* Keyed so it remounts once motion is on: motion reads `initial` only at mount. */}
         <motion.div
+          key={animate ? "motion" : "static"}
           className="min-w-0"
           {...(animate
             ? {

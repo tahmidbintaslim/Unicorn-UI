@@ -42,3 +42,10 @@ describe("motion flag swaps in motion sections", () => {
     expect(screen.queryByRole("button", { name: "Pause scrolling" })).toBeNull();
   });
 });
+
+describe("template sample content", () => {
+  it("labels made-up logo and customer names as samples", async () => {
+    const { saasContent } = await import("./saas/content");
+    expect(saasContent.logos.title.toLowerCase()).toContain("sample");
+  });
+});

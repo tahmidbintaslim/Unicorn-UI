@@ -28,7 +28,8 @@ describe("TestimonialsWallMotion", () => {
   });
   it("duplicated quotes for the loop are hidden from screen readers", () => {
     const { container } = render(<TestimonialsWallMotion items={items} />);
-    const visible = [...container.querySelectorAll("figure")].filter((f) => !f.closest("[aria-hidden=true]"));
+    const wall = container.querySelector("section.lg\\:block")!;
+    const visible = [...wall.querySelectorAll("figure")].filter((f) => !f.closest("[aria-hidden=true]"));
     expect(visible).toHaveLength(6);
   });
   it("reduced motion renders plain", () => {
@@ -41,5 +42,15 @@ describe("TestimonialsWallMotion", () => {
     const html = renderToString(<TestimonialsWallMotion items={items} />);
     expect(textOf(html)).toContain("Quote number 1");
     expect(html).not.toMatch(/opacity:\s*0[;"]/);
+  });
+});
+
+describe("TestimonialsWallMotion on small screens", () => {
+  it("keeps every quote in the layout shown below lg, not just the first column", () => {
+    const six = Array.from({ length: 6 }, (_, i) => ({ quote: `Sample quote ${i}`, author: `Person ${i}` }));
+    const { container } = render(<TestimonialsWallMotion items={six} />);
+    const small = container.querySelector(".lg\\:hidden");
+    expect(small).not.toBeNull();
+    for (const q of six) expect(small!.textContent).toContain(q.quote);
   });
 });

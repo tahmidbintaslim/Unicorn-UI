@@ -29,3 +29,16 @@ describe("docs coverage", () => {
     expect(GROUPS.map((g) => g.name)).toEqual(["Heroes", "Marketing", "Proof", "Features", "Company", "Navigation & utility", "Cards"]);
   });
 });
+
+describe("docs import lines", () => {
+  it("each section's import line is one import of that section", async () => {
+    const { DOCS } = await import("../docs/_content");
+    for (const s of SECTIONS) {
+      const doc = DOCS[s.slug];
+      for (const line of [doc.importLine, doc.motion?.importLine].filter(Boolean) as string[]) {
+        expect(line.split("\n"), `${s.slug}: ${line}`).toHaveLength(1);
+        expect(line, s.slug).toContain(`@/components/custom/${s.slug}`);
+      }
+    }
+  });
+});

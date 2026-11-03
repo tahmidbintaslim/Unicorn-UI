@@ -11,7 +11,7 @@ export function TemplateBar({ template, motion }: { template: TemplateMeta; moti
   const base = `/templates/${template.slug}`;
   const tab = "rounded-md px-3 py-1 text-xs font-medium transition-colors";
   return (
-    <div className="sticky top-0 z-50 border-b bg-background/90 backdrop-blur">
+    <div className="border-b bg-background">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-2 text-sm sm:px-6">
         <Link href="/templates" className="text-muted-foreground hover:text-foreground">
           ← Templates

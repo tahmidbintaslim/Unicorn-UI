@@ -1,6 +1,6 @@
 "use client";
 
-import { BlogCard } from "@/components/custom/blog-card";
+import { BlogCard } from "@/components/custom/blog-card/blog-card";
 import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
 import React from "react";

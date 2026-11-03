@@ -18,7 +18,7 @@ export const saasContent = {
     primaryAction: { label: "Start free", href: "#pricing" },
     secondaryAction: { label: "See how it works", href: "#features" },
   },
-  logos: { title: "Trusted by teams at", names: ["Northwind", "Globex", "Initech", "Umbrella", "Hooli"] },
+  logos: { title: "Sample logos: made-up teams", names: ["Northwind", "Globex", "Initech", "Umbrella", "Hooli"] },
   features: {
     title: "Everything you need to understand usage",
     description: "No tracking plan, no dashboards to build first.",

@@ -18,4 +18,15 @@ describe("registry dependencies", () => {
       }
     }
   });
+
+  // The CLI installs files at their paths but never index.ts, so a bare folder
+  // import (@/components/custom/faq) breaks after install. Import the file.
+  it.each(registry.items.map((i) => [i.name, i] as const))("%s imports Tapas files by path, not by folder", (_, item) => {
+    for (const file of item.files) {
+      const src = readFileSync(file.path, "utf8");
+      for (const [, dir, rest] of src.matchAll(/from "@\/components\/(custom|templates)\/([^"]*)"/g)) {
+        expect(rest.split("/").length, `${file.path} imports @/components/${dir}/${rest}`).toBeGreaterThan(1);
+      }
+    }
+  });
 });
