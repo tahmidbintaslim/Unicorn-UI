@@ -12,6 +12,12 @@ const items = [
 ];
 
 describe("FeatureGrid", () => {
+  it("accepts a rendered icon element, so server pages can pass icons to the motion version", () => {
+    const { container } = render(<FeatureGridMotion items={[{ title: "Fast", description: "Quick.", icon: <Zap data-testid="el-icon" /> }]} />);
+    expect(screen.getByTestId("el-icon")).toBeTruthy();
+    expect(container.querySelector("span.bg-primary\\/10")).not.toBeNull();
+  });
+
   it("renders an h2 and one h3 per feature in a list", () => {
     render(<FeatureGrid title="Why it works" items={items} />);
     expect(screen.getByRole("heading", { level: 2 }).textContent).toBe("Why it works");

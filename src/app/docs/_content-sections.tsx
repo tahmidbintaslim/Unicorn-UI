@@ -80,12 +80,12 @@ const sampleStats = [
 ];
 
 export const sampleFeatures = [
-  { title: "One command", description: "Install any section with the shadcn CLI.", icon: Terminal },
-  { title: "Your theme", description: "Sections read your shadcn tokens.", icon: Palette },
-  { title: "Server-first", description: "Plain sections render as server components.", icon: Server },
-  { title: "Accessible", description: "Semantic HTML and keyboard support.", icon: Accessibility },
-  { title: "Light and dark", description: "Every section works in both themes.", icon: Moon },
-  { title: "Optional motion", description: "Add the motion version where it helps.", icon: Zap },
+  { title: "One command", description: "Install any section with the shadcn CLI.", icon: <Terminal /> },
+  { title: "Your theme", description: "Sections read your shadcn tokens.", icon: <Palette /> },
+  { title: "Server-first", description: "Plain sections render as server components.", icon: <Server /> },
+  { title: "Accessible", description: "Semantic HTML and keyboard support.", icon: <Accessibility /> },
+  { title: "Light and dark", description: "Every section works in both themes.", icon: <Moon /> },
+  { title: "Optional motion", description: "Add the motion version where it helps.", icon: <Zap /> },
 ];
 
 export const sampleSteps = [
@@ -329,7 +329,7 @@ import { Accessibility, Moon, Palette, Server, Terminal, Zap } from "lucide-reac
     usage: `<FeatureGrid
   title="Everything a launch page needs"
   columns={3}
-  items={[{ title: "One command", description: "Install with the CLI.", icon: Terminal }]}
+  items={[{ title: "One command", description: "Install with the CLI.", icon: <Terminal /> }]}
 />`,
     props: [
       { name: "items", type: "{ title; description; icon?: LucideIcon }[]", required: true, description: "Features in reading order." },

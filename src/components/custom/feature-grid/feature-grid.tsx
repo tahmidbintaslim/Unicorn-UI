@@ -5,7 +5,12 @@ import React from "react";
 export interface GridFeature {
   title: string;
   description: string;
-  icon?: LucideIcon;
+  /**
+   * A lucide icon component, or a rendered element such as `<Zap />`. Pass an
+   * element when a server component renders the motion version: components
+   * cannot cross the server/client boundary, elements can.
+   */
+  icon?: LucideIcon | React.ReactElement;
 }
 
 export interface FeatureGridProps extends Omit<React.ComponentProps<"section">, "title"> {
@@ -24,8 +29,8 @@ export function GridFeatureItem({ item }: { item: GridFeature }) {
   return (
     <>
       {Icon && (
-        <span className="mb-4 grid size-10 place-items-center rounded-lg bg-primary/10 text-primary">
-          <Icon aria-hidden="true" className="size-5" />
+        <span aria-hidden="true" className="mb-4 grid size-10 place-items-center rounded-lg bg-primary/10 text-primary [&_svg]:size-5">
+          {React.isValidElement(Icon) ? Icon : <Icon className="size-5" />}
         </span>
       )}
       <h3 className="font-semibold">{item.title}</h3>

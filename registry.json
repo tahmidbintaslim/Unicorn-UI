@@ -1175,6 +1175,197 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "template-saas",
+      "type": "registry:block",
+      "title": "Template: SaaS landing page",
+      "description": "A full SaaS landing page: split hero, logos, features, stats, testimonials, pricing, FAQ and CTA. Plain sections, no animation library.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/cta-banner.json",
+        "https://tapas-ui.vercel.app/r/faq.json",
+        "https://tapas-ui.vercel.app/r/feature-grid.json",
+        "https://tapas-ui.vercel.app/r/footer.json",
+        "https://tapas-ui.vercel.app/r/hero-split.json",
+        "https://tapas-ui.vercel.app/r/logo-cloud.json",
+        "https://tapas-ui.vercel.app/r/navbar.json",
+        "https://tapas-ui.vercel.app/r/pricing-table.json",
+        "https://tapas-ui.vercel.app/r/stats-band.json",
+        "https://tapas-ui.vercel.app/r/testimonials-wall.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/merge.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/product-shot.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/saas/content.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/saas/saas-layout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/saas/saas.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "template-saas-motion",
+      "type": "registry:block",
+      "title": "Template: SaaS landing page (motion)",
+      "description": "The saas landing page with motion sections where they add meaning; follows reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/template-saas.json",
+        "https://tapas-ui.vercel.app/r/feature-grid-motion.json",
+        "https://tapas-ui.vercel.app/r/hero-split-motion.json",
+        "https://tapas-ui.vercel.app/r/pricing-table-motion.json",
+        "https://tapas-ui.vercel.app/r/stats-band-motion.json",
+        "https://tapas-ui.vercel.app/r/testimonials-wall-motion.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/saas/saas-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-waitlist",
+      "type": "registry:block",
+      "title": "Template: Waitlist page",
+      "description": "A pre-launch page: floating navbar, waitlist hero, social proof, feature rows and FAQ. Plain sections, no animation library.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/faq-two-column.json",
+        "https://tapas-ui.vercel.app/r/feature-rows.json",
+        "https://tapas-ui.vercel.app/r/footer-simple.json",
+        "https://tapas-ui.vercel.app/r/hero-waitlist.json",
+        "https://tapas-ui.vercel.app/r/navbar-floating.json",
+        "https://tapas-ui.vercel.app/r/social-proof.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/merge.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/product-shot.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/waitlist/content.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/waitlist/waitlist-layout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/waitlist/waitlist.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-waitlist-motion",
+      "type": "registry:block",
+      "title": "Template: Waitlist page (motion)",
+      "description": "The waitlist page with motion sections where they add meaning; follows reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/template-waitlist.json",
+        "https://tapas-ui.vercel.app/r/feature-rows-motion.json",
+        "https://tapas-ui.vercel.app/r/hero-waitlist-motion.json",
+        "https://tapas-ui.vercel.app/r/navbar-floating-motion.json",
+        "https://tapas-ui.vercel.app/r/social-proof-motion.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/waitlist/waitlist-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-ai",
+      "type": "registry:block",
+      "title": "Template: AI product page",
+      "description": "An AI product page: announcement bar, spotlight hero, steps, integrations, comparison and pricing. Plain sections, no animation library.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/announcement-bar.json",
+        "https://tapas-ui.vercel.app/r/comparison-table.json",
+        "https://tapas-ui.vercel.app/r/cta-split.json",
+        "https://tapas-ui.vercel.app/r/feature-grid.json",
+        "https://tapas-ui.vercel.app/r/footer.json",
+        "https://tapas-ui.vercel.app/r/hero-spotlight.json",
+        "https://tapas-ui.vercel.app/r/integrations-grid.json",
+        "https://tapas-ui.vercel.app/r/navbar.json",
+        "https://tapas-ui.vercel.app/r/pricing-table.json",
+        "https://tapas-ui.vercel.app/r/steps.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/merge.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/product-shot.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/ai/content.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/ai/ai-layout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/ai/ai.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "template-ai-motion",
+      "type": "registry:block",
+      "title": "Template: AI product page (motion)",
+      "description": "The ai product page with motion sections where they add meaning; follows reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/template-ai.json",
+        "https://tapas-ui.vercel.app/r/cta-split-motion.json",
+        "https://tapas-ui.vercel.app/r/feature-grid-motion.json",
+        "https://tapas-ui.vercel.app/r/hero-spotlight-motion.json",
+        "https://tapas-ui.vercel.app/r/integrations-grid-motion.json",
+        "https://tapas-ui.vercel.app/r/pricing-table-motion.json",
+        "https://tapas-ui.vercel.app/r/steps-motion.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/ai/ai-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

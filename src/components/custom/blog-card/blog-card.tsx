@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Calendar, Clock, Heart, User } from "lucide-react";
@@ -224,13 +224,13 @@ export const BlogCard = React.memo<BlogCardProps>(({
                         )}
                         {interactive && variant !== "minimal" && (
                             // Visual cue only: the title control above is the real link or button.
-                            <span
-                                aria-hidden="true"
-                                className={buttonVariants({ variant: "ghost", size: "sm" })}
-                            >
-                                Read more
-                                <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
-                            </span>
+                            // Button renders the styles; asChild keeps it a span, not a second control.
+                            <Button asChild variant="ghost" size="sm">
+                                <span aria-hidden="true">
+                                    Read more
+                                    <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
+                                </span>
+                            </Button>
                         )}
                     </div>
                 </div>

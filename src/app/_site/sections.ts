@@ -86,7 +86,7 @@ const rank = (name: string) => (ORDER.includes(name) ? ORDER.indexOf(name) : ORD
  * it. `<name>-motion` items are folded into their plain item as `motionSlug`.
  */
 export const SECTIONS: SectionMeta[] = registry.items
-  .filter((item) => !item.name.endsWith("-motion"))
+  .filter((item) => !item.name.endsWith("-motion") && !item.name.startsWith("template-"))
   .map((item) => ({
     slug: item.name,
     title: item.title,
