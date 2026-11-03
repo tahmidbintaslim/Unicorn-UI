@@ -53,11 +53,13 @@ Follow the existing cards:
   link.
 - Format numbers and dates with a fixed locale so the server and the browser
   render the same text.
-- Add tests for the behavior a screen reader user depends on, and add the card
-  to `src/components/custom/index.ts`, the gallery and a detail page.
-- For a landing block, add an entry to `registry.json` (list shadcn primitives
-  in `registryDependencies` and npm packages in `dependencies`) and a section to
-  the `blocks` array in `src/app/blocks/page.tsx`. `pnpm build` regenerates
+- Add tests for the behavior a screen reader user depends on, export the
+  component from `src/components/custom/index.ts`, and add a
+  `<name>.stories.tsx` file next to it.
+- Add an entry to `registry.json` (list shadcn primitives in
+  `registryDependencies` and npm packages in `dependencies`) and a docs entry
+  (preview, usage, props, accessibility notes) to `src/app/docs/_content.tsx`.
+  The docs page and the sidebar pick it up from `registry.json`. `pnpm build` regenerates
   `public/r/`; check the item installs with
   `npx shadcn@latest add ./public/r/<name>.json` in a scratch project.
 - Blocks must work in server components: no hooks or browser APIs in the block
