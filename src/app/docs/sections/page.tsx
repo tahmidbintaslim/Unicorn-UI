@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SectionSketch, SKETCHED_SLUGS } from "../../_landing/section-sketch";
-import { SECTIONS } from "../../_site/sections";
+import { GROUPED, SECTIONS } from "../../_site/sections";
 import { DocsHeader } from "../_ui";
 
 export const metadata = {
@@ -9,16 +9,12 @@ export const metadata = {
 };
 
 export default function SectionsIndex() {
-  const groups = [
-    { title: "Heroes", items: SECTIONS.filter((s) => s.kind === "hero") },
-    { title: "Page sections", items: SECTIONS.filter((s) => s.kind === "block") },
-    { title: "Cards", items: SECTIONS.filter((s) => s.kind === "card") },
-  ];
+  const groups = GROUPED.map((g) => ({ title: g.name, items: g.items }));
   return (
     <div className="space-y-12">
       <DocsHeader
         title="Sections"
-        lead={`${SECTIONS.length} sections and cards. Open one to preview it in your colors, read its props and copy the install command.`}
+        lead={`${SECTIONS.length} sections and cards, in plain and motion versions. Open one to preview it in your colors, read its props and copy the install command.`}
       />
       {groups.map((group) => (
         <section key={group.title} aria-labelledby={group.title} className="space-y-5">

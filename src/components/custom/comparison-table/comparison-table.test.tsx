@@ -29,4 +29,9 @@ describe("ComparisonTable", () => {
     expect(region.getAttribute("tabindex")).toBe("0");
     expect(region.className).toContain("overflow-x-auto");
   });
+
+  it("contains its absolutely positioned sr-only labels, so they can't widen the page", () => {
+    render(<ComparisonTable {...props} />);
+    expect(screen.getByRole("region", { name: "Plans compared" }).className.split(" ")).toContain("relative");
+  });
 });

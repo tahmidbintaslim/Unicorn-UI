@@ -74,6 +74,27 @@ Follow the existing cards:
 - Blocks must work in server components: no hooks or browser APIs in the block
   itself. Prefer native elements (details/summary) over client state.
 
+## Templates
+
+Templates live in `src/components/templates/<name>/`:
+
+- `content.tsx`: the sample copy, fictional and labelled. No real customers,
+  prices, star counts or benchmarks.
+- `<name>-layout.tsx`: the page, written against a `ui` map of section
+  components, so it never imports a plain or motion section directly.
+- `<name>.tsx` and `<name>-motion.tsx`: entry points that pass plain or motion
+  sections into the layout and merge the `content` prop over the sample copy.
+
+Import sections by file (`@/components/custom/faq/faq`), not by folder: the
+shadcn CLI installs the files but not the `index.ts`. Register `template-<name>`
+(listing every plain section it uses in `registryDependencies`) and
+`template-<name>-motion`, add the slug to `src/app/_site/templates.ts`, and add
+`src/app/templates/<name>/page.tsx` and `.../motion/page.tsx`. A test checks the
+registry items and routes exist.
+
+Anything passed from a server page to a motion section must be serializable:
+pass icons as elements (`icon: <Zap />`), not components (`icon: Zap`).
+
 ## Pull requests
 
 - Branch from `main` and use conventional commit messages, for example

@@ -9,6 +9,7 @@ const COLUMNS = [
     title: "Product",
     links: [
       { label: "Sections", href: "/docs/sections" },
+      { label: "Templates", href: "/templates" },
       { label: "Hero", href: "/docs/sections/hero" },
       { label: "Pricing card", href: "/docs/sections/pricing-card" },
     ],
@@ -58,7 +59,7 @@ export async function SiteFooter() {
                 {column.links.map((link) => (
                   <li key={link.label}>
                     {/* Storybook and GitHub are not Next routes, so they get a plain link. */}
-                    {link.href.startsWith("/docs") ? (
+                    {link.href.startsWith("/docs") || link.href.startsWith("/templates") ? (
                       <Link href={link.href} className={linkClass}>
                         {link.label}
                       </Link>

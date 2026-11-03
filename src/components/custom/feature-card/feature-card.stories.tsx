@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Copy } from "lucide-react";
 import { FeatureCard } from "./feature-card";
+import { FeatureCardMotion } from "./feature-card-motion";
 
 const meta = {
   title: "Cards/Feature card",
@@ -21,3 +22,4 @@ type Story = StoryObj<typeof meta>;
 export const Vertical: Story = {};
 export const Horizontal: Story = { args: { orientation: "horizontal" } };
 export const WithoutButton: Story = { args: { ctaText: undefined, badge: undefined } };
+export const Motion: Story = { render: (args) => <FeatureCardMotion {...args} /> };

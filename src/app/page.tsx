@@ -3,7 +3,7 @@ import { ArrowRight, Github, LayoutGrid, Palette, PersonStanding, Server, Termin
 import Link from "next/link";
 import { CopyCommand } from "./_site/copy-command";
 import { GITHUB_URL, GOOD_FIRST_ISSUES_URL, installCommand } from "./_site/links";
-import { getSection } from "./_site/sections";
+import { SECTIONS, getSection } from "./_site/sections";
 import { SiteFooter } from "./_site/site-footer";
 import { SiteHeader } from "./_site/site-header";
 import { SectionSketch } from "./_landing/section-sketch";
@@ -15,6 +15,8 @@ import { PLAYGROUND } from "./_landing/playground-data";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { Reveal } from "./_site/reveal";
+import { TemplateCard } from "./_site/template-card";
+import { TEMPLATES } from "./_site/templates";
 
 /** Sections shown in the catalogue grid, in reading order. */
 const MENU = [
@@ -187,7 +189,7 @@ export default function Home() {
               </div>
               <Button asChild variant="outline" className="w-fit">
                 <Link href="/docs/sections">
-                  View all sections
+                  View all {SECTIONS.length} sections
                   <ArrowRight aria-hidden="true" />
                 </Link>
               </Button>
@@ -220,6 +222,35 @@ export default function Home() {
                   </li>
                 );
               })}
+            </ul>
+          </Reveal>
+        </section>
+
+        {/* Templates */}
+        <section aria-labelledby="templates-title" className="border-t">
+          <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
+            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+              <div className="space-y-4">
+                <h2 id="templates-title" className="text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+                  Or start from a whole page.
+                </h2>
+                <p className="text-[17px] text-muted-foreground">
+                  {TEMPLATES.length} free templates, each plain or with motion. Swap in your copy through one prop.
+                </p>
+              </div>
+              <Button asChild variant="outline" className="w-fit">
+                <Link href="/templates">
+                  All templates
+                  <ArrowRight aria-hidden="true" />
+                </Link>
+              </Button>
+            </div>
+            <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {TEMPLATES.map((t) => (
+                <li key={t.slug}>
+                  <TemplateCard template={t} headingLevel="h3" />
+                </li>
+              ))}
             </ul>
           </Reveal>
         </section>

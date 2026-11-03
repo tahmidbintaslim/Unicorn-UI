@@ -46,7 +46,7 @@ export function HeroWaitlist({
           required
           autoComplete="email"
           placeholder="you@example.com"
-          className="h-10 min-w-0 flex-1 rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+          className="placeholder:text-muted-foreground h-10 min-w-0 flex-1 rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
         />
         <Button type="submit" size="lg">
           {buttonLabel}

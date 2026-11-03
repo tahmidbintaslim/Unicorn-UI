@@ -53,7 +53,7 @@ export function ComparisonTable({
         role="region"
         aria-label={caption}
         tabIndex={0}
-        className="mt-10 overflow-x-auto rounded-xl border focus-visible:outline-2 focus-visible:outline-ring"
+        className="relative mt-10 overflow-x-auto rounded-xl border focus-visible:outline-2 focus-visible:outline-ring"
       >
         <table className="w-full min-w-[32rem] text-sm">
           <caption className="sr-only">{caption}</caption>

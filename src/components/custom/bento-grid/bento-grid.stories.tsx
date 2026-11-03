@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Accessibility, Moon, Terminal, Zap } from "lucide-react";
 import { BentoGrid } from "./bento-grid";
+import { BentoGridMotion } from "./bento-grid-motion";
 
 const meta = {
   title: "Page sections/Bento grid",
@@ -26,3 +27,4 @@ export const EqualTiles: Story = {
     items: ["Plan", "Build", "Ship"].map((title) => ({ title, description: `${title} without leaving your editor.` })),
   },
 };
+export const Motion: Story = { render: (args) => <BentoGridMotion {...args} /> };

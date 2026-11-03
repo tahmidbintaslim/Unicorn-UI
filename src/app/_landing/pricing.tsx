@@ -25,7 +25,7 @@ const PLANS = [
     period: "yearly plan",
     blurb: "For shipping whole pages, not just sections.",
     features: [
-      "Full page templates, motion and plain",
+      "Premium page templates, motion and plain",
       "Premium motion sections",
       "Figma kit",
       "A year of new templates and updates",

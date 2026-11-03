@@ -9,6 +9,7 @@ import { StarButton } from "./star-button";
 
 const NAV = [
   { label: "Sections", href: "/docs/sections" },
+  { label: "Templates", href: "/templates" },
   { label: "Docs", href: "/docs" },
   { label: "Contribute", href: CONTRIBUTING_URL },
 ];

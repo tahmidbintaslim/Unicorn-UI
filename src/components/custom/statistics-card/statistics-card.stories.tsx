@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { DollarSign, Users } from "lucide-react";
 import { StatisticsCard } from "./statistics-card";
+import { StatisticsCardMotion } from "./statistics-card-motion";
 
 const meta = {
   title: "Cards/Statistics card",
@@ -15,3 +16,4 @@ type Story = StoryObj<typeof meta>;
 export const TrendingUp: Story = {};
 export const TrendingDown: Story = { args: { title: "Revenue", value: "48.2k", prefix: "$", change: -4.1, icon: DollarSign } };
 export const Flat: Story = { args: { change: 0 } };
+export const Motion: Story = { render: (args) => <StatisticsCardMotion {...args} /> };

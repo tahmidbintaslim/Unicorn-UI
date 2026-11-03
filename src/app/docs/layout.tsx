@@ -1,6 +1,6 @@
 import { SiteFooter } from "../_site/site-footer";
 import { SiteHeader } from "../_site/site-header";
-import { SECTIONS } from "../_site/sections";
+import { GROUPED } from "../_site/sections";
 import { DocsNav } from "./_nav";
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
@@ -9,7 +9,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
       <SiteHeader showThemeToggle />
       <div className="mx-auto flex max-w-7xl gap-10 px-4 sm:px-6 lg:px-8">
         <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-56 shrink-0 overflow-y-auto border-r py-8 pr-4 lg:block">
-          <DocsNav sections={SECTIONS} />
+          <DocsNav groups={GROUPED} />
         </aside>
         <div className="min-w-0 flex-1 py-10">
           {/* Phones and tablets get the sidebar as a disclosure above the content. */}
@@ -21,7 +21,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
               </span>
             </summary>
             <div className="border-t px-2 py-4">
-              <DocsNav sections={SECTIONS} />
+              <DocsNav groups={GROUPED} />
             </div>
           </details>
           {children}

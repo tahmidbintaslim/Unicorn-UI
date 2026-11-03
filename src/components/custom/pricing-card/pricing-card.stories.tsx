@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { PricingCard } from "./pricing-card";
+import { PricingCardMotion } from "./pricing-card-motion";
 
 const meta = {
   title: "Cards/Pricing card",
@@ -24,3 +25,4 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {};
 export const Popular: Story = { args: { popular: true } };
 export const Yearly: Story = { args: { price: 190, period: "year", currency: "€" } };
+export const Motion: Story = { render: (args) => <PricingCardMotion {...args} /> };

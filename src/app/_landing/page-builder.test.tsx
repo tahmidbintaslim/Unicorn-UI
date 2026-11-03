@@ -7,7 +7,7 @@ describe("PageBuilder", () => {
     render(<PageBuilder />);
     const group = screen.getByRole("group", { name: "Sections on the example page" });
     const chips = within(group).getAllByRole("button");
-    expect(chips.map((c) => c.textContent)).toEqual(["Navbar", "Hero", "Logo cloud", "Pricing", "FAQ", "CTA", "Footer"]);
+    expect(chips.map((c) => c.textContent)).toEqual(["Navbar", "Hero", "Logo cloud", "Features", "Stats", "Testimonials", "Pricing", "FAQ", "CTA", "Footer"]);
     expect(chips.filter((c) => c.getAttribute("aria-pressed") === "true").map((c) => c.textContent)).toEqual([
       "Navbar",
       "Hero",
@@ -25,6 +25,17 @@ describe("PageBuilder", () => {
     fireEvent.click(faq);
     expect(faq.getAttribute("aria-pressed")).toBe("false");
     await waitFor(() => expect(screen.queryByText("Frequently asked questions")).toBeNull());
+  });
+
+  it.each([
+    ["Features", "Everything in one place"],
+    ["Stats", "Acme by the numbers"],
+    ["Testimonials", "What teams say"],
+  ])("the %s chip adds that section", (name, heading) => {
+    render(<PageBuilder />);
+    expect(screen.queryByRole("heading", { name: heading })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name }));
+    expect(screen.getByRole("heading", { name: heading })).toBeTruthy();
   });
 
   it("all chips off shows the empty state", async () => {
