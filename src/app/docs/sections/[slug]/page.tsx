@@ -40,7 +40,6 @@ const TOC = [
   { id: "accessibility", label: "Accessibility" },
 ];
 
-const CRUMB = { hero: "Heroes", block: "Page sections", card: "Cards" } as const;
 
 /** Renders the plain block, plus the motion block when the section has one. */
 function Variants({ plain, motion }: { plain: React.ReactNode; motion?: React.ReactNode }) {
@@ -68,7 +67,7 @@ export default async function SectionPage({ params }: { params: Promise<Params> 
   return (
     <div className="flex gap-10">
       <article className="variant-scope min-w-0 flex-1 space-y-8">
-        <DocsHeader crumb={CRUMB[section.kind]} title={section.title} lead={section.description} />
+        <DocsHeader crumb={section.group} title={section.title} lead={section.description} />
 
         <section aria-labelledby="preview" className="theme-showcase space-y-3">
           <h2 id="preview" className="sr-only">

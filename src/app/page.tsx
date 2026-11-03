@@ -3,7 +3,7 @@ import { ArrowRight, Github, LayoutGrid, Palette, PersonStanding, Server, Termin
 import Link from "next/link";
 import { CopyCommand } from "./_site/copy-command";
 import { GITHUB_URL, GOOD_FIRST_ISSUES_URL, installCommand } from "./_site/links";
-import { getSection } from "./_site/sections";
+import { SECTIONS, getSection } from "./_site/sections";
 import { SiteFooter } from "./_site/site-footer";
 import { SiteHeader } from "./_site/site-header";
 import { SectionSketch } from "./_landing/section-sketch";
@@ -187,7 +187,7 @@ export default function Home() {
               </div>
               <Button asChild variant="outline" className="w-fit">
                 <Link href="/docs/sections">
-                  View all sections
+                  View all {SECTIONS.length} sections
                   <ArrowRight aria-hidden="true" />
                 </Link>
               </Button>

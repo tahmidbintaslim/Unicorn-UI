@@ -5,10 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { SectionMeta } from "../_site/sections";
 
+type Group = { name: string; items: SectionMeta[] };
+
 /** Docs sidebar; client-side only to highlight the current page. */
-export function DocsNav({ sections }: { sections: SectionMeta[] }) {
+export function DocsNav({ groups: sectionGroups }: { groups: Group[] }) {
   const pathname = usePathname();
-  const groups = [
+  const groups = sectionGroups;
+  const nav = [
     {
       title: "Getting started",
       links: [
@@ -17,23 +20,15 @@ export function DocsNav({ sections }: { sections: SectionMeta[] }) {
         { label: "Theming", href: "/docs/theming" },
       ],
     },
-    {
-      title: "Heroes",
-      links: sections.filter((s) => s.kind === "hero").map((s) => ({ label: s.title, href: `/docs/sections/${s.slug}` })),
-    },
-    {
-      title: "Page sections",
-      links: sections.filter((s) => s.kind === "block").map((s) => ({ label: s.title, href: `/docs/sections/${s.slug}` })),
-    },
-    {
-      title: "Cards",
-      links: sections.filter((s) => s.kind === "card").map((s) => ({ label: s.title, href: `/docs/sections/${s.slug}` })),
-    },
+    ...groups.map((g) => ({
+      title: g.name,
+      links: g.items.map((s) => ({ label: s.title, href: `/docs/sections/${s.slug}` })),
+    })),
   ];
 
   return (
     <nav aria-label="Docs" className="space-y-7 text-sm">
-      {groups.map((group) => (
+      {nav.map((group) => (
         <div key={group.title} className="space-y-1.5">
           <h2 className="px-2.5 text-xs font-semibold text-muted-foreground">{group.title}</h2>
           <ul className="space-y-0.5">
