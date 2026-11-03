@@ -10,6 +10,7 @@ import { SectionSketch } from "./_landing/section-sketch";
 import { HeroCanvas } from "./_landing/hero-canvas";
 import { PageBuilder } from "./_landing/page-builder";
 import { Playground } from "./_landing/playground";
+import { Pricing } from "./_landing/pricing";
 import { PLAYGROUND } from "./_landing/playground-data";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -17,14 +18,17 @@ import { Reveal } from "./_site/reveal";
 
 /** Sections shown in the catalogue grid, in reading order. */
 const MENU = [
+  "hero-split",
+  "hero-theme-cycle",
+  "hero-plates",
+  "hero-command",
+  "hero-spotlight",
   "hero",
   "navbar",
   "bento-grid",
   "pricing-card",
   "faq",
   "cta-banner",
-  "logo-cloud",
-  "testimonial-card",
   "footer",
 ];
 
@@ -202,7 +206,14 @@ export default function Home() {
                         <SectionSketch slug={slug} />
                       </div>
                       <div className="space-y-1 border-t px-5 py-4">
-                        <h3 className="font-semibold">{section.title}</h3>
+                        <h3 className="flex items-center gap-2 font-semibold">
+                          {section.title}
+                          {section.motionSlug && (
+                            <span className="rounded-full border border-brand/40 px-2 py-0.5 text-[11px] font-medium text-brand">
+                              Motion
+                            </span>
+                          )}
+                        </h3>
                         <p className="truncate font-mono text-xs text-muted-foreground">add …/r/{slug}.json</p>
                       </div>
                     </Link>
@@ -228,6 +239,18 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+          </Reveal>
+        </section>
+
+        {/* Pricing */}
+        <section aria-labelledby="pricing-title" className="border-t">
+          <Reveal className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+            <h2 id="pricing-title" className="mx-auto max-w-2xl text-center text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+              Free to use. Pro when you want whole pages.
+            </h2>
+            <div className="mt-12">
+              <Pricing />
+            </div>
           </Reveal>
         </section>
 
