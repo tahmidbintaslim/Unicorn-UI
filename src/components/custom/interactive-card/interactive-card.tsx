@@ -79,7 +79,7 @@ export const InteractiveCard = React.memo<InteractiveCardProps>(({
             {...props}
             className={cn(
                 "border-2 transition-all duration-300",
-                hoverEffect && "hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1",
+                hoverEffect && "hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 motion-safe:hover:-translate-y-1 [[data-motion-lift=on]_&]:hover:translate-y-0",
                 className
             )}
         >

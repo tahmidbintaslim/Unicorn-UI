@@ -96,7 +96,7 @@ export const FeatureCard = React.memo<FeatureCardProps>(({
             {...props}
             className={cn(
                 "transition-all duration-300",
-                hoverEffect && "hover:shadow-lg hover:-translate-y-1",
+                hoverEffect && "hover:shadow-lg motion-safe:hover:-translate-y-1 [[data-motion-lift=on]_&]:hover:translate-y-0",
                 orientation === "horizontal" && "flex",
                 className
             )}

@@ -317,7 +317,7 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
   items={[{ title: "One command", description: "Install with the CLI.", icon: <Terminal /> }]}
 />`,
     props: [
-      { name: "items", type: "{ title; description; icon?: LucideIcon }[]", required: true, description: "Features in reading order." },
+      { name: "items", type: "{ title; description; icon?: LucideIcon | ReactElement }[]", required: true, description: "Features in reading order. Pass icons as elements (<Zap />) when a server page renders the motion version." },
       { name: "columns", type: "2 | 3 | 4", default: "3", description: "Columns from the lg breakpoint." },
       { name: "title / description", type: "string", description: "Heading (h2) and line under it." },
       ROOT,
