@@ -2,25 +2,32 @@
 
 import { CtaBanner } from "@/components/custom/cta-banner";
 import { Faq } from "@/components/custom/faq";
+import { FeatureGrid } from "@/components/custom/feature-grid";
 import { Footer } from "@/components/custom/footer";
 import { Hero } from "@/components/custom/hero";
 import { HeroSplit } from "@/components/custom/hero-split";
 import { LogoCloud } from "@/components/custom/logo-cloud";
 import { Navbar } from "@/components/custom/navbar";
 import { PricingCard } from "@/components/custom/pricing-card";
+import { StatsBand } from "@/components/custom/stats-band";
+import { TestimonialsWall } from "@/components/custom/testimonials-wall";
 import { cn } from "@/lib/utils";
+import { Gauge, LineChart, Lock } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import React from "react";
 import { ThemeSwatches } from "../_site/theme-swatches";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-type SectionId = "navbar" | "hero" | "logos" | "pricing" | "faq" | "cta" | "footer";
+type SectionId = "navbar" | "hero" | "logos" | "features" | "stats" | "testimonials" | "pricing" | "faq" | "cta" | "footer";
 
 const CHIPS: { id: SectionId; label: string }[] = [
   { id: "navbar", label: "Navbar" },
   { id: "hero", label: "Hero" },
   { id: "logos", label: "Logo cloud" },
+  { id: "features", label: "Features" },
+  { id: "stats", label: "Stats" },
+  { id: "testimonials", label: "Testimonials" },
   { id: "pricing", label: "Pricing" },
   { id: "faq", label: "FAQ" },
   { id: "cta", label: "CTA" },
@@ -71,6 +78,44 @@ function Section({ id, heroLayout }: { id: SectionId; heroLayout: "centered" | "
       );
     case "logos":
       return <LogoCloud logos={["Northwind", "Globex", "Initech", "Umbrella", "Hooli"].map((name) => ({ name }))} className="py-8" />;
+    case "features":
+      return (
+        <FeatureGrid
+          title="Everything in one place"
+          items={[
+            { title: "Feature reports", description: "See which features people use.", icon: LineChart },
+            { title: "Fast queries", description: "Answers in under a second on sample data.", icon: Gauge },
+            { title: "Private by default", description: "No cookies, no personal data.", icon: Lock },
+          ]}
+          className="py-10"
+        />
+      );
+    case "stats":
+      return (
+        <StatsBand
+          title="Acme by the numbers"
+          description="Made-up figures for a made-up company."
+          stats={[
+            { value: 2400, label: "Sample teams", suffix: "+" },
+            { value: 38, label: "Sample countries" },
+            { value: 99.9, label: "Sample uptime", suffix: "%", decimals: 1 },
+          ]}
+          className="py-10"
+        />
+      );
+    case "testimonials":
+      return (
+        <TestimonialsWall
+          title="What teams say"
+          description="Sample quotes from made-up people."
+          items={[
+            { quote: "We found our stickiest feature in a day.", author: "Maya R.", role: "Founder (sample)" },
+            { quote: "Setup took one script tag.", author: "Leo K.", role: "Engineer (sample)" },
+            { quote: "Finally, reports the whole team reads.", author: "Priya S.", role: "PM (sample)" },
+          ]}
+          className="py-10"
+        />
+      );
     case "pricing":
       return (
         <div className="mx-auto grid max-w-4xl gap-6 px-4 py-10 sm:px-8 md:grid-cols-3">

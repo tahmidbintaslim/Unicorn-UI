@@ -23,6 +23,14 @@ export interface FeatureGridProps extends Omit<React.ComponentProps<"section">, 
 
 export const gridCols = { 2: "lg:grid-cols-2", 3: "lg:grid-cols-3", 4: "lg:grid-cols-4" } as const;
 
+/**
+ * True for a component (function or forwardRef, as lucide icons are). Anything
+ * else is rendered as a node: an element passed across the server/client
+ * boundary can arrive as a lazy reference, which isValidElement rejects.
+ */
+const isComponent = (icon: unknown): icon is LucideIcon =>
+  typeof icon === "function" || (typeof icon === "object" && icon !== null && "render" in icon);
+
 /** One feature: icon, title and text. Shared by the plain and motion versions. */
 export function GridFeatureItem({ item }: { item: GridFeature }) {
   const Icon = item.icon;
@@ -30,7 +38,7 @@ export function GridFeatureItem({ item }: { item: GridFeature }) {
     <>
       {Icon && (
         <span aria-hidden="true" className="mb-4 grid size-10 place-items-center rounded-lg bg-primary/10 text-primary [&_svg]:size-5">
-          {React.isValidElement(Icon) ? Icon : <Icon className="size-5" />}
+          {isComponent(Icon) ? <Icon className="size-5" /> : Icon}
         </span>
       )}
       <h3 className="font-semibold">{item.title}</h3>
