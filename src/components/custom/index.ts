@@ -13,3 +13,5 @@ export * from "./logo-cloud";
 export * from "./footer";
 export * from "./navbar";
 export * from "./bento-grid";
+export * from "./hero-split";
+export * from "./hero-command";

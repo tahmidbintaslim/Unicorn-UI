@@ -242,6 +242,88 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "hero-split",
+      "type": "registry:component",
+      "title": "Hero: split",
+      "description": "Two-column hero with copy on one side and your product image or component on the other.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-split/hero-split.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-split-motion",
+      "type": "registry:component",
+      "title": "Hero: split (motion)",
+      "description": "The split hero with an entrance and a slight pointer tilt on the media. Respects reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-split.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-split/hero-split-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-command",
+      "type": "registry:component",
+      "title": "Hero: command",
+      "description": "Hero built around one copyable command, such as an install line.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-command/hero-command.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/custom/hero-command/copy-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "hero-command-motion",
+      "type": "registry:component",
+      "title": "Hero: command (motion)",
+      "description": "The command hero with the command typing itself. Screen readers get the full command at once.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-command.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-command/hero-command-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

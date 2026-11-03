@@ -13,6 +13,7 @@ import { StatisticsCard } from "@/components/custom/statistics-card";
 import { TestimonialCard } from "@/components/custom/testimonial-card";
 import { Accessibility, Copy, Moon, Terminal, Users, Zap } from "lucide-react";
 import React from "react";
+import { HERO_DOCS } from "./_content-heroes";
 
 export interface PropDoc {
   name: string;
@@ -53,7 +54,7 @@ const ROOT_PROPS = (el: string): PropDoc => ({
   description: `Any other ${el} attribute (id, aria-*, data-*, ref) goes to the root element.`,
 });
 
-export const DOCS: Record<string, SectionDoc> = {
+const BASE_DOCS: Record<string, SectionDoc> = {
   navbar: {
     preview: (
       <Navbar
@@ -476,3 +477,7 @@ export const DOCS: Record<string, SectionDoc> = {
     a11y: ["The action button is described by the card title, so “Open” is announced with its context."],
   },
 };
+
+// Hero variants live in _content-heroes.tsx to keep this file readable.
+
+export const DOCS: Record<string, SectionDoc> = { ...BASE_DOCS, ...HERO_DOCS };

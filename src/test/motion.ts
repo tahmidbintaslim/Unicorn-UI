@@ -48,3 +48,7 @@ export function installMotionMocks() {
   Object.defineProperty(window, "IntersectionObserver", { configurable: true, writable: true, value: IO });
   Object.defineProperty(globalThis, "IntersectionObserver", { configurable: true, writable: true, value: IO });
 }
+
+/** Elements carrying inline animation styles (motion writes transform/opacity inline). */
+export const animatedElements = (root: Element) =>
+  [...root.querySelectorAll<HTMLElement>("*")].filter((el) => el.style.transform || el.style.opacity);
