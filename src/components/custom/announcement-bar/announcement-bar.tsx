@@ -1,8 +1,7 @@
-"use client";
-
 import { cn } from "@/lib/utils";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import React from "react";
+import { AnnouncementDismiss } from "./announcement-dismiss";
 
 export interface AnnouncementBarProps extends React.ComponentProps<"div"> {
   message: string;
@@ -11,10 +10,8 @@ export interface AnnouncementBarProps extends React.ComponentProps<"div"> {
   dismissible?: boolean;
 }
 
-/** A slim bar above the navbar for one announcement. */
+/** A slim bar above the navbar for one announcement. Renders on the server; only the optional close button is a client component. */
 export function AnnouncementBar({ message, link, dismissible = false, className, ...props }: AnnouncementBarProps) {
-  const [open, setOpen] = React.useState(true);
-  if (!open) return null;
   return (
     <div
       data-slot="announcement"
@@ -28,16 +25,7 @@ export function AnnouncementBar({ message, link, dismissible = false, className,
           <ArrowRight aria-hidden="true" className="size-3.5" />
         </a>
       )}
-      {dismissible && (
-        <button
-          type="button"
-          aria-label="Dismiss announcement"
-          onClick={() => setOpen(false)}
-          className="absolute right-2 grid size-7 place-items-center rounded-md hover:bg-primary-foreground/15 focus-visible:outline-2 focus-visible:outline-primary-foreground"
-        >
-          <X aria-hidden="true" className="size-4" />
-        </button>
-      )}
+      {dismissible && <AnnouncementDismiss />}
     </div>
   );
 }

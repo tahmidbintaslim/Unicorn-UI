@@ -34,3 +34,12 @@ describe("Playground", () => {
     expect((screen.getByRole("button", { name: "Replay animation" }) as HTMLButtonElement).disabled).toBe(false);
   });
 });
+
+describe("Playground bundle", () => {
+  it("loads motion hero previews lazily, only when Motion is picked", async () => {
+    const { readFileSync } = await import("node:fs");
+    const src = readFileSync("src/app/_landing/playground-data.tsx", "utf8") + readFileSync("src/app/_landing/playground-motion.tsx", "utf8");
+    expect(src).not.toMatch(/import \{[^}]*Motion[^}]*\} from "@\/components\/custom/);
+    expect(src).toContain("next/dynamic");
+  });
+});

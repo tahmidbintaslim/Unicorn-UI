@@ -26,16 +26,16 @@ jobs:
         if: env.CHROMATIC_PROJECT_TOKEN == ''
         run: echo "CHROMATIC_PROJECT_TOKEN is not set; skipping Chromatic."
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         if: env.CHROMATIC_PROJECT_TOKEN != ''
         with:
           # Chromatic compares against git history to find baselines.
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v5
+      - uses: pnpm/action-setup@v6
         if: env.CHROMATIC_PROJECT_TOKEN != ''
 
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v7
         if: env.CHROMATIC_PROJECT_TOKEN != ''
         with:
           node-version: 22

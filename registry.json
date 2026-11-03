@@ -1308,6 +1308,10 @@
         {
           "path": "src/components/custom/announcement-bar/announcement-bar.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "src/components/custom/announcement-bar/announcement-dismiss.tsx",
+          "type": "registry:component"
         }
       ],
       "dependencies": [

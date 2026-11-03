@@ -13,16 +13,21 @@ const useMounted = () => React.useSyncExternalStore(noop, () => true, () => fals
 function CountUp({ stat }: { stat: Stat }) {
   const ref = React.useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
+  // Latest stat for formatting; the effect keys on its contents, so a parent
+  // re-rendering with an equal but fresh object doesn't restart the count.
+  const latest = React.useRef(stat);
+  latest.current = stat;
+  const key = formatStat(stat);
   React.useEffect(() => {
     if (!inView || !ref.current) return;
     const node = ref.current;
-    const controls = animate(0, stat.value, {
+    const controls = animate(0, latest.current.value, {
       duration: 1.4,
       ease: [0.16, 1, 0.3, 1],
-      onUpdate: (v) => (node.textContent = formatStat(stat, v)),
+      onUpdate: (v) => (node.textContent = formatStat(latest.current, v)),
     });
     return () => controls.stop();
-  }, [inView, stat]);
+  }, [inView, key]);
   return (
     <>
       <span className="sr-only">{formatStat(stat)}</span>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducedMotion } from "motion/react";
+import { useReducedMotionPref } from "../_site/use-reduced-motion";
 import React from "react";
 
 /**
@@ -8,7 +8,7 @@ import React from "react";
  * Static glow with reduced motion. Decorative layers only; children sit on top.
  */
 export function HeroCanvas({ children }: { children: React.ReactNode }) {
-  const reduced = useReducedMotion();
+  const reduced = useReducedMotionPref();
   const glow = React.useRef<HTMLDivElement>(null);
   const frame = React.useRef(0);
   React.useEffect(() => () => cancelAnimationFrame(frame.current), []);
