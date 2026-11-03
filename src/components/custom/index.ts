@@ -18,3 +18,7 @@ export * from "./hero-command";
 export * from "./hero-spotlight";
 export * from "./hero-showcase";
 export * from "./hero-waitlist";
+export * from "./hero-marquee";
+export * from "./hero-video";
+export * from "./hero-theme-cycle";
+export * from "./hero-plates";

@@ -435,6 +435,162 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "hero-marquee",
+      "type": "registry:component",
+      "title": "Hero: marquee",
+      "description": "Hero over a row of logos or product names.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-marquee/hero-marquee.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-marquee-motion",
+      "type": "registry:component",
+      "title": "Hero: marquee (motion)",
+      "description": "The marquee hero with an endless scrolling row that pauses on hover, focus or the pause button.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-marquee.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-marquee/hero-marquee-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-video",
+      "type": "registry:component",
+      "title": "Hero: video",
+      "description": "Hero with a product video under the headline. Never autoplays.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-video/hero-video.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "hero-video-motion",
+      "type": "registry:component",
+      "title": "Hero: video (motion)",
+      "description": "The video hero with a poster that grows into the player when you press play.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-video.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-video/hero-video-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-theme-cycle",
+      "type": "registry:component",
+      "title": "Hero: theme cycle",
+      "description": "Hero whose accent word wears your primary color.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-theme-cycle/hero-theme-cycle.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "hero-theme-cycle-motion",
+      "type": "registry:component",
+      "title": "Hero: theme cycle (motion)",
+      "description": "The theme-cycle hero: the whole hero re-colors through a set of themes, with a pause button.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-theme-cycle.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-theme-cycle/hero-theme-cycle-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-plates",
+      "type": "registry:component",
+      "title": "Hero: plates",
+      "description": "Hero that shows a page as a stack of section plates.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-plates/hero-plates.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-plates-motion",
+      "type": "registry:component",
+      "title": "Hero: plates (motion)",
+      "description": "The plates hero: plates slide in and stack into a page as you scroll.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-plates.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-plates/hero-plates-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

@@ -1,5 +1,9 @@
 import { HeroCommand, HeroCommandMotion } from "@/components/custom/hero-command";
+import { HeroMarquee, HeroMarqueeMotion } from "@/components/custom/hero-marquee";
+import { HeroPlates, HeroPlatesMotion } from "@/components/custom/hero-plates";
 import { HeroShowcase, HeroShowcaseMotion } from "@/components/custom/hero-showcase";
+import { HeroThemeCycle, HeroThemeCycleMotion } from "@/components/custom/hero-theme-cycle";
+import { HeroVideo, HeroVideoMotion } from "@/components/custom/hero-video";
 import { HeroSplit, HeroSplitMotion } from "@/components/custom/hero-split";
 import { HeroSpotlight, HeroSpotlightMotion } from "@/components/custom/hero-spotlight";
 import { HeroWaitlist, HeroWaitlistMotion } from "@/components/custom/hero-waitlist";
@@ -70,6 +74,38 @@ const waitlist = {
   description: "Leave your email and we will write once, when it launches. Sample copy.",
   action: "#waitlist",
   note: "One email at launch. No spam.",
+};
+
+const marquee = {
+  title: "Used in projects of every size",
+  description: "Logos or names in an endless row. Sample names.",
+  primaryAction: { label: "Get started", href: "#start" },
+  items: ["Northwind", "Globex", "Initech", "Umbrella", "Hooli", "Stark", "Wayne"].map((name) => ({ name })),
+};
+
+// CC0 sample clip from MDN's examples; replace with your own video.
+const video = {
+  title: "See the product in 60 seconds",
+  description: "A poster, a play button and your product tour. Sample copy.",
+  poster: "/demo/blog-cover.webp",
+  posterAlt: "Product tour",
+  videoSrc: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+};
+
+const cycle = {
+  eyebrow: "Themeable",
+  title: "Your theme, not ours",
+  accentWord: "theme",
+  description: "The accent word, badge and buttons follow --primary. Sample copy.",
+  primaryAction: { label: "Get started", href: "#start" },
+  secondaryAction: { label: "Theming docs", href: "#theming" },
+};
+
+const plates = {
+  title: "A whole page, plate by plate",
+  description: "Show what visitors get as a stack of sections. Sample copy.",
+  primaryAction: { label: "Browse sections", href: "#sections" },
+  plates: ["Navbar", "Hero", "Logo cloud", "Pricing", "FAQ", "Footer"].map((label) => ({ label })),
 };
 
 export const HERO_DOCS: Record<string, SectionDoc> = {
@@ -204,6 +240,96 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
       extraProps: [
         { name: "onSubmit", type: "(email: string) => Promise<void>", description: "Handle the signup yourself; shows sending, success and error states. Without it the form posts to action." },
       ],
+    },
+  },
+  "hero-marquee": {
+    preview: <HeroMarquee {...marquee} />,
+    importLine: `import { HeroMarquee } from "@/components/custom/hero-marquee";`,
+    usage: `<HeroMarquee
+  title="Used in projects of every size"
+  items={[{ name: "Acme" }, { name: "Globex", logo: <GlobexLogo /> }]}
+/>`,
+    props: [
+      ...BASE_PROPS,
+      { name: "items", type: "{ name: string; logo?: ReactNode }[]", required: true, description: "Logos or names. Names stay readable to screen readers when a logo is shown." },
+      { name: "speed", type: "number", default: "30", description: "Seconds per full loop (motion version)." },
+      ROOT,
+    ],
+    a11y: ["Items are a list, so screen readers announce how many there are."],
+    motion: {
+      summary: "The row scrolls endlessly. It pauses on hover, on keyboard focus and with the visible pause button.",
+      preview: <HeroMarqueeMotion {...marquee} />,
+      importLine: `import { HeroMarqueeMotion } from "@/components/custom/hero-marquee/hero-marquee-motion";`,
+      usage: `<HeroMarqueeMotion title="Used in projects of every size" items={logos} speed={40} />`,
+    },
+  },
+  "hero-video": {
+    preview: <HeroVideo {...video} />,
+    importLine: `import { HeroVideo } from "@/components/custom/hero-video";`,
+    usage: `<HeroVideo
+  title="See the product in 60 seconds"
+  poster={tour.posterUrl}
+  posterAlt="Product tour"
+  videoSrc={tour.videoUrl}
+  captionsSrc={tour.captionsUrl}
+/>`,
+    props: [
+      ...BASE_PROPS,
+      { name: "poster", type: "string", required: true, description: "Image shown before playback." },
+      { name: "posterAlt", type: "string", required: true, description: "What the video shows; labels the video and play button." },
+      { name: "videoSrc", type: "string", required: true, description: "Video file URL." },
+      { name: "captionsSrc", type: "string", description: "WebVTT captions, added as a default English track." },
+      ROOT,
+    ],
+    a11y: ["The video never autoplays and keeps native controls.", "Add captions with captionsSrc."],
+    motion: {
+      summary: "A poster with a play button; pressing it grows the poster into the player and starts the video.",
+      preview: <HeroVideoMotion {...video} />,
+      importLine: `import { HeroVideoMotion } from "@/components/custom/hero-video/hero-video-motion";`,
+      usage: `<HeroVideoMotion title="See the product in 60 seconds" poster={tour.posterUrl} posterAlt="Product tour" videoSrc={tour.videoUrl} />`,
+    },
+  },
+  "hero-theme-cycle": {
+    preview: <HeroThemeCycle {...cycle} />,
+    importLine: `import { HeroThemeCycle } from "@/components/custom/hero-theme-cycle";`,
+    usage: `<HeroThemeCycle
+  title="Your theme, not ours"
+  accentWord="theme"
+  primaryAction={{ label: "Get started", href: "/signup" }}
+/>`,
+    props: [
+      ...BASE_PROPS,
+      { name: "accentWord", type: "string", required: true, description: "Word in the title to color; ignored if the title doesn't contain it." },
+      { name: "themes", type: "{ name; primary; primaryForeground }[]", default: "5 shadcn colors", description: "Themes the motion version cycles through." },
+      { name: "interval", type: "number", default: "2500", description: "Milliseconds between themes (motion version)." },
+      ROOT,
+    ],
+    a11y: ["The accent is color plus position, never color alone: the word is still part of the heading text."],
+    motion: {
+      summary: "The whole hero re-colors through a set of themes. It stops on hover, on focus and with the visible pause button.",
+      preview: <HeroThemeCycleMotion {...cycle} />,
+      importLine: `import { HeroThemeCycleMotion } from "@/components/custom/hero-theme-cycle/hero-theme-cycle-motion";`,
+      usage: `<HeroThemeCycleMotion title="Your theme, not ours" accentWord="theme" interval={3000} />`,
+    },
+  },
+  "hero-plates": {
+    preview: <HeroPlates {...plates} />,
+    importLine: `import { HeroPlates } from "@/components/custom/hero-plates";`,
+    usage: `<HeroPlates
+  title="A whole page, plate by plate"
+  plates={[{ label: "Navbar" }, { label: "Hero" }, { label: "Pricing" }, { label: "Footer" }]}
+/>`,
+    props: [
+      ...BASE_PROPS,
+      { name: "plates", type: "{ label: string; content?: ReactNode }[]", required: true, description: "The parts of the page, top to bottom. 3 to 6 read best." },
+      ROOT,
+    ],
+    a11y: ["Plates are a list in reading order."],
+    motion: {
+      summary: "As the section scrolls into view, the plates slide in from alternating sides and settle into a page.",
+      preview: <HeroPlatesMotion {...plates} />,
+      importLine: `import { HeroPlatesMotion } from "@/components/custom/hero-plates/hero-plates-motion";`,
+      usage: `<HeroPlatesMotion title="A whole page, plate by plate" plates={plates} />`,
     },
   },
 };
