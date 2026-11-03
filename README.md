@@ -12,9 +12,9 @@ and SaaS pages, built with React, TypeScript and Tailwind CSS on top of
 
 **Live demo:** https://tapas-ui.vercel.app
 
-The repo is a Next.js app that shows each card with a live preview and
-copy-paste code, and five of the six with a props table. The cards are interactive, pricing, statistics,
-testimonial, feature and blog.
+44 copy-paste sections (heroes, pricing, proof, features, navigation and
+cards), most with an optional motion version, plus three free page templates.
+Each one installs with the shadcn CLI and lands in your repo as code you own.
 
 ![Tapas UI home page in the light theme: the title "Tapas UI", a one-line description and buttons to browse the components or view the code on GitHub](docs/images/home-light.png)
 
@@ -77,7 +77,7 @@ Radix UI primitives.
 | Framework | Next.js 15.5 (App Router, every page prerendered as static HTML) |
 | UI | React 19, shadcn/ui primitives (new-york style), Radix UI Slot and Tabs |
 | Styling | Tailwind CSS 4, `tailwind-merge`, `class-variance-authority`, `next-themes` |
-| Icons and motion | lucide-react, GSAP with ScrollTrigger (home page only) |
+| Icons and motion | lucide-react, [`motion`](https://motion.dev) (motion versions only) |
 | Tests | Vitest 5, Testing Library, jsdom |
 | Tooling | TypeScript 5 (strict), ESLint 9 with `eslint-config-next`, pnpm 10 |
 
@@ -209,33 +209,109 @@ no extra packages) and a **motion** version (a client component built on
 - Anything that moves on its own (the marquee, the theme cycle) has a visible
   pause button and stops on hover and keyboard focus.
 
-## Landing blocks
+## Sections
 
-Seven sections for marketing pages, documented with live previews at
-[tapas-ui.vercel.app/docs/sections](https://tapas-ui.vercel.app/docs/sections):
+44 sections: 10 heroes (above), 28 landing blocks and 6 cards. 35 of them also come in a motion version.
+Each installs with `npx shadcn@latest add https://tapas-ui.vercel.app/r/<name>.json`
+(add `-motion` for the motion version). Live previews, props and notes are at
+[tapas-ui.vercel.app/docs/sections](https://tapas-ui.vercel.app/docs/sections).
 
-| Block | What it does | Install |
+### Marketing
+
+| Section | What it does | Motion |
 | --- | --- | --- |
-| `navbar` | Brand, links and an action; links fold into a no-JS menu on phones | `npx shadcn@latest add https://tapas-ui.vercel.app/r/navbar.json` |
-| `hero` | Centered headline, optional badge, up to two links | `.../r/hero.json` |
-| `logo-cloud` | "Trusted by" strip of logos or names | `.../r/logo-cloud.json` |
-| `bento-grid` | Feature tiles of mixed sizes | `.../r/bento-grid.json` |
-| `faq` | Questions on native details/summary | `.../r/faq.json` |
-| `cta-banner` | Full-width call to action | `.../r/cta-banner.json` |
-| `footer` | Brand, link columns and small print | `.../r/footer.json` |
+| `pricing-table` | Pricing tiers with a monthly/yearly switch that works without JavaScript. | yes |
+| `comparison-table` | Feature-by-plan table with row headers that scrolls inside its own box on phones. | plain only |
+| `cta-banner` | Full-width call-to-action band with a heading, text and one button. | yes |
+| `cta-split` | Call-to-action band with your product image or component beside the copy. | yes |
+| `newsletter` | Newsletter signup band; a plain HTML form that works without JavaScript. | yes |
+
+### Proof
+
+| Section | What it does | Motion |
+| --- | --- | --- |
+| `logo-cloud` | A 'trusted by' strip of logos or company names. | yes |
+| `testimonials-wall` | A masonry wall of short testimonials. | yes |
+| `testimonial-highlight` | One large, centered quote for a single strong testimonial. | yes |
+| `stats-band` | A band of big numbers with labels. | yes |
+| `social-proof` | Avatar stack, optional star rating and one line of text. | yes |
+
+### Features
+
+| Section | What it does | Motion |
+| --- | --- | --- |
+| `feature-grid` | A grid of features with icons, in 2 to 4 columns. | yes |
+| `feature-rows` | Feature rows with media on alternating sides. | yes |
+| `bento-grid` | Feature grid with tiles of mixed sizes that stack on phones. | yes |
+| `steps` | Numbered how-it-works steps as an ordered list. | yes |
+| `integrations-grid` | A grid of integrations or tools, each optionally linking to its page. | yes |
+
+### Company
+
+| Section | What it does | Motion |
+| --- | --- | --- |
+| `team` | The people behind the product: photo or initials, role, bio and links. | plain only |
+| `blog-grid` | A grid of recent posts built from the blog card, with a view-all link. | yes |
+| `changelog` | Dated release notes with versions, newest first. | plain only |
+| `faq` | Accordion-style FAQ built on native details and summary. | yes |
+| `faq-two-column` | FAQ with an intro column and contact link beside the questions. | plain only |
+| `contact` | Contact form beside your contact details; works without JavaScript. | plain only |
+
+### Navigation & utility
+
+| Section | What it does | Motion |
+| --- | --- | --- |
+| `navbar` | Top navigation with a brand, links and an action; links fold into a no-JS menu on phones. | yes |
+| `navbar-floating` | A pill-shaped navbar floating over the page; links fold into a no-JS menu on phones. | yes |
+| `announcement-bar` | A slim, optionally dismissible bar above the navbar for one announcement. | plain only |
+| `footer` | Site footer with a brand name, link columns and a small-print line. | plain only |
+| `footer-simple` | A one-row footer with brand, a few links and small print. | plain only |
+| `not-found` | A friendly 404 section with a link home and optional helpful links. | yes |
+| `coming-soon` | Pre-launch section: what's coming, the launch date if known, and a notify form. | plain only |
+
+### Cards
+
+| Card | What it does | Motion |
+| --- | --- | --- |
+| `interactive-card` | Title, description, optional badge, custom content and an action button. | yes |
+| `pricing-card` | Plan name, price, included and excluded features, and a call to action. | yes |
+| `statistics-card` | A metric with an optional icon and an up, down or flat percentage change. | yes |
+| `testimonial-card` | A quote with author, role, company, optional avatar and a star rating. Uses next/image. | yes |
+| `feature-card` | An icon, title, description, optional badge and call to action, vertical or horizontal. | yes |
+| `blog-card` | Title, excerpt, author, date, read time, category and cover image in three layouts. Uses next/image. | yes |
 
 ```tsx
-import { Hero } from "@/components/custom/hero";
+import { Faq } from "@/components/custom/faq";
 
-<Hero
-  eyebrow="New"
-  title="Ship your landing page today"
-  primaryAction={{ label: "Get started", href: "/signup" }}
-/>;
+<Faq items={[{ question: "Is there a free plan?", answer: "Yes, for one project." }]} />;
 ```
 
-All blocks render from server components. They follow your shadcn theme, so
-they work in light and dark mode.
+Plain sections render from server components. All of them follow your shadcn
+theme, so they work in light and dark mode.
+
+## Templates
+
+Three free page templates built only from Tapas sections, each in a plain and
+a motion version. Browse them at
+[tapas-ui.vercel.app/templates](https://tapas-ui.vercel.app/templates).
+
+| Template | Page | Plain | Motion |
+| --- | --- | --- | --- |
+| SaaS landing page | Split hero, logos, features, stats, testimonials, pricing, FAQ, CTA | `npx shadcn@latest add https://tapas-ui.vercel.app/r/template-saas.json` | `…/r/template-saas-motion.json` |
+| Waitlist page | Floating navbar, waitlist hero, social proof, feature rows, FAQ | `npx shadcn@latest add https://tapas-ui.vercel.app/r/template-waitlist.json` | `…/r/template-waitlist-motion.json` |
+| AI product page | Announcement bar, spotlight hero, steps, integrations, comparison, pricing | `npx shadcn@latest add https://tapas-ui.vercel.app/r/template-ai.json` | `…/r/template-ai-motion.json` |
+
+A template installs into `components/templates/<name>/` along with every
+section it uses. Pass your copy through one `content` prop; anything you leave
+out keeps the sample text, which is fictional and labelled as such:
+
+```tsx
+import { SaasTemplate } from "@/components/templates/saas/saas";
+
+export default function Page() {
+  return <SaasTemplate content={{ brand: { name: "Your product" }, hero: { title: "Your headline" } }} />;
+}
+```
 
 ## Usage
 

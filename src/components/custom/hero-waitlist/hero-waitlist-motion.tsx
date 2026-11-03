@@ -104,7 +104,7 @@ export function HeroWaitlistMotion({
                 autoComplete="email"
                 placeholder="you@example.com"
                 disabled={status === "sending"}
-                className="h-10 min-w-0 flex-1 rounded-md border bg-background px-3 text-sm shadow-xs outline-none transition-shadow focus-visible:border-ring focus-visible:shadow-[0_0_0_4px_color-mix(in_oklch,var(--primary)_25%,transparent)]"
+                className="placeholder:text-muted-foreground h-10 min-w-0 flex-1 rounded-md border bg-background px-3 text-sm shadow-xs outline-none transition-shadow focus-visible:border-ring focus-visible:shadow-[0_0_0_4px_color-mix(in_oklch,var(--primary)_25%,transparent)]"
               />
               <Button type="submit" size="lg" disabled={status === "sending"} asChild={false}>
                 <motion.span layout={animate} className="inline-block">
