@@ -9,6 +9,10 @@ import { SiteHeader } from "./_site/site-header";
 import { SectionSketch } from "./_landing/section-sketch";
 import { HeroCanvas } from "./_landing/hero-canvas";
 import { PageBuilder } from "./_landing/page-builder";
+import { Playground } from "./_landing/playground";
+import { PLAYGROUND } from "./_landing/playground-data";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { Reveal } from "./_site/reveal";
 
 /** Sections shown in the catalogue grid, in reading order. */
@@ -67,6 +71,13 @@ const REASONS = [
     body: "Semantic HTML, keyboard support and screen-reader labels, with contrast checked in light and dark.",
   },
 ];
+
+/** Real component source for the playground's code tab, read at build time. */
+function playgroundSources() {
+  const read = (slug: string, file: string) =>
+    readFileSync(join(process.cwd(), "src", "components", "custom", slug, `${file}.tsx`), "utf8");
+  return Object.fromEntries(PLAYGROUND.map((p) => [p.slug, { plain: read(p.slug, p.slug), motion: read(p.slug, `${p.slug}-motion`) }]));
+}
 
 export default function Home() {
   return (
@@ -139,6 +150,22 @@ export default function Home() {
                 </li>
               ))}
             </ol>
+          </Reveal>
+        </section>
+
+        {/* Playground */}
+        <section aria-labelledby="playground-title" className="border-t">
+          <Reveal className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+            <h2 id="playground-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+              Try it before you install it.
+            </h2>
+            <p className="mt-4 max-w-xl text-[17px] text-muted-foreground">
+              Pick a hero, switch between plain and motion, change the color and spacing. The code on the left is what
+              you would paste.
+            </p>
+            <div className="mt-10">
+              <Playground sources={playgroundSources()} />
+            </div>
           </Reveal>
         </section>
 
