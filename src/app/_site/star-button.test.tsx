@@ -13,3 +13,10 @@ describe("StarButton", () => {
     expect(screen.getByRole("link", { name: /Star on GitHub/ }).textContent).toContain("1,234");
   });
 });
+
+describe("StarButton bundle", () => {
+  it("pops a new count with CSS, not the motion library", async () => {
+    const { readFileSync } = await import("node:fs");
+    expect(readFileSync("src/app/_site/star-button.tsx", "utf8")).not.toContain('"motion/react"');
+  });
+});

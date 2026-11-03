@@ -44,3 +44,20 @@ describe("PageBuilder", () => {
     expect(await screen.findByText("Add a section to start your page.")).toBeTruthy();
   });
 });
+
+describe("PageBuilder bundle", () => {
+  it("animates with the View Transitions API, so the landing page ships no motion library", async () => {
+    const { readFileSync } = await import("node:fs");
+    const src = readFileSync("src/app/_landing/page-builder.tsx", "utf8");
+    expect(src).not.toContain('"motion/react');
+    expect(src).toContain("startViewTransition");
+  });
+});
+
+describe("PageBuilder imports", () => {
+  it("imports plain section files directly; folder barrels re-export motion versions", async () => {
+    const { readFileSync } = await import("node:fs");
+    const src = readFileSync("src/app/_landing/page-builder.tsx", "utf8");
+    expect(src).not.toMatch(/from "@\/components\/custom\/[a-z-]+"/);
+  });
+});
