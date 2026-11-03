@@ -34,3 +34,8 @@ export * from "./feature-grid";
 export * from "./feature-rows";
 export * from "./steps";
 export * from "./integrations-grid";
+export * from "./team";
+export * from "./changelog";
+export * from "./blog-grid";
+export * from "./faq-two-column";
+export * from "./contact";

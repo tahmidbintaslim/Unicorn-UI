@@ -967,6 +967,99 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "team",
+      "type": "registry:component",
+      "title": "Team",
+      "description": "The people behind the product: photo or initials, role, bio and links.",
+      "files": [
+        {
+          "path": "src/components/custom/team/team.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "changelog",
+      "type": "registry:component",
+      "title": "Changelog",
+      "description": "Dated release notes with versions, newest first.",
+      "files": [
+        {
+          "path": "src/components/custom/changelog/changelog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "badge"
+      ]
+    },
+    {
+      "name": "blog-grid",
+      "type": "registry:component",
+      "title": "Blog grid",
+      "description": "A grid of recent posts built from the blog card, with a view-all link.",
+      "files": [
+        {
+          "path": "src/components/custom/blog-grid/blog-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/blog-card.json"
+      ]
+    },
+    {
+      "name": "blog-grid-motion",
+      "type": "registry:component",
+      "title": "Blog grid (motion)",
+      "description": "The blog grid with cards rising in one after another.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/blog-card.json",
+        "https://tapas-ui.vercel.app/r/blog-grid.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/blog-grid/blog-grid-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "faq-two-column",
+      "type": "registry:component",
+      "title": "FAQ: two column",
+      "description": "FAQ with an intro column and contact link beside the questions.",
+      "files": [
+        {
+          "path": "src/components/custom/faq-two-column/faq-two-column.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "contact",
+      "type": "registry:component",
+      "title": "Contact",
+      "description": "Contact form beside your contact details; works without JavaScript.",
+      "files": [
+        {
+          "path": "src/components/custom/contact/contact.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button"
+      ]
     }
   ]
 }

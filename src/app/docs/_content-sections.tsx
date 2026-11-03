@@ -1,4 +1,9 @@
+import { BlogGrid, BlogGridMotion } from "@/components/custom/blog-grid";
+import { Changelog } from "@/components/custom/changelog";
 import { ComparisonTable } from "@/components/custom/comparison-table";
+import { Contact } from "@/components/custom/contact";
+import { FaqTwoColumn } from "@/components/custom/faq-two-column";
+import { Team } from "@/components/custom/team";
 import { FeatureGrid, FeatureGridMotion } from "@/components/custom/feature-grid";
 import { FeatureRows, FeatureRowsMotion } from "@/components/custom/feature-rows";
 import { IntegrationsGrid, IntegrationsGridMotion } from "@/components/custom/integrations-grid";
@@ -89,6 +94,24 @@ export const sampleIntegrations = ["Stripe", "Slack", "GitHub", "Linear", "Notio
   description: "Sample integration",
 }));
 
+export const samplePeople = [
+  { name: "Ana Diaz", role: "Founder", bio: "Writes most of the sections." },
+  { name: "Ben Okafor", role: "Design", bio: "Draws them first." },
+  { name: "Cy Tanaka", role: "Engineering", bio: "Keeps them accessible." },
+  { name: "Dee Morgan", role: "Community", bio: "Answers your issues." },
+];
+
+export const samplePosts = [
+  { title: "Ship a landing page in an afternoon", excerpt: "Pick sections, install, write copy. Sample post.", author: "Ana Diaz", date: "2026-10-12", readTime: "5 min read", category: "Guide", image: "/demo/blog-cover.webp", href: "#post-1" },
+  { title: "Plain or motion: when to animate", excerpt: "Motion should carry meaning. Sample post.", author: "Ben Okafor", date: "2026-10-20", readTime: "4 min read", category: "Design", href: "#post-2" },
+  { title: "Accessible pricing tables", excerpt: "Prices that screen readers can read. Sample post.", author: "Cy Tanaka", date: "2026-10-28", readTime: "6 min read", category: "A11y", href: "#post-3" },
+];
+
+export const sampleChangelog = [
+  { date: "2026-11-03", version: "0.3.0", title: "Pricing, proof and features", items: ["Pricing table with a monthly/yearly switch", "Testimonials wall and stats band", "Feature grid and steps"] },
+  { date: "2026-11-02", version: "0.2.0", title: "Ten heroes", items: ["Every hero in plain and motion versions", "Live page builder on the site"] },
+];
+
 export const SECTION_DOCS: Record<string, SectionDoc> = {
   "pricing-table": {
     preview: <PricingTable title="Simple pricing" description="Sample prices." plans={samplePlans} yearlyNote="2 months free" />,
@@ -120,7 +143,12 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
   },
   "comparison-table": {
     preview: <ComparisonTable {...comparison} />,
-    importLine: `import { ComparisonTable } from "@/components/custom/comparison-table";
+    importLine: `import { BlogGrid, BlogGridMotion } from "@/components/custom/blog-grid";
+import { Changelog } from "@/components/custom/changelog";
+import { ComparisonTable } from "@/components/custom/comparison-table";
+import { Contact } from "@/components/custom/contact";
+import { FaqTwoColumn } from "@/components/custom/faq-two-column";
+import { Team } from "@/components/custom/team";
 import { FeatureGrid, FeatureGridMotion } from "@/components/custom/feature-grid";
 import { FeatureRows, FeatureRowsMotion } from "@/components/custom/feature-rows";
 import { IntegrationsGrid, IntegrationsGridMotion } from "@/components/custom/integrations-grid";
@@ -382,5 +410,105 @@ import { Accessibility, Moon, Palette, Server, Terminal, Zap } from "lucide-reac
       importLine: `import { IntegrationsGridMotion } from "@/components/custom/integrations-grid/integrations-grid-motion";`,
       usage: `<IntegrationsGridMotion items={integrations} />`,
     },
+  },
+  team: {
+    preview: <Team title="The people behind it" description="Sample people." people={samplePeople} />,
+    importLine: `import { Team } from "@/components/custom/team";`,
+    usage: `<Team
+  title="The people behind it"
+  people={[{ name: "Ana Diaz", role: "Founder", avatar: "/ana.webp", links: [{ label: "GitHub", href: "https://github.com/ana" }] }]}
+/>`,
+    props: [
+      { name: "people", type: "{ name; role; avatar?; bio?; links? }[]", required: true, description: "Initials replace a missing avatar." },
+      { name: "title / description", type: "string", description: "Heading (h2) and line under it." },
+      ROOT,
+    ],
+    a11y: ["Each person's name is an h3.", "Links are named “Ana Diaz on GitHub”, not just “GitHub”."],
+  },
+  changelog: {
+    preview: <Changelog entries={sampleChangelog} />,
+    importLine: `import { Changelog } from "@/components/custom/changelog";`,
+    usage: `<Changelog
+  entries={[{ date: "2026-11-03", version: "0.3.0", title: "New sections", items: ["Pricing table"] }]}
+/>`,
+    props: [
+      { name: "entries", type: "{ date; title; version?; items: string[] }[]", required: true, description: "ISO dates; newest first." },
+      { name: "title", type: "string", default: `"Changelog"`, description: "Heading (h2)." },
+      ROOT,
+    ],
+    a11y: ["Dates use <time datetime> and format in UTC, so server and browser agree.", "Each release is an article in an ordered list."],
+  },
+  "blog-grid": {
+    preview: <BlogGrid title="From the blog" description="Sample posts." posts={samplePosts} viewAll={{ label: "All posts", href: "#blog" }} />,
+    importLine: `import { BlogGrid } from "@/components/custom/blog-grid";`,
+    usage: `<BlogGrid
+  title="From the blog"
+  posts={posts}
+  viewAll={{ label: "All posts", href: "/blog" }}
+/>`,
+    props: [
+      { name: "posts", type: "BlogCard props[]", required: true, description: "title, excerpt, author, date, href, image?, readTime?, category?" },
+      { name: "viewAll", type: "{ label; href }", description: "Link to the full blog." },
+      { name: "title / description", type: "string", description: "Heading (h2) and line under it." },
+      ROOT,
+    ],
+    a11y: ["Each post is an article from BlogCard."],
+    motion: {
+      summary: "Cards rise in one after another as the grid scrolls into view.",
+      preview: <BlogGridMotion title="From the blog" description="Sample posts." posts={samplePosts} viewAll={{ label: "All posts", href: "#blog" }} />,
+      importLine: `import { BlogGridMotion } from "@/components/custom/blog-grid/blog-grid-motion";`,
+      usage: `<BlogGridMotion posts={posts} />`,
+    },
+  },
+  "faq-two-column": {
+    preview: (
+      <FaqTwoColumn
+        description="Can't find what you need? Sample copy."
+        contact={{ label: "Email us", href: "#contact" }}
+        items={[
+          { question: "Is it free?", answer: "Yes, MIT licensed." },
+          { question: "Do I need a package?", answer: "No, the code lands in your project." },
+          { question: "Does it work with my theme?", answer: "Yes, it reads your shadcn tokens." },
+        ]}
+      />
+    ),
+    importLine: `import { FaqTwoColumn } from "@/components/custom/faq-two-column";`,
+    usage: `<FaqTwoColumn
+  contact={{ label: "Email us", href: "mailto:hi@example.com" }}
+  items={[{ question: "Is it free?", answer: "Yes." }]}
+/>`,
+    props: [
+      { name: "items", type: "{ question; answer }[]", required: true, description: "Questions in order." },
+      { name: "contact", type: "{ label; href }", description: "Link for anything not answered." },
+      { name: "title", type: "string", default: `"Frequently asked questions"`, description: "Heading (h2)." },
+      { name: "description", type: "string", description: "Line under the heading." },
+      ROOT,
+    ],
+    a11y: ["Native details/summary: keyboard and screen-reader support with no JavaScript."],
+  },
+  contact: {
+    preview: (
+      <Contact
+        description="We reply within two working days. Sample copy."
+        action="#contact"
+        details={[
+          { label: "Email", value: "hello@example.com", href: "mailto:hello@example.com" },
+          { label: "Office", value: "Sample Street 1, Example City" },
+        ]}
+      />
+    ),
+    importLine: `import { Contact } from "@/components/custom/contact";`,
+    usage: `<Contact
+  action="/api/contact"
+  details={[{ label: "Email", value: "hello@example.com", href: "mailto:hello@example.com" }]}
+/>`,
+    props: [
+      { name: "action", type: "string", required: true, description: "Where the form posts (name, email, message)." },
+      { name: "details", type: "{ label; value; href? }[]", description: "Contact details beside the form." },
+      { name: "submitLabel", type: "string", default: `"Send message"`, description: "Button text." },
+      { name: "title / description", type: "string", description: "Heading (h2) and line under it." },
+      ROOT,
+    ],
+    a11y: ["Every field has a visible label and the right input type and autocomplete."],
   },
 };
