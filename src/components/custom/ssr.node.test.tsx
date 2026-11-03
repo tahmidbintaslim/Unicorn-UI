@@ -3,6 +3,7 @@
 // server and the first client render, which jsdom-based "SSR" tests miss.
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import { textOf as text } from "@/test/motion";
 import { StarButton } from "@/app/_site/star-button";
 import { HeroCommandMotion } from "./hero-command";
 import { HeroMarqueeMotion } from "./hero-marquee";
@@ -15,7 +16,6 @@ import { HeroThemeCycleMotion } from "./hero-theme-cycle";
 import { HeroVideoMotion } from "./hero-video";
 import { HeroWaitlistMotion } from "./hero-waitlist";
 
-const text = (html: string) => html.replace(/<[^>]+>/g, "");
 const title = "Server rendered title";
 const cases: [string, React.ReactElement][] = [
   ["hero", <HeroMotion key="a" title={title} />],

@@ -11,8 +11,20 @@ export function mockReducedMotion(on: boolean) {
   listeners.forEach((fn) => fn({ matches: on }));
 }
 
-/** Strip tags so text split across spans can be matched. */
-export const textOf = (html: string) => html.replace(/<[^>]+>/g, "").replace(/&#x27;/g, "'");
+/**
+ * Text content of an HTML string, for asserting on server output where words
+ * are split across spans. Test-only; strips repeatedly so nested or broken
+ * tags can't leave a tag behind.
+ */
+export function textOf(html: string) {
+  let out = html;
+  let prev;
+  do {
+    prev = out;
+    out = out.replace(/<[^<>]*>/g, "");
+  } while (out !== prev);
+  return out.replace(/[<>]/g, "").replace(/&#x27;/g, "'");
+}
 
 export function installMotionMocks() {
   Object.defineProperty(window, "matchMedia", {
