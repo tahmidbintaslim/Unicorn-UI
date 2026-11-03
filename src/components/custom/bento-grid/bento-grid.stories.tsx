@@ -1,0 +1,30 @@
+import type { Meta, StoryObj } from "@storybook/nextjs";
+import { Accessibility, Moon, Terminal, Zap } from "lucide-react";
+import { BentoGrid } from "./bento-grid";
+import { BentoGridMotion } from "./bento-grid-motion";
+
+const meta = {
+  title: "Page sections/Bento grid",
+  parameters: { design: { type: "figma", url: "https://www.figma.com/design/gAmq9l9IOIKCbvxlWwGX4o/Tapas-UI---Sorbet-UI-%E2%80%94-Website-Design?node-id=6-62" } },
+  component: BentoGrid,
+  args: {
+    title: "Why teams pick it",
+    items: [
+      { title: "One command", description: "Install any section with the shadcn CLI.", icon: Terminal, size: "large" },
+      { title: "Fast", description: "Plain components, no runtime.", icon: Zap },
+      { title: "Accessible", description: "Semantic markup and labels.", icon: Accessibility },
+      { title: "Light and dark", description: "Uses your shadcn theme variables.", icon: Moon, size: "wide" },
+    ],
+  },
+} satisfies Meta<typeof BentoGrid>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {};
+export const EqualTiles: Story = {
+  args: {
+    title: undefined,
+    items: ["Plan", "Build", "Ship"].map((title) => ({ title, description: `${title} without leaving your editor.` })),
+  },
+};
+export const Motion: Story = { render: (args) => <BentoGridMotion {...args} /> };

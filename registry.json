@@ -1,0 +1,1577 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "tapas-ui",
+  "homepage": "https://tapas-ui.vercel.app",
+  "items": [
+    {
+      "name": "interactive-card",
+      "type": "registry:component",
+      "title": "Interactive card",
+      "description": "Title, description, optional badge, custom content and an action button.",
+      "registryDependencies": [
+        "card",
+        "button",
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/interactive-card/interactive-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "interactive-card-motion",
+      "type": "registry:component",
+      "title": "Interactive card (motion)",
+      "description": "Lifts on hover with a spring; still under reduced motion.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/interactive-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/interactive-card/interactive-card-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pricing-card",
+      "type": "registry:component",
+      "title": "Pricing card",
+      "description": "Plan name, price, included and excluded features, and a call to action.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "button",
+        "badge"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/pricing-card/pricing-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pricing-card-motion",
+      "type": "registry:component",
+      "title": "Pricing card (motion)",
+      "description": "Lifts on hover with a spring; still under reduced motion.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/pricing-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/pricing-card/pricing-card-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "statistics-card",
+      "type": "registry:component",
+      "title": "Statistics card",
+      "description": "A metric with an optional icon and an up, down or flat percentage change.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/statistics-card/statistics-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "statistics-card-motion",
+      "type": "registry:component",
+      "title": "Statistics card (motion)",
+      "description": "Counts up to its number once in view and lifts on hover.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/statistics-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/statistics-card/statistics-card-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-card",
+      "type": "registry:component",
+      "title": "Testimonial card",
+      "description": "A quote with author, role, company, optional avatar and a star rating. Uses next/image.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/testimonial-card/testimonial-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-card-motion",
+      "type": "registry:component",
+      "title": "Testimonial card (motion)",
+      "description": "Lifts on hover with a spring; still under reduced motion.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/testimonial-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/testimonial-card/testimonial-card-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "feature-card",
+      "type": "registry:component",
+      "title": "Feature card",
+      "description": "An icon, title, description, optional badge and call to action, vertical or horizontal.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "badge",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/feature-card/feature-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "feature-card-motion",
+      "type": "registry:component",
+      "title": "Feature card (motion)",
+      "description": "Lifts on hover with a spring; still under reduced motion.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/feature-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/feature-card/feature-card-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "blog-card",
+      "type": "registry:component",
+      "title": "Blog card",
+      "description": "Title, excerpt, author, date, read time, category and cover image in three layouts. Uses next/image.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "card",
+        "badge",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/blog-card/blog-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "blog-card-motion",
+      "type": "registry:component",
+      "title": "Blog card (motion)",
+      "description": "Lifts on hover with a spring; still under reduced motion.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/blog-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/blog-card/blog-card-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero",
+      "type": "registry:component",
+      "title": "Hero",
+      "description": "Centered landing-page hero with an optional badge and up to two links.",
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero/hero.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "faq",
+      "type": "registry:component",
+      "title": "FAQ",
+      "description": "Accordion-style FAQ built on native details and summary.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/custom/faq/faq.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "faq-motion",
+      "type": "registry:component",
+      "title": "FAQ (motion)",
+      "description": "The FAQ with answers that ease open.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/faq.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/faq/faq-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-banner",
+      "type": "registry:component",
+      "title": "CTA banner",
+      "description": "Full-width call-to-action band with a heading, text and one button.",
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/cta-banner/cta-banner.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "cta-banner-motion",
+      "type": "registry:component",
+      "title": "CTA banner (motion)",
+      "description": "The CTA banner with a sheen on hover.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/cta-banner.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/cta-banner/cta-banner-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-cloud",
+      "type": "registry:component",
+      "title": "Logo cloud",
+      "description": "A 'trusted by' strip of logos or company names.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/custom/logo-cloud/logo-cloud.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-cloud-motion",
+      "type": "registry:component",
+      "title": "Logo cloud (motion)",
+      "description": "The logo strip with a staggered fade-in.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/logo-cloud.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/logo-cloud/logo-cloud-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "registry:component",
+      "title": "Footer",
+      "description": "Site footer with a brand name, link columns and a small-print line.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/custom/footer/footer.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "navbar",
+      "type": "registry:component",
+      "title": "Navbar",
+      "description": "Top navigation with a brand, links and an action; links fold into a no-JS menu on phones.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/navbar/navbar.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "navbar-motion",
+      "type": "registry:component",
+      "title": "Navbar (motion)",
+      "description": "The navbar, sticky, hiding on scroll down and returning on scroll up.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/navbar.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/navbar/navbar-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bento-grid",
+      "type": "registry:component",
+      "title": "Bento grid",
+      "description": "Feature grid with tiles of mixed sizes that stack on phones.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/components/custom/bento-grid/bento-grid.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bento-grid-motion",
+      "type": "registry:component",
+      "title": "Bento grid (motion)",
+      "description": "The bento grid with staggered tiles and a hover lift.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/bento-grid.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/bento-grid/bento-grid-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-motion",
+      "type": "registry:component",
+      "title": "Hero (motion)",
+      "description": "The centered hero with an entrance: title words rise in, then the text and buttons. Respects reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero/hero-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-split",
+      "type": "registry:component",
+      "title": "Hero: split",
+      "description": "Two-column hero with copy on one side and your product image or component on the other.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-split/hero-split.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-split-motion",
+      "type": "registry:component",
+      "title": "Hero: split (motion)",
+      "description": "The split hero with an entrance and a slight pointer tilt on the media. Respects reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-split.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-split/hero-split-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-command",
+      "type": "registry:component",
+      "title": "Hero: command",
+      "description": "Hero built around one copyable command, such as an install line.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-command/hero-command.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/custom/hero-command/copy-button.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "hero-command-motion",
+      "type": "registry:component",
+      "title": "Hero: command (motion)",
+      "description": "The command hero with the command typing itself. Screen readers get the full command at once.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-command.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-command/hero-command-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-spotlight",
+      "type": "registry:component",
+      "title": "Hero: spotlight",
+      "description": "Hero on a grid canvas with a soft glow in your primary color.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-spotlight/hero-spotlight.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-spotlight-motion",
+      "type": "registry:component",
+      "title": "Hero: spotlight (motion)",
+      "description": "The spotlight hero with the glow following the pointer across the grid.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-spotlight.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-spotlight/hero-spotlight-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-showcase",
+      "type": "registry:component",
+      "title": "Hero: showcase",
+      "description": "Headline over a framed slot for a real, working component.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-showcase/hero-showcase.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-showcase-motion",
+      "type": "registry:component",
+      "title": "Hero: showcase (motion)",
+      "description": "The showcase hero with the frame rising into place and lifting on hover.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-showcase.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-showcase/hero-showcase-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-waitlist",
+      "type": "registry:component",
+      "title": "Hero: waitlist",
+      "description": "Hero with an email signup form that works without JavaScript.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-waitlist/hero-waitlist.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-waitlist-motion",
+      "type": "registry:component",
+      "title": "Hero: waitlist (motion)",
+      "description": "The waitlist hero with a focus glow and a button that morphs into a success message.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-waitlist.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-waitlist/hero-waitlist-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-marquee",
+      "type": "registry:component",
+      "title": "Hero: marquee",
+      "description": "Hero over a row of logos or product names.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-marquee/hero-marquee.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-marquee-motion",
+      "type": "registry:component",
+      "title": "Hero: marquee (motion)",
+      "description": "The marquee hero with an endless scrolling row that pauses on hover, focus or the pause button.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-marquee.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-marquee/hero-marquee-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-video",
+      "type": "registry:component",
+      "title": "Hero: video",
+      "description": "Hero with a product video under the headline. Never autoplays.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-video/hero-video.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "hero-video-motion",
+      "type": "registry:component",
+      "title": "Hero: video (motion)",
+      "description": "The video hero with a poster that grows into the player when you press play.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-video.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-video/hero-video-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-theme-cycle",
+      "type": "registry:component",
+      "title": "Hero: theme cycle",
+      "description": "Hero whose accent word wears your primary color.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-theme-cycle/hero-theme-cycle.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "hero-theme-cycle-motion",
+      "type": "registry:component",
+      "title": "Hero: theme cycle (motion)",
+      "description": "The theme-cycle hero: the whole hero re-colors through a set of themes, with a pause button.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-theme-cycle.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-theme-cycle/hero-theme-cycle-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-plates",
+      "type": "registry:component",
+      "title": "Hero: plates",
+      "description": "Hero that shows a page as a stack of section plates.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-plates/hero-plates.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-plates-motion",
+      "type": "registry:component",
+      "title": "Hero: plates (motion)",
+      "description": "The plates hero: plates slide in and stack into a page as you scroll.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero-plates.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-plates/hero-plates-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pricing-table",
+      "type": "registry:component",
+      "title": "Pricing table",
+      "description": "Pricing tiers with a monthly/yearly switch that works without JavaScript.",
+      "files": [
+        {
+          "path": "src/components/custom/pricing-table/pricing-table.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "pricing-table-motion",
+      "type": "registry:component",
+      "title": "Pricing table (motion)",
+      "description": "The pricing table with prices rolling to their new value when you switch period.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/pricing-table.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/pricing-table/pricing-table-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "comparison-table",
+      "type": "registry:component",
+      "title": "Comparison table",
+      "description": "Feature-by-plan table with row headers that scrolls inside its own box on phones.",
+      "files": [
+        {
+          "path": "src/components/custom/comparison-table/comparison-table.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "cta-split",
+      "type": "registry:component",
+      "title": "CTA: split",
+      "description": "Call-to-action band with your product image or component beside the copy.",
+      "files": [
+        {
+          "path": "src/components/custom/cta-split/cta-split.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "cta-split-motion",
+      "type": "registry:component",
+      "title": "CTA: split (motion)",
+      "description": "The split CTA with the media floating into place as it scrolls into view.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/cta-split.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/cta-split/cta-split-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "newsletter",
+      "type": "registry:component",
+      "title": "Newsletter",
+      "description": "Newsletter signup band; a plain HTML form that works without JavaScript.",
+      "files": [
+        {
+          "path": "src/components/custom/newsletter/newsletter.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "newsletter-motion",
+      "type": "registry:component",
+      "title": "Newsletter (motion)",
+      "description": "The newsletter band that morphs into a success message, announced to screen readers.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/newsletter.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/newsletter/newsletter-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonials-wall",
+      "type": "registry:component",
+      "title": "Testimonials wall",
+      "description": "A masonry wall of short testimonials.",
+      "files": [
+        {
+          "path": "src/components/custom/testimonials-wall/testimonials-wall.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "testimonials-wall-motion",
+      "type": "registry:component",
+      "title": "Testimonials wall (motion)",
+      "description": "The testimonials wall with three columns drifting upward; pauses on hover, focus or the pause button.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/testimonials-wall.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/testimonials-wall/testimonials-wall-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-highlight",
+      "type": "registry:component",
+      "title": "Testimonial highlight",
+      "description": "One large, centered quote for a single strong testimonial.",
+      "files": [
+        {
+          "path": "src/components/custom/testimonial-highlight/testimonial-highlight.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-highlight-motion",
+      "type": "registry:component",
+      "title": "Testimonial highlight (motion)",
+      "description": "The highlight quote with its words brightening in sequence as it scrolls into view.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/testimonial-highlight.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/testimonial-highlight/testimonial-highlight-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stats-band",
+      "type": "registry:component",
+      "title": "Stats band",
+      "description": "A band of big numbers with labels.",
+      "files": [
+        {
+          "path": "src/components/custom/stats-band/stats-band.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stats-band-motion",
+      "type": "registry:component",
+      "title": "Stats band (motion)",
+      "description": "The stats band with each number counting up once in view; the final value is always in the page.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/stats-band.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/stats-band/stats-band-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "social-proof",
+      "type": "registry:component",
+      "title": "Social proof",
+      "description": "Avatar stack, optional star rating and one line of text.",
+      "files": [
+        {
+          "path": "src/components/custom/social-proof/social-proof.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "social-proof-motion",
+      "type": "registry:component",
+      "title": "Social proof (motion)",
+      "description": "Social proof with avatars popping in one after another.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/social-proof.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/social-proof/social-proof-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "feature-rows",
+      "type": "registry:component",
+      "title": "Feature rows",
+      "description": "Feature rows with media on alternating sides.",
+      "files": [
+        {
+          "path": "src/components/custom/feature-rows/feature-rows.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "feature-rows-motion",
+      "type": "registry:component",
+      "title": "Feature rows (motion)",
+      "description": "Feature rows with each media sliding in from its own side.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/feature-rows.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/feature-rows/feature-rows-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "steps",
+      "type": "registry:component",
+      "title": "Steps",
+      "description": "Numbered how-it-works steps as an ordered list.",
+      "files": [
+        {
+          "path": "src/components/custom/steps/steps.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "steps-motion",
+      "type": "registry:component",
+      "title": "Steps (motion)",
+      "description": "Steps with the connecting line drawing across as you scroll.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/steps.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/steps/steps-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "integrations-grid",
+      "type": "registry:component",
+      "title": "Integrations grid",
+      "description": "A grid of integrations or tools, each optionally linking to its page.",
+      "files": [
+        {
+          "path": "src/components/custom/integrations-grid/integrations-grid.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "integrations-grid-motion",
+      "type": "registry:component",
+      "title": "Integrations grid (motion)",
+      "description": "The integrations grid with tiles that lift and glow on hover and focus.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/integrations-grid.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/integrations-grid/integrations-grid-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "feature-grid",
+      "type": "registry:component",
+      "title": "Feature grid",
+      "description": "A grid of features with icons, in 2 to 4 columns.",
+      "files": [
+        {
+          "path": "src/components/custom/feature-grid/feature-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "feature-grid-motion",
+      "type": "registry:component",
+      "title": "Feature grid (motion)",
+      "description": "The feature grid with features rising in one after another.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/feature-grid.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/feature-grid/feature-grid-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "team",
+      "type": "registry:component",
+      "title": "Team",
+      "description": "The people behind the product: photo or initials, role, bio and links.",
+      "files": [
+        {
+          "path": "src/components/custom/team/team.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "changelog",
+      "type": "registry:component",
+      "title": "Changelog",
+      "description": "Dated release notes with versions, newest first.",
+      "files": [
+        {
+          "path": "src/components/custom/changelog/changelog.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "badge"
+      ]
+    },
+    {
+      "name": "blog-grid",
+      "type": "registry:component",
+      "title": "Blog grid",
+      "description": "A grid of recent posts built from the blog card, with a view-all link.",
+      "files": [
+        {
+          "path": "src/components/custom/blog-grid/blog-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/blog-card.json"
+      ]
+    },
+    {
+      "name": "blog-grid-motion",
+      "type": "registry:component",
+      "title": "Blog grid (motion)",
+      "description": "The blog grid with cards rising in one after another.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/blog-card.json",
+        "https://tapas-ui.vercel.app/r/blog-grid.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/blog-grid/blog-grid-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "faq-two-column",
+      "type": "registry:component",
+      "title": "FAQ: two column",
+      "description": "FAQ with an intro column and contact link beside the questions.",
+      "files": [
+        {
+          "path": "src/components/custom/faq-two-column/faq-two-column.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "contact",
+      "type": "registry:component",
+      "title": "Contact",
+      "description": "Contact form beside your contact details; works without JavaScript.",
+      "files": [
+        {
+          "path": "src/components/custom/contact/contact.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "not-found",
+      "type": "registry:component",
+      "title": "404 page",
+      "description": "A friendly 404 section with a link home and optional helpful links.",
+      "files": [
+        {
+          "path": "src/components/custom/not-found/not-found.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "not-found-motion",
+      "type": "registry:component",
+      "title": "404 page (motion)",
+      "description": "The 404 section with the number tilting toward the mouse pointer.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/not-found.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/not-found/not-found-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "coming-soon",
+      "type": "registry:component",
+      "title": "Coming soon",
+      "description": "Pre-launch section: what's coming, the launch date if known, and a notify form.",
+      "files": [
+        {
+          "path": "src/components/custom/coming-soon/coming-soon.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "badge",
+        "button"
+      ]
+    },
+    {
+      "name": "announcement-bar",
+      "type": "registry:component",
+      "title": "Announcement bar",
+      "description": "A slim, optionally dismissible bar above the navbar for one announcement.",
+      "files": [
+        {
+          "path": "src/components/custom/announcement-bar/announcement-bar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "navbar-floating",
+      "type": "registry:component",
+      "title": "Navbar: floating",
+      "description": "A pill-shaped navbar floating over the page; links fold into a no-JS menu on phones.",
+      "files": [
+        {
+          "path": "src/components/custom/navbar-floating/navbar-floating.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "navbar-floating-motion",
+      "type": "registry:component",
+      "title": "Navbar: floating (motion)",
+      "description": "The floating navbar tightening and lifting once you scroll.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/navbar-floating.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/navbar-floating/navbar-floating-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer-simple",
+      "type": "registry:component",
+      "title": "Footer: simple",
+      "description": "A one-row footer with brand, a few links and small print.",
+      "files": [
+        {
+          "path": "src/components/custom/footer-simple/footer-simple.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-saas",
+      "type": "registry:block",
+      "title": "Template: SaaS landing page",
+      "description": "A full SaaS landing page: split hero, logos, features, stats, testimonials, pricing, FAQ and CTA. Plain sections, no animation library.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/cta-banner.json",
+        "https://tapas-ui.vercel.app/r/faq.json",
+        "https://tapas-ui.vercel.app/r/feature-grid.json",
+        "https://tapas-ui.vercel.app/r/footer.json",
+        "https://tapas-ui.vercel.app/r/hero-split.json",
+        "https://tapas-ui.vercel.app/r/logo-cloud.json",
+        "https://tapas-ui.vercel.app/r/navbar.json",
+        "https://tapas-ui.vercel.app/r/pricing-table.json",
+        "https://tapas-ui.vercel.app/r/stats-band.json",
+        "https://tapas-ui.vercel.app/r/testimonials-wall.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/merge.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/product-shot.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/saas/content.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/saas/saas-layout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/saas/saas.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "template-saas-motion",
+      "type": "registry:block",
+      "title": "Template: SaaS landing page (motion)",
+      "description": "The saas landing page with motion sections where they add meaning; follows reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/template-saas.json",
+        "https://tapas-ui.vercel.app/r/cta-banner-motion.json",
+        "https://tapas-ui.vercel.app/r/faq-motion.json",
+        "https://tapas-ui.vercel.app/r/feature-grid-motion.json",
+        "https://tapas-ui.vercel.app/r/hero-split-motion.json",
+        "https://tapas-ui.vercel.app/r/logo-cloud-motion.json",
+        "https://tapas-ui.vercel.app/r/pricing-table-motion.json",
+        "https://tapas-ui.vercel.app/r/stats-band-motion.json",
+        "https://tapas-ui.vercel.app/r/testimonials-wall-motion.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/saas/saas-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-waitlist",
+      "type": "registry:block",
+      "title": "Template: Waitlist page",
+      "description": "A pre-launch page: floating navbar, waitlist hero, social proof, feature rows and FAQ. Plain sections, no animation library.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/faq-two-column.json",
+        "https://tapas-ui.vercel.app/r/feature-rows.json",
+        "https://tapas-ui.vercel.app/r/footer-simple.json",
+        "https://tapas-ui.vercel.app/r/hero-waitlist.json",
+        "https://tapas-ui.vercel.app/r/navbar-floating.json",
+        "https://tapas-ui.vercel.app/r/social-proof.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/merge.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/product-shot.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/waitlist/content.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/waitlist/waitlist-layout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/waitlist/waitlist.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-waitlist-motion",
+      "type": "registry:block",
+      "title": "Template: Waitlist page (motion)",
+      "description": "The waitlist page with motion sections where they add meaning; follows reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/template-waitlist.json",
+        "https://tapas-ui.vercel.app/r/feature-rows-motion.json",
+        "https://tapas-ui.vercel.app/r/hero-waitlist-motion.json",
+        "https://tapas-ui.vercel.app/r/navbar-floating-motion.json",
+        "https://tapas-ui.vercel.app/r/social-proof-motion.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/waitlist/waitlist-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-ai",
+      "type": "registry:block",
+      "title": "Template: AI product page",
+      "description": "An AI product page: announcement bar, spotlight hero, steps, integrations, comparison and pricing. Plain sections, no animation library.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/announcement-bar.json",
+        "https://tapas-ui.vercel.app/r/comparison-table.json",
+        "https://tapas-ui.vercel.app/r/cta-split.json",
+        "https://tapas-ui.vercel.app/r/feature-grid.json",
+        "https://tapas-ui.vercel.app/r/footer.json",
+        "https://tapas-ui.vercel.app/r/hero-spotlight.json",
+        "https://tapas-ui.vercel.app/r/integrations-grid.json",
+        "https://tapas-ui.vercel.app/r/navbar.json",
+        "https://tapas-ui.vercel.app/r/pricing-table.json",
+        "https://tapas-ui.vercel.app/r/steps.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/merge.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/product-shot.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/ai/content.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/ai/ai-layout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/ai/ai.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "template-ai-motion",
+      "type": "registry:block",
+      "title": "Template: AI product page (motion)",
+      "description": "The ai product page with motion sections where they add meaning; follows reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/template-ai.json",
+        "https://tapas-ui.vercel.app/r/cta-split-motion.json",
+        "https://tapas-ui.vercel.app/r/feature-grid-motion.json",
+        "https://tapas-ui.vercel.app/r/hero-spotlight-motion.json",
+        "https://tapas-ui.vercel.app/r/integrations-grid-motion.json",
+        "https://tapas-ui.vercel.app/r/pricing-table-motion.json",
+        "https://tapas-ui.vercel.app/r/steps-motion.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/ai/ai-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "motion-lift",
+      "type": "registry:component",
+      "title": "Motion lift (helper)",
+      "description": "Client island used by the card motion versions: spring hover lift and count-up.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/motion-lift/motion-lift.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

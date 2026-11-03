@@ -1,454 +1,320 @@
-"use client";
-
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { Accessibility, Code, Github, Palette, Star } from "lucide-react";
+import { ArrowRight, Github, LayoutGrid, Palette, PersonStanding, Server, Terminal, SquarePen } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { CopyCommand } from "./_site/copy-command";
+import { GITHUB_URL, GOOD_FIRST_ISSUES_URL, installCommand } from "./_site/links";
+import { SECTIONS, getSection } from "./_site/sections";
+import { SiteFooter } from "./_site/site-footer";
+import { SiteHeader } from "./_site/site-header";
+import { SectionSketch } from "./_landing/section-sketch";
+import { HeroCanvas } from "./_landing/hero-canvas";
+import { PageBuilder } from "./_landing/page-builder";
+import { Playground } from "./_landing/playground";
+import { Pricing } from "./_landing/pricing";
+import { PLAYGROUND } from "./_landing/playground-data";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { Reveal } from "./_site/reveal";
+import { TemplateCard } from "./_site/template-card";
+import { TEMPLATES } from "./_site/templates";
 
-// Import components for live preview
-import { InteractiveCard } from "@/components/custom/interactive-card";
-import { PricingCard } from "@/components/custom/pricing-card";
-import { StatisticsCard } from "@/components/custom/statistics-card";
-import { TestimonialCard } from "@/components/custom/testimonial-card";
-import { FeatureCard } from "@/components/custom/feature-card";
-import { BlogCard } from "@/components/custom/blog-card";
-import { Copy, Users } from "lucide-react";
+/** Sections shown in the catalogue grid, in reading order. */
+const MENU = [
+  "hero-split",
+  "hero-theme-cycle",
+  "hero-plates",
+  "hero-command",
+  "hero-spotlight",
+  "hero",
+  "navbar",
+  "bento-grid",
+  "pricing-card",
+  "faq",
+  "cta-banner",
+  "footer",
+];
+
+const STEPS = [
+  {
+    icon: LayoutGrid,
+    title: "Pick a section",
+    body: "Browse hero, pricing, FAQ, footer and more. Preview each one in light and dark, in your colors.",
+    code: "tapas-ui.vercel.app/docs/sections",
+  },
+  {
+    icon: Terminal,
+    title: "Run one command",
+    body: "The shadcn CLI copies the component and its dependencies into your project. No package to keep updated.",
+    code: "npx shadcn@latest add …/r/faq.json",
+  },
+  {
+    icon: SquarePen,
+    title: "Make it yours",
+    body: "It is your code now. Change the copy, move things around, ship. Sections render as server components.",
+    code: "<Faq items={faqs} />",
+  },
+];
+
+const REASONS = [
+  {
+    icon: Palette,
+    title: "Your theme, not ours",
+    body: "Sections use shadcn tokens such as primary and muted, so they match the rest of your app with no extra setup.",
+  },
+  {
+    icon: SquarePen,
+    title: "You own the code",
+    body: "Nothing to import from node_modules. The component lands in your repo, readable and editable.",
+  },
+  {
+    icon: Server,
+    title: "Server-first",
+    body: "Sections render as React Server Components. Only interactive parts, like a copy button, ship JavaScript.",
+  },
+  {
+    icon: PersonStanding,
+    title: "Accessible by default",
+    body: "Semantic HTML, keyboard support and screen-reader labels, with contrast checked in light and dark.",
+  },
+];
+
+/** Real component source for the playground's code tab, read at build time. */
+function playgroundSources() {
+  const read = (slug: string, file: string) =>
+    readFileSync(join(process.cwd(), "src", "components", "custom", slug, `${file}.tsx`), "utf8");
+  return Object.fromEntries(PLAYGROUND.map((p) => [p.slug, { plain: read(p.slug, p.slug), motion: read(p.slug, `${p.slug}-motion`) }]));
+}
 
 export default function Home() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let mm: gsap.MatchMedia | undefined;
-    let cancelled = false;
-
-    // ScrollTrigger loads on demand to stay out of the first-load bundle. The
-    // timelines are built only after it is registered; building them before
-    // registration makes GSAP ignore scrollTrigger and play them on load.
-    import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
-      if (cancelled) return;
-      gsap.registerPlugin(ScrollTrigger);
-
-      // Animate only when the visitor has not asked for reduced motion.
-      mm = gsap.matchMedia(containerRef);
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const sections = gsap.utils.toArray<Element>(
-          ".story-section",
-          containerRef.current,
-        );
-        sections.forEach((section, index: number) => {
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              end: "bottom 20%",
-              toggleActions: "play none none reverse",
-            },
-          });
-
-          tl.fromTo(
-            section.querySelector(".story-text"),
-            { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
-            { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" },
-          ).fromTo(
-            section.querySelector(".story-preview"),
-            { opacity: 0, scale: 0.8, y: 30 },
-            {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              duration: 0.8,
-              ease: "back.out(1.7)",
-            },
-            "-=0.4",
-          );
-        });
-      });
-    });
-
-    return () => {
-      cancelled = true;
-      mm?.revert();
-    };
-  }, []);
-
-  const stories = [
-    {
-      id: "interactive-card",
-      title: "Interactive Card",
-      subtitle: "Engage Your Users",
-      description:
-        "A card with a title, description, optional badge, custom content and an action button, with an optional hover effect.",
-      features: [
-        "Hover animations",
-        "Flexible layouts",
-        "Smooth transitions",
-        "Accessibility focused",
-      ],
-      component: (
-        <InteractiveCard
-          title="Interactive Experience"
-          description="This card responds to your hover with beautiful animations and effects."
-          actionText="Learn More"
-          onAction={() => console.log("Card clicked")}
-        />
-      ),
-    },
-    {
-      id: "pricing-card",
-      title: "Pricing Card",
-      subtitle: "Convert Visitors to Customers",
-      description:
-        "A plan card with the price and period, a list of included and not included features, an optional popular badge and a call to action.",
-      features: [
-        "Feature lists",
-        "Popular badges",
-        "Call-to-action buttons",
-        "Responsive design",
-      ],
-      component: (
-        <PricingCard
-          name="Pro Plan"
-          description="Perfect for growing teams"
-          price={29}
-          currency="$"
-          period="month"
-          features={[
-            { text: "Unlimited projects", included: true },
-            { text: "Priority support", included: true },
-            { text: "Advanced analytics", included: true },
-          ]}
-          ctaText="Start Free Trial"
-          popular={true}
-          onSelect={() => console.log("Plan selected")}
-        />
-      ),
-    },
-    {
-      id: "statistics-card",
-      title: "Statistics Card",
-      subtitle: "Show Your Impact",
-      description:
-        "Display a key metric with an optional icon and a percentage change that is announced in words, not by color alone.",
-      features: [
-        "Trend indicators",
-        "Custom icons",
-        "Flexible layouts",
-        "Trend in words",
-      ],
-      component: (
-        <StatisticsCard
-          title="Monthly Active Users"
-          value="125,430"
-          change={12.5}
-          changePeriod="vs last month"
-          icon={Users}
-        />
-      ),
-    },
-    {
-      id: "testimonial-card",
-      title: "Testimonial Card",
-      subtitle: "Build Trust & Credibility",
-      description:
-        'Show a customer quote with the author\'s name, role, company, an optional avatar and a star rating that screen readers announce as "Rated N out of 5".',
-      features: [
-        "Avatar support",
-        "Rating display",
-        "Social proof",
-        "Customer quotes",
-      ],
-      component: (
-        <TestimonialCard
-          testimonial="Your customer's quote goes here: what they used, what changed for them, and why it mattered."
-          author="Sarah Johnson"
-          role="Product Manager"
-          company="TechCorp"
-          rating={5}
-          avatar="/demo/avatar.webp"
-        />
-      ),
-    },
-    {
-      id: "feature-card",
-      title: "Feature Card",
-      subtitle: "Highlight Your Strengths",
-      description:
-        "An icon, title, description, optional badge and call to action, in a vertical or horizontal layout.",
-      features: [
-        "Icon integration",
-        "Flexible layouts",
-        "Call-to-action",
-        "Feature highlights",
-      ],
-      component: (
-        <FeatureCard
-          title="Copy and paste"
-          description="Copy the card's folder into a shadcn/ui project, import it and pass your content as props."
-          icon={Copy}
-          ctaText="Learn More"
-          onCtaClick={() => console.log("Feature clicked")}
-        />
-      ),
-    },
-    {
-      id: "blog-card",
-      title: "Blog Card",
-      subtitle: "Share Your Stories",
-      description:
-        "An article card with title, excerpt, author, date, read time, category and likes, in default, horizontal and minimal layouts.",
-      features: [
-        "Rich metadata",
-        "Reading time",
-        "Category tags",
-        "Author info",
-      ],
-      component: (
-        <BlogCard
-          title="Building Modern UIs with React and TypeScript"
-          excerpt="Learn how to create scalable, maintainable user interfaces using modern React patterns and TypeScript best practices."
-          author="Sarah Wilson"
-          date="2024-01-15"
-          readTime="5 min read"
-          category="Tutorial"
-          image="/demo/blog-cover.webp"
-        />
-      ),
-    },
-  ];
-
   return (
-    <div
-      ref={containerRef}
-      // clip: the story columns start 50px off to the side before they slide in
-      className="min-h-screen overflow-x-clip bg-gradient-to-br from-background to-muted/50"
-    >
-      {/* Header */}
-      <header className="border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <span className="text-xl font-bold">Unicorn UI</span>
+    // The landing page is always dark, whatever the visitor's theme; the docs follow their choice.
+    <div className="dark min-h-screen bg-background text-foreground [color-scheme:dark]">
+      <SiteHeader />
+      <main>
+        <HeroCanvas>
+          <section aria-labelledby="hero-title" className="px-4 pt-24 pb-14 text-center sm:pt-28">
+            <Link
+              href="/docs/sections/hero-theme-cycle"
+              className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+            >
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-brand" />
+              New: 10 heroes, each with a motion version
+              <ArrowRight aria-hidden="true" className="size-3.5" />
+            </Link>
+            <h1
+              id="hero-title"
+              className="mx-auto mt-7 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.05] font-semibold tracking-[-0.035em] text-balance"
+            >
+              Landing page sections you copy, <span className="text-brand">own</span> and ship.
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-[19px]">
+              Free, open-source heroes, pricing, FAQ, footer and more for Next.js and shadcn/ui. Each comes plain or
+              with motion, installs with one command and picks up your theme.
+            </p>
+            <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center justify-center gap-3 sm:flex-row">
+              <Button asChild size="lg" className="h-11 px-6 text-[15px]">
+                <Link href="/docs/installation">Get started (free)</Link>
+              </Button>
+              <CopyCommand command={installCommand("hero")} className="h-11 w-full sm:w-auto sm:max-w-md" />
             </div>
-            <div className="flex items-center gap-2">
-              <ThemeToggle />
-              <Button variant="outline" size="sm" asChild>
-                <a
-                  href="https://github.com/tahmidbintaslim/unicorn-ui"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github className="w-4 h-4 mr-2" />
-                  GitHub
-                </a>
+          </section>
+          <div className="mx-auto max-w-6xl px-4 pb-6 sm:px-6 lg:px-8">
+            <PageBuilder />
+          </div>
+        </HeroCanvas>
+
+        {/* Built for */}
+        <section aria-labelledby="stack-title" className="px-4 pt-24 pb-24 text-center">
+          <h2 id="stack-title" className="text-[13px] font-medium text-muted-foreground">
+            Built for the stack you already use
+          </h2>
+          <ul className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-x-14 gap-y-4 text-lg font-semibold text-muted-foreground/90 sm:text-xl">
+            {["Next.js", "shadcn/ui", "Tailwind CSS", "React 19", "TypeScript"].map((name) => (
+              <li key={name}>{name}</li>
+            ))}
+          </ul>
+        </section>
+
+        {/* How it works */}
+        <section aria-labelledby="how-title" className="border-t">
+          <Reveal className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+            <h2 id="how-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+              From blank page to launch in three steps.
+            </h2>
+            <ol className="mt-12 grid gap-5 md:grid-cols-3">
+              {STEPS.map((step, i) => (
+                <li key={step.title} className="flex flex-col gap-4 rounded-2xl border bg-card p-7">
+                  <span className="flex items-center gap-3 text-brand">
+                    <step.icon aria-hidden="true" className="size-5" />
+                    <span className="font-mono text-sm">Step {i + 1}</span>
+                  </span>
+                  <h3 className="text-[22px] font-semibold tracking-tight">{step.title}</h3>
+                  <p className="leading-relaxed text-muted-foreground">{step.body}</p>
+                  <code className="mt-auto truncate rounded-lg border bg-background px-3 py-2.5 font-mono text-xs">
+                    {step.code}
+                  </code>
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+        </section>
+
+        {/* Playground */}
+        <section aria-labelledby="playground-title" className="border-t">
+          <Reveal className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+            <h2 id="playground-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+              Try it before you install it.
+            </h2>
+            <p className="mt-4 max-w-xl text-[17px] text-muted-foreground">
+              Pick a hero, switch between plain and motion, change the color and spacing. The code on the left is what
+              you would paste.
+            </p>
+            <div className="mt-10">
+              <Playground sources={playgroundSources()} />
+            </div>
+          </Reveal>
+        </section>
+
+        {/* Catalogue */}
+        <section aria-labelledby="menu-title" className="border-t">
+          <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
+            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+              <div className="space-y-4">
+                <h2 id="menu-title" className="text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+                  Every section a landing page needs.
+                </h2>
+                <p className="text-[17px] text-muted-foreground">
+                  Each one is a single install. Preview it, copy the command, done.
+                </p>
+              </div>
+              <Button asChild variant="outline" className="w-fit">
+                <Link href="/docs/sections">
+                  View all {SECTIONS.length} sections
+                  <ArrowRight aria-hidden="true" />
+                </Link>
               </Button>
             </div>
-          </div>
-        </div>
-      </header>
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20 text-center">
-        <div className="max-w-4xl mx-auto">
-          <Badge variant="outline" className="mb-4">
-            <Github className="w-4 h-4 mr-2" />
-            Open Source
-          </Badge>
-          <h1 className="text-5xl font-bold mb-6 bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent">
-            Unicorn UI Components
-          </h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Six card components built with React, TypeScript and Tailwind CSS on
-            top of shadcn/ui. Preview each one live, then copy its code into
-            your project.
-          </p>
-          <div className="flex gap-4 justify-center flex-wrap">
-            <Button size="lg" asChild>
-              <Link href="/components">
-                <Code className="w-4 h-4 mr-2" />
-                Browse Components
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a
-                href="https://github.com/tahmidbintaslim/unicorn-ui"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="w-4 h-4 mr-2" />
-                View on GitHub
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="container mx-auto px-4 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">What the cards give you</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Plain React components that use the shadcn/ui theme variables, so
-            they follow your light and dark themes.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="border-2 hover:border-primary/50 transition-colors">
-            <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                <Palette className="w-6 h-6 text-primary" />
-              </div>
-              <CardTitle>Built on shadcn/ui</CardTitle>
-              <CardDescription>
-                Each card is made from the shadcn/ui card, button and badge
-                primitives and the same theme variables.
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="border-2 hover:border-primary/50 transition-colors">
-            <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                <Accessibility className="w-6 h-6 text-primary" />
-              </div>
-              <CardTitle>Accessible markup</CardTitle>
-              <CardDescription>
-                Real lists, figure and blockquote, a time element, ratings and
-                trends in words, and no button nested in a link.
-              </CardDescription>
-            </CardHeader>
-          </Card>
-
-          <Card className="border-2 hover:border-primary/50 transition-colors">
-            <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                <Code className="w-6 h-6 text-primary" />
-              </div>
-              <CardTitle>Typed and customizable</CardTitle>
-              <CardDescription>
-                Typed props, forwarded refs, and a className that is merged over
-                the defaults with tailwind-merge.
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </div>
-      </section>
-
-      {/* Component Stories Section */}
-      <section className="py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Component Stories</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Scroll through the six cards. Each one has a live preview here and a
-            detail page with its props and code.
-          </p>
-        </div>
-
-        {stories.map((story, index) => (
-          <div
-            key={story.id}
-            className="story-section min-h-screen flex items-center py-20"
-          >
-            <div className="container mx-auto px-4">
-              <div
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
-                }`}
-              >
-                {/* Story Text */}
-                <div
-                  className={`story-text space-y-6 ${
-                    index % 2 === 1 ? "lg:col-start-2" : ""
-                  }`}
-                >
-                  <div>
-                    <Badge variant="secondary" className="mb-2">
-                      Component #{index + 1}
-                    </Badge>
-                    <h3 className="text-3xl font-bold mb-2">{story.title}</h3>
-                    <p className="text-xl text-primary font-medium mb-4">
-                      {story.subtitle}
-                    </p>
-                    <p className="text-muted-foreground text-lg leading-relaxed">
-                      {story.description}
-                    </p>
-                  </div>
-
-                  <div className="space-y-3">
-                    <h4 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">
-                      Key Features
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {story.features.map((feature, featureIndex) => (
-                        <Badge key={featureIndex} variant="outline">
-                          {feature}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-
-                  <Button asChild>
-                    <Link href={`/components/${story.id}`}>
-                      <Code className="w-4 h-4 mr-2" />
-                      View Details
+            <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {MENU.map((slug) => {
+                const section = getSection(slug);
+                if (!section) return null;
+                return (
+                  <li key={slug}>
+                    <Link
+                      href={`/docs/sections/${slug}`}
+                      className="group block overflow-hidden rounded-2xl border bg-card transition-colors hover:border-brand/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                    >
+                      <div className="bg-background transition-colors group-hover:bg-background/60">
+                        <SectionSketch slug={slug} />
+                      </div>
+                      <div className="space-y-1 border-t px-5 py-4">
+                        <h3 className="flex items-center gap-2 font-semibold">
+                          {section.title}
+                          {section.motionSlug && (
+                            <span className="rounded-full border border-brand/40 px-2 py-0.5 text-[11px] font-medium text-brand">
+                              Motion
+                            </span>
+                          )}
+                        </h3>
+                        <p className="truncate font-mono text-xs text-muted-foreground">add …/r/{slug}.json</p>
+                      </div>
                     </Link>
-                  </Button>
-                </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </Reveal>
+        </section>
 
-                {/* Story Preview */}
-                <div
-                  className={`story-preview flex justify-center ${
-                    index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""
-                  }`}
-                >
-                  <div className="w-full max-w-md">
-                    <Card className="p-6 shadow-2xl border-2">
-                      <CardContent className="p-0">
-                        {story.component}
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
+        {/* Templates */}
+        <section aria-labelledby="templates-title" className="border-t">
+          <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
+            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+              <div className="space-y-4">
+                <h2 id="templates-title" className="text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+                  Or start from a whole page.
+                </h2>
+                <p className="text-[17px] text-muted-foreground">
+                  {TEMPLATES.length} free templates, each plain or with motion. Swap in your copy through one prop.
+                </p>
               </div>
+              <Button asChild variant="outline" className="w-fit">
+                <Link href="/templates">
+                  All templates
+                  <ArrowRight aria-hidden="true" />
+                </Link>
+              </Button>
             </div>
-          </div>
-        ))}
-      </section>
+            <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {TEMPLATES.map((t) => (
+                <li key={t.slug}>
+                  <TemplateCard template={t} headingLevel="h3" />
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </section>
 
-      {/* CTA Section */}
-      <section className="container mx-auto px-4 py-20 text-center">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6">Try the cards</h2>
-          <p className="text-muted-foreground mb-8">
-            Browse the six cards, try them in the live previews and copy the
-            code into your Next.js and shadcn/ui project.
+        {/* Why */}
+        <section aria-labelledby="why-title" className="border-t">
+          <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
+            <h2 id="why-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+              Built like shadcn/ui. Made for marketing pages.
+            </h2>
+            <ul className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+              {REASONS.map((reason) => (
+                <li key={reason.title} className="space-y-3 border-t pt-6">
+                  <reason.icon aria-hidden="true" className="size-5 text-brand" />
+                  <h3 className="text-lg font-semibold">{reason.title}</h3>
+                  <p className="leading-relaxed text-muted-foreground">{reason.body}</p>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </section>
+
+        {/* Pricing */}
+        <section aria-labelledby="pricing-title" className="border-t">
+          <Reveal className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+            <h2 id="pricing-title" className="mx-auto max-w-2xl text-center text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+              Free to use. Pro when you want whole pages.
+            </h2>
+            <div className="mt-12">
+              <Pricing />
+            </div>
+          </Reveal>
+        </section>
+
+        {/* Open source */}
+        <section
+          aria-labelledby="oss-title"
+          className="relative isolate overflow-hidden border-t px-4 py-28 text-center"
+        >
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_50%_0%,color-mix(in_oklch,var(--brand)_16%,transparent),transparent)]"
+          />
+          <h2 id="oss-title" className="mx-auto max-w-3xl text-4xl leading-tight font-semibold tracking-[-0.035em] text-balance sm:text-[52px]">
+            Pull up a chair. Bring a section.
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-pretty text-muted-foreground">
+            Tapas UI is MIT licensed and built in the open. Star the repo to follow along, or pick a good first
+            issue and add the next section.
           </p>
-          <div className="flex gap-4 justify-center">
-            <Button size="lg" asChild>
-              <Link href="/components">Get Started</Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a
-                href="https://github.com/tahmidbintaslim/unicorn-ui"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Star className="w-4 h-4 mr-2" />
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Button asChild size="lg" className="h-11 px-6 text-[15px]">
+              <a href={GITHUB_URL}>
+                <Github aria-hidden="true" />
                 Star on GitHub
               </a>
             </Button>
+            <Button asChild size="lg" variant="outline" className="h-11 px-6 text-[15px]">
+              <a href={GOOD_FIRST_ISSUES_URL}>See good first issues</a>
+            </Button>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
+      <SiteFooter />
     </div>
   );
 }

@@ -1,21 +1,22 @@
-# Unicorn UI
+# Tapas UI
 
-Six copy-paste card components for marketing and SaaS pages, built with React,
-TypeScript and Tailwind CSS on top of [shadcn/ui](https://ui.shadcn.com/).
+Small plates for your landing page: copy-paste cards and sections for marketing
+and SaaS pages, built with React, TypeScript and Tailwind CSS on top of
+[shadcn/ui](https://ui.shadcn.com/).
 
-[![CI](https://github.com/tahmidbintaslim/Unicorn-UI/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tahmidbintaslim/Unicorn-UI/actions/workflows/ci.yml)
+[![CI](https://github.com/tahmidbintaslim/tapas-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tahmidbintaslim/tapas-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Live demo](https://img.shields.io/badge/demo-shadcn--ui--library.vercel.app-black?logo=vercel)](https://shadcn-ui-library.vercel.app)
+[![Live demo](https://img.shields.io/badge/demo-tapas--ui.vercel.app-black?logo=vercel)](https://tapas-ui.vercel.app)
 ![Next.js 15.5](https://img.shields.io/badge/Next.js-15.5-black?logo=next.js)
 ![TypeScript 5](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
 
-**Live demo:** https://shadcn-ui-library.vercel.app
+**Live demo:** https://tapas-ui.vercel.app
 
-The repo is a Next.js app that shows each card with a live preview and
-copy-paste code, and five of the six with a props table. The cards are interactive, pricing, statistics,
-testimonial, feature and blog.
+44 copy-paste sections (heroes, pricing, proof, features, navigation and
+cards), most with an optional motion version, plus three free page templates.
+Each one installs with the shadcn CLI and lands in your repo as code you own.
 
-![Unicorn UI home page in the light theme: the title "Unicorn UI Components", a one-line description and buttons to browse the components or view the code on GitHub](docs/images/home-light.png)
+![Tapas UI home page in the light theme: the title "Tapas UI", a one-line description and buttons to browse the components or view the code on GitHub](docs/images/home-light.png)
 
 | Gallery (dark theme) | Blog card with a cover image (dark theme) |
 | --- | --- |
@@ -76,7 +77,7 @@ Radix UI primitives.
 | Framework | Next.js 15.5 (App Router, every page prerendered as static HTML) |
 | UI | React 19, shadcn/ui primitives (new-york style), Radix UI Slot and Tabs |
 | Styling | Tailwind CSS 4, `tailwind-merge`, `class-variance-authority`, `next-themes` |
-| Icons and motion | lucide-react, GSAP with ScrollTrigger (home page only) |
+| Icons and motion | lucide-react, [`motion`](https://motion.dev) (motion versions only) |
 | Tests | Vitest 5, Testing Library, jsdom |
 | Tooling | TypeScript 5 (strict), ESLint 9 with `eslint-config-next`, pnpm 10 |
 
@@ -86,12 +87,16 @@ Radix UI primitives.
   `index.ts` export and, for most cards, a `.test.tsx` file. Cards import only
   the `card`, `button` and `badge` primitives from `src/components/ui/` and the
   `cn()` helper.
-- `src/app/page.tsx` is the home page: one scroll section per card with a live
-  preview.
-- `src/app/components/page.tsx` is the gallery, and
-  `src/app/components/<card>/page.tsx` is a detail page. Five of them have
-  Preview, Usage, Props and a placeholder Playground tab; the interactive card
-  page shows a preview with Usage, Advanced and Component code tabs.
+- `src/app/page.tsx` is the landing page. Its example site is built only from
+  Tapas sections, and a CSS-only color picker re-themes it.
+- `src/app/docs/` holds the docs: introduction, installation, theming and one
+  page per section (`/docs/sections/<name>`) with a live preview, the real
+  source in a Code tab, the install command, usage, props and accessibility
+  notes. Previews, usage and props live in `src/app/docs/_content.tsx`.
+- Each section has Storybook stories next to it
+  (`src/components/custom/<name>/<name>.stories.tsx`), with light and dark
+  themes and the accessibility addon. The site serves the built Storybook at
+  [/storybook](https://tapas-ui.vercel.app/storybook).
 - Colors come from the shadcn/ui CSS variables in `src/app/globals.css`, plus
   a `--success` variable for positive states. Two defaults use fixed Tailwind
   colors that do not follow the theme: the blog card's category badge
@@ -112,8 +117,8 @@ Radix UI primitives.
 ### Install and run
 
 ```bash
-git clone https://github.com/tahmidbintaslim/Unicorn-UI.git
-cd Unicorn-UI
+git clone https://github.com/tahmidbintaslim/tapas-ui.git
+cd tapas-ui
 corepack enable
 pnpm install --frozen-lockfile
 pnpm dev
@@ -129,14 +134,184 @@ out of Next.js telemetry, set `NEXT_TELEMETRY_DISABLED=1`.
 | Command | What it does |
 | --- | --- |
 | `pnpm dev` | Start the development server with Turbopack |
+| `pnpm storybook` | Start Storybook on port 6006 |
+| `pnpm build-storybook` | Build Storybook into `public/storybook/` |
 | `pnpm lint` | Run ESLint |
 | `pnpm typecheck` | Run the TypeScript compiler without emitting files |
 | `pnpm test` | Run the unit tests once with Vitest |
-| `pnpm build` | Build for production |
+| `pnpm build` | Build the registry, Storybook and the site for production |
 | `pnpm start` | Serve the production build |
 
 CI runs `pnpm install --frozen-lockfile`, `lint`, `typecheck`, `test` and
 `build`, in that order. Run the same before you open a pull request.
+
+## Storybook
+
+Every section has stories with light and dark themes, at
+[tapas-ui.vercel.app/storybook](https://tapas-ui.vercel.app/storybook).
+
+- **Design panel:** stories link to their frames in the
+  [website Figma file](https://www.figma.com/design/gAmq9l9IOIKCbvxlWwGX4o)
+  through `@storybook/addon-designs` (`parameters.design`).
+- **Accessibility panel:** axe runs on every story and fails on violations.
+- **Storybook MCP:** `pnpm storybook` also serves an MCP server at
+  `http://localhost:6006/mcp` (`@storybook/addon-mcp`). It lists components,
+  their docs and stories for AI agents; `.mcp.json` registers it for Claude Code.
+- **Chromatic:** `.github/workflows/chromatic.yml` publishes Storybook to
+  Chromatic on every push and pull request once a `CHROMATIC_PROJECT_TOKEN`
+  repository secret exists, giving a hosted Storybook per branch and visual
+  review. Without the secret the job skips.
+
+## Install with the shadcn CLI
+
+Every card is a shadcn registry item, served by the demo site. In a project
+that already has shadcn/ui set up:
+
+```bash
+npx shadcn@latest add https://tapas-ui.vercel.app/r/pricing-card.json
+```
+
+Items: `interactive-card`, `pricing-card`, `statistics-card`,
+`testimonial-card`, `feature-card`, `blog-card`, plus the seven landing blocks listed under
+[Landing blocks](#landing-blocks). The CLI also adds the `card`,
+`button` and `badge` primitives each card needs. The testimonial and blog cards
+use `next/image`, so they need Next.js. `pnpm build` regenerates `public/r/`
+from `registry.json`.
+
+## Heroes
+
+Ten heroes, each in a **plain** version (CSS only, renders as a server component,
+no extra packages) and a **motion** version (a client component built on
+[`motion`](https://motion.dev)). Preview them at
+[tapas-ui.vercel.app/docs/sections](https://tapas-ui.vercel.app/docs/sections).
+
+| Hero | What it does | Plain | Motion |
+| --- | --- | --- | --- |
+| `hero` | Centered headline, badge and two links | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero.json` | `…/r/hero-motion.json` |
+| `hero-split` | Copy beside your product image or component | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-split.json` | `…/r/hero-split-motion.json` |
+| `hero-command` | Built around one copyable command | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-command.json` | `…/r/hero-command-motion.json` |
+| `hero-spotlight` | Grid canvas with a glow in your primary color | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-spotlight.json` | `…/r/hero-spotlight-motion.json` |
+| `hero-showcase` | Headline over a framed live component | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-showcase.json` | `…/r/hero-showcase-motion.json` |
+| `hero-waitlist` | Email signup that works without JavaScript | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-waitlist.json` | `…/r/hero-waitlist-motion.json` |
+| `hero-marquee` | Headline over an endless logo row | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-marquee.json` | `…/r/hero-marquee-motion.json` |
+| `hero-video` | Poster and video that never autoplays | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-video.json` | `…/r/hero-video-motion.json` |
+| `hero-theme-cycle` | The whole hero cycles through color themes | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-theme-cycle.json` | `…/r/hero-theme-cycle-motion.json` |
+| `hero-plates` | Sections stack into a page as you scroll | `npx shadcn@latest add https://tapas-ui.vercel.app/r/hero-plates.json` | `…/r/hero-plates-motion.json` |
+
+### Plain and motion
+
+- Both versions take the same props. Installing `<name>-motion` also installs
+  `<name>` and the `motion` package.
+- Motion versions follow the visitor's reduced-motion setting and render the
+  plain layout when it is on.
+- Nothing is hidden before it animates: server HTML shows every heading, line
+  and button, so the page reads fine before JavaScript loads.
+- Anything that moves on its own (the marquee, the theme cycle) has a visible
+  pause button and stops on hover and keyboard focus.
+
+## Sections
+
+44 sections: 10 heroes (above), 28 landing blocks and 6 cards. 35 of them also come in a motion version.
+Each installs with `npx shadcn@latest add https://tapas-ui.vercel.app/r/<name>.json`
+(add `-motion` for the motion version). Live previews, props and notes are at
+[tapas-ui.vercel.app/docs/sections](https://tapas-ui.vercel.app/docs/sections).
+
+### Marketing
+
+| Section | What it does | Motion |
+| --- | --- | --- |
+| `pricing-table` | Pricing tiers with a monthly/yearly switch that works without JavaScript. | yes |
+| `comparison-table` | Feature-by-plan table with row headers that scrolls inside its own box on phones. | plain only |
+| `cta-banner` | Full-width call-to-action band with a heading, text and one button. | yes |
+| `cta-split` | Call-to-action band with your product image or component beside the copy. | yes |
+| `newsletter` | Newsletter signup band; a plain HTML form that works without JavaScript. | yes |
+
+### Proof
+
+| Section | What it does | Motion |
+| --- | --- | --- |
+| `logo-cloud` | A 'trusted by' strip of logos or company names. | yes |
+| `testimonials-wall` | A masonry wall of short testimonials. | yes |
+| `testimonial-highlight` | One large, centered quote for a single strong testimonial. | yes |
+| `stats-band` | A band of big numbers with labels. | yes |
+| `social-proof` | Avatar stack, optional star rating and one line of text. | yes |
+
+### Features
+
+| Section | What it does | Motion |
+| --- | --- | --- |
+| `feature-grid` | A grid of features with icons, in 2 to 4 columns. | yes |
+| `feature-rows` | Feature rows with media on alternating sides. | yes |
+| `bento-grid` | Feature grid with tiles of mixed sizes that stack on phones. | yes |
+| `steps` | Numbered how-it-works steps as an ordered list. | yes |
+| `integrations-grid` | A grid of integrations or tools, each optionally linking to its page. | yes |
+
+### Company
+
+| Section | What it does | Motion |
+| --- | --- | --- |
+| `team` | The people behind the product: photo or initials, role, bio and links. | plain only |
+| `blog-grid` | A grid of recent posts built from the blog card, with a view-all link. | yes |
+| `changelog` | Dated release notes with versions, newest first. | plain only |
+| `faq` | Accordion-style FAQ built on native details and summary. | yes |
+| `faq-two-column` | FAQ with an intro column and contact link beside the questions. | plain only |
+| `contact` | Contact form beside your contact details; works without JavaScript. | plain only |
+
+### Navigation & utility
+
+| Section | What it does | Motion |
+| --- | --- | --- |
+| `navbar` | Top navigation with a brand, links and an action; links fold into a no-JS menu on phones. | yes |
+| `navbar-floating` | A pill-shaped navbar floating over the page; links fold into a no-JS menu on phones. | yes |
+| `announcement-bar` | A slim, optionally dismissible bar above the navbar for one announcement. | plain only |
+| `footer` | Site footer with a brand name, link columns and a small-print line. | plain only |
+| `footer-simple` | A one-row footer with brand, a few links and small print. | plain only |
+| `not-found` | A friendly 404 section with a link home and optional helpful links. | yes |
+| `coming-soon` | Pre-launch section: what's coming, the launch date if known, and a notify form. | plain only |
+
+### Cards
+
+| Card | What it does | Motion |
+| --- | --- | --- |
+| `interactive-card` | Title, description, optional badge, custom content and an action button. | yes |
+| `pricing-card` | Plan name, price, included and excluded features, and a call to action. | yes |
+| `statistics-card` | A metric with an optional icon and an up, down or flat percentage change. | yes |
+| `testimonial-card` | A quote with author, role, company, optional avatar and a star rating. Uses next/image. | yes |
+| `feature-card` | An icon, title, description, optional badge and call to action, vertical or horizontal. | yes |
+| `blog-card` | Title, excerpt, author, date, read time, category and cover image in three layouts. Uses next/image. | yes |
+
+```tsx
+import { Faq } from "@/components/custom/faq";
+
+<Faq items={[{ question: "Is there a free plan?", answer: "Yes, for one project." }]} />;
+```
+
+Plain sections render from server components. All of them follow your shadcn
+theme, so they work in light and dark mode.
+
+## Templates
+
+Three free page templates built only from Tapas sections, each in a plain and
+a motion version. Browse them at
+[tapas-ui.vercel.app/templates](https://tapas-ui.vercel.app/templates).
+
+| Template | Page | Plain | Motion |
+| --- | --- | --- | --- |
+| SaaS landing page | Split hero, logos, features, stats, testimonials, pricing, FAQ, CTA | `npx shadcn@latest add https://tapas-ui.vercel.app/r/template-saas.json` | `…/r/template-saas-motion.json` |
+| Waitlist page | Floating navbar, waitlist hero, social proof, feature rows, FAQ | `npx shadcn@latest add https://tapas-ui.vercel.app/r/template-waitlist.json` | `…/r/template-waitlist-motion.json` |
+| AI product page | Announcement bar, spotlight hero, steps, integrations, comparison, pricing | `npx shadcn@latest add https://tapas-ui.vercel.app/r/template-ai.json` | `…/r/template-ai-motion.json` |
+
+A template installs into `components/templates/<name>/` along with every
+section it uses. Pass your copy through one `content` prop; anything you leave
+out keeps the sample text, which is fictional and labelled as such:
+
+```tsx
+import { SaasTemplate } from "@/components/templates/saas/saas";
+
+export default function Page() {
+  return <SaasTemplate content={{ brand: { name: "Your product" }, hero: { title: "Your headline" } }} />;
+}
+```
 
 ## Usage
 
@@ -286,8 +461,8 @@ Light and dark themes are switched with `next-themes`.
 
 ## Deployment
 
-The demo is deployed on Vercel (project `shadcn-ui-library`) through Vercel's
-GitHub integration: pushes to `main` update https://shadcn-ui-library.vercel.app
+The demo is deployed on Vercel (project `tapas-ui`) through Vercel's
+GitHub integration: pushes to `main` update https://tapas-ui.vercel.app
 and each pull request gets a preview URL (it needs a Vercel login with access
 to the project). Vercel detects Next.js and runs
 `pnpm install` and `pnpm build`; no environment variables are set.
@@ -306,16 +481,19 @@ pnpm start
 ├── .github/
 │   ├── workflows/ci.yml     # Lint, typecheck, test, build
 │   └── dependabot.yml       # Weekly grouped dependency updates
+├── .storybook/              # Storybook config (Next.js, a11y, themes)
 ├── docs/images/             # README screenshots
 ├── public/demo/             # Sample avatar and blog cover used by the demo
 ├── src/
 │   ├── app/
-│   │   ├── components/      # Gallery and one detail page per card
+│   │   ├── _landing/        # Landing page parts (theme showcase, sketches)
+│   │   ├── _site/           # Header, footer, links, section list
+│   │   ├── docs/            # Docs pages and per-section content
 │   │   ├── globals.css      # Theme variables and Tailwind setup
 │   │   ├── layout.tsx       # Root layout and metadata
-│   │   └── page.tsx         # Home page
+│   │   └── page.tsx         # Landing page
 │   ├── components/
-│   │   ├── custom/          # The six cards and their tests
+│   │   ├── custom/          # Sections and cards, with tests and stories
 │   │   └── ui/              # shadcn/ui primitives and the theme toggle
 │   └── lib/utils.ts         # cn() class name helper
 └── vitest.config.mts        # Test setup (jsdom, "@/" alias)
@@ -323,10 +501,11 @@ pnpm start
 
 ## Roadmap
 
-- Replace the placeholder Playground tabs with prop controls.
 - Test the cards with VoiceOver and NVDA and record the results here.
 
 ## Contributing
+
+If Tapas UI saves you time, a star on GitHub helps other people find it. Want to help? See the [good first issues](https://github.com/tahmidbintaslim/tapas-ui/labels/good%20first%20issue) and [help wanted](https://github.com/tahmidbintaslim/tapas-ui/labels/help%20wanted).
 
 Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
