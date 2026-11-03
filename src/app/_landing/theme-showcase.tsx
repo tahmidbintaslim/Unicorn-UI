@@ -8,7 +8,7 @@ import { ThemeSwatches } from "../_site/theme-swatches";
 /** Labels which Tapas section each part of the demo site is. */
 function SectionTag({ name }: { name: string }) {
   return (
-    <span className="pointer-events-none absolute top-3 left-3 z-10 rounded-md bg-brand px-2 py-0.5 font-mono text-[11px] font-medium text-brand-foreground shadow-sm">
+    <span className="pointer-events-none absolute top-3 left-3 z-10 hidden rounded-md bg-brand px-2 py-0.5 font-mono text-[11px] font-medium text-brand-foreground shadow-sm sm:block">
       {name}
     </span>
   );
@@ -55,7 +55,7 @@ export function ThemeShowcase() {
                   { label: "Docs", href: "#docs" },
                 ]}
                 action={{ label: "Start free", href: "#" }}
-                className="[&>nav]:pl-24"
+                className="sm:[&>nav]:pl-24"
               />
             </div>
             <div className="relative">

@@ -87,12 +87,16 @@ Radix UI primitives.
   `index.ts` export and, for most cards, a `.test.tsx` file. Cards import only
   the `card`, `button` and `badge` primitives from `src/components/ui/` and the
   `cn()` helper.
-- `src/app/page.tsx` is the home page: one scroll section per card with a live
-  preview.
-- `src/app/components/page.tsx` is the gallery, and
-  `src/app/components/<card>/page.tsx` is a detail page. Five of them have
-  Preview, Usage, Props and a placeholder Playground tab; the interactive card
-  page shows a preview with Usage, Advanced and Component code tabs.
+- `src/app/page.tsx` is the landing page. Its example site is built only from
+  Tapas sections, and a CSS-only color picker re-themes it.
+- `src/app/docs/` holds the docs: introduction, installation, theming and one
+  page per section (`/docs/sections/<name>`) with a live preview, the real
+  source in a Code tab, the install command, usage, props and accessibility
+  notes. Previews, usage and props live in `src/app/docs/_content.tsx`.
+- Each section has Storybook stories next to it
+  (`src/components/custom/<name>/<name>.stories.tsx`), with light and dark
+  themes and the accessibility addon. The site serves the built Storybook at
+  [/storybook](https://tapas-ui.vercel.app/storybook).
 - Colors come from the shadcn/ui CSS variables in `src/app/globals.css`, plus
   a `--success` variable for positive states. Two defaults use fixed Tailwind
   colors that do not follow the theme: the blog card's category badge
@@ -130,10 +134,12 @@ out of Next.js telemetry, set `NEXT_TELEMETRY_DISABLED=1`.
 | Command | What it does |
 | --- | --- |
 | `pnpm dev` | Start the development server with Turbopack |
+| `pnpm storybook` | Start Storybook on port 6006 |
+| `pnpm build-storybook` | Build Storybook into `public/storybook/` |
 | `pnpm lint` | Run ESLint |
 | `pnpm typecheck` | Run the TypeScript compiler without emitting files |
 | `pnpm test` | Run the unit tests once with Vitest |
-| `pnpm build` | Build for production |
+| `pnpm build` | Build the registry, Storybook and the site for production |
 | `pnpm start` | Serve the production build |
 
 CI runs `pnpm install --frozen-lockfile`, `lint`, `typecheck`, `test` and
@@ -158,7 +164,7 @@ from `registry.json`.
 ## Landing blocks
 
 Seven sections for marketing pages, documented with live previews at
-[tapas-ui.vercel.app/blocks](https://tapas-ui.vercel.app/blocks):
+[tapas-ui.vercel.app/docs/sections](https://tapas-ui.vercel.app/docs/sections):
 
 | Block | What it does | Install |
 | --- | --- | --- |
@@ -351,16 +357,19 @@ pnpm start
 ├── .github/
 │   ├── workflows/ci.yml     # Lint, typecheck, test, build
 │   └── dependabot.yml       # Weekly grouped dependency updates
+├── .storybook/              # Storybook config (Next.js, a11y, themes)
 ├── docs/images/             # README screenshots
 ├── public/demo/             # Sample avatar and blog cover used by the demo
 ├── src/
 │   ├── app/
-│   │   ├── components/      # Gallery and one detail page per card
+│   │   ├── _landing/        # Landing page parts (theme showcase, sketches)
+│   │   ├── _site/           # Header, footer, links, section list
+│   │   ├── docs/            # Docs pages and per-section content
 │   │   ├── globals.css      # Theme variables and Tailwind setup
 │   │   ├── layout.tsx       # Root layout and metadata
-│   │   └── page.tsx         # Home page
+│   │   └── page.tsx         # Landing page
 │   ├── components/
-│   │   ├── custom/          # The six cards and their tests
+│   │   ├── custom/          # Sections and cards, with tests and stories
 │   │   └── ui/              # shadcn/ui primitives and the theme toggle
 │   └── lib/utils.ts         # cn() class name helper
 └── vitest.config.mts        # Test setup (jsdom, "@/" alias)
@@ -368,7 +377,6 @@ pnpm start
 
 ## Roadmap
 
-- Replace the placeholder Playground tabs with prop controls.
 - Test the cards with VoiceOver and NVDA and record the results here.
 
 ## Contributing

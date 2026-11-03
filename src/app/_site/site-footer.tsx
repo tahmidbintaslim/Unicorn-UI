@@ -17,6 +17,7 @@ const COLUMNS = [
       { label: "Introduction", href: "/docs" },
       { label: "Installation", href: "/docs/installation" },
       { label: "Theming", href: "/docs/theming" },
+      { label: "Storybook", href: "/storybook" },
     ],
   },
   {
@@ -28,6 +29,9 @@ const COLUMNS = [
     ],
   },
 ];
+
+const linkClass =
+  "rounded-sm transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
 
 export function SiteFooter() {
   return (
@@ -49,12 +53,16 @@ export function SiteFooter() {
               <ul className="space-y-2.5 text-sm text-muted-foreground">
                 {column.links.map((link) => (
                   <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="rounded-sm transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-                    >
-                      {link.label}
-                    </Link>
+                    {/* Storybook and GitHub are not Next routes, so they get a plain link. */}
+                    {link.href.startsWith("/docs") ? (
+                      <Link href={link.href} className={linkClass}>
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a href={link.href} className={linkClass}>
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
