@@ -30,3 +30,7 @@ export * from "./testimonials-wall";
 export * from "./testimonial-highlight";
 export * from "./stats-band";
 export * from "./social-proof";
+export * from "./feature-grid";
+export * from "./feature-rows";
+export * from "./steps";
+export * from "./integrations-grid";

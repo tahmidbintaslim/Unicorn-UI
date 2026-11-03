@@ -843,6 +843,130 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "feature-rows",
+      "type": "registry:component",
+      "title": "Feature rows",
+      "description": "Feature rows with media on alternating sides.",
+      "files": [
+        {
+          "path": "src/components/custom/feature-rows/feature-rows.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "feature-rows-motion",
+      "type": "registry:component",
+      "title": "Feature rows (motion)",
+      "description": "Feature rows with each media sliding in from its own side.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/feature-rows.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/feature-rows/feature-rows-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "steps",
+      "type": "registry:component",
+      "title": "Steps",
+      "description": "Numbered how-it-works steps as an ordered list.",
+      "files": [
+        {
+          "path": "src/components/custom/steps/steps.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "steps-motion",
+      "type": "registry:component",
+      "title": "Steps (motion)",
+      "description": "Steps with the connecting line drawing across as you scroll.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/steps.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/steps/steps-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "integrations-grid",
+      "type": "registry:component",
+      "title": "Integrations grid",
+      "description": "A grid of integrations or tools, each optionally linking to its page.",
+      "files": [
+        {
+          "path": "src/components/custom/integrations-grid/integrations-grid.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "integrations-grid-motion",
+      "type": "registry:component",
+      "title": "Integrations grid (motion)",
+      "description": "The integrations grid with tiles that lift and glow on hover and focus.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/integrations-grid.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/integrations-grid/integrations-grid-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "feature-grid",
+      "type": "registry:component",
+      "title": "Feature grid",
+      "description": "A grid of features with icons, in 2 to 4 columns.",
+      "files": [
+        {
+          "path": "src/components/custom/feature-grid/feature-grid.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "feature-grid-motion",
+      "type": "registry:component",
+      "title": "Feature grid (motion)",
+      "description": "The feature grid with features rising in one after another.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/feature-grid.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/feature-grid/feature-grid-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

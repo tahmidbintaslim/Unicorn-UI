@@ -1,4 +1,9 @@
 import { ComparisonTable } from "@/components/custom/comparison-table";
+import { FeatureGrid, FeatureGridMotion } from "@/components/custom/feature-grid";
+import { FeatureRows, FeatureRowsMotion } from "@/components/custom/feature-rows";
+import { IntegrationsGrid, IntegrationsGridMotion } from "@/components/custom/integrations-grid";
+import { Steps, StepsMotion } from "@/components/custom/steps";
+import { Accessibility, Moon, Palette, Server, Terminal, Zap } from "lucide-react";
 import { CtaSplit, CtaSplitMotion } from "@/components/custom/cta-split";
 import { Newsletter, NewsletterMotion } from "@/components/custom/newsletter";
 import { PricingTable, PricingTableMotion } from "@/components/custom/pricing-table";
@@ -64,6 +69,26 @@ const sampleStats = [
   { value: 4.8, label: "Sample rating", decimals: 1 },
 ];
 
+export const sampleFeatures = [
+  { title: "One command", description: "Install any section with the shadcn CLI.", icon: Terminal },
+  { title: "Your theme", description: "Sections read your shadcn tokens.", icon: Palette },
+  { title: "Server-first", description: "Plain sections render as server components.", icon: Server },
+  { title: "Accessible", description: "Semantic HTML and keyboard support.", icon: Accessibility },
+  { title: "Light and dark", description: "Every section works in both themes.", icon: Moon },
+  { title: "Optional motion", description: "Add the motion version where it helps.", icon: Zap },
+];
+
+export const sampleSteps = [
+  { title: "Pick a section", description: "Browse previews in your colors." },
+  { title: "Run one command", description: "The shadcn CLI copies the code into your project." },
+  { title: "Make it yours", description: "Edit it like any other file, then ship." },
+];
+
+export const sampleIntegrations = ["Stripe", "Slack", "GitHub", "Linear", "Notion", "Vercel", "Supabase", "Resend"].map((name) => ({
+  name,
+  description: "Sample integration",
+}));
+
 export const SECTION_DOCS: Record<string, SectionDoc> = {
   "pricing-table": {
     preview: <PricingTable title="Simple pricing" description="Sample prices." plans={samplePlans} yearlyNote="2 months free" />,
@@ -95,7 +120,12 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
   },
   "comparison-table": {
     preview: <ComparisonTable {...comparison} />,
-    importLine: `import { ComparisonTable } from "@/components/custom/comparison-table";`,
+    importLine: `import { ComparisonTable } from "@/components/custom/comparison-table";
+import { FeatureGrid, FeatureGridMotion } from "@/components/custom/feature-grid";
+import { FeatureRows, FeatureRowsMotion } from "@/components/custom/feature-rows";
+import { IntegrationsGrid, IntegrationsGridMotion } from "@/components/custom/integrations-grid";
+import { Steps, StepsMotion } from "@/components/custom/steps";
+import { Accessibility, Moon, Palette, Server, Terminal, Zap } from "lucide-react";`,
     usage: `<ComparisonTable
   caption="Plans compared feature by feature"
   plans={["Free", "Pro"]}
@@ -253,6 +283,104 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
       preview: <SocialProofMotion text="Joined by 300 indie teams (sample)" rating={4.8} people={["Ana", "Ben", "Cy", "Dee", "Eli"].map((name) => ({ name }))} />,
       importLine: `import { SocialProofMotion } from "@/components/custom/social-proof/social-proof-motion";`,
       usage: `<SocialProofMotion text="Joined by 300 indie teams" people={people} />`,
+    },
+  },
+  "feature-grid": {
+    preview: <FeatureGrid title="Everything a launch page needs" description="Sample features." items={sampleFeatures} />,
+    importLine: `import { FeatureGrid } from "@/components/custom/feature-grid";`,
+    usage: `<FeatureGrid
+  title="Everything a launch page needs"
+  columns={3}
+  items={[{ title: "One command", description: "Install with the CLI.", icon: Terminal }]}
+/>`,
+    props: [
+      { name: "items", type: "{ title; description; icon?: LucideIcon }[]", required: true, description: "Features in reading order." },
+      { name: "columns", type: "2 | 3 | 4", default: "3", description: "Columns from the lg breakpoint." },
+      { name: "title / description", type: "string", description: "Heading (h2) and line under it." },
+      ROOT,
+    ],
+    a11y: ["A list of features, each with its own h3."],
+    motion: {
+      summary: "Features rise in one after another as the grid scrolls into view.",
+      preview: <FeatureGridMotion title="Everything a launch page needs" description="Sample features." items={sampleFeatures} />,
+      importLine: `import { FeatureGridMotion } from "@/components/custom/feature-grid/feature-grid-motion";`,
+      usage: `<FeatureGridMotion items={features} />`,
+    },
+  },
+  "feature-rows": {
+    preview: (
+      <FeatureRows
+        rows={[
+          { label: "Install", title: "One command, then it's yours", description: "The CLI copies the component into your project. Sample copy.", media: <DemoScreen /> },
+          { label: "Theme", title: "Matches the rest of your app", description: "Sections read your shadcn tokens. Sample copy.", media: <DemoScreen /> },
+        ]}
+      />
+    ),
+    importLine: `import { FeatureRows } from "@/components/custom/feature-rows";`,
+    usage: `<FeatureRows
+  rows={[
+    { label: "Install", title: "One command", description: "…", media: <Screenshot /> },
+    { label: "Theme", title: "Your colors", description: "…", media: <Screenshot /> },
+  ]}
+/>`,
+    props: [
+      { name: "rows", type: "{ title; description; media; label? }[]", required: true, description: "Rows alternate media sides from the lg breakpoint." },
+      { name: "title / description", type: "string", description: "Optional heading (h2) above the rows." },
+      ROOT,
+    ],
+    a11y: ["Copy always comes before media in reading order, whatever side the media shows on."],
+    motion: {
+      summary: "Each row's media slides in from its own side as it scrolls into view.",
+      preview: (
+        <FeatureRowsMotion
+          rows={[
+            { label: "Install", title: "One command, then it's yours", description: "Sample copy.", media: <DemoScreen /> },
+            { label: "Theme", title: "Matches the rest of your app", description: "Sample copy.", media: <DemoScreen /> },
+          ]}
+        />
+      ),
+      importLine: `import { FeatureRowsMotion } from "@/components/custom/feature-rows/feature-rows-motion";`,
+      usage: `<FeatureRowsMotion rows={rows} />`,
+    },
+  },
+  steps: {
+    preview: <Steps title="How it works" steps={sampleSteps} />,
+    importLine: `import { Steps } from "@/components/custom/steps";`,
+    usage: `<Steps
+  title="How it works"
+  steps={[{ title: "Pick a section", description: "…" }, { title: "Run one command", description: "…" }]}
+/>`,
+    props: [
+      { name: "steps", type: "{ title; description }[]", required: true, description: "In order; 3 or 4 read best." },
+      { name: "title / description", type: "string", description: "Heading (h2) and line under it." },
+      ROOT,
+    ],
+    a11y: ["An ordered list; each step is announced as “Step N”."],
+    motion: {
+      summary: "The line connecting the steps draws across as you scroll them into view.",
+      preview: <StepsMotion title="How it works" steps={sampleSteps} />,
+      importLine: `import { StepsMotion } from "@/components/custom/steps/steps-motion";`,
+      usage: `<StepsMotion steps={steps} />`,
+    },
+  },
+  "integrations-grid": {
+    preview: <IntegrationsGrid title="Works with your stack" description="Sample tiles." items={sampleIntegrations} />,
+    importLine: `import { IntegrationsGrid } from "@/components/custom/integrations-grid";`,
+    usage: `<IntegrationsGrid
+  title="Works with your stack"
+  items={[{ name: "Stripe", description: "Payments", logo: <StripeLogo />, href: "/integrations/stripe" }]}
+/>`,
+    props: [
+      { name: "items", type: "{ name; description?; logo?; href? }[]", required: true, description: "Tiles; ones with href are links." },
+      { name: "title / description", type: "string", description: "Heading (h2) and line under it." },
+      ROOT,
+    ],
+    a11y: ["Logos are decorative; each tile is named by its text.", "Only tiles with an href are links."],
+    motion: {
+      summary: "Tiles lift and glow in your primary color on hover and keyboard focus.",
+      preview: <IntegrationsGridMotion title="Works with your stack" description="Sample tiles." items={sampleIntegrations} />,
+      importLine: `import { IntegrationsGridMotion } from "@/components/custom/integrations-grid/integrations-grid-motion";`,
+      usage: `<IntegrationsGridMotion items={integrations} />`,
     },
   },
 };
