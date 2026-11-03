@@ -62,6 +62,15 @@ Follow the existing cards:
   The docs page and the sidebar pick it up from `registry.json`. `pnpm build` regenerates
   `public/r/`; check the item installs with
   `npx shadcn@latest add ./public/r/<name>.json` in a scratch project.
+- A motion version is a second file, `<name>-motion.tsx`, with the same props
+  as the plain one. It starts with `"use client"`, imports only from
+  `motion/react`, and calls `useReducedMotion()`; with reduced motion on it
+  renders exactly the plain layout. Never hide content before it animates
+  (animate from `opacity: 0.001` only after mount), animate only transform,
+  opacity, filter, clip-path and shadows, and give anything that moves for
+  more than 5 seconds a visible pause control. Register it as `<name>-motion`
+  with the plain item's URL in `registryDependencies` and `motion` in
+  `dependencies`, and add a `motion` entry to its docs content.
 - Blocks must work in server components: no hooks or browser APIs in the block
   itself. Prefer native elements (details/summary) over client state.
 

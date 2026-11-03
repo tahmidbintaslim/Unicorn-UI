@@ -29,6 +29,10 @@ describe("HeroThemeCycleMotion", () => {
     act(() => vi.advanceTimersByTime(1000));
     expect(section.style.getPropertyValue("--primary")).not.toBe(first);
   });
+  it("accent word stays inline so punctuation wraps with it", () => {
+    render(<HeroThemeCycleMotion title="Your theme, not ours" accentWord="theme" />);
+    expect(screen.getByText("theme").className).not.toContain("inline-block");
+  });
   it("pause stops cycling", () => {
     vi.useFakeTimers();
     const { container } = render(<HeroThemeCycleMotion {...props} interval={1000} />);

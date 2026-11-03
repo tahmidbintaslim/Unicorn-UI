@@ -152,9 +152,10 @@ export function PageBuilder() {
             <span aria-hidden="true">Theme</span>
             <ThemeSwatches name="builder-theme" />
           </fieldset>
-          <label className="flex items-center gap-2">
-            Hero layout
+          <div className="flex items-center gap-2">
+            <label htmlFor="builder-hero-layout">Hero layout</label>
             <select
+              id="builder-hero-layout"
               value={heroLayout}
               onChange={(e) => setHeroLayout(e.target.value as "centered" | "split")}
               className="rounded-md border bg-card px-2 py-1 text-foreground focus-visible:outline-2 focus-visible:outline-brand"
@@ -162,7 +163,7 @@ export function PageBuilder() {
               <option value="centered">Centered</option>
               <option value="split">Split</option>
             </select>
-          </label>
+          </div>
         </div>
       </div>
 

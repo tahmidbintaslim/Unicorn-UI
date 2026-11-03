@@ -66,9 +66,10 @@ export function HeroThemeCycleMotion(props: HeroThemeCycleProps) {
             {parts[0]}
             <motion.span
               key={index}
-              className="inline-block text-primary"
-              initial={{ filter: "blur(6px)", y: 6 }}
-              animate={{ filter: "blur(0px)", y: 0 }}
+              // Inline (not inline-block) so the word keeps wrapping with the punctuation after it.
+              className="text-primary"
+              initial={{ filter: "blur(6px)" }}
+              animate={{ filter: "blur(0px)" }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
               {parts[1]}

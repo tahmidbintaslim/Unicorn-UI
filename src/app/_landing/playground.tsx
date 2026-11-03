@@ -59,9 +59,12 @@ export function Playground({ sources }: { sources: Record<string, { plain: strin
   return (
     <div className="theme-showcase">
       <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[13px]">
-        <label className="flex items-center gap-2">
-          <span className="text-muted-foreground">Hero</span>
+        <div className="flex items-center gap-2">
+          <label htmlFor="pg-hero" className="text-muted-foreground">
+            Hero
+          </label>
           <select
+            id="pg-hero"
             value={slug}
             onChange={(e) => setSlug(e.target.value)}
             className="rounded-md border bg-card px-2 py-1.5 focus-visible:outline-2 focus-visible:outline-brand"
@@ -72,7 +75,7 @@ export function Playground({ sources }: { sources: Record<string, { plain: strin
               </option>
             ))}
           </select>
-        </label>
+        </div>
         <Segmented legend="Version" name="pg-variant" value={variant} onChange={setVariant} options={[{ value: "plain", label: "Plain" }, { value: "motion", label: "Motion" }]} />
         <Segmented legend="Density" name="pg-density" value={density} onChange={setDensity} options={[{ value: "compact", label: "Compact" }, { value: "comfortable", label: "Comfortable" }]} />
         <fieldset className="flex items-center gap-2">
