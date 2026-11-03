@@ -12,6 +12,9 @@ export interface FaqProps extends Omit<React.ComponentProps<"section">, "title">
   items: FaqItem[];
 }
 
+export const faqSummaryClass =
+  "flex cursor-pointer list-none items-center justify-between gap-4 font-medium focus-visible:outline-2 focus-visible:outline-ring";
+
 /** FAQ list built on native details/summary, so it works without JavaScript. */
 export function Faq({ title = "Frequently asked questions", items, className, ...props }: FaqProps) {
   return (
@@ -20,7 +23,7 @@ export function Faq({ title = "Frequently asked questions", items, className, ..
       <div className="divide-y rounded-lg border">
         {items.map((item) => (
           <details key={item.question} className="group p-4">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium focus-visible:outline-2 focus-visible:outline-ring">
+            <summary className={faqSummaryClass}>
               {item.question}
               <ChevronDown
                 aria-hidden="true"

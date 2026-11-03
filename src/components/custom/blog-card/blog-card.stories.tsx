@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { BlogCard } from "./blog-card";
+import { BlogCardMotion } from "./blog-card-motion";
 
 const meta = {
   title: "Cards/Blog card",
@@ -25,3 +26,4 @@ export const Horizontal: Story = {
   decorators: [(Story) => <div className="w-[40rem] p-8"><Story /></div>],
 };
 export const Minimal: Story = { args: { variant: "minimal", image: undefined } };
+export const Motion: Story = { render: (args) => <BlogCardMotion {...args} /> };

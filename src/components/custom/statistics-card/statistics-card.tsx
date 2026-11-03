@@ -97,7 +97,13 @@ export const StatisticsCard = React.memo<StatisticsCardProps>(({
             </CardHeader>
             <CardContent>
                 <div className="text-2xl font-bold">
-                    {prefix}{formatValue(value)}{suffix}
+                    {/* The visible number can be animated (see statistics-card-motion); screen readers get the final value. */}
+                    <span className="sr-only">{prefix}{formatValue(value)}{suffix}</span>
+                    <span aria-hidden="true">
+                        {prefix}
+                        <span data-stat-value={countTarget(value)}>{formatValue(value)}</span>
+                        {suffix}
+                    </span>
                 </div>
                 {description && (
                     <CardDescription className="mt-1">
@@ -122,6 +128,12 @@ export const StatisticsCard = React.memo<StatisticsCardProps>(({
  * Maps a percentage change to its icon, color token and screen-reader label.
  * Returns null when there is no change value to show.
  */
+/** The number a motion version may count up to, or undefined when the value isn't a plain number. */
+function countTarget(value: string | number) {
+    const n = typeof value === "number" ? value : /^\d{1,3}(,\d{3})*$|^\d+$/.test(value) ? Number(value.replace(/,/g, "")) : NaN;
+    return Number.isInteger(n) && n >= 0 ? String(n) : undefined;
+}
+
 function getTrend(change: number | undefined) {
     if (change === undefined || Number.isNaN(change)) return null;
     if (change > 0) {

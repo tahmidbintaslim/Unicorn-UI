@@ -1,9 +1,9 @@
-import { CtaBanner } from "@/components/custom/cta-banner/cta-banner";
-import { Faq } from "@/components/custom/faq/faq";
+import { CtaBannerMotion } from "@/components/custom/cta-banner/cta-banner-motion";
+import { FaqMotion } from "@/components/custom/faq/faq-motion";
 import { FeatureGridMotion } from "@/components/custom/feature-grid/feature-grid-motion";
 import { Footer } from "@/components/custom/footer/footer";
 import { HeroSplitMotion } from "@/components/custom/hero-split/hero-split-motion";
-import { LogoCloud } from "@/components/custom/logo-cloud/logo-cloud";
+import { LogoCloudMotion } from "@/components/custom/logo-cloud/logo-cloud-motion";
 import { Navbar } from "@/components/custom/navbar/navbar";
 import { PricingTableMotion } from "@/components/custom/pricing-table/pricing-table-motion";
 import { StatsBandMotion } from "@/components/custom/stats-band/stats-band-motion";
@@ -20,13 +20,13 @@ export function SaasTemplateMotion({ content }: { content?: ContentOverrides<Saa
       ui={{
         Navbar,
         Hero: HeroSplitMotion,
-        LogoCloud,
+        LogoCloud: LogoCloudMotion,
         FeatureGrid: FeatureGridMotion,
         StatsBand: StatsBandMotion,
         TestimonialsWall: TestimonialsWallMotion,
         PricingTable: PricingTableMotion,
-        Faq,
-        CtaBanner,
+        Faq: FaqMotion,
+        CtaBanner: CtaBannerMotion,
         Footer,
       }}
     />

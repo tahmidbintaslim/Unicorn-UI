@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { CtaBanner } from "./cta-banner";
+import { CtaBannerMotion } from "./cta-banner-motion";
 
 const meta = {
   title: "Page sections/CTA banner",
@@ -17,3 +18,4 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 export const WithoutDescription: Story = { args: { description: undefined } };
+export const Motion: Story = { render: (args) => <CtaBannerMotion {...args} /> };

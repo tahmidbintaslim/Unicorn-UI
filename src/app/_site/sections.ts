@@ -76,6 +76,9 @@ const ORDER = [
   "interactive-card",
 ];
 
+/** Registry items that support other items and aren't sections themselves. */
+const HELPERS = ["motion-lift"];
+
 const names = new Set(registry.items.map((item) => item.name));
 const kindOf = (name: string): SectionKind =>
   name === "hero" || name.startsWith("hero-") ? "hero" : name.endsWith("-card") ? "card" : "block";
@@ -86,7 +89,7 @@ const rank = (name: string) => (ORDER.includes(name) ? ORDER.indexOf(name) : ORD
  * it. `<name>-motion` items are folded into their plain item as `motionSlug`.
  */
 export const SECTIONS: SectionMeta[] = registry.items
-  .filter((item) => !item.name.endsWith("-motion") && !item.name.startsWith("template-"))
+  .filter((item) => !item.name.endsWith("-motion") && !item.name.startsWith("template-") && !HELPERS.includes(item.name))
   .map((item) => ({
     slug: item.name,
     title: item.title,

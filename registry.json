@@ -21,6 +21,22 @@
       ]
     },
     {
+      "name": "interactive-card-motion",
+      "type": "registry:component",
+      "title": "Interactive card (motion)",
+      "description": "Lifts on hover with a spring; still under reduced motion.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/interactive-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/interactive-card/interactive-card-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "pricing-card",
       "type": "registry:component",
       "title": "Pricing card",
@@ -36,6 +52,22 @@
       "files": [
         {
           "path": "src/components/custom/pricing-card/pricing-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pricing-card-motion",
+      "type": "registry:component",
+      "title": "Pricing card (motion)",
+      "description": "Lifts on hover with a spring; still under reduced motion.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/pricing-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/pricing-card/pricing-card-motion.tsx",
           "type": "registry:component"
         }
       ]
@@ -59,6 +91,22 @@
       ]
     },
     {
+      "name": "statistics-card-motion",
+      "type": "registry:component",
+      "title": "Statistics card (motion)",
+      "description": "Counts up to its number once in view and lifts on hover.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/statistics-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/statistics-card/statistics-card-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "testimonial-card",
       "type": "registry:component",
       "title": "Testimonial card",
@@ -72,6 +120,22 @@
       "files": [
         {
           "path": "src/components/custom/testimonial-card/testimonial-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-card-motion",
+      "type": "registry:component",
+      "title": "Testimonial card (motion)",
+      "description": "Lifts on hover with a spring; still under reduced motion.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/testimonial-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/testimonial-card/testimonial-card-motion.tsx",
           "type": "registry:component"
         }
       ]
@@ -97,6 +161,22 @@
       ]
     },
     {
+      "name": "feature-card-motion",
+      "type": "registry:component",
+      "title": "Feature card (motion)",
+      "description": "Lifts on hover with a spring; still under reduced motion.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/feature-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/feature-card/feature-card-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "blog-card",
       "type": "registry:component",
       "title": "Blog card",
@@ -112,6 +192,22 @@
       "files": [
         {
           "path": "src/components/custom/blog-card/blog-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "blog-card-motion",
+      "type": "registry:component",
+      "title": "Blog card (motion)",
+      "description": "Lifts on hover with a spring; still under reduced motion.",
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/blog-card.json",
+        "https://tapas-ui.vercel.app/r/motion-lift.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/blog-card/blog-card-motion.tsx",
           "type": "registry:component"
         }
       ]
@@ -149,6 +245,25 @@
       ]
     },
     {
+      "name": "faq-motion",
+      "type": "registry:component",
+      "title": "FAQ (motion)",
+      "description": "The FAQ with answers that ease open.",
+      "dependencies": [
+        "motion",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/faq.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/faq/faq-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "cta-banner",
       "type": "registry:component",
       "title": "CTA banner",
@@ -164,6 +279,25 @@
       ]
     },
     {
+      "name": "cta-banner-motion",
+      "type": "registry:component",
+      "title": "CTA banner (motion)",
+      "description": "The CTA banner with a sheen on hover.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/cta-banner.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/cta-banner/cta-banner-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "logo-cloud",
       "type": "registry:component",
       "title": "Logo cloud",
@@ -172,6 +306,24 @@
       "files": [
         {
           "path": "src/components/custom/logo-cloud/logo-cloud.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "logo-cloud-motion",
+      "type": "registry:component",
+      "title": "Logo cloud (motion)",
+      "description": "The logo strip with a staggered fade-in.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/logo-cloud.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/logo-cloud/logo-cloud-motion.tsx",
           "type": "registry:component"
         }
       ]
@@ -208,6 +360,24 @@
       ]
     },
     {
+      "name": "navbar-motion",
+      "type": "registry:component",
+      "title": "Navbar (motion)",
+      "description": "The navbar, sticky, hiding on scroll down and returning on scroll up.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/navbar.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/navbar/navbar-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "bento-grid",
       "type": "registry:component",
       "title": "Bento grid",
@@ -219,6 +389,24 @@
       "files": [
         {
           "path": "src/components/custom/bento-grid/bento-grid.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "bento-grid-motion",
+      "type": "registry:component",
+      "title": "Bento grid (motion)",
+      "description": "The bento grid with staggered tiles and a hover lift.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/bento-grid.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/bento-grid/bento-grid-motion.tsx",
           "type": "registry:component"
         }
       ]
@@ -1229,8 +1417,11 @@
       ],
       "registryDependencies": [
         "https://tapas-ui.vercel.app/r/template-saas.json",
+        "https://tapas-ui.vercel.app/r/cta-banner-motion.json",
+        "https://tapas-ui.vercel.app/r/faq-motion.json",
         "https://tapas-ui.vercel.app/r/feature-grid-motion.json",
         "https://tapas-ui.vercel.app/r/hero-split-motion.json",
+        "https://tapas-ui.vercel.app/r/logo-cloud-motion.json",
         "https://tapas-ui.vercel.app/r/pricing-table-motion.json",
         "https://tapas-ui.vercel.app/r/stats-band-motion.json",
         "https://tapas-ui.vercel.app/r/testimonials-wall-motion.json"
@@ -1363,6 +1554,21 @@
       "files": [
         {
           "path": "src/components/templates/ai/ai-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "motion-lift",
+      "type": "registry:component",
+      "title": "Motion lift (helper)",
+      "description": "Client island used by the card motion versions: spring hover lift and count-up.",
+      "dependencies": [
+        "motion"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/motion-lift/motion-lift.tsx",
           "type": "registry:component"
         }
       ]

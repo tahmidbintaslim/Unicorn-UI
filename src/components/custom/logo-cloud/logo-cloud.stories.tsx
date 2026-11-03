@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { LogoCloud } from "./logo-cloud";
+import { LogoCloudMotion } from "./logo-cloud-motion";
 
 const meta = {
   title: "Page sections/Logo cloud",
@@ -12,3 +13,4 @@ type Story = StoryObj<typeof meta>;
 
 export const Names: Story = {};
 export const CustomTitle: Story = { args: { title: "Used in production by" } };
+export const Motion: Story = { render: (args) => <LogoCloudMotion {...args} /> };

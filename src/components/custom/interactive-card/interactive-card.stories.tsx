@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { InteractiveCard } from "./interactive-card";
+import { InteractiveCardMotion } from "./interactive-card-motion";
 
 const meta = {
   title: "Cards/Interactive card",
@@ -19,3 +20,4 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 export const NoHover: Story = { args: { hoverEffect: false, badge: undefined } };
+export const Motion: Story = { render: (args) => <InteractiveCardMotion {...args} /> };

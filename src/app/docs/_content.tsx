@@ -1,16 +1,16 @@
-import { BentoGrid } from "@/components/custom/bento-grid";
-import { BlogCard } from "@/components/custom/blog-card";
-import { CtaBanner } from "@/components/custom/cta-banner";
-import { Faq } from "@/components/custom/faq";
-import { FeatureCard } from "@/components/custom/feature-card";
+import { BentoGrid, BentoGridMotion } from "@/components/custom/bento-grid";
+import { BlogCard, BlogCardMotion } from "@/components/custom/blog-card";
+import { CtaBanner, CtaBannerMotion } from "@/components/custom/cta-banner";
+import { Faq, FaqMotion } from "@/components/custom/faq";
+import { FeatureCard, FeatureCardMotion } from "@/components/custom/feature-card";
 import { Footer } from "@/components/custom/footer";
 import { Hero, HeroMotion } from "@/components/custom/hero";
-import { InteractiveCard } from "@/components/custom/interactive-card";
-import { LogoCloud } from "@/components/custom/logo-cloud";
-import { Navbar } from "@/components/custom/navbar";
-import { PricingCard } from "@/components/custom/pricing-card";
-import { StatisticsCard } from "@/components/custom/statistics-card";
-import { TestimonialCard } from "@/components/custom/testimonial-card";
+import { InteractiveCard, InteractiveCardMotion } from "@/components/custom/interactive-card";
+import { LogoCloud, LogoCloudMotion } from "@/components/custom/logo-cloud";
+import { Navbar, NavbarMotion } from "@/components/custom/navbar";
+import { PricingCard, PricingCardMotion } from "@/components/custom/pricing-card";
+import { StatisticsCard, StatisticsCardMotion } from "@/components/custom/statistics-card";
+import { TestimonialCard, TestimonialCardMotion } from "@/components/custom/testimonial-card";
 import { Accessibility, Copy, Moon, Terminal, Users, Zap } from "lucide-react";
 import React from "react";
 import { HERO_DOCS } from "./_content-heroes";
@@ -88,6 +88,22 @@ const BASE_DOCS: Record<string, SectionDoc> = {
       "Links sit in a <nav aria-label=\"Main\">.",
       "On phones the links fold into a details/summary menu that works without JavaScript; the toggle is labelled “Menu”.",
     ],
+    motion: {
+      summary: "Sticks to the top, slides away while you scroll down and comes back as soon as you scroll up or tab into it.",
+      preview: (
+      <NavbarMotion
+        brand="Acme"
+        links={[
+          { label: "Features", href: "#features" },
+          { label: "Pricing", href: "#pricing" },
+          { label: "Docs", href: "#docs" },
+        ]}
+        action={{ label: "Get started", href: "#start" }}
+      />
+    ),
+      importLine: `import { NavbarMotion } from "@/components/custom/navbar/navbar-motion";`,
+      usage: `<NavbarMotion {...props} />`,
+    },
   },
   hero: {
     preview: (
@@ -149,16 +165,22 @@ const BASE_DOCS: Record<string, SectionDoc> = {
       ROOT_PROPS("section"),
     ],
     a11y: ["When a logo is given, the company name stays available to screen readers as visually hidden text."],
+    motion: {
+      summary: "Names fade in one after another as the strip scrolls into view.",
+      preview: <LogoCloudMotion logos={[{ name: "Acme" }, { name: "Globex" }, { name: "Initech" }, { name: "Umbrella" }]} />,
+      importLine: `import { LogoCloudMotion } from "@/components/custom/logo-cloud/logo-cloud-motion";`,
+      usage: `<LogoCloudMotion {...props} />`,
+    },
   },
   "bento-grid": {
     preview: (
       <BentoGrid
         title="Why teams pick it"
         items={[
-          { title: "One command", description: "Install any section with the shadcn CLI.", icon: Terminal, size: "large" },
-          { title: "Fast", description: "Plain components, no runtime.", icon: Zap },
-          { title: "Accessible", description: "Semantic markup and labels.", icon: Accessibility },
-          { title: "Light and dark", description: "Uses your shadcn theme variables.", icon: Moon, size: "wide" },
+          { title: "One command", description: "Install any section with the shadcn CLI.", icon: <Terminal />, size: "large" },
+          { title: "Fast", description: "Plain components, no runtime.", icon: <Zap /> },
+          { title: "Accessible", description: "Semantic markup and labels.", icon: <Accessibility /> },
+          { title: "Light and dark", description: "Uses your shadcn theme variables.", icon: <Moon />, size: "wide" },
         ]}
       />
     ),
@@ -166,18 +188,34 @@ const BASE_DOCS: Record<string, SectionDoc> = {
     usage: `<BentoGrid
   title="Why teams pick it"
   items={[
-    { title: "One command", description: "Install any section.", icon: Terminal, size: "large" },
-    { title: "Fast", description: "Plain components.", icon: Zap },
+    { title: "One command", description: "Install any section.", icon: <Terminal />, size: "large" },
+    { title: "Fast", description: "Plain components.", icon: <Zap /> },
   ]}
 />`,
     props: [
       { name: "items", type: "BentoItem[]", required: true, description: "Tiles: { title, description, icon?, size? }." },
       { name: "items[].size", type: `"default" | "wide" | "tall" | "large"`, default: `"default"`, description: "Cells the tile spans from the md breakpoint up." },
-      { name: "items[].icon", type: "LucideIcon", description: "Icon component shown above the title." },
+      { name: "items[].icon", type: "LucideIcon | ReactElement", description: "Icon shown above the title: a component, or an element such as <Zap /> (use an element when a server page renders the motion version)." },
       { name: "title", type: "string", description: "Optional heading above the grid." },
       ROOT_PROPS("section"),
     ],
     a11y: ["Tiles are list items, so screen readers announce how many there are."],
+    motion: {
+      summary: "Tiles rise in one after another, then lift slightly on hover.",
+      preview: (
+      <BentoGridMotion
+        title="Why teams pick it"
+        items={[
+          { title: "One command", description: "Install any section with the shadcn CLI.", icon: <Terminal />, size: "large" },
+          { title: "Fast", description: "Plain components, no runtime.", icon: <Zap /> },
+          { title: "Accessible", description: "Semantic markup and labels.", icon: <Accessibility /> },
+          { title: "Light and dark", description: "Uses your shadcn theme variables.", icon: <Moon />, size: "wide" },
+        ]}
+      />
+    ),
+      importLine: `import { BentoGridMotion } from "@/components/custom/bento-grid/bento-grid-motion";`,
+      usage: `<BentoGridMotion {...props} />`,
+    },
   },
   faq: {
     preview: (
@@ -202,6 +240,20 @@ const BASE_DOCS: Record<string, SectionDoc> = {
       ROOT_PROPS("section"),
     ],
     a11y: ["Built on native <details> and <summary>: keyboard and screen-reader support come from the browser, with no JavaScript."],
+    motion: {
+      summary: "Answers ease open instead of snapping; still native details, so it works without JavaScript.",
+      preview: (
+      <FaqMotion
+        items={[
+          { question: "Is it free?", answer: "Yes. MIT licensed, for personal and commercial projects." },
+          { question: "Do I need to install a package?", answer: "No. The shadcn CLI copies the component into your project." },
+          { question: "Does it work with my theme?", answer: "Yes. It uses your shadcn theme variables." },
+        ]}
+      />
+    ),
+      importLine: `import { FaqMotion } from "@/components/custom/faq/faq-motion";`,
+      usage: `<FaqMotion {...props} />`,
+    },
   },
   "cta-banner": {
     preview: (
@@ -222,6 +274,14 @@ const BASE_DOCS: Record<string, SectionDoc> = {
       ROOT_PROPS("section"),
     ],
     a11y: ["The action is a plain link, so it works without JavaScript."],
+    motion: {
+      summary: "A soft sheen sweeps across the band on hover or keyboard focus.",
+      preview: (
+      <CtaBannerMotion title="Start building" description="Copy a section and make it yours." actionLabel="Get started" actionHref="#start" />
+    ),
+      importLine: `import { CtaBannerMotion } from "@/components/custom/cta-banner/cta-banner-motion";`,
+      usage: `<CtaBannerMotion {...props} />`,
+    },
   },
   footer: {
     preview: (
@@ -293,6 +353,26 @@ const BASE_DOCS: Record<string, SectionDoc> = {
       ROOT_PROPS("div"),
     ],
     a11y: ["The price is read as “$19 per month”.", "Each feature says whether it is included or not, not only with an icon."],
+    motion: {
+      summary: "Lifts on hover with a spring.",
+      preview: (
+      <PricingCardMotion
+        name="Pro"
+        description="For growing teams"
+        price={19}
+        popular
+        features={[
+          { text: "10 projects", included: true },
+          { text: "Priority support", included: true },
+          { text: "Custom domain", included: false },
+        ]}
+        ctaText="Start trial"
+        className="w-full max-w-sm"
+      />
+    ),
+      importLine: `import { PricingCardMotion } from "@/components/custom/pricing-card/pricing-card-motion";`,
+      usage: `<PricingCardMotion {...props} />`,
+    },
   },
   "testimonial-card": {
     narrow: true,
@@ -327,6 +407,22 @@ const BASE_DOCS: Record<string, SectionDoc> = {
       ROOT_PROPS("div"),
     ],
     a11y: ["The rating is announced as “Rated N out of 5”."],
+    motion: {
+      summary: "Lifts on hover with a spring.",
+      preview: (
+      <TestimonialCardMotion
+        testimonial="We swapped our hand-built landing page for Tapas sections in an afternoon. Sample quote."
+        author="Sarah Johnson"
+        role="Product Manager"
+        company="Example Co"
+        rating={5}
+        avatar="/demo/avatar.webp"
+        className="w-full max-w-md"
+      />
+    ),
+      importLine: `import { TestimonialCardMotion } from "@/components/custom/testimonial-card/testimonial-card-motion";`,
+      usage: `<TestimonialCardMotion {...props} />`,
+    },
   },
   "feature-card": {
     narrow: true,
@@ -364,6 +460,21 @@ const BASE_DOCS: Record<string, SectionDoc> = {
       ROOT_PROPS("div"),
     ],
     a11y: ["The icon is decorative and hidden from screen readers."],
+    motion: {
+      summary: "Lifts on hover with a spring.",
+      preview: (
+      <FeatureCardMotion
+        title="Copy and paste"
+        description="Install with one command, then edit the code like any other file in your project."
+        icon={Copy}
+        badge="New"
+        ctaText="Learn more"
+        className="w-full max-w-sm"
+      />
+    ),
+      importLine: `import { FeatureCardMotion } from "@/components/custom/feature-card/feature-card-motion";`,
+      usage: `<FeatureCardMotion {...props} />`,
+    },
   },
   "statistics-card": {
     narrow: true,
@@ -398,6 +509,21 @@ const BASE_DOCS: Record<string, SectionDoc> = {
       ROOT_PROPS("div"),
     ],
     a11y: ["The trend arrow has a visually hidden label, so the direction is not conveyed by color alone."],
+    motion: {
+      summary: "Counts up to its number once it scrolls into view, then lifts on hover.",
+      preview: (
+      <StatisticsCardMotion
+        title="Monthly active users"
+        value="125,430"
+        change={12.5}
+        changePeriod="vs last month"
+        icon={Users}
+        className="w-full max-w-sm"
+      />
+    ),
+      importLine: `import { StatisticsCardMotion } from "@/components/custom/statistics-card/statistics-card-motion";`,
+      usage: `<StatisticsCardMotion {...props} />`,
+    },
   },
   "blog-card": {
     narrow: true,
@@ -441,6 +567,23 @@ const BASE_DOCS: Record<string, SectionDoc> = {
       ROOT_PROPS("article"),
     ],
     a11y: ["Renders as an <article> with the date in a <time> element.", "Like counts read as “N likes”."],
+    motion: {
+      summary: "Lifts on hover with a spring.",
+      preview: (
+      <BlogCardMotion
+        title="Building a landing page in an afternoon"
+        excerpt="Pick the sections you need, install them with one command and spend the rest of the day on copy."
+        author="Sarah Wilson"
+        date="2026-01-15"
+        readTime="5 min read"
+        category="Guide"
+        image="/demo/blog-cover.webp"
+        className="w-full max-w-sm"
+      />
+    ),
+      importLine: `import { BlogCardMotion } from "@/components/custom/blog-card/blog-card-motion";`,
+      usage: `<BlogCardMotion {...props} />`,
+    },
   },
   "interactive-card": {
     narrow: true,
@@ -476,6 +619,22 @@ const BASE_DOCS: Record<string, SectionDoc> = {
       ROOT_PROPS("div"),
     ],
     a11y: ["The action button is described by the card title, so “Open” is announced with its context."],
+    motion: {
+      summary: "Lifts on hover with a spring.",
+      preview: (
+      <InteractiveCardMotion
+        title="Starter kit"
+        description="Everything you need to launch, in one card."
+        badge="Popular"
+        actionText="Open"
+        className="w-full max-w-sm"
+      >
+        <p className="text-sm text-muted-foreground">Put any content here: a list, an image or a form.</p>
+      </InteractiveCardMotion>
+    ),
+      importLine: `import { InteractiveCardMotion } from "@/components/custom/interactive-card/interactive-card-motion";`,
+      usage: `<InteractiveCardMotion {...props} />`,
+    },
   },
 };
 

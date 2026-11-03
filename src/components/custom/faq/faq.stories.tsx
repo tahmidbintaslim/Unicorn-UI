@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { Faq } from "./faq";
+import { FaqMotion } from "./faq-motion";
 
 const meta = {
   title: "Page sections/FAQ",
@@ -18,3 +19,4 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 export const CustomTitle: Story = { args: { title: "Questions before you start" } };
+export const Motion: Story = { render: (args) => <FaqMotion {...args} /> };

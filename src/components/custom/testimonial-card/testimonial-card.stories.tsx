@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { TestimonialCard } from "./testimonial-card";
+import { TestimonialCardMotion } from "./testimonial-card-motion";
 
 const meta = {
   title: "Cards/Testimonial card",
@@ -22,3 +23,4 @@ export const Default: Story = {};
 export const Bordered: Story = { args: { variant: "bordered" } };
 export const Elevated: Story = { args: { variant: "elevated" } };
 export const WithoutAvatar: Story = { args: { avatar: undefined, rating: undefined } };
+export const Motion: Story = { render: (args) => <TestimonialCardMotion {...args} /> };
