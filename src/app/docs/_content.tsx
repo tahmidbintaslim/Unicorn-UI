@@ -14,6 +14,7 @@ import { TestimonialCard } from "@/components/custom/testimonial-card";
 import { Accessibility, Copy, Moon, Terminal, Users, Zap } from "lucide-react";
 import React from "react";
 import { HERO_DOCS } from "./_content-heroes";
+import { SECTION_DOCS } from "./_content-sections";
 
 export interface PropDoc {
   name: string;
@@ -480,4 +481,4 @@ const BASE_DOCS: Record<string, SectionDoc> = {
 
 // Hero variants live in _content-heroes.tsx to keep this file readable.
 
-export const DOCS: Record<string, SectionDoc> = { ...BASE_DOCS, ...HERO_DOCS };
+export const DOCS: Record<string, SectionDoc> = { ...BASE_DOCS, ...HERO_DOCS, ...SECTION_DOCS };

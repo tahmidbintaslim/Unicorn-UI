@@ -22,3 +22,7 @@ export * from "./hero-marquee";
 export * from "./hero-video";
 export * from "./hero-theme-cycle";
 export * from "./hero-plates";
+export * from "./pricing-table";
+export * from "./comparison-table";
+export * from "./cta-split";
+export * from "./newsletter";

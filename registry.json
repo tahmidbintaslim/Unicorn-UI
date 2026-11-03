@@ -592,6 +592,129 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "pricing-table",
+      "type": "registry:component",
+      "title": "Pricing table",
+      "description": "Pricing tiers with a monthly/yearly switch that works without JavaScript.",
+      "files": [
+        {
+          "path": "src/components/custom/pricing-table/pricing-table.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "badge",
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "pricing-table-motion",
+      "type": "registry:component",
+      "title": "Pricing table (motion)",
+      "description": "The pricing table with prices rolling to their new value when you switch period.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/pricing-table.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/pricing-table/pricing-table-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "comparison-table",
+      "type": "registry:component",
+      "title": "Comparison table",
+      "description": "Feature-by-plan table with row headers that scrolls inside its own box on phones.",
+      "files": [
+        {
+          "path": "src/components/custom/comparison-table/comparison-table.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "cta-split",
+      "type": "registry:component",
+      "title": "CTA: split",
+      "description": "Call-to-action band with your product image or component beside the copy.",
+      "files": [
+        {
+          "path": "src/components/custom/cta-split/cta-split.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "cta-split-motion",
+      "type": "registry:component",
+      "title": "CTA: split (motion)",
+      "description": "The split CTA with the media floating into place as it scrolls into view.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/cta-split.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/cta-split/cta-split-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "newsletter",
+      "type": "registry:component",
+      "title": "Newsletter",
+      "description": "Newsletter signup band; a plain HTML form that works without JavaScript.",
+      "files": [
+        {
+          "path": "src/components/custom/newsletter/newsletter.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "newsletter-motion",
+      "type": "registry:component",
+      "title": "Newsletter (motion)",
+      "description": "The newsletter band that morphs into a success message, announced to screen readers.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/newsletter.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/newsletter/newsletter-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
