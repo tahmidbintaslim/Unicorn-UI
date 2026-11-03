@@ -11,3 +11,5 @@ export * from "./faq";
 export * from "./cta-banner";
 export * from "./logo-cloud";
 export * from "./footer";
+export * from "./navbar";
+export * from "./bento-grid";

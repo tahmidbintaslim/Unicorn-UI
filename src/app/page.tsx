@@ -244,6 +244,12 @@ export default function Home() {
               <span className="text-xl font-bold">Tapas UI</span>
             </div>
             <div className="flex items-center gap-2">
+              <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex">
+                <Link href="/components">Cards</Link>
+              </Button>
+              <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex">
+                <Link href="/blocks">Blocks</Link>
+              </Button>
               <ThemeToggle />
               <Button variant="outline" size="sm" asChild>
                 <a

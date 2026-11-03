@@ -32,7 +32,7 @@ pnpm build
 Then open the demo and check your change in both the light and dark themes and
 at phone width (about 390px). No page should scroll sideways.
 
-## Card structure
+## Card and block structure
 
 ```
 src/components/custom/your-card/
@@ -55,6 +55,13 @@ Follow the existing cards:
   render the same text.
 - Add tests for the behavior a screen reader user depends on, and add the card
   to `src/components/custom/index.ts`, the gallery and a detail page.
+- For a landing block, add an entry to `registry.json` (list shadcn primitives
+  in `registryDependencies` and npm packages in `dependencies`) and a section to
+  the `blocks` array in `src/app/blocks/page.tsx`. `pnpm build` regenerates
+  `public/r/`; check the item installs with
+  `npx shadcn@latest add ./public/r/<name>.json` in a scratch project.
+- Blocks must work in server components: no hooks or browser APIs in the block
+  itself. Prefer native elements (details/summary) over client state.
 
 ## Pull requests
 

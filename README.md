@@ -149,11 +149,39 @@ npx shadcn@latest add https://tapas-ui.vercel.app/r/pricing-card.json
 ```
 
 Items: `interactive-card`, `pricing-card`, `statistics-card`,
-`testimonial-card`, `feature-card`, `blog-card`, plus the landing blocks `hero`,
-`faq`, `cta-banner`, `logo-cloud` and `footer` (demo at `/blocks`). The CLI also adds the `card`,
+`testimonial-card`, `feature-card`, `blog-card`, plus the seven landing blocks listed under
+[Landing blocks](#landing-blocks). The CLI also adds the `card`,
 `button` and `badge` primitives each card needs. The testimonial and blog cards
 use `next/image`, so they need Next.js. `pnpm build` regenerates `public/r/`
 from `registry.json`.
+
+## Landing blocks
+
+Seven sections for marketing pages, documented with live previews at
+[tapas-ui.vercel.app/blocks](https://tapas-ui.vercel.app/blocks):
+
+| Block | What it does | Install |
+| --- | --- | --- |
+| `navbar` | Brand, links and an action; links fold into a no-JS menu on phones | `npx shadcn@latest add https://tapas-ui.vercel.app/r/navbar.json` |
+| `hero` | Centered headline, optional badge, up to two links | `.../r/hero.json` |
+| `logo-cloud` | "Trusted by" strip of logos or names | `.../r/logo-cloud.json` |
+| `bento-grid` | Feature tiles of mixed sizes | `.../r/bento-grid.json` |
+| `faq` | Questions on native details/summary | `.../r/faq.json` |
+| `cta-banner` | Full-width call to action | `.../r/cta-banner.json` |
+| `footer` | Brand, link columns and small print | `.../r/footer.json` |
+
+```tsx
+import { Hero } from "@/components/custom/hero";
+
+<Hero
+  eyebrow="New"
+  title="Ship your landing page today"
+  primaryAction={{ label: "Get started", href: "/signup" }}
+/>;
+```
+
+All blocks render from server components. They follow your shadcn theme, so
+they work in light and dark mode.
 
 ## Usage
 
