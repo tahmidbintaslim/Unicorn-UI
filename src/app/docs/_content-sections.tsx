@@ -2,6 +2,10 @@ import { ComparisonTable } from "@/components/custom/comparison-table";
 import { CtaSplit, CtaSplitMotion } from "@/components/custom/cta-split";
 import { Newsletter, NewsletterMotion } from "@/components/custom/newsletter";
 import { PricingTable, PricingTableMotion } from "@/components/custom/pricing-table";
+import { SocialProof, SocialProofMotion } from "@/components/custom/social-proof";
+import { StatsBand, StatsBandMotion } from "@/components/custom/stats-band";
+import { TestimonialHighlight, TestimonialHighlightMotion } from "@/components/custom/testimonial-highlight";
+import { TestimonialsWall, TestimonialsWallMotion } from "@/components/custom/testimonials-wall";
 import type { PropDoc, SectionDoc } from "./_content";
 import { DemoScreen } from "./_content-heroes";
 
@@ -42,6 +46,23 @@ const newsletter = {
   action: "#subscribe",
   note: "Unsubscribe anytime.",
 };
+
+export const sampleQuotes = [
+  { quote: "We replaced a week of landing-page work with an afternoon.", author: "Maya R.", role: "Founder" },
+  { quote: "The sections picked up our theme the moment we installed them.", author: "Leo K.", role: "Frontend lead" },
+  { quote: "Readable code we could change. That's the whole point.", author: "Priya S.", role: "Indie hacker" },
+  { quote: "Pricing and FAQ in ten minutes, accessible out of the box.", author: "Tom W.", role: "Designer" },
+  { quote: "Plain versions for the server, motion where we wanted it.", author: "Ana P.", role: "Engineer" },
+  { quote: "Our launch page finally looks like the product.", author: "Chris D.", role: "Founder" },
+];
+
+// Made-up numbers for previews; replace with your own.
+const sampleStats = [
+  { value: 12000, label: "Sample installs", suffix: "+" },
+  { value: 99.9, label: "Sample uptime", suffix: "%", decimals: 1 },
+  { value: 48, label: "Sample countries" },
+  { value: 4.8, label: "Sample rating", decimals: 1 },
+];
 
 export const SECTION_DOCS: Record<string, SectionDoc> = {
   "pricing-table": {
@@ -140,6 +161,98 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
         { name: "onSubmit", type: "(email: string) => Promise<void>", description: "Handle the signup yourself; shows sending, success and error states." },
         { name: "successMessage", type: "string", default: `"Thanks, you're subscribed."`, description: "Shown after onSubmit resolves." },
       ],
+    },
+  },
+  "testimonials-wall": {
+    preview: <TestimonialsWall title="What builders say" description="Sample quotes." items={sampleQuotes} />,
+    importLine: `import { TestimonialsWall } from "@/components/custom/testimonials-wall";`,
+    usage: `<TestimonialsWall
+  title="What builders say"
+  items={[{ quote: "…", author: "Maya R.", role: "Founder" }]}
+/>`,
+    props: [
+      { name: "items", type: "{ quote; author; role?; avatar? }[]", required: true, description: "Quotes, in reading order." },
+      { name: "title", type: "string", description: "Heading (h2)." },
+      { name: "description", type: "string", description: "Line under the heading." },
+      ROOT,
+    ],
+    a11y: ["Each quote is a figure with a blockquote and a figcaption naming the author."],
+    motion: {
+      summary: "Three columns drift slowly upward at different speeds; hover, keyboard focus or the pause button stop them.",
+      preview: <TestimonialsWallMotion title="What builders say" description="Sample quotes." items={sampleQuotes} />,
+      importLine: `import { TestimonialsWallMotion } from "@/components/custom/testimonials-wall/testimonials-wall-motion";`,
+      usage: `<TestimonialsWallMotion title="What builders say" items={quotes} />`,
+    },
+  },
+  "testimonial-highlight": {
+    preview: <TestimonialHighlight quote="We replaced a week of landing-page work with an afternoon." author="Maya R." role="Founder" company="Sample Co" />,
+    importLine: `import { TestimonialHighlight } from "@/components/custom/testimonial-highlight";`,
+    usage: `<TestimonialHighlight
+  quote="We replaced a week of landing-page work with an afternoon."
+  author="Maya R."
+  role="Founder"
+  company="Sample Co"
+/>`,
+    props: [
+      { name: "quote", type: "string", required: true, description: "The quote, without quotation marks." },
+      { name: "author", type: "string", required: true, description: "Who said it." },
+      { name: "role", type: "string", description: "Author's role." },
+      { name: "company", type: "string", description: "Author's company." },
+      { name: "avatar", type: "string", description: "Image URL; initials otherwise." },
+      ROOT,
+    ],
+    a11y: ["A figure with blockquote and figcaption, so the source is tied to the quote."],
+    motion: {
+      summary: "The quote's words brighten one after another as it scrolls into view. Screen readers hear it as one sentence.",
+      preview: <TestimonialHighlightMotion quote="We replaced a week of landing-page work with an afternoon." author="Maya R." role="Founder" company="Sample Co" />,
+      importLine: `import { TestimonialHighlightMotion } from "@/components/custom/testimonial-highlight/testimonial-highlight-motion";`,
+      usage: `<TestimonialHighlightMotion quote="…" author="Maya R." />`,
+    },
+  },
+  "stats-band": {
+    preview: <StatsBand title="By the numbers" description="Sample data." stats={sampleStats} />,
+    importLine: `import { StatsBand } from "@/components/custom/stats-band";`,
+    usage: `<StatsBand
+  title="By the numbers"
+  stats={[
+    { value: 12000, label: "Installs", suffix: "+" },
+    { value: 99.9, label: "Uptime", suffix: "%", decimals: 1 },
+  ]}
+/>`,
+    props: [
+      { name: "stats", type: "{ value; label; prefix?; suffix?; decimals? }[]", required: true, description: "2 to 4 read best. Use real numbers." },
+      { name: "title", type: "string", description: "Heading (h2)." },
+      { name: "description", type: "string", description: "Line under the heading." },
+      ROOT,
+    ],
+    a11y: ["A description list: each label is the term and the number its value.", "Numbers format with a fixed locale, so server and browser match."],
+    motion: {
+      summary: "Each number counts up once when the band scrolls into view. The final number is in the page before JavaScript and for screen readers.",
+      preview: <StatsBandMotion title="By the numbers" description="Sample data." stats={sampleStats} />,
+      importLine: `import { StatsBandMotion } from "@/components/custom/stats-band/stats-band-motion";`,
+      usage: `<StatsBandMotion stats={stats} />`,
+    },
+  },
+  "social-proof": {
+    preview: <SocialProof text="Joined by 300 indie teams (sample)" rating={4.8} people={["Ana", "Ben", "Cy", "Dee", "Eli"].map((name) => ({ name }))} />,
+    importLine: `import { SocialProof } from "@/components/custom/social-proof";`,
+    usage: `<SocialProof
+  text="Joined by 300 indie teams"
+  rating={4.8}
+  people={[{ name: "Ana", avatar: "/ana.webp" }]}
+/>`,
+    props: [
+      { name: "text", type: "string", required: true, description: "One line. Keep it true." },
+      { name: "people", type: "{ name: string; avatar?: string }[]", required: true, description: "Avatar stack; initials when there is no image." },
+      { name: "rating", type: "number", description: "Average out of 5; stars plus the number in words." },
+      { name: "...props", type: `React.ComponentProps<"div">`, description: "Any other div attribute goes to the root element." },
+    ],
+    a11y: ["Avatars are decorative; the rating is announced as “Rated 4.8 out of 5”."],
+    motion: {
+      summary: "Avatars pop in one after another when the row comes into view.",
+      preview: <SocialProofMotion text="Joined by 300 indie teams (sample)" rating={4.8} people={["Ana", "Ben", "Cy", "Dee", "Eli"].map((name) => ({ name }))} />,
+      importLine: `import { SocialProofMotion } from "@/components/custom/social-proof/social-proof-motion";`,
+      usage: `<SocialProofMotion text="Joined by 300 indie teams" people={people} />`,
     },
   },
 };

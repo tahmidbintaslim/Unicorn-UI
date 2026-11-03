@@ -715,6 +715,134 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "testimonials-wall",
+      "type": "registry:component",
+      "title": "Testimonials wall",
+      "description": "A masonry wall of short testimonials.",
+      "files": [
+        {
+          "path": "src/components/custom/testimonials-wall/testimonials-wall.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "testimonials-wall-motion",
+      "type": "registry:component",
+      "title": "Testimonials wall (motion)",
+      "description": "The testimonials wall with three columns drifting upward; pauses on hover, focus or the pause button.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/testimonials-wall.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/testimonials-wall/testimonials-wall-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-highlight",
+      "type": "registry:component",
+      "title": "Testimonial highlight",
+      "description": "One large, centered quote for a single strong testimonial.",
+      "files": [
+        {
+          "path": "src/components/custom/testimonial-highlight/testimonial-highlight.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "testimonial-highlight-motion",
+      "type": "registry:component",
+      "title": "Testimonial highlight (motion)",
+      "description": "The highlight quote with its words brightening in sequence as it scrolls into view.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/testimonial-highlight.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/testimonial-highlight/testimonial-highlight-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stats-band",
+      "type": "registry:component",
+      "title": "Stats band",
+      "description": "A band of big numbers with labels.",
+      "files": [
+        {
+          "path": "src/components/custom/stats-band/stats-band.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "stats-band-motion",
+      "type": "registry:component",
+      "title": "Stats band (motion)",
+      "description": "The stats band with each number counting up once in view; the final value is always in the page.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/stats-band.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/stats-band/stats-band-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "social-proof",
+      "type": "registry:component",
+      "title": "Social proof",
+      "description": "Avatar stack, optional star rating and one line of text.",
+      "files": [
+        {
+          "path": "src/components/custom/social-proof/social-proof.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "social-proof-motion",
+      "type": "registry:component",
+      "title": "Social proof (motion)",
+      "description": "Social proof with avatars popping in one after another.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapas-ui.vercel.app/r/social-proof.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/social-proof/social-proof-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

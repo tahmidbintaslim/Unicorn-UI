@@ -26,3 +26,7 @@ export * from "./pricing-table";
 export * from "./comparison-table";
 export * from "./cta-split";
 export * from "./newsletter";
+export * from "./testimonials-wall";
+export * from "./testimonial-highlight";
+export * from "./stats-band";
+export * from "./social-proof";

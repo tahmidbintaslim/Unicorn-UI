@@ -9,7 +9,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 const preview: Preview = {
   parameters: {
     layout: "fullscreen",
-    options: { storySort: { order: ["Introduction", "Heroes", "Marketing", "Page sections", "Cards"] } },
+    options: { storySort: { order: ["Introduction", "Heroes", "Marketing", "Proof", "Page sections", "Cards"] } },
     controls: { matchers: { color: /(background|color)$/i, date: /Date$/i } },
     // Fail the a11y panel loudly rather than just listing issues.
     a11y: { test: "error" },
