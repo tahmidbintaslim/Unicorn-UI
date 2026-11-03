@@ -39,3 +39,8 @@ export * from "./changelog";
 export * from "./blog-grid";
 export * from "./faq-two-column";
 export * from "./contact";
+export * from "./not-found";
+export * from "./coming-soon";
+export * from "./announcement-bar";
+export * from "./navbar-floating";
+export * from "./footer-simple";

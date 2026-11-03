@@ -1,4 +1,9 @@
+import { AnnouncementBar } from "@/components/custom/announcement-bar";
 import { BlogGrid, BlogGridMotion } from "@/components/custom/blog-grid";
+import { ComingSoon } from "@/components/custom/coming-soon";
+import { FooterSimple } from "@/components/custom/footer-simple";
+import { NavbarFloating, NavbarFloatingMotion } from "@/components/custom/navbar-floating";
+import { NotFound, NotFoundMotion } from "@/components/custom/not-found";
 import { Changelog } from "@/components/custom/changelog";
 import { ComparisonTable } from "@/components/custom/comparison-table";
 import { Contact } from "@/components/custom/contact";
@@ -143,7 +148,12 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
   },
   "comparison-table": {
     preview: <ComparisonTable {...comparison} />,
-    importLine: `import { BlogGrid, BlogGridMotion } from "@/components/custom/blog-grid";
+    importLine: `import { AnnouncementBar } from "@/components/custom/announcement-bar";
+import { BlogGrid, BlogGridMotion } from "@/components/custom/blog-grid";
+import { ComingSoon } from "@/components/custom/coming-soon";
+import { FooterSimple } from "@/components/custom/footer-simple";
+import { NavbarFloating, NavbarFloatingMotion } from "@/components/custom/navbar-floating";
+import { NotFound, NotFoundMotion } from "@/components/custom/not-found";
 import { Changelog } from "@/components/custom/changelog";
 import { ComparisonTable } from "@/components/custom/comparison-table";
 import { Contact } from "@/components/custom/contact";
@@ -510,5 +520,106 @@ import { Accessibility, Moon, Palette, Server, Terminal, Zap } from "lucide-reac
       ROOT,
     ],
     a11y: ["Every field has a visible label and the right input type and autocomplete."],
+  },
+  "not-found": {
+    preview: <NotFound links={[{ label: "Read the docs", href: "#docs" }]} />,
+    importLine: `import { NotFound } from "@/components/custom/not-found";`,
+    usage: `// app/not-found.tsx
+export default function NotFoundPage() {
+  return <NotFound links={[{ label: "Read the docs", href: "/docs" }]} />;
+}`,
+    props: [
+      { name: "code", type: "string", default: `"404"`, description: "The big number (decorative)." },
+      { name: "title", type: "string", default: `"Page not found"`, description: "The page's h1." },
+      { name: "description", type: "string", description: "One line on what happened." },
+      { name: "home", type: "{ label; href }", default: `{ label: "Back to home", href: "/" }`, description: "Main way out." },
+      { name: "links", type: "{ label; href }[]", description: "Other helpful pages." },
+      ROOT,
+    ],
+    a11y: ["The big number is hidden from screen readers; the h1 says what happened."],
+    motion: {
+      summary: "The big number tilts toward the mouse pointer.",
+      preview: <NotFoundMotion links={[{ label: "Read the docs", href: "#docs" }]} />,
+      importLine: `import { NotFoundMotion } from "@/components/custom/not-found/not-found-motion";`,
+      usage: `<NotFoundMotion />`,
+    },
+  },
+  "coming-soon": {
+    preview: <ComingSoon title="Something new is cooking" description="Leave your email and hear first. Sample copy." action="#notify" launchDate="2026-12-01" />,
+    importLine: `import { ComingSoon } from "@/components/custom/coming-soon";`,
+    usage: `<ComingSoon
+  title="Something new is cooking"
+  action="/api/notify"
+  launchDate="2026-12-01"
+/>`,
+    props: [
+      { name: "title", type: "string", required: true, description: "The page's h1." },
+      { name: "action", type: "string", required: true, description: "Where the notify form posts." },
+      { name: "launchDate", type: "string", description: "ISO date, shown in a <time>. Leave it out rather than invent one." },
+      { name: "badge", type: "string", default: `"Coming soon"`, description: "Badge text." },
+      { name: "buttonLabel", type: "string", default: `"Notify me"`, description: "Button text." },
+      { name: "description", type: "string", description: "Line under the title." },
+      ROOT,
+    ],
+    a11y: ["A labelled email field; the form works without JavaScript.", "No countdown timer, so nothing changes on screen every second."],
+  },
+  "announcement-bar": {
+    preview: <AnnouncementBar message="New: pricing tables and feature grids." link={{ label: "See what's new", href: "#changelog" }} dismissible />,
+    importLine: `import { AnnouncementBar } from "@/components/custom/announcement-bar";`,
+    usage: `<AnnouncementBar
+  message="New: pricing tables and feature grids."
+  link={{ label: "See what's new", href: "/changelog" }}
+  dismissible
+/>`,
+    props: [
+      { name: "message", type: "string", required: true, description: "One short line." },
+      { name: "link", type: "{ label; href }", description: "Optional link after the message." },
+      { name: "dismissible", type: "boolean", default: "false", description: "Adds a close button; dismissal lasts for the page view." },
+      { name: "...props", type: `React.ComponentProps<"div">`, description: "Any other div attribute goes to the root element." },
+    ],
+    a11y: ["The close button is labelled “Dismiss announcement”."],
+  },
+  "navbar-floating": {
+    preview: (
+      <div className="py-6">
+        <NavbarFloating brand="Acme" links={[{ label: "Product", href: "#product" }, { label: "Pricing", href: "#pricing" }, { label: "Docs", href: "#docs" }]} action={{ label: "Sign up", href: "#signup" }} />
+      </div>
+    ),
+    importLine: `import { NavbarFloating } from "@/components/custom/navbar-floating";`,
+    usage: `<NavbarFloating
+  brand="Acme"
+  links={[{ label: "Pricing", href: "/pricing" }]}
+  action={{ label: "Sign up", href: "/signup" }}
+/>`,
+    props: [
+      { name: "brand", type: "string", required: true, description: "Name at the left, linked to brandHref." },
+      { name: "brandHref", type: "string", default: `"/"`, description: "Where the brand links." },
+      { name: "links", type: "{ label; href }[]", required: true, description: "Main navigation." },
+      { name: "action", type: "{ label; href }", description: "Button at the right." },
+      { name: "...props", type: `React.ComponentProps<"header">`, description: "Any other header attribute goes to the root element." },
+    ],
+    a11y: ["Links sit in a nav labelled “Main”; on phones they fold into a details/summary menu labelled “Menu”."],
+    motion: {
+      summary: "Once you scroll, the pill tightens slightly and lifts with a deeper shadow.",
+      preview: (
+        <div className="py-6">
+          <NavbarFloatingMotion brand="Acme" links={[{ label: "Product", href: "#product" }, { label: "Pricing", href: "#pricing" }]} action={{ label: "Sign up", href: "#signup" }} />
+        </div>
+      ),
+      importLine: `import { NavbarFloatingMotion } from "@/components/custom/navbar-floating/navbar-floating-motion";`,
+      usage: `<NavbarFloatingMotion brand="Acme" links={links} />`,
+    },
+  },
+  "footer-simple": {
+    preview: <FooterSimple brand="Acme" note="© Acme. Sample content." links={[{ label: "Privacy", href: "#privacy" }, { label: "Terms", href: "#terms" }, { label: "Contact", href: "#contact" }]} />,
+    importLine: `import { FooterSimple } from "@/components/custom/footer-simple";`,
+    usage: `<FooterSimple brand="Acme" note="© 2026 Acme" links={[{ label: "Privacy", href: "/privacy" }]} />`,
+    props: [
+      { name: "brand", type: "string", required: true, description: "Name at the left." },
+      { name: "links", type: "{ label; href }[]", required: true, description: "A few links in a nav labelled “Footer”." },
+      { name: "note", type: "string", description: "Small print." },
+      { name: "...props", type: `React.ComponentProps<"footer">`, description: "Any other footer attribute goes to the root element." },
+    ],
+    a11y: ["A footer landmark with its own labelled nav."],
   },
 };

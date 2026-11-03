@@ -1060,6 +1060,121 @@
       "registryDependencies": [
         "button"
       ]
+    },
+    {
+      "name": "not-found",
+      "type": "registry:component",
+      "title": "404 page",
+      "description": "A friendly 404 section with a link home and optional helpful links.",
+      "files": [
+        {
+          "path": "src/components/custom/not-found/not-found.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "not-found-motion",
+      "type": "registry:component",
+      "title": "404 page (motion)",
+      "description": "The 404 section with the number tilting toward the mouse pointer.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/not-found.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/not-found/not-found-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "coming-soon",
+      "type": "registry:component",
+      "title": "Coming soon",
+      "description": "Pre-launch section: what's coming, the launch date if known, and a notify form.",
+      "files": [
+        {
+          "path": "src/components/custom/coming-soon/coming-soon.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "badge",
+        "button"
+      ]
+    },
+    {
+      "name": "announcement-bar",
+      "type": "registry:component",
+      "title": "Announcement bar",
+      "description": "A slim, optionally dismissible bar above the navbar for one announcement.",
+      "files": [
+        {
+          "path": "src/components/custom/announcement-bar/announcement-bar.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "navbar-floating",
+      "type": "registry:component",
+      "title": "Navbar: floating",
+      "description": "A pill-shaped navbar floating over the page; links fold into a no-JS menu on phones.",
+      "files": [
+        {
+          "path": "src/components/custom/navbar-floating/navbar-floating.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "navbar-floating-motion",
+      "type": "registry:component",
+      "title": "Navbar: floating (motion)",
+      "description": "The floating navbar tightening and lifting once you scroll.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "button",
+        "https://tapas-ui.vercel.app/r/navbar-floating.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/navbar-floating/navbar-floating-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer-simple",
+      "type": "registry:component",
+      "title": "Footer: simple",
+      "description": "A one-row footer with brand, a few links and small print.",
+      "files": [
+        {
+          "path": "src/components/custom/footer-simple/footer-simple.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
