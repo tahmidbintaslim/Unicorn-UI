@@ -45,6 +45,12 @@ export function installMotionMocks() {
     rootMargin = "";
     thresholds = [];
   }
+  class RO {
+    observe() {}
+    unobserve() {}
+    disconnect() {}
+  }
+  Object.defineProperty(window, "ResizeObserver", { configurable: true, writable: true, value: RO });
   Object.defineProperty(window, "IntersectionObserver", { configurable: true, writable: true, value: IO });
   Object.defineProperty(globalThis, "IntersectionObserver", { configurable: true, writable: true, value: IO });
 }

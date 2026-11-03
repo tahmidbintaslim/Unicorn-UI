@@ -11,6 +11,8 @@ export async function getStarCount(): Promise<number | null> {
     const res = await fetch(API, {
       headers: { Accept: "application/vnd.github+json" },
       next: { revalidate: 3600 },
+      // A slow GitHub must not hold up rendering; fall back to no count.
+      signal: AbortSignal.timeout(3000),
     });
     if (!res.ok) return null;
     const data = (await res.json()) as { stargazers_count?: unknown };

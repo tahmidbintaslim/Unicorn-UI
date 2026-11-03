@@ -24,10 +24,15 @@ export function HeroVideoMotion(props: HeroVideoProps) {
   const video = React.useRef<HTMLVideoElement>(null);
 
   React.useEffect(() => {
-    if (playing) void video.current?.play().catch(() => {});
+    if (!playing) return;
+    // The play button unmounts, so hand keyboard focus to the player.
+    video.current?.focus();
+    void video.current?.play().catch(() => {});
   }, [playing]);
 
-  if (reduced) return <HeroVideo {...props} />;
+  // Server HTML and the first client render are the plain player; the poster
+  // button only appears after mount, so hydration always matches.
+  if (!mounted || reduced) return <HeroVideo {...props} />;
 
   return (
     <section className={cn("mx-auto max-w-5xl px-4 py-16 text-center", className)} {...sectionProps}>
@@ -37,6 +42,7 @@ export function HeroVideoMotion(props: HeroVideoProps) {
           <motion.video
             ref={video}
             layoutId="hero-video"
+            tabIndex={0}
             controls
             poster={poster}
             aria-label={posterAlt}
@@ -49,11 +55,12 @@ export function HeroVideoMotion(props: HeroVideoProps) {
         ) : (
           <motion.button
             type="button"
-            layoutId={mounted ? "hero-video" : undefined}
+            layoutId="hero-video"
             aria-label={`Play video: ${posterAlt}`}
             onClick={() => setPlaying(true)}
             className="group relative block aspect-video w-full overflow-hidden rounded-2xl border bg-muted shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
-            {...(mounted ? { whileHover: { scale: 1.01 }, transition: { duration: 0.4, ease: EASE } } : {})}
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.4, ease: EASE }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element -- plain img keeps the section framework-agnostic */}
             <img src={poster} alt="" className="size-full object-cover" />

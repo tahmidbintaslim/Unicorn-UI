@@ -114,8 +114,9 @@ export function Playground({ sources }: { sources: Record<string, { plain: strin
           </TabsContent>
         </Tabs>
         <div className="min-w-0 lg:pt-12">
+          {/* Not inert: the theme-cycle preview's pause button must stay reachable. */}
           <div
-            inert
+            role="region"
             aria-label="Live preview"
             className={cn("theme-demo light grid h-[26rem] place-items-center overflow-hidden rounded-xl border bg-background text-foreground")}
           >

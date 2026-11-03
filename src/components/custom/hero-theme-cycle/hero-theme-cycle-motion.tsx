@@ -25,12 +25,13 @@ export function HeroThemeCycleMotion(props: HeroThemeCycleProps) {
     primaryAction,
     secondaryAction,
     accentWord,
-    themes = DEFAULT_CYCLE_THEMES,
+    themes: themesProp,
     interval = 2500,
     className,
     style,
     ...rest
   } = props;
+  const themes = themesProp && themesProp.length > 0 ? themesProp : DEFAULT_CYCLE_THEMES;
   const reduced = useReducedMotion();
   const animate = useMounted() && !reduced;
   const [index, setIndex] = React.useState(0);
@@ -100,7 +101,11 @@ export function HeroThemeCycleMotion(props: HeroThemeCycleProps) {
           type="button"
           aria-pressed={paused}
           aria-label="Pause color cycling"
-          onClick={() => setPaused((p) => !p)}
+          onClick={() => {
+            // Pressing play should resume now, not after focus leaves the button.
+            setHeld(false);
+            setPaused((p) => !p);
+          }}
           className="inline-grid size-8 place-items-center rounded-full border transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-ring"
         >
           {paused ? <Play aria-hidden="true" className="size-3.5" /> : <Pause aria-hidden="true" className="size-3.5" />}

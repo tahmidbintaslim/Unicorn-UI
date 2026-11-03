@@ -9,6 +9,12 @@ import React from "react";
 import { HeroMarquee, MarqueeEntry, type HeroMarqueeProps } from "./hero-marquee";
 
 const noop = () => () => {};
+
+/** How many copies of the items fill one loop plus the copy sliding in. */
+export function copiesNeeded(containerWidth: number, copyWidth: number) {
+  if (copyWidth <= 0) return 2;
+  return Math.max(2, Math.ceil(containerWidth / copyWidth) + 1);
+}
 /** False on the server and during hydration, true once mounted in the browser. */
 const useMounted = () => React.useSyncExternalStore(noop, () => true, () => false);
 
@@ -25,10 +31,24 @@ export function HeroMarqueeMotion(props: HeroMarqueeProps) {
   const [held, setHeld] = React.useState(false);
   const x = useMotionValue(0);
   const track = React.useRef<HTMLDivElement>(null);
+  const frame = React.useRef<HTMLDivElement>(null);
+  const first = React.useRef<HTMLUListElement>(null);
+  const [copies, setCopies] = React.useState(2);
+
+  // Few or narrow items would leave a gap before the loop jumps back, so
+  // repeat them until one copy past the container is always ready.
+  React.useEffect(() => {
+    if (!animate || !frame.current || !first.current) return;
+    const measure = () => setCopies(copiesNeeded(frame.current!.clientWidth, first.current!.scrollWidth));
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(frame.current);
+    return () => ro.disconnect();
+  }, [animate, items]);
 
   useAnimationFrame((_, delta) => {
     if (!animate || paused || held || !track.current) return;
-    const loop = track.current.scrollWidth / 2;
+    const loop = first.current?.scrollWidth ?? 0;
     if (!loop) return;
     let next = x.get() - (loop / speed) * (delta / 1000);
     if (next <= -loop) next += loop;
@@ -57,6 +77,7 @@ export function HeroMarqueeMotion(props: HeroMarqueeProps) {
         </div>
       )}
       <div
+        ref={frame}
         className="mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
         onPointerEnter={() => setHeld(true)}
         onPointerLeave={() => setHeld(false)}
@@ -64,16 +85,18 @@ export function HeroMarqueeMotion(props: HeroMarqueeProps) {
         onBlur={() => setHeld(false)}
       >
         <motion.div ref={track} className="flex w-max" style={{ x }}>
-          <ul className="flex shrink-0 items-center gap-12 pr-12">
+          <ul ref={first} className="flex shrink-0 items-center gap-12 pr-12">
             {items.map((item) => (
               <MarqueeEntry key={item.name} item={item} />
             ))}
           </ul>
-          <ul data-slot="marquee-clone" aria-hidden="true" inert className="flex shrink-0 items-center gap-12 pr-12">
-            {items.map((item) => (
-              <MarqueeEntry key={item.name} item={item} />
-            ))}
-          </ul>
+          {Array.from({ length: copies - 1 }, (_, c) => (
+            <ul key={c} data-slot="marquee-clone" aria-hidden="true" inert className="flex shrink-0 items-center gap-12 pr-12">
+              {items.map((item) => (
+                <MarqueeEntry key={item.name} item={item} />
+              ))}
+            </ul>
+          ))}
         </motion.div>
       </div>
       <button

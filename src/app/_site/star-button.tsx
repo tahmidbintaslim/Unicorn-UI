@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Github } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
+import React from "react";
 import { GITHUB_URL } from "./links";
 
 /** "Star on GitHub" link with the live star count, which pops in when it changes. */
@@ -19,6 +20,9 @@ export function StarButton({
   className?: string;
 }) {
   const reduced = useReducedMotion();
+  // The first count renders as-is (server and hydration match); a new count pops in.
+  const firstCount = React.useRef(count);
+  const pop = !reduced && count !== firstCount.current;
   return (
     <Button asChild variant={variant} size={size} className={className}>
       <a href={GITHUB_URL}>
@@ -27,12 +31,11 @@ export function StarButton({
         {count !== null && (
           <motion.span
             key={count}
-            aria-label={`${count.toLocaleString("en-US")} stars`}
             className={cn(
               "ml-0.5 rounded-full px-2 py-0.5 font-mono text-[11px] tabular-nums",
               variant === "default" ? "bg-primary-foreground/15" : "bg-muted",
             )}
-            initial={reduced ? false : { scale: 0.6, opacity: 0.4 }}
+            initial={pop ? { scale: 0.6, opacity: 0.4 } : false}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 500, damping: 22 }}
           >

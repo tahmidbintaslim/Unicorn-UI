@@ -21,7 +21,7 @@ export interface HeroThemeCycleProps extends HeroBaseProps, Omit<React.Component
   interval?: number;
 }
 
-/** Default themes: shadcn's zinc, rose, blue, green and orange primaries. */
+/** Default themes: blue, rose, green, orange and violet primaries from shadcn's palettes. */
 export const DEFAULT_CYCLE_THEMES: CycleTheme[] = [
   { name: "Blue", primary: "oklch(0.546 0.245 262.881)", primaryForeground: "oklch(0.97 0.014 254.604)" },
   { name: "Rose", primary: "oklch(0.586 0.253 17.585)", primaryForeground: "oklch(0.969 0.015 12.422)" },

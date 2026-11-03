@@ -23,6 +23,10 @@ describe("Playground", () => {
     fireEvent.click(screen.getByRole("radio", { name: "Compact" }));
     expect(usage()).toContain('className="py-10"');
   });
+  it("preview is not inert, so controls inside it (like pause) stay reachable", () => {
+    render(<Playground sources={sources} />);
+    expect(screen.getByRole("region", { name: "Live preview" }).hasAttribute("inert")).toBe(false);
+  });
   it("replay disabled for plain", () => {
     render(<Playground sources={sources} />);
     expect((screen.getByRole("button", { name: "Replay animation" }) as HTMLButtonElement).disabled).toBe(true);

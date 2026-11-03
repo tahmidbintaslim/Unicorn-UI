@@ -10,6 +10,6 @@ describe("StarButton", () => {
   });
   it("with count shows the formatted number", () => {
     render(<StarButton count={1234} />);
-    expect(screen.getByLabelText("1,234 stars").textContent).toBe("1,234");
+    expect(screen.getByRole("link", { name: /Star on GitHub/ }).textContent).toContain("1,234");
   });
 });

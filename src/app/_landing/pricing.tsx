@@ -11,7 +11,7 @@ const PLANS = [
     period: "forever",
     blurb: "Everything in the open-source library.",
     features: [
-      "Every section, plain and motion",
+      "Every open-source section, plain and motion",
       "Install with the shadcn CLI",
       "Docs, playground and Storybook",
       "MIT license",
@@ -30,7 +30,7 @@ const PLANS = [
       "Figma kit",
       "A year of new templates and updates",
     ],
-    cta: { label: "Star to hear when it launches", href: GITHUB_URL, external: true },
+    cta: { label: "Watch releases on GitHub", href: `${GITHUB_URL}/releases`, external: true },
     featured: true,
   },
 ];

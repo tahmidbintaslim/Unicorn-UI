@@ -9,6 +9,7 @@ import { SECTIONS, getSection } from "../../../_site/sections";
 import { ThemeSwatches } from "../../../_site/theme-swatches";
 import { DOCS } from "../../_content";
 import { CodeBlock, DocsHeader, H2, P, PropsTable, Toc } from "../../_ui";
+import { MotionPreview } from "../../_motion-preview";
 import { VariantSwitch } from "../../_variant-switch";
 
 type Params = { slug: string };
@@ -98,7 +99,7 @@ export default async function SectionPage({ params }: { params: Promise<Params> 
             <TabsContent value="preview" className="mt-3">
               <Variants
                 plain={<div className={previewClass}>{doc.preview}</div>}
-                motion={motion && <div className={previewClass}>{motion.preview}</div>}
+                motion={motion && <MotionPreview><div className={previewClass}>{motion.preview}</div></MotionPreview>}
               />
             </TabsContent>
             <TabsContent value="code" className="mt-3">

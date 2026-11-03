@@ -33,6 +33,22 @@ describe("HeroThemeCycleMotion", () => {
     render(<HeroThemeCycleMotion title="Your theme, not ours" accentWord="theme" />);
     expect(screen.getByText("theme").className).not.toContain("inline-block");
   });
+  it("empty themes list renders without crashing", () => {
+    render(<HeroThemeCycleMotion {...props} themes={[]} />);
+    expect(screen.getByRole("heading", { level: 1 }).textContent).toBe(props.title);
+  });
+  it("pressing play resumes cycling even while the button has focus", () => {
+    vi.useFakeTimers();
+    const { container } = render(<HeroThemeCycleMotion {...props} interval={1000} />);
+    const section = container.querySelector("section")!;
+    const btn = screen.getByRole("button", { name: "Pause color cycling" });
+    fireEvent.focus(btn);
+    fireEvent.click(btn); // pause
+    fireEvent.click(btn); // play
+    const before = section.style.getPropertyValue("--primary");
+    act(() => vi.advanceTimersByTime(1000));
+    expect(section.style.getPropertyValue("--primary")).not.toBe(before);
+  });
   it("pause stops cycling", () => {
     vi.useFakeTimers();
     const { container } = render(<HeroThemeCycleMotion {...props} interval={1000} />);

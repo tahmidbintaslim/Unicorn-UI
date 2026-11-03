@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { animatedElements, mockReducedMotion, textOf } from "@/test/motion";
@@ -21,6 +21,12 @@ describe("HeroVideoMotion", () => {
   it("motion play button has a descriptive label", () => {
     render(<HeroVideoMotion {...props} />);
     expect(screen.getByRole("button", { name: "Play video: Product tour" })).toBeTruthy();
+  });
+  it("pressing play moves focus to the player", async () => {
+    window.HTMLMediaElement.prototype.play = () => Promise.resolve();
+    render(<HeroVideoMotion {...props} />);
+    fireEvent.click(screen.getByRole("button", { name: "Play video: Product tour" }));
+    await waitFor(() => expect(document.activeElement?.tagName).toBe("VIDEO"));
   });
   it("reduced motion renders plain", () => {
     mockReducedMotion(true);

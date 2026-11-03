@@ -41,3 +41,12 @@ describe("HeroMarqueeMotion", () => {
     expect(html).not.toMatch(/opacity:\s*0[;"]/);
   });
 });
+
+describe("copiesNeeded", () => {
+  it("repeats the items until one loop covers the container", async () => {
+    const { copiesNeeded } = await import("./hero-marquee-motion");
+    expect(copiesNeeded(990, 700)).toBe(3);
+    expect(copiesNeeded(990, 1200)).toBe(2);
+    expect(copiesNeeded(990, 0)).toBe(2);
+  });
+});

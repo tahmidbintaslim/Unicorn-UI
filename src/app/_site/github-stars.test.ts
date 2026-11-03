@@ -8,6 +8,12 @@ describe("getStarCount", () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response(JSON.stringify({ stargazers_count: 42 }), { status: 200 })));
     expect(await getStarCount()).toBe(42);
   });
+  it("passes a timeout signal so a slow GitHub can't block rendering", async () => {
+    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify({ stargazers_count: 1 }), { status: 200 }));
+    vi.stubGlobal("fetch", fetchMock);
+    await getStarCount();
+    expect(fetchMock.mock.calls[0][1].signal).toBeInstanceOf(AbortSignal);
+  });
   it("returns null on 403", async () => {
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response("rate limited", { status: 403 })));
     expect(await getStarCount()).toBeNull();

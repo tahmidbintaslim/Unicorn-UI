@@ -459,6 +459,7 @@
       "title": "Hero: marquee (motion)",
       "description": "The marquee hero with an endless scrolling row that pauses on hover, focus or the pause button.",
       "dependencies": [
+        "lucide-react",
         "motion"
       ],
       "registryDependencies": [
