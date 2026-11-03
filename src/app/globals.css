@@ -182,3 +182,14 @@
 ::selection {
   background: color-mix(in oklch, var(--brand) 35%, transparent);
 }
+
+/* Docs Plain/Motion switch (see app/docs/_variant-switch.tsx). */
+.variant-scope [data-variant="motion"] {
+  display: none;
+}
+.variant-scope:has(input[value="motion"]:checked) [data-variant="motion"] {
+  display: block;
+}
+.variant-scope:has(input[value="motion"]:checked) [data-variant="plain"] {
+  display: none;
+}

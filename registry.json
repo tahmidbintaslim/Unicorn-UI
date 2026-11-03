@@ -222,6 +222,26 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "hero-motion",
+      "type": "registry:component",
+      "title": "Hero (motion)",
+      "description": "The centered hero with an entrance: title words rise in, then the text and buttons. Respects reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapas-ui.vercel.app/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero/hero-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

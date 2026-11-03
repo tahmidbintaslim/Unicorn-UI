@@ -4,7 +4,7 @@ import { CtaBanner } from "@/components/custom/cta-banner";
 import { Faq } from "@/components/custom/faq";
 import { FeatureCard } from "@/components/custom/feature-card";
 import { Footer } from "@/components/custom/footer";
-import { Hero } from "@/components/custom/hero";
+import { Hero, HeroMotion } from "@/components/custom/hero";
 import { InteractiveCard } from "@/components/custom/interactive-card";
 import { LogoCloud } from "@/components/custom/logo-cloud";
 import { Navbar } from "@/components/custom/navbar";
@@ -22,6 +22,17 @@ export interface PropDoc {
   description: string;
 }
 
+/** The optional motion version of a section, shown behind the docs Plain/Motion switch. */
+export interface MotionDoc {
+  preview: React.ReactNode;
+  importLine: string;
+  usage: string;
+  /** Props only the motion version has. */
+  extraProps?: PropDoc[];
+  /** What moves, in one or two sentences. */
+  summary: string;
+}
+
 export interface SectionDoc {
   /** Live preview, rendered with the visitor's theme. */
   preview: React.ReactNode;
@@ -33,6 +44,7 @@ export interface SectionDoc {
   a11y: string[];
   /** Narrow previews (cards) sit in a centered column. */
   narrow?: boolean;
+  motion?: MotionDoc;
 }
 
 const ROOT_PROPS = (el: string): PropDoc => ({
@@ -102,6 +114,25 @@ export const DOCS: Record<string, SectionDoc> = {
       ROOT_PROPS("section"),
     ],
     a11y: ["The title is an h1, so use one Hero per page."],
+    motion: {
+      summary: "The title's words rise in one after another, then the description and buttons follow.",
+      preview: (
+        <HeroMotion
+          eyebrow="New"
+          title="Ship your landing page today"
+          description="Copy the sections you need and make them yours."
+          primaryAction={{ label: "Get started", href: "#start" }}
+          secondaryAction={{ label: "Learn more", href: "#more" }}
+        />
+      ),
+      importLine: `import { HeroMotion } from "@/components/custom/hero/hero-motion";`,
+      usage: `<HeroMotion
+  eyebrow="New"
+  title="Ship your landing page today"
+  description="Copy the sections you need and make them yours."
+  primaryAction={{ label: "Get started", href: "/signup" }}
+/>`,
+    },
   },
   "logo-cloud": {
     preview: <LogoCloud logos={[{ name: "Acme" }, { name: "Globex" }, { name: "Initech" }, { name: "Umbrella" }]} />,

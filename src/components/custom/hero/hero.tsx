@@ -8,7 +8,8 @@ export interface HeroAction {
   href: string;
 }
 
-export interface HeroProps extends Omit<React.ComponentProps<"section">, "title"> {
+/** Content props every Tapas hero shares; variants extend this. */
+export interface HeroBaseProps {
   /** Small label above the title */
   eyebrow?: string;
   title: string;
@@ -16,6 +17,8 @@ export interface HeroProps extends Omit<React.ComponentProps<"section">, "title"
   primaryAction?: HeroAction;
   secondaryAction?: HeroAction;
 }
+
+export interface HeroProps extends HeroBaseProps, Omit<React.ComponentProps<"section">, "title"> {}
 
 /** Centered landing-page hero with an optional badge and up to two links. */
 export function Hero({

@@ -10,6 +10,7 @@ export const metadata = {
 
 export default function SectionsIndex() {
   const groups = [
+    { title: "Heroes", items: SECTIONS.filter((s) => s.kind === "hero") },
     { title: "Page sections", items: SECTIONS.filter((s) => s.kind === "block") },
     { title: "Cards", items: SECTIONS.filter((s) => s.kind === "card") },
   ];
@@ -37,7 +38,12 @@ export default function SectionsIndex() {
                     </div>
                   )}
                   <div className="space-y-1.5 p-4">
-                    <h3 className="font-semibold">{s.title}</h3>
+                    <h3 className="flex items-center gap-2 font-semibold">
+                      {s.title}
+                      {s.motionSlug && (
+                        <span className="rounded-full border border-brand/40 px-2 py-0.5 text-[11px] font-medium text-brand">Motion</span>
+                      )}
+                    </h3>
                     <p className="text-sm leading-relaxed text-muted-foreground">{s.description}</p>
                   </div>
                 </Link>
