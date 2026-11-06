@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
 import Link from "next/link";
+import { PRO_PRICE_LABEL } from "@/lib/pro-config";
 import { GITHUB_URL } from "../_site/links";
 
 const PLANS = [
@@ -35,11 +36,17 @@ const PLANS = [
   },
 ];
 
-/** Free vs Pro. Pro has no price yet, so it shows "Coming soon" instead of a number. */
-export function Pricing() {
+/**
+ * Free vs Pro. Until Pro sales open (premium content shipped and the owner
+ * flips PRO_SALES_OPEN), Pro shows "Coming soon" instead of a price.
+ */
+export function Pricing({ salesOpen = process.env.PRO_SALES_OPEN === "true" }: { salesOpen?: boolean }) {
+  const plans = PLANS.map((p) =>
+    p.name === "Pro" && salesOpen ? { ...p, price: PRO_PRICE_LABEL, period: "per year", checkout: true } : { ...p, checkout: false },
+  );
   return (
     <ul className="mx-auto grid max-w-4xl gap-5 md:grid-cols-2">
-      {PLANS.map((plan) => (
+      {plans.map((plan) => (
         <li
           key={plan.name}
           aria-label={plan.name}
@@ -64,9 +71,16 @@ export function Pricing() {
               </li>
             ))}
           </ul>
-          <Button asChild variant={plan.featured ? "default" : "outline"} className="mt-8">
-            {plan.cta.external ? <a href={plan.cta.href}>{plan.cta.label}</a> : <Link href={plan.cta.href}>{plan.cta.label}</Link>}
-          </Button>
+          {plan.checkout ? (
+            // Signed-out visitors are sent to GitHub sign-in first, then back to checkout from their account.
+            <form action="/api/checkout" method="post" className="mt-8">
+              <Button className="w-full">Get Pro</Button>
+            </form>
+          ) : (
+            <Button asChild variant={plan.featured ? "default" : "outline"} className="mt-8">
+              {plan.cta.external ? <a href={plan.cta.href}>{plan.cta.label}</a> : <Link href={plan.cta.href}>{plan.cta.label}</Link>}
+            </Button>
+          )}
         </li>
       ))}
     </ul>

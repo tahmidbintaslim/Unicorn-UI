@@ -21,3 +21,16 @@ describe("Pricing", () => {
     expect(free.textContent).toMatch(/every open-source section/i);
   });
 });
+
+describe("Pricing once Pro sales open", () => {
+  it("shows the yearly price and a checkout button posting to /api/checkout", () => {
+    render(<Pricing salesOpen />);
+    const pro = screen.getByRole("listitem", { name: "Pro" });
+    expect(pro.textContent).toContain("$49");
+    expect(pro.textContent).toMatch(/per year/i);
+    const button = within(pro).getByRole("button", { name: /get pro/i });
+    const form = button.closest("form")!;
+    expect(form.getAttribute("action")).toBe("/api/checkout");
+    expect(form.getAttribute("method")).toBe("post");
+  });
+});
