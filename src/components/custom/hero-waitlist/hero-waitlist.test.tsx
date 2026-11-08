@@ -50,3 +50,14 @@ describe("HeroWaitlistMotion", () => {
     expect(html).not.toMatch(/opacity:\s*0[;"]/);
   });
 });
+
+describe("HeroWaitlist honeypot", () => {
+  it("renders a hidden, unlabelled-to-humans field when honeypotName is set", () => {
+    const { container } = render(<HeroWaitlist title="T" action="/w" honeypotName="website" />);
+    const trap = container.querySelector<HTMLInputElement>('input[name="website"]')!;
+    expect(trap).not.toBeNull();
+    expect(trap.tabIndex).toBe(-1);
+    expect(trap.autocomplete).toBe("off");
+    expect(trap.closest("[aria-hidden=true]")).not.toBeNull();
+  });
+});

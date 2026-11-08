@@ -55,4 +55,17 @@ describe("waitlist route", () => {
     expect(res.status).toBe(303);
     expect(outcome(res)).toBe("invalid");
   });
+
+  it("quietly drops bot submissions that fill the hidden honeypot field", async () => {
+    vi.stubEnv("RESEND_API_KEY", "re_test");
+    vi.stubEnv("RESEND_AUDIENCE_ID", "aud_1");
+    const fetch = vi.fn();
+    vi.stubGlobal("fetch", fetch);
+    const body = new FormData();
+    body.set("email", "bot@example.com");
+    body.set("website", "http://spam.example");
+    const res = await POST(new Request("http://site/x", { method: "POST", body }));
+    expect(outcome(res)).toBe("1");
+    expect(fetch).not.toHaveBeenCalled();
+  });
 });

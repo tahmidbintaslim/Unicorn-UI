@@ -33,6 +33,7 @@ export function HeroWaitlistMotion({
   inputLabel = "Email address",
   buttonLabel = "Join the waitlist",
   note,
+  honeypotName,
   onSubmit,
   className,
   ...props
@@ -113,6 +114,15 @@ export function HeroWaitlistMotion({
                   {status === "sending" ? "Sending…" : buttonLabel}
                 </motion.span>
               </Button>
+                {honeypotName && (
+                  // Bots fill every field; people never see this one. Your endpoint should drop submissions that fill it.
+                  <div aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden">
+                    <label>
+                      Leave this empty
+                      <input name={honeypotName} tabIndex={-1} autoComplete="off" />
+                    </label>
+                  </div>
+                )}
             </motion.form>
           )}
         </AnimatePresence>

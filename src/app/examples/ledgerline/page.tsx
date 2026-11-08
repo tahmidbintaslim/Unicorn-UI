@@ -17,7 +17,7 @@ export default async function LedgerlineHome({ searchParams }: { searchParams: P
   const message = checkout === "success" ? "Test checkout complete. Nothing was charged." : joined && Object.hasOwn(MESSAGES, joined) ? MESSAGES[joined] : undefined;
   return (
     <>
-      <HeroWaitlist id="join" action="/examples/ledgerline/api/waitlist" {...c.hero} />
+      <HeroWaitlist id="join" action="/examples/ledgerline/api/waitlist" honeypotName="website" {...c.hero} />
       {message && (
         <p role="status" className="mx-auto -mt-6 mb-10 max-w-md rounded-lg border bg-muted/50 px-4 py-3 text-center text-sm">
           {message}
