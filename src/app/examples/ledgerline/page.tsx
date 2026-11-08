@@ -14,7 +14,7 @@ const MESSAGES: Record<string, string> = {
 
 export default async function LedgerlineHome({ searchParams }: { searchParams: Promise<{ joined?: string; checkout?: string }> }) {
   const { joined, checkout } = await searchParams;
-  const message = checkout === "success" ? "Test checkout complete. Nothing was charged." : joined && MESSAGES[joined];
+  const message = checkout === "success" ? "Test checkout complete. Nothing was charged." : joined && Object.hasOwn(MESSAGES, joined) ? MESSAGES[joined] : undefined;
   return (
     <>
       <HeroWaitlist id="join" action="/examples/ledgerline/api/waitlist" {...c.hero} />

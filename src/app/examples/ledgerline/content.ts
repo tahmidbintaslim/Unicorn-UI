@@ -64,7 +64,11 @@ export const content = {
         popular: true,
         features: ["Unlimited clients", "Card and bank payments", "Custom reminder schedule"],
         // A Stripe Payment Link: hosted checkout, no server code. Test mode.
-        cta: { label: "Start Pro (test checkout)", href: "https://buy.stripe.com/test_dRmeVc2Kp1gX4vkf2h1ck00" },
+        cta: {
+          label: "Start Pro (test checkout)",
+          href: "https://buy.stripe.com/test_dRmeVc2Kp1gX4vkf2h1ck00",
+          yearlyHref: "https://buy.stripe.com/test_dRmbJ0fxb5xd5zo07n1ck01",
+        },
       },
     ],
   },

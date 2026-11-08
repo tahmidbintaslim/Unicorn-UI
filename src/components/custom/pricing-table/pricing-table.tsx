@@ -12,7 +12,8 @@ export interface PricingPlan {
   /** Price per year on yearly billing */
   yearly: number;
   features: string[];
-  cta: { label: string; href: string };
+  /** `yearlyHref` (optional) is used while the yearly period is selected, such as a yearly checkout link. */
+  cta: { label: string; href: string; yearlyHref?: string };
   popular?: boolean;
 }
 
@@ -75,9 +76,21 @@ export function PlanList({
               </li>
             ))}
           </ul>
-          <Button asChild variant={plan.popular ? "default" : "outline"} className="mt-8">
-            <a href={plan.cta.href}>{plan.cta.label}</a>
-          </Button>
+          {plan.cta.yearlyHref ? (
+            // Same CSS switch as the prices: the link matching the checked period shows.
+            <>
+              <Button asChild variant={plan.popular ? "default" : "outline"} className="mt-8 group-has-[[data-period-input=yearly]:checked]:hidden">
+                <a href={plan.cta.href}>{plan.cta.label}</a>
+              </Button>
+              <Button asChild variant={plan.popular ? "default" : "outline"} className="mt-8 hidden group-has-[[data-period-input=yearly]:checked]:inline-flex">
+                <a href={plan.cta.yearlyHref}>{plan.cta.label}</a>
+              </Button>
+            </>
+          ) : (
+            <Button asChild variant={plan.popular ? "default" : "outline"} className="mt-8">
+              <a href={plan.cta.href}>{plan.cta.label}</a>
+            </Button>
+          )}
         </li>
       ))}
     </ul>

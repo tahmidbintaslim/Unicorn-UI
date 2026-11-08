@@ -49,4 +49,10 @@ describe("waitlist route", () => {
     vi.stubGlobal("fetch", vi.fn(async () => new Response("no", { status: 500 })));
     expect(outcome(await post("ana@example.com"))).toBe("error");
   });
+
+  it("treats a request that isn't a form as invalid, not a server error", async () => {
+    const res = await POST(new Request("http://site/x", { method: "POST", body: JSON.stringify({ email: "a@b.co" }), headers: { "Content-Type": "application/json" } }));
+    expect(res.status).toBe(303);
+    expect(outcome(res)).toBe("invalid");
+  });
 });

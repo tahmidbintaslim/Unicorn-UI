@@ -130,7 +130,7 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
   ]}
 />`,
     props: [
-      { name: "plans", type: "PricingPlan[]", required: true, description: "{ name, description?, monthly, yearly, features, cta, popular? }." },
+      { name: "plans", type: "PricingPlan[]", required: true, description: "{ name, description?, monthly, yearly, features, cta: { label, href, yearlyHref? }, popular? }. yearlyHref is used while Yearly is selected, such as a yearly checkout link." },
       { name: "title", type: "string", default: `"Pricing"`, description: "Heading (h2)." },
       { name: "description", type: "string", description: "Line under the heading." },
       { name: "currency", type: "string", default: `"$"`, description: "Symbol before prices." },

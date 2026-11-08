@@ -9,3 +9,7 @@ overrides:
   "ajv@<7": ">=6.14.0 <7"
   # jsdom (tests only): GHSA-xjj6-f33q-929c, high, fixed in 7.30.1
   "undici": ">=7.30.1 <8"
+  # Storybook dev server (dev only): high, fixed in 7.4.6
+  "webpack-dev-middleware@<7.4.6": ">=7.4.6 <8"
+  # ESLint plugins (dev only): moderate, fixed in 11.0.1
+  "minimatch@>=7.0.0 <11.0.1": ">=11.0.1 <12"
