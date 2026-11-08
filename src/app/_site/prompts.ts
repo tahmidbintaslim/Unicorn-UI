@@ -1,4 +1,4 @@
-import { REGISTRY_URL, installCommand } from "./links";
+import { REGISTRY_URL, SITE_URL, installCommand } from "./links";
 
 /** Namespace for the shadcn registry, so agents and the CLI can say `@tapas/<name>`. */
 export const REGISTRY_NAMESPACE = "@tapas";
@@ -9,13 +9,14 @@ export const registriesSnippet = `"registries": {
 }`;
 
 /** A ready-to-paste prompt for Cursor, v0, Lovable or Claude Code that adds one section. */
-export function aiPrompt({ slug, title, usage }: { slug: string; title: string; usage: string }) {
+export function aiPrompt({ slug, title, usage }: { slug: string; title: string; usage?: string }) {
+  const use = usage
+    ? `Use it like this, then replace the sample copy with my product's real content:\n\n${usage}`
+    : `Its props and usage are at ${SITE_URL}/docs/sections/${slug.replace(/-motion$/, "")}. Replace the sample copy with my product's real content.`;
   return `Add the Tapas UI "${title}" section to my Next.js + shadcn/ui project.
 
 1. Install it: ${installCommand(slug)}
-2. Use it like this, then replace the sample copy with my product's real content:
-
-${usage}
+2. ${use}
 
 Keep my shadcn theme tokens (primary, muted, card, border); don't add hard-coded colors.`;
 }

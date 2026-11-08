@@ -21,4 +21,10 @@ describe("copy prompts", () => {
     expect(m).toContain("@tapas/hero");
     expect(m).toContain('"@tapas": "https://tapasui.tahmid.space/r/{name}.json"');
   });
+
+  it("without usage, the prompt points to the plain section's docs page", () => {
+    const q = aiPrompt({ slug: "faq-motion", title: "FAQ (motion)" });
+    expect(q).toContain("https://tapasui.tahmid.space/docs/sections/faq");
+    expect(q).not.toContain("faq-motion\nIts");
+  });
 });
