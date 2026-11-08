@@ -223,6 +223,7 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
       { name: "inputLabel", type: "string", default: `"Email address"`, description: "Label for the email field (visually hidden)." },
       { name: "buttonLabel", type: "string", default: `"Join the waitlist"`, description: "Submit button text." },
       { name: "note", type: "string", description: "Small print under the form." },
+      { name: "honeypotName", type: "string", description: "Name of a hidden field only bots fill in. Your endpoint should drop submissions where it is not empty." },
       ROOT,
     ],
     a11y: ["The email field has a real label and uses type=\"email\" with autocomplete, so browsers validate and fill it."],

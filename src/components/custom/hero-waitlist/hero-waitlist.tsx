@@ -14,6 +14,8 @@ export interface HeroWaitlistProps
   buttonLabel?: string;
   /** Small print under the form, such as "No spam." */
   note?: string;
+  /** Name of a hidden field that people never see; bots fill it in. Drop submissions where it isn't empty. */
+  honeypotName?: string;
 }
 
 /** Hero with an email signup. A plain HTML form: works without JavaScript. */
@@ -26,6 +28,7 @@ export function HeroWaitlist({ titleAs: TitleTag = "h1",
   inputLabel = "Email address",
   buttonLabel = "Join the waitlist",
   note,
+  honeypotName,
   className,
   ...props
 }: HeroWaitlistProps) {
@@ -51,6 +54,15 @@ export function HeroWaitlist({ titleAs: TitleTag = "h1",
         <Button type="submit" size="lg">
           {buttonLabel}
         </Button>
+        {honeypotName && (
+          // Bots fill every field; people never see this one. Your endpoint should drop submissions that fill it.
+          <div aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden">
+            <label>
+              Leave this empty
+              <input name={honeypotName} tabIndex={-1} autoComplete="off" />
+            </label>
+          </div>
+        )}
       </form>
       {note && <p className="mt-3 text-sm text-muted-foreground">{note}</p>}
     </section>

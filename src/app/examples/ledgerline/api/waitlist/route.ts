@@ -8,6 +8,8 @@ export async function POST(request: Request) {
   const form = await request.formData().catch(() => null);
   const email = String(form?.get("email") ?? "").trim().toLowerCase();
   const back = (joined: string) => Response.redirect(new URL(`/examples/ledgerline?joined=${joined}#join`, request.url), 303);
+  // The hidden "website" field is a honeypot: only bots fill it. Look successful, store nothing.
+  if (String(form?.get("website") ?? "") !== "") return back("1");
   if (email.length > 254 || !EMAIL.test(email)) return back("invalid");
 
   const key = process.env.RESEND_API_KEY;
