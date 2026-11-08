@@ -8,7 +8,7 @@ const meta = {
   args: {
     title: "Install a section in one line",
     description: "Then edit it like any other file in your project.",
-    command: "npx shadcn@latest add https://tapas-ui.vercel.app/r/hero.json",
+    command: "npx shadcn@latest add https://tapasui.tahmid.space/r/hero.json",
     primaryAction: { label: "Read the docs", href: "#docs" },
   },
 } satisfies Meta<typeof HeroCommand>;

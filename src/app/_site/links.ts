@@ -1,5 +1,5 @@
 /** Site-wide URLs, kept in one place so renames touch one file. */
-export const SITE_URL = "https://tapas-ui.vercel.app";
+export const SITE_URL = "https://tapasui.tahmid.space";
 export const REGISTRY_URL = `${SITE_URL}/r`;
 export const GITHUB_URL = "https://github.com/tahmidbintaslim/tapas-ui";
 export const GOOD_FIRST_ISSUES_URL = `${GITHUB_URL}/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22`;

@@ -12,7 +12,7 @@ export interface HeroSplitProps extends HeroBaseProps, Omit<React.ComponentProps
 }
 
 /** Two-column hero: copy on one side, your product on the other. */
-export function HeroSplit({
+export function HeroSplit({ titleAs: TitleTag = "h1",
   eyebrow,
   title,
   description,
@@ -30,7 +30,7 @@ export function HeroSplit({
     >
       <div className={cn("text-center lg:text-left", mediaPosition === "left" && "lg:order-2")}>
         {eyebrow && <Badge variant="secondary">{eyebrow}</Badge>}
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</h1>
+        <TitleTag className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</TitleTag>
         {description && <p className="mt-4 text-lg text-pretty text-muted-foreground">{description}</p>}
         {(primaryAction || secondaryAction) && (
           <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">

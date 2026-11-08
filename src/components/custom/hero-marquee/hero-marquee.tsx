@@ -33,7 +33,7 @@ export function MarqueeEntry({ item }: { item: MarqueeItem }) {
 }
 
 /** Hero over a row of logos or product names. */
-export function HeroMarquee({
+export function HeroMarquee({ titleAs: TitleTag = "h1",
   eyebrow,
   title,
   description,
@@ -48,7 +48,7 @@ export function HeroMarquee({
   return (
     <section className={cn("mx-auto max-w-5xl px-4 py-16 text-center", className)} {...props}>
       {eyebrow && <Badge variant="secondary">{eyebrow}</Badge>}
-      <h1 className="mx-auto mt-4 max-w-3xl text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</h1>
+      <TitleTag className="mx-auto mt-4 max-w-3xl text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</TitleTag>
       {description && <p className="mx-auto mt-4 max-w-2xl text-lg text-pretty text-muted-foreground">{description}</p>}
       {(primaryAction || secondaryAction) && (
         <div className="mt-8 flex flex-wrap justify-center gap-3">

@@ -17,7 +17,7 @@ export interface HeroWaitlistProps
 }
 
 /** Hero with an email signup. A plain HTML form: works without JavaScript. */
-export function HeroWaitlist({
+export function HeroWaitlist({ titleAs: TitleTag = "h1",
   eyebrow,
   title,
   description,
@@ -33,7 +33,7 @@ export function HeroWaitlist({
   return (
     <section className={cn("mx-auto max-w-2xl px-4 py-16 text-center", className)} {...props}>
       {eyebrow && <Badge variant="secondary">{eyebrow}</Badge>}
-      <h1 className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</h1>
+      <TitleTag className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</TitleTag>
       {description && <p className="mt-4 text-lg text-pretty text-muted-foreground">{description}</p>}
       <form action={action} method={method} className="mx-auto mt-8 flex max-w-md flex-col gap-2 sm:flex-row">
         <label htmlFor={id} className="sr-only">

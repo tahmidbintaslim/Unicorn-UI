@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   ],
   creator: "Tahmid Bin Taslim Rafi",
   // The deployed demo. Update this when the Vercel project or domain is renamed.
-  metadataBase: new URL("https://tapas-ui.vercel.app"),
+  metadataBase: new URL("https://tapasui.tahmid.space"),
   openGraph: {
     title: "Tapas UI: copy-paste cards and landing blocks",
     description:

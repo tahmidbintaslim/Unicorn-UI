@@ -25,7 +25,7 @@ export function SpotlightLayers({ glowRef }: { glowRef?: React.Ref<HTMLDivElemen
 }
 
 /** Hero on a grid canvas with a soft glow in your primary color. */
-export function HeroSpotlight({
+export function HeroSpotlight({ titleAs: TitleTag = "h1",
   eyebrow,
   title,
   description,
@@ -39,7 +39,7 @@ export function HeroSpotlight({
       <SpotlightLayers />
       <div className="mx-auto max-w-3xl">
         {eyebrow && <Badge variant="secondary">{eyebrow}</Badge>}
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-6xl">{title}</h1>
+        <TitleTag className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-6xl">{title}</TitleTag>
         {description && <p className="mt-5 text-lg text-pretty text-muted-foreground">{description}</p>}
         {(primaryAction || secondaryAction) && (
           <div className="mt-8 flex flex-wrap justify-center gap-3">

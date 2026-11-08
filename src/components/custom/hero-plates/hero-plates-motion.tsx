@@ -33,7 +33,7 @@ function PlateItem({ plate, index, count, progress }: { plate: Plate; index: num
 export function HeroPlatesMotion(props: HeroPlatesProps) {
   const { plates, className, ...rest } = props;
   // The section always renders with its ref so useScroll has a hydrated target.
-  const { eyebrow, title, description, primaryAction, secondaryAction, ...sectionProps } = rest;
+  const { eyebrow, title, titleAs, description, primaryAction, secondaryAction, ...sectionProps } = rest;
   const reduced = useReducedMotion();
   const animate = useMounted() && !reduced;
   const target = React.useRef<HTMLElement>(null);
@@ -45,7 +45,7 @@ export function HeroPlatesMotion(props: HeroPlatesProps) {
       className={cn("mx-auto grid max-w-6xl items-center gap-12 px-4 py-16 lg:grid-cols-2", className)}
       {...sectionProps}
     >
-      <HeroPlatesCopy {...{ eyebrow, title, description, primaryAction, secondaryAction }} />
+      <HeroPlatesCopy {...{ eyebrow, title, description, primaryAction, secondaryAction, titleAs }} />
       <ul className="mx-auto flex w-full max-w-md flex-col gap-3">
         {plates.map((plate, i) =>
           animate ? (

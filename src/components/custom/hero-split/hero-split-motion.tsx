@@ -19,6 +19,7 @@ const useMounted = () => React.useSyncExternalStore(noop, () => true, () => fals
 export function HeroSplitMotion({
   eyebrow,
   title,
+  titleAs,
   description,
   primaryAction,
   secondaryAction,
@@ -27,6 +28,7 @@ export function HeroSplitMotion({
   className,
   ...props
 }: HeroSplitProps) {
+  const Title = titleAs === "h2" ? motion.h2 : motion.h1;
   const reduced = useReducedMotion();
   const animate = useMounted() && !reduced;
   const px = useMotionValue(0);
@@ -61,9 +63,9 @@ export function HeroSplitMotion({
             <Badge variant="secondary">{eyebrow}</Badge>
           </motion.div>
         )}
-        <motion.h1 className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-5xl" {...rise(0.05)}>
+        <Title className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-5xl" {...rise(0.05)}>
           {title}
-        </motion.h1>
+        </Title>
         {description && (
           <motion.p className="mt-4 text-lg text-pretty text-muted-foreground" {...rise(0.15)}>
             {description}

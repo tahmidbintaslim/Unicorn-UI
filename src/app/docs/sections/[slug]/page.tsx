@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { CopyCommand } from "../../../_site/copy-command";
+import { CopyButton } from "../../../_site/copy-button";
 import { installCommand } from "../../../_site/links";
+import { aiPrompt, mcpPrompt } from "../../../_site/prompts";
 import { SECTIONS, getSection } from "../../../_site/sections";
 import { ThemeSwatches } from "../../../_site/theme-swatches";
 import { DOCS } from "../../_content";
@@ -41,6 +43,16 @@ const TOC = [
 ];
 
 
+function CopyActions({ code, prompt, mcp }: { code: string; prompt: string; mcp: string }) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      <CopyButton text={code} label="Copy code" />
+      <CopyButton text={prompt} label="Copy AI prompt" />
+      <CopyButton text={mcp} label="Copy MCP install" />
+    </div>
+  );
+}
+
 /** Renders the plain block, plus the motion block when the section has one. */
 function Variants({ plain, motion }: { plain: React.ReactNode; motion?: React.ReactNode }) {
   if (!motion) return <>{plain}</>;
@@ -68,6 +80,22 @@ export default async function SectionPage({ params }: { params: Promise<Params> 
     <div className="flex gap-10">
       <article className="variant-scope min-w-0 flex-1 space-y-8">
         <DocsHeader crumb={section.group} title={section.title} lead={section.description} />
+
+        {/* One click to get the section into a project: by hand, through an AI tool, or through the shadcn MCP server. */}
+        <Variants
+          plain={<CopyActions code={source} prompt={aiPrompt({ slug, title: section.title, usage: doc.usage })} mcp={mcpPrompt(slug)} />}
+          motion={
+            motion &&
+            motionSource &&
+            section.motionSlug && (
+              <CopyActions
+                code={motionSource}
+                prompt={aiPrompt({ slug: section.motionSlug, title: `${section.title} (motion)`, usage: motion.usage })}
+                mcp={mcpPrompt(section.motionSlug)}
+              />
+            )
+          }
+        />
 
         <section aria-labelledby="preview" className="theme-showcase space-y-3">
           <h2 id="preview" className="sr-only">

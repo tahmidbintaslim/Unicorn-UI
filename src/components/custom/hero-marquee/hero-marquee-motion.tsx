@@ -24,7 +24,7 @@ const useMounted = () => React.useSyncExternalStore(noop, () => true, () => fals
  * plain wrapped row.
  */
 export function HeroMarqueeMotion(props: HeroMarqueeProps) {
-  const { eyebrow, title, description, primaryAction, secondaryAction, items, speed = 30, className, ...rest } = props;
+  const { eyebrow, title, titleAs: TitleTag = "h1", description, primaryAction, secondaryAction, items, speed = 30, className, ...rest } = props;
   const reduced = useReducedMotion();
   const animate = useMounted() && !reduced;
   const [paused, setPaused] = React.useState(false);
@@ -60,7 +60,7 @@ export function HeroMarqueeMotion(props: HeroMarqueeProps) {
   return (
     <section className={cn("mx-auto max-w-5xl px-4 py-16 text-center", className)} {...rest}>
       {eyebrow && <Badge variant="secondary">{eyebrow}</Badge>}
-      <h1 className="mx-auto mt-4 max-w-3xl text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</h1>
+      <TitleTag className="mx-auto mt-4 max-w-3xl text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</TitleTag>
       {description && <p className="mx-auto mt-4 max-w-2xl text-lg text-pretty text-muted-foreground">{description}</p>}
       {(primaryAction || secondaryAction) && (
         <div className="mt-8 flex flex-wrap justify-center gap-3">

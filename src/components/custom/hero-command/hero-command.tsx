@@ -15,7 +15,7 @@ export interface HeroCommandProps
 }
 
 /** Hero built around one command: the headline, then a big copyable command. */
-export function HeroCommand({
+export function HeroCommand({ titleAs: TitleTag = "h1",
   eyebrow,
   title,
   description,
@@ -28,7 +28,7 @@ export function HeroCommand({
   return (
     <section className={cn("mx-auto max-w-3xl px-4 py-16 text-center", className)} {...props}>
       {eyebrow && <Badge variant="secondary">{eyebrow}</Badge>}
-      <h1 className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</h1>
+      <TitleTag className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</TitleTag>
       {description && <p className="mt-4 text-lg text-pretty text-muted-foreground">{description}</p>}
       <div className="mx-auto mt-8 flex max-w-full items-center gap-2 rounded-xl border bg-muted/50 py-2 pr-2 pl-4 text-left font-mono text-sm sm:w-fit">
         <span aria-hidden="true" className="text-muted-foreground">

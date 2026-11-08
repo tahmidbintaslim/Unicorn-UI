@@ -67,6 +67,7 @@ function SampleChart() {
 }
 
 const hero = {
+  titleAs: "h2" as const,
   eyebrow: "New: usage by feature",
   title: "Know which features your users love",
   description:

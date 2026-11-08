@@ -39,7 +39,7 @@ const STEPS = [
     icon: LayoutGrid,
     title: "Pick a section",
     body: "Browse hero, pricing, FAQ, footer and more. Preview each one in light and dark, in your colors.",
-    code: "tapas-ui.vercel.app/docs/sections",
+    code: "tapasui.tahmid.space/docs/sections",
   },
   {
     icon: Terminal,
@@ -94,11 +94,11 @@ export default function Home() {
         <HeroCanvas>
           <section aria-labelledby="hero-title" className="px-4 pt-24 pb-14 text-center sm:pt-28">
             <Link
-              href="/docs/sections/hero-theme-cycle"
+              href="/templates"
               className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
             >
               <span aria-hidden="true" className="size-1.5 rounded-full bg-brand" />
-              New: 10 heroes, each with a motion version
+              New: 3 free page templates, plain or motion
               <ArrowRight aria-hidden="true" className="size-3.5" />
             </Link>
             <h1

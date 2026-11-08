@@ -17,6 +17,7 @@ export function NotFoundMotion(props: NotFoundProps) {
     description = "The page you're looking for moved or never existed.",
     home = { label: "Back to home", href: "/" },
     links,
+    titleAs,
     className,
     ...rest
   } = props;
@@ -45,7 +46,7 @@ export function NotFoundMotion(props: NotFoundProps) {
       <motion.p aria-hidden="true" style={{ rotateX, rotateY }} className="text-8xl font-black tracking-tighter text-primary sm:text-9xl">
         {code}
       </motion.p>
-      <NotFoundCopy {...{ title, description, home, links }} />
+      <NotFoundCopy {...{ title, description, home, links, titleAs }} />
     </section>
   );
 }

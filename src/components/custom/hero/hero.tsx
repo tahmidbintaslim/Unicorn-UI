@@ -10,6 +10,8 @@ export interface HeroAction {
 
 /** Content props every Tapas hero shares; variants extend this. */
 export interface HeroBaseProps {
+  /** Heading element for the title. Use "h2" when the hero is not the page's main heading, such as in a preview. */
+  titleAs?: "h1" | "h2";
   /** Small label above the title */
   eyebrow?: string;
   title: string;
@@ -21,7 +23,7 @@ export interface HeroBaseProps {
 export interface HeroProps extends HeroBaseProps, Omit<React.ComponentProps<"section">, "title"> {}
 
 /** Centered landing-page hero with an optional badge and up to two links. */
-export function Hero({
+export function Hero({ titleAs: TitleTag = "h1",
   eyebrow,
   title,
   description,
@@ -36,7 +38,7 @@ export function Hero({
       {...props}
     >
       {eyebrow && <Badge variant="secondary">{eyebrow}</Badge>}
-      <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{title}</h1>
+      <TitleTag className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">{title}</TitleTag>
       {description && (
         <p className="mt-4 text-lg text-muted-foreground">{description}</p>
       )}
