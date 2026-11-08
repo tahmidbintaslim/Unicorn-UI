@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 export interface ComingSoonProps extends Omit<React.ComponentProps<"section">, "title"> {
+  /** Heading element for the title. Use "h2" when this is not the page's main heading. */
+  titleAs?: "h1" | "h2";
   title: string;
   description?: string;
   /** Where the notify form posts */
@@ -18,7 +20,7 @@ const formatDate = (iso: string) =>
   new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
 
 /** Pre-launch page section: what's coming, when, and a way to get notified. */
-export function ComingSoon({
+export function ComingSoon({ titleAs: TitleTag = "h1",
   title,
   description,
   action,
@@ -32,7 +34,7 @@ export function ComingSoon({
   return (
     <section className={cn("mx-auto flex min-h-[70vh] max-w-2xl flex-col items-center justify-center px-4 py-24 text-center", className)} {...props}>
       <Badge variant="secondary">{badge}</Badge>
-      <h1 className="mt-5 text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</h1>
+      <TitleTag className="mt-5 text-4xl font-bold tracking-tight text-balance sm:text-5xl">{title}</TitleTag>
       {description && <p className="mt-4 text-lg text-pretty text-muted-foreground">{description}</p>}
       {launchDate && (
         <p className="mt-4 text-sm font-medium">

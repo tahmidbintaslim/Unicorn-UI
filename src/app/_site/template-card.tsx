@@ -10,7 +10,7 @@ function Preview({ template }: { template: TemplateMeta }) {
         {[0, 1, 2].map((i) => (
           <span key={i} className="size-2 rounded-full bg-border" />
         ))}
-        <span className="ml-2 truncate font-mono text-[10px] text-muted-foreground">tapas-ui.vercel.app/templates/{template.slug}</span>
+        <span className="ml-2 truncate font-mono text-[10px] text-muted-foreground">tapasui.tahmid.space/templates/{template.slug}</span>
       </div>
       <div className="relative aspect-[16/10] overflow-hidden bg-background">
         <iframe

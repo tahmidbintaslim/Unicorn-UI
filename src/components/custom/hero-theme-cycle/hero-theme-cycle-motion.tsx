@@ -21,6 +21,7 @@ export function HeroThemeCycleMotion(props: HeroThemeCycleProps) {
   const {
     eyebrow,
     title,
+    titleAs: TitleTag = "h1",
     description,
     primaryAction,
     secondaryAction,
@@ -61,7 +62,7 @@ export function HeroThemeCycleMotion(props: HeroThemeCycleProps) {
       {...rest}
     >
       {eyebrow && <Badge>{eyebrow}</Badge>}
-      <h1 className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-6xl">
+      <TitleTag className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-6xl">
         {parts ? (
           <>
             {parts[0]}
@@ -80,7 +81,7 @@ export function HeroThemeCycleMotion(props: HeroThemeCycleProps) {
         ) : (
           title
         )}
-      </h1>
+      </TitleTag>
       {description && <p className="mt-5 text-lg text-pretty text-muted-foreground">{description}</p>}
       {(primaryAction || secondaryAction) && (
         <div className="mt-8 flex flex-wrap justify-center gap-3">

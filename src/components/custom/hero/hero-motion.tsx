@@ -20,7 +20,7 @@ function useMounted() {
  * description and buttons follow. Same props as `Hero`. Server HTML and
  * reduced-motion visitors get the static layout, with nothing hidden.
  */
-export function HeroMotion({
+export function HeroMotion({ titleAs: TitleTag = "h1",
   eyebrow,
   title,
   description,
@@ -49,7 +49,7 @@ export function HeroMotion({
           <Badge variant="secondary">{eyebrow}</Badge>
         </motion.div>
       )}
-      <h1 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+      <TitleTag className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
         {words.map((word, i) => (
           <React.Fragment key={i}>
             {i > 0 && " "}
@@ -58,7 +58,7 @@ export function HeroMotion({
             </motion.span>
           </React.Fragment>
         ))}
-      </h1>
+      </TitleTag>
       {description && (
         <motion.p className="mt-4 text-lg text-muted-foreground" {...rise(after)}>
           {description}

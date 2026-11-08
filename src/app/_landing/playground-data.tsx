@@ -63,6 +63,7 @@ interface Entry {
 }
 
 const base = {
+  titleAs: "h2" as const,
   title: "Ship your landing page today",
   primaryAction: { label: "Get started", href: "#start" },
 };
@@ -112,9 +113,10 @@ export const PLAYGROUND: Entry[] = [
     name: "HeroCommand",
     render: (v, c) => {
       const p = {
+        titleAs: "h2" as const,
         title: "Install it in one line",
         command:
-          "npx shadcn@latest add https://tapas-ui.vercel.app/r/hero.json",
+          "npx shadcn@latest add https://tapasui.tahmid.space/r/hero.json",
         className: c,
       };
       return v === "motion" ? (
@@ -125,7 +127,7 @@ export const PLAYGROUND: Entry[] = [
     },
     propLines: [
       'title="Install it in one line"',
-      'command="npx shadcn@latest add https://tapas-ui.vercel.app/r/hero.json"',
+      'command="npx shadcn@latest add https://tapasui.tahmid.space/r/hero.json"',
     ],
   },
   {
@@ -152,6 +154,7 @@ export const PLAYGROUND: Entry[] = [
     name: "HeroThemeCycle",
     render: (v, c) => {
       const p = {
+        titleAs: "h2" as const,
         title: "Your theme, not ours",
         accentWord: "theme",
         primaryAction: base.primaryAction,

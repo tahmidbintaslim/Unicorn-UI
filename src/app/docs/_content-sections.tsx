@@ -507,7 +507,7 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
     a11y: ["Every field has a visible label and the right input type and autocomplete."],
   },
   "not-found": {
-    preview: <NotFound links={[{ label: "Read the docs", href: "#docs" }]} />,
+    preview: <NotFound titleAs="h2" links={[{ label: "Read the docs", href: "#docs" }]} />,
     importLine: `import { NotFound } from "@/components/custom/not-found";`,
     usage: `// app/not-found.tsx
 export default function NotFoundPage() {
@@ -524,13 +524,13 @@ export default function NotFoundPage() {
     a11y: ["The big number is hidden from screen readers; the h1 says what happened."],
     motion: {
       summary: "The big number tilts toward the mouse pointer.",
-      preview: <NotFoundMotion links={[{ label: "Read the docs", href: "#docs" }]} />,
+      preview: <NotFoundMotion titleAs="h2" links={[{ label: "Read the docs", href: "#docs" }]} />,
       importLine: `import { NotFoundMotion } from "@/components/custom/not-found/not-found-motion";`,
       usage: `<NotFoundMotion />`,
     },
   },
   "coming-soon": {
-    preview: <ComingSoon title="Something new is cooking" description="Leave your email and hear first. Sample copy." action="#notify" launchDate="2026-12-01" />,
+    preview: <ComingSoon titleAs="h2" title="Something new is cooking" description="Leave your email and hear first. Sample copy." action="#notify" launchDate="2026-12-01" />,
     importLine: `import { ComingSoon } from "@/components/custom/coming-soon";`,
     usage: `<ComingSoon
   title="Something new is cooking"

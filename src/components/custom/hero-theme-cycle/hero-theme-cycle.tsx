@@ -39,7 +39,7 @@ export function splitAccent(title: string, word: string): [string, string, strin
 }
 
 /** Hero whose accent word wears your primary color. The motion version cycles themes. */
-export function HeroThemeCycle({
+export function HeroThemeCycle({ titleAs: TitleTag = "h1",
   eyebrow,
   title,
   description,
@@ -57,7 +57,7 @@ export function HeroThemeCycle({
   return (
     <section className={cn("mx-auto max-w-3xl px-4 py-16 text-center", className)} {...props}>
       {eyebrow && <Badge>{eyebrow}</Badge>}
-      <h1 className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-6xl">
+      <TitleTag className="mt-4 text-4xl font-bold tracking-tight text-balance sm:text-6xl">
         {parts ? (
           <>
             {parts[0]}
@@ -67,7 +67,7 @@ export function HeroThemeCycle({
         ) : (
           title
         )}
-      </h1>
+      </TitleTag>
       {description && <p className="mt-5 text-lg text-pretty text-muted-foreground">{description}</p>}
       {(primaryAction || secondaryAction) && (
         <div className="mt-8 flex flex-wrap justify-center gap-3">

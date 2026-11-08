@@ -50,7 +50,7 @@ const split = {
 const command = {
   title: "Install a section in one line",
   description: "Then edit it like any other file in your project.",
-  command: "npx shadcn@latest add https://tapas-ui.vercel.app/r/hero.json",
+  command: "npx shadcn@latest add https://tapasui.tahmid.space/r/hero.json",
   primaryAction: { label: "Read the docs", href: "#docs" },
 };
 
@@ -110,7 +110,7 @@ const plates = {
 
 export const HERO_DOCS: Record<string, SectionDoc> = {
   "hero-split": {
-    preview: <HeroSplit {...split} media={<DemoScreen />} />,
+    preview: <HeroSplit titleAs="h2" {...split} media={<DemoScreen />} />,
     importLine: `import { HeroSplit } from "@/components/custom/hero-split";`,
     usage: `<HeroSplit
   title="Know which features your users love"
@@ -128,7 +128,7 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     a11y: ["Give the media its own text alternative (alt text or an aria-label)."],
     motion: {
       summary: "The copy rises in, the media floats up and tilts a few degrees toward a mouse pointer. There is no tilt on touch screens.",
-      preview: <HeroSplitMotion {...split} media={<DemoScreen />} />,
+      preview: <HeroSplitMotion titleAs="h2" {...split} media={<DemoScreen />} />,
       importLine: `import { HeroSplitMotion } from "@/components/custom/hero-split/hero-split-motion";`,
       usage: `<HeroSplitMotion
   title="Know which features your users love"
@@ -138,7 +138,7 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     },
   },
   "hero-command": {
-    preview: <HeroCommand {...command} />,
+    preview: <HeroCommand titleAs="h2" {...command} />,
     importLine: `import { HeroCommand } from "@/components/custom/hero-command";`,
     usage: `<HeroCommand
   title="Install a section in one line"
@@ -154,7 +154,7 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     a11y: ["The copy button announces “Copied” through a polite live region."],
     motion: {
       summary: "The command types itself, one character at a time, with a blinking caret. Screen readers and the copy button always get the full command.",
-      preview: <HeroCommandMotion {...command} />,
+      preview: <HeroCommandMotion titleAs="h2" {...command} />,
       importLine: `import { HeroCommandMotion } from "@/components/custom/hero-command/hero-command-motion";`,
       usage: `<HeroCommandMotion
   title="Install a section in one line"
@@ -163,7 +163,7 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     },
   },
   "hero-spotlight": {
-    preview: <HeroSpotlight {...spotlight} />,
+    preview: <HeroSpotlight titleAs="h2" {...spotlight} />,
     importLine: `import { HeroSpotlight } from "@/components/custom/hero-spotlight";`,
     usage: `<HeroSpotlight
   eyebrow="Beta"
@@ -174,14 +174,14 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     a11y: ["The grid and glow layers are decorative and hidden from screen readers.", "Text sits on the page background, so contrast is the same as your body text."],
     motion: {
       summary: "The glow follows the pointer across the grid and drifts back to center when it leaves.",
-      preview: <HeroSpotlightMotion {...spotlight} />,
+      preview: <HeroSpotlightMotion titleAs="h2" {...spotlight} />,
       importLine: `import { HeroSpotlightMotion } from "@/components/custom/hero-spotlight/hero-spotlight-motion";`,
       usage: `<HeroSpotlightMotion title="Your product, under the spotlight" />`,
     },
   },
   "hero-showcase": {
     preview: (
-      <HeroShowcase {...showcase}>
+      <HeroShowcase titleAs="h2" {...showcase}>
         <DemoScreen />
       </HeroShowcase>
     ),
@@ -198,7 +198,7 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     motion: {
       summary: "The frame rises and scales into place after the headline, and lifts slightly on hover.",
       preview: (
-        <HeroShowcaseMotion {...showcase}>
+        <HeroShowcaseMotion titleAs="h2" {...showcase}>
           <DemoScreen />
         </HeroShowcaseMotion>
       ),
@@ -209,7 +209,7 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     },
   },
   "hero-waitlist": {
-    preview: <HeroWaitlist {...waitlist} />,
+    preview: <HeroWaitlist titleAs="h2" {...waitlist} />,
     importLine: `import { HeroWaitlist } from "@/components/custom/hero-waitlist";`,
     usage: `<HeroWaitlist
   title="Be first in line"
@@ -228,7 +228,7 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     a11y: ["The email field has a real label and uses type=\"email\" with autocomplete, so browsers validate and fill it."],
     motion: {
       summary: "The field glows on focus. With onSubmit, the button turns into “Sending…” and then the form morphs into a success message.",
-      preview: <HeroWaitlistMotion {...waitlist} />,
+      preview: <HeroWaitlistMotion titleAs="h2" {...waitlist} />,
       importLine: `import { HeroWaitlistMotion } from "@/components/custom/hero-waitlist/hero-waitlist-motion";`,
       usage: `<HeroWaitlistMotion
   title="Be first in line"
@@ -243,7 +243,7 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     },
   },
   "hero-marquee": {
-    preview: <HeroMarquee {...marquee} />,
+    preview: <HeroMarquee titleAs="h2" {...marquee} />,
     importLine: `import { HeroMarquee } from "@/components/custom/hero-marquee";`,
     usage: `<HeroMarquee
   title="Used in projects of every size"
@@ -258,13 +258,13 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     a11y: ["Items are a list, so screen readers announce how many there are."],
     motion: {
       summary: "The row scrolls endlessly. It pauses on hover, on keyboard focus and with the visible pause button.",
-      preview: <HeroMarqueeMotion {...marquee} />,
+      preview: <HeroMarqueeMotion titleAs="h2" {...marquee} />,
       importLine: `import { HeroMarqueeMotion } from "@/components/custom/hero-marquee/hero-marquee-motion";`,
       usage: `<HeroMarqueeMotion title="Used in projects of every size" items={logos} speed={40} />`,
     },
   },
   "hero-video": {
-    preview: <HeroVideo {...video} />,
+    preview: <HeroVideo titleAs="h2" {...video} />,
     importLine: `import { HeroVideo } from "@/components/custom/hero-video";`,
     usage: `<HeroVideo
   title="See the product in 60 seconds"
@@ -284,13 +284,13 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     a11y: ["The video never autoplays and keeps native controls.", "Add captions with captionsSrc."],
     motion: {
       summary: "A poster with a play button; pressing it grows the poster into the player and starts the video.",
-      preview: <HeroVideoMotion {...video} />,
+      preview: <HeroVideoMotion titleAs="h2" {...video} />,
       importLine: `import { HeroVideoMotion } from "@/components/custom/hero-video/hero-video-motion";`,
       usage: `<HeroVideoMotion title="See the product in 60 seconds" poster={tour.posterUrl} posterAlt="Product tour" videoSrc={tour.videoUrl} />`,
     },
   },
   "hero-theme-cycle": {
-    preview: <HeroThemeCycle {...cycle} />,
+    preview: <HeroThemeCycle titleAs="h2" {...cycle} />,
     importLine: `import { HeroThemeCycle } from "@/components/custom/hero-theme-cycle";`,
     usage: `<HeroThemeCycle
   title="Your theme, not ours"
@@ -307,13 +307,13 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     a11y: ["The accent is color plus position, never color alone: the word is still part of the heading text."],
     motion: {
       summary: "The whole hero re-colors through a set of themes. It stops on hover, on focus and with the visible pause button.",
-      preview: <HeroThemeCycleMotion {...cycle} />,
+      preview: <HeroThemeCycleMotion titleAs="h2" {...cycle} />,
       importLine: `import { HeroThemeCycleMotion } from "@/components/custom/hero-theme-cycle/hero-theme-cycle-motion";`,
       usage: `<HeroThemeCycleMotion title="Your theme, not ours" accentWord="theme" interval={3000} />`,
     },
   },
   "hero-plates": {
-    preview: <HeroPlates {...plates} />,
+    preview: <HeroPlates titleAs="h2" {...plates} />,
     importLine: `import { HeroPlates } from "@/components/custom/hero-plates";`,
     usage: `<HeroPlates
   title="A whole page, plate by plate"
@@ -327,7 +327,7 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
     a11y: ["Plates are a list in reading order."],
     motion: {
       summary: "As the section scrolls into view, the plates slide in from alternating sides and settle into a page.",
-      preview: <HeroPlatesMotion {...plates} />,
+      preview: <HeroPlatesMotion titleAs="h2" {...plates} />,
       importLine: `import { HeroPlatesMotion } from "@/components/custom/hero-plates/hero-plates-motion";`,
       usage: `<HeroPlatesMotion title="A whole page, plate by plate" plates={plates} />`,
     },

@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { CopyButton } from "../_site/copy-button";
 import Link from "next/link";
 import type { PropDoc } from "./_content";
 
@@ -40,10 +41,11 @@ export function C({ children }: { children: React.ReactNode }) {
 
 export function CodeBlock({ code, label, className }: { code: string; label?: string; className?: string }) {
   return (
-    <figure className={cn("overflow-hidden rounded-xl border bg-card", className)}>
+    <figure className={cn("relative overflow-hidden rounded-xl border bg-card", className)}>
       {label && (
-        <figcaption className="border-b px-4 py-2 font-mono text-xs text-muted-foreground">{label}</figcaption>
+        <figcaption className="border-b px-4 py-2 pr-24 font-mono text-xs text-muted-foreground">{label}</figcaption>
       )}
+      <CopyButton text={code} label="Copy" className="absolute top-1.5 right-1.5 h-7 bg-card px-2 text-xs" />
       <pre tabIndex={0} className="max-h-[32rem] overflow-auto p-4 font-mono text-[13px] leading-relaxed focus-visible:outline-2 focus-visible:outline-brand">
         <code>{code}</code>
       </pre>

@@ -108,6 +108,7 @@ const BASE_DOCS: Record<string, SectionDoc> = {
   hero: {
     preview: (
       <Hero
+        titleAs="h2"
         eyebrow="New"
         title="Ship your landing page today"
         description="Copy the sections you need and make them yours."
@@ -136,6 +137,7 @@ const BASE_DOCS: Record<string, SectionDoc> = {
       summary: "The title's words rise in one after another, then the description and buttons follow.",
       preview: (
         <HeroMotion
+          titleAs="h2"
           eyebrow="New"
           title="Ship your landing page today"
           description="Copy the sections you need and make them yours."

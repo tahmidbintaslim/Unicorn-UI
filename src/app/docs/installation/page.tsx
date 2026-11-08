@@ -1,5 +1,6 @@
 import { CopyCommand } from "../../_site/copy-command";
 import { installCommand } from "../../_site/links";
+import { registriesSnippet } from "../../_site/prompts";
 import { C, CodeBlock, DocsHeader, H2, P } from "../_ui";
 
 export const metadata = {
@@ -49,6 +50,15 @@ export default function Page() {
   );
 }`}
         />
+      </section>
+      <section aria-labelledby="ai" className="space-y-4">
+        <H2 id="ai">With an AI coding tool</H2>
+        <P>
+          Every section page has <strong>Copy AI prompt</strong>: paste it into Cursor, v0, Lovable or Claude Code and the
+          tool installs the section and fills in your content. If your tool runs the shadcn MCP server, add the Tapas
+          registry to <C>components.json</C> once, then ask for any section by name, such as <C>@tapas/pricing-table</C>.
+        </P>
+        <CodeBlock code={`{\n  ${registriesSnippet.replace(/\n/g, "\n  ")}\n}`} label="components.json" />
       </section>
       <section aria-labelledby="requirements" className="space-y-4">
         <H2 id="requirements">Requirements</H2>

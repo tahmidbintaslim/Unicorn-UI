@@ -17,7 +17,7 @@ const useMounted = () => React.useSyncExternalStore(noop, () => true, () => fals
  */
 export function HeroVideoMotion(props: HeroVideoProps) {
   const { poster, posterAlt, videoSrc, captionsSrc, className, ...rest } = props;
-  const { eyebrow, title, description, primaryAction, secondaryAction, ...sectionProps } = rest;
+  const { eyebrow, title, titleAs, description, primaryAction, secondaryAction, ...sectionProps } = rest;
   const reduced = useReducedMotion();
   const mounted = useMounted();
   const [playing, setPlaying] = React.useState(false);
@@ -36,7 +36,7 @@ export function HeroVideoMotion(props: HeroVideoProps) {
 
   return (
     <section className={cn("mx-auto max-w-5xl px-4 py-16 text-center", className)} {...sectionProps}>
-      <HeroVideoCopy {...{ eyebrow, title, description, primaryAction, secondaryAction }} />
+      <HeroVideoCopy {...{ eyebrow, title, description, primaryAction, secondaryAction, titleAs }} />
       <div className="mt-12">
         {playing ? (
           <motion.video

@@ -3,6 +3,8 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 export interface NotFoundProps extends Omit<React.ComponentProps<"section">, "title"> {
+  /** Heading element for the title. Use "h2" when this is not the page's main heading. */
+  titleAs?: "h1" | "h2";
   code?: string;
   title?: string;
   description?: string;
@@ -12,10 +14,10 @@ export interface NotFoundProps extends Omit<React.ComponentProps<"section">, "ti
 }
 
 /** Copy shared by the plain and motion versions. */
-export function NotFoundCopy({ title, description, home, links }: Required<Pick<NotFoundProps, "title" | "description" | "home">> & Pick<NotFoundProps, "links">) {
+export function NotFoundCopy({ titleAs: TitleTag = "h1", title, description, home, links }: Required<Pick<NotFoundProps, "title" | "description" | "home">> & Pick<NotFoundProps, "links" | "titleAs">) {
   return (
     <>
-      <h1 className="mt-6 text-3xl font-bold tracking-tight">{title}</h1>
+      <TitleTag className="mt-6 text-3xl font-bold tracking-tight">{title}</TitleTag>
       <p className="mx-auto mt-3 max-w-md text-pretty text-muted-foreground">{description}</p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Button asChild size="lg">
@@ -38,6 +40,7 @@ export function NotFound({
   description = "The page you're looking for moved or never existed.",
   home = { label: "Back to home", href: "/" },
   links,
+  titleAs,
   className,
   ...props
 }: NotFoundProps) {
@@ -46,7 +49,7 @@ export function NotFound({
       <p aria-hidden="true" className="text-8xl font-black tracking-tighter text-primary sm:text-9xl">
         {code}
       </p>
-      <NotFoundCopy {...{ title, description, home, links }} />
+      <NotFoundCopy {...{ title, description, home, links, titleAs }} />
     </section>
   );
 }

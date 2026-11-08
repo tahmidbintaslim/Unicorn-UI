@@ -16,6 +16,7 @@ const useMounted = () => React.useSyncExternalStore(noop, () => true, () => fals
 export function HeroShowcaseMotion({
   eyebrow,
   title,
+  titleAs,
   description,
   primaryAction,
   secondaryAction,
@@ -23,6 +24,7 @@ export function HeroShowcaseMotion({
   className,
   ...props
 }: HeroShowcaseProps) {
+  const Title = titleAs === "h2" ? motion.h2 : motion.h1;
   const reduced = useReducedMotion();
   const animate = useMounted() && !reduced;
   const rise = (delay: number) =>
@@ -37,9 +39,9 @@ export function HeroShowcaseMotion({
           <Badge variant="secondary">{eyebrow}</Badge>
         </motion.div>
       )}
-      <motion.h1 className="mx-auto mt-4 max-w-3xl text-4xl font-bold tracking-tight text-balance sm:text-5xl" {...rise(0.05)}>
+      <Title className="mx-auto mt-4 max-w-3xl text-4xl font-bold tracking-tight text-balance sm:text-5xl" {...rise(0.05)}>
         {title}
-      </motion.h1>
+      </Title>
       {description && (
         <motion.p className="mx-auto mt-4 max-w-2xl text-lg text-pretty text-muted-foreground" {...rise(0.15)}>
           {description}
