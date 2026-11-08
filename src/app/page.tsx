@@ -6,7 +6,7 @@ import { GITHUB_URL, GOOD_FIRST_ISSUES_URL, installCommand } from "./_site/links
 import { SECTIONS, getSection } from "./_site/sections";
 import { SiteFooter } from "./_site/site-footer";
 import { SiteHeader } from "./_site/site-header";
-import { SectionSketch } from "./_landing/section-sketch";
+import { SectionCard } from "./_site/section-card";
 import { HeroCanvas } from "./_landing/hero-canvas";
 import { PageBuilder } from "./_landing/page-builder";
 import { Playground } from "./_landing/playground";
@@ -200,25 +200,7 @@ export default function Home() {
                 if (!section) return null;
                 return (
                   <li key={slug}>
-                    <Link
-                      href={`/docs/sections/${slug}`}
-                      className="group block overflow-hidden rounded-2xl border bg-card transition-colors hover:border-brand/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-                    >
-                      <div className="bg-background transition-colors group-hover:bg-background/60">
-                        <SectionSketch slug={slug} />
-                      </div>
-                      <div className="space-y-1 border-t px-5 py-4">
-                        <h3 className="flex items-center gap-2 font-semibold">
-                          {section.title}
-                          {section.motionSlug && (
-                            <span className="rounded-full border border-brand/40 px-2 py-0.5 text-[11px] font-medium text-brand">
-                              Motion
-                            </span>
-                          )}
-                        </h3>
-                        <p className="truncate font-mono text-xs text-muted-foreground">add …/r/{slug}.json</p>
-                      </div>
-                    </Link>
+                    <SectionCard section={section} />
                   </li>
                 );
               })}
