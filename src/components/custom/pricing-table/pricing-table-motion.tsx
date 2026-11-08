@@ -64,7 +64,7 @@ export function PricingTableMotion(props: PricingTableProps) {
   return (
     <div ref={wrap} className="contents">
       <section
-        className={cn("mx-auto max-w-6xl px-4 py-16 text-center", className)}
+        className={cn("group mx-auto max-w-6xl px-4 py-16 text-center", className)}
         {...rest}
       >
         <h2 className="text-3xl font-bold tracking-tight text-balance">

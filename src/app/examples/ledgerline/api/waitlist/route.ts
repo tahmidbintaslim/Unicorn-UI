@@ -4,7 +4,9 @@
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
-  const email = String((await request.formData()).get("email") ?? "").trim().toLowerCase();
+  // A body that isn't a form (JSON, empty) counts as invalid input, not a server error.
+  const form = await request.formData().catch(() => null);
+  const email = String(form?.get("email") ?? "").trim().toLowerCase();
   const back = (joined: string) => Response.redirect(new URL(`/examples/ledgerline?joined=${joined}#join`, request.url), 303);
   if (email.length > 254 || !EMAIL.test(email)) return back("invalid");
 

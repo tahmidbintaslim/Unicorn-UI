@@ -50,3 +50,22 @@ describe("PricingTableMotion", () => {
     expect(html).not.toMatch(/opacity:\s*0[;"]/);
   });
 });
+
+describe("per-period checkout links", () => {
+  const withYearly = [{ name: "Pro", monthly: 12, yearly: 120, features: ["x"], cta: { label: "Buy", href: "/m", yearlyHref: "/y" } }];
+
+  it("renders a monthly and a yearly link, each shown only for its period", () => {
+    render(<PricingTable plans={withYearly} />);
+    const [m, y] = screen.getAllByRole("link", { name: "Buy" });
+    expect(m.getAttribute("href")).toBe("/m");
+    expect(y.getAttribute("href")).toBe("/y");
+    expect(m.className).toContain("group-has-[[data-period-input=yearly]:checked]:hidden");
+    expect(y.className).toContain("hidden");
+    expect(y.className).toContain("group-has-[[data-period-input=yearly]:checked]:inline-flex");
+  });
+
+  it("the motion version keeps the CSS switch working (section is the group)", () => {
+    const { container } = render(<PricingTableMotion plans={withYearly} />);
+    expect(container.querySelector("section")!.className.split(" ")).toContain("group");
+  });
+});
