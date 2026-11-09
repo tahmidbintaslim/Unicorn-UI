@@ -31,10 +31,12 @@ export function HeroCanvas({ children }: { children: React.ReactNode }) {
         aria-hidden="true"
         className="absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black_40%,transparent_100%)] bg-[linear-gradient(to_right,color-mix(in_oklch,var(--foreground)_7%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_oklch,var(--foreground)_7%,transparent)_1px,transparent_1px)] bg-[size:48px_48px]"
       />
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 -top-40 -z-10 mx-auto h-[36rem] max-w-5xl rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--brand)_22%,transparent),transparent)]"
-      />
+      {/* Three warm pools of light, one per plate color. Static: only the pointer glow moves. */}
+      <div aria-hidden="true" className="absolute inset-x-0 -top-48 -z-10 mx-auto h-[40rem] max-w-6xl">
+        <div className="absolute top-0 left-[8%] size-[28rem] rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--olive)_18%,transparent),transparent)]" />
+        <div className="absolute top-10 left-1/2 size-[34rem] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--saffron)_24%,transparent),transparent)]" />
+        <div className="absolute top-0 right-[8%] size-[28rem] rounded-full bg-[radial-gradient(closest-side,color-mix(in_oklch,var(--paprika)_20%,transparent),transparent)]" />
+      </div>
       <div
         ref={glow}
         aria-hidden="true"
