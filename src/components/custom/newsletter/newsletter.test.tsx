@@ -35,3 +35,16 @@ describe("NewsletterMotion", () => {
     expect(html).not.toMatch(/opacity:\s*0[;"]/);
   });
 });
+
+describe("Newsletter honeypot", () => {
+  it.each([
+    ["plain", Newsletter],
+    ["motion", NewsletterMotion],
+  ])("%s renders a hidden trap field when honeypotName is set", (_, C) => {
+    const { container } = render(<C {...props} honeypotName="website" />);
+    const trap = container.querySelector<HTMLInputElement>('input[name="website"]')!;
+    expect(trap).not.toBeNull();
+    expect(trap.tabIndex).toBe(-1);
+    expect(trap.closest("[aria-hidden=true]")).not.toBeNull();
+  });
+});

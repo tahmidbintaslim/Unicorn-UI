@@ -27,14 +27,23 @@ function Preview({ template }: { template: TemplateMeta }) {
 }
 
 /** One free template: live preview, what it's built from, and links to both versions. */
-export function TemplateCard({ template: t, headingLevel: H = "h2" }: { template: TemplateMeta; headingLevel?: "h2" | "h3" }) {
+export function TemplateCard({
+  template: t,
+  headingLevel: H = "h2",
+  compact = false,
+}: {
+  template: TemplateMeta;
+  headingLevel?: "h2" | "h3";
+  /** Hide the "Built from" list, for short teasers such as the landing page. */
+  compact?: boolean;
+}) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-xl border bg-card text-left">
       <Preview template={t} />
       <div className="flex flex-1 flex-col gap-3 p-5">
         <H className="text-lg font-semibold">{t.title}</H>
         <p className="text-sm leading-relaxed text-muted-foreground">{t.description}</p>
-        <p className="text-xs text-muted-foreground">Built from: {t.sections.map((s) => getSection(s)?.title ?? s).join(", ")}</p>
+        {!compact && <p className="text-xs text-muted-foreground">Built from: {t.sections.map((s) => getSection(s)?.title ?? s).join(", ")}</p>}
         <div className="mt-auto flex gap-2 pt-2">
           <Link href={`/templates/${t.slug}`} aria-label={`View plain ${t.title}`} className="rounded-md bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground hover:bg-primary/90">
             View plain

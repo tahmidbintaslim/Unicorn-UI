@@ -26,3 +26,10 @@ describe("TemplateCard", () => {
     expect(screen.getByRole("heading", { level: 3, name: t.title })).toBeTruthy();
   });
 });
+
+describe("TemplateCard compact", () => {
+  it("hides the Built from list", () => {
+    const { container } = render(<TemplateCard template={TEMPLATES[0]} compact />);
+    expect(container.textContent).not.toContain("Built from");
+  });
+});

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import React from "react";
-import { inputClass, type NewsletterProps } from "./newsletter";
+import { Honeypot, inputClass, type NewsletterProps } from "./newsletter";
 
 export interface NewsletterMotionProps extends Omit<NewsletterProps, "onSubmit"> {
   /** Handle the signup yourself; without it the form posts to `action`. */
@@ -24,6 +24,7 @@ export function NewsletterMotion({
   inputLabel = "Email address",
   buttonLabel = "Subscribe",
   note,
+  honeypotName,
   onSubmit,
   successMessage = "Thanks, you're subscribed.",
   className,
@@ -81,6 +82,7 @@ export function NewsletterMotion({
                 <Button type="submit" disabled={status === "sending"}>
                   {status === "sending" ? "Sending…" : buttonLabel}
                 </Button>
+                <Honeypot name={honeypotName} />
               </motion.form>
             )}
           </AnimatePresence>
