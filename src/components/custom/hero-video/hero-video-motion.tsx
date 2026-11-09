@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Play } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import React from "react";
-import { HeroVideo, HeroVideoCopy, type HeroVideoProps } from "./hero-video";
+import { HeroVideoCopy, type HeroVideoProps } from "./hero-video";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const noop = () => () => {};
@@ -19,7 +19,7 @@ export function HeroVideoMotion(props: HeroVideoProps) {
   const { poster, posterAlt, videoSrc, captionsSrc, className, ...rest } = props;
   const { eyebrow, title, titleAs, description, primaryAction, secondaryAction, ...sectionProps } = rest;
   const reduced = useReducedMotion();
-  const mounted = useMounted();
+  const on = useMounted() && !reduced;
   const [playing, setPlaying] = React.useState(false);
   const video = React.useRef<HTMLVideoElement>(null);
 
@@ -30,15 +30,18 @@ export function HeroVideoMotion(props: HeroVideoProps) {
     void video.current?.play().catch(() => {});
   }, [playing]);
 
-  // Server HTML and the first client render are the plain player; the poster
-  // button only appears after mount, so hydration always matches.
-  if (!mounted || reduced) return <HeroVideo {...props} />;
-
   return (
     <section className={cn("mx-auto max-w-5xl px-4 py-16 text-center", className)} {...sectionProps}>
       <HeroVideoCopy {...{ eyebrow, title, description, primaryAction, secondaryAction, titleAs }} />
       <div className="mt-12">
-        {playing ? (
+        {/* Server HTML and the first client render hold the plain player (it works without JavaScript);
+            only this slot becomes the poster button after mount, the copy above keeps its DOM. */}
+        {!on ? (
+          <video controls preload="none" poster={poster} aria-label={posterAlt} className="aspect-video w-full rounded-2xl border bg-muted shadow-xl">
+            <source src={videoSrc} />
+            {captionsSrc && <track kind="captions" src={captionsSrc} srcLang="en" label="English" default />}
+          </video>
+        ) : playing ? (
           <motion.video
             ref={video}
             layoutId="hero-video"

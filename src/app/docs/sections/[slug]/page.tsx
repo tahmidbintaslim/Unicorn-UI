@@ -14,6 +14,8 @@ import { DOCS } from "../../_content";
 import { CodeBlock, DocsHeader, H2, P, PropsTable, Toc } from "../../_ui";
 import { MotionPreview } from "../../_motion-preview";
 import { VariantSwitch } from "../../_variant-switch";
+import { JsonLd } from "@/app/_site/json-ld";
+import { GITHUB_URL } from "@/app/_site/links";
 
 type Params = { slug: string };
 
@@ -84,6 +86,18 @@ export default async function SectionPage({ params }: { params: Promise<Params> 
   return (
     <div className="flex gap-10">
       <article className="variant-scope min-w-0 flex-1 space-y-8">
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "SoftwareSourceCode",
+            name: `${section.title} (Tapas UI)`,
+            description: section.description,
+            url: `https://tapasui.tahmid.space/docs/sections/${slug}`,
+            codeRepository: GITHUB_URL,
+            programmingLanguage: "TypeScript",
+            license: "https://opensource.org/licenses/MIT",
+          }}
+        />
         <DocsHeader crumb={section.group} title={section.title} lead={section.description} />
 
         {/* One click to get the section into a project: by hand, through an AI tool, or through the shadcn MCP server. */}

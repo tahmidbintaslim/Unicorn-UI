@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
 import React from "react";
-import { NotFound, NotFoundCopy, type NotFoundProps } from "./not-found";
+import { NotFoundCopy, type NotFoundProps } from "./not-found";
 
 const noop = () => () => {};
 /** False on the server and during hydration, true once mounted in the browser. */
@@ -27,12 +27,11 @@ export function NotFoundMotion(props: NotFoundProps) {
   const py = useMotionValue(0);
   const rotateY = useSpring(useTransform(px, [-0.5, 0.5], [-14, 14]), { stiffness: 120, damping: 15 });
   const rotateX = useSpring(useTransform(py, [-0.5, 0.5], [12, -12]), { stiffness: 120, damping: 15 });
-  if (!animate) return <NotFound {...props} />;
   return (
     <section
-      className={cn("mx-auto max-w-2xl px-4 py-24 text-center [perspective:800px]", className)}
+      className={cn("mx-auto max-w-2xl px-4 py-24 text-center", animate && "[perspective:800px]", className)}
       onPointerMove={(e) => {
-        if (e.pointerType !== "mouse") return;
+        if (!animate || e.pointerType !== "mouse") return;
         const r = e.currentTarget.getBoundingClientRect();
         px.set((e.clientX - r.left) / r.width - 0.5);
         py.set((e.clientY - r.top) / r.height - 0.5);
@@ -43,7 +42,7 @@ export function NotFoundMotion(props: NotFoundProps) {
       }}
       {...rest}
     >
-      <motion.p aria-hidden="true" style={{ rotateX, rotateY }} className="text-8xl font-black tracking-tighter text-primary sm:text-9xl">
+      <motion.p aria-hidden="true" style={animate ? { rotateX, rotateY } : undefined} className="text-8xl font-black tracking-tighter text-primary sm:text-9xl">
         {code}
       </motion.p>
       <NotFoundCopy {...{ title, description, home, links, titleAs }} />

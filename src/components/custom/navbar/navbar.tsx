@@ -44,7 +44,7 @@ export function Navbar({ brand, brandHref = "/", links, action, className, ...pr
               <a href={action.href}>{action.label}</a>
             </Button>
           )}
-          <details className="relative md:hidden">
+          <details data-menu className="relative md:hidden">
             <summary className="flex cursor-pointer list-none items-center rounded-md p-2 hover:bg-muted focus-visible:outline-2 focus-visible:outline-ring">
               <Menu aria-hidden="true" className="size-5" />
               <span className="sr-only">Menu</span>

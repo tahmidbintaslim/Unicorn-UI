@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "motion/react";
 import React from "react";
-import { HighlightCaption, TestimonialHighlight, type TestimonialHighlightProps } from "./testimonial-highlight";
+import { HighlightCaption, type TestimonialHighlightProps } from "./testimonial-highlight";
 
 const noop = () => () => {};
 /** False on the server and during hydration, true once mounted in the browser. */
@@ -12,12 +12,12 @@ const useMounted = () => React.useSyncExternalStore(noop, () => true, () => fals
 /**
  * TestimonialHighlight with motion: the quote's words brighten in sequence
  * when it scrolls into view. Screen readers get the quote as one sentence.
+ * One tree from server to client: words start lit and only dim-then-brighten after mount.
  */
 export function TestimonialHighlightMotion(props: TestimonialHighlightProps) {
   const { quote, author, role, company, avatar, className, ...rest } = props;
   const reduced = useReducedMotion();
-  const animate = useMounted() && !reduced;
-  if (!animate) return <TestimonialHighlight {...props} />;
+  const on = useMounted() && !reduced;
   const words = `“${quote}”`.split(" ");
   return (
     <section className={cn("mx-auto max-w-3xl px-4 py-16 text-center", className)} {...rest}>
@@ -26,8 +26,7 @@ export function TestimonialHighlightMotion(props: TestimonialHighlightProps) {
           <span className="sr-only">{quote}</span>
           <motion.span
             aria-hidden="true"
-            initial="dim"
-            whileInView="lit"
+            whileInView={on ? "lit" : undefined}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ staggerChildren: 0.06 }}
           >
@@ -35,7 +34,7 @@ export function TestimonialHighlightMotion(props: TestimonialHighlightProps) {
               <React.Fragment key={i}>
                 {i > 0 && " "}
                 <motion.span
-                  variants={{ dim: { opacity: 0.25 }, lit: { opacity: 1 } }}
+                  variants={{ lit: { opacity: [0.25, 1] } }}
                   transition={{ duration: 0.4 }}
                 >
                   {w}

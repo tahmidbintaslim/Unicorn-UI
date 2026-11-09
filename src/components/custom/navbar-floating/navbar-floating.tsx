@@ -32,7 +32,7 @@ export function FloatingNavInner({ brand, brandHref = "/", links, action }: Omit
             <a href={action.href}>{action.label}</a>
           </Button>
         )}
-        <details className="relative md:hidden">
+        <details data-menu className="relative md:hidden">
           <summary className="grid size-9 cursor-pointer list-none place-items-center rounded-full hover:bg-muted [&::-webkit-details-marker]:hidden">
             <Menu aria-hidden="true" className="size-4" />
             <span className="sr-only">Menu</span>
