@@ -551,6 +551,42 @@
       ]
     },
     {
+      "name": "hero-shader",
+      "type": "registry:component",
+      "title": "Hero: shader",
+      "description": "Hero on a soft gradient in your primary color.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapasui.tahmid.space/r/hero.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-shader/hero-shader.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "hero-shader-motion",
+      "type": "registry:component",
+      "title": "Hero: shader (motion)",
+      "description": "The shader hero with the gradient flowing live in WebGL, with a pause button. No 3D library.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapasui.tahmid.space/r/hero-shader.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/hero-shader/hero-shader-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "hero-showcase",
       "type": "registry:component",
       "title": "Hero: showcase",

@@ -34,6 +34,7 @@ const ORDER = [
   "hero-split",
   "hero-command",
   "hero-spotlight",
+  "hero-shader",
   "hero-showcase",
   "hero-waitlist",
   "hero-marquee",
