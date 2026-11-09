@@ -1712,6 +1712,181 @@
       ]
     },
     {
+      "name": "template-pricing",
+      "type": "registry:block",
+      "title": "Template: Pricing page",
+      "description": "A pricing page: short hero, pricing table, plan comparison, FAQ and CTA. Plain sections, no animation library.",
+      "registryDependencies": [
+        "https://tapasui.tahmid.space/r/comparison-table.json",
+        "https://tapasui.tahmid.space/r/cta-banner.json",
+        "https://tapasui.tahmid.space/r/faq.json",
+        "https://tapasui.tahmid.space/r/footer.json",
+        "https://tapasui.tahmid.space/r/hero.json",
+        "https://tapasui.tahmid.space/r/navbar.json",
+        "https://tapasui.tahmid.space/r/pricing-table.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/merge.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/product-shot.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/pricing/content.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/pricing/pricing-layout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/pricing/pricing.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-pricing-motion",
+      "type": "registry:block",
+      "title": "Template: Pricing page (motion)",
+      "description": "The pricing page with motion sections where they add meaning; follows reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapasui.tahmid.space/r/template-pricing.json",
+        "https://tapasui.tahmid.space/r/cta-banner-motion.json",
+        "https://tapasui.tahmid.space/r/faq-motion.json",
+        "https://tapasui.tahmid.space/r/hero-motion.json",
+        "https://tapasui.tahmid.space/r/pricing-table-motion.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/pricing/pricing-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-changelog",
+      "type": "registry:block",
+      "title": "Template: Changelog page",
+      "description": "A changelog page: hero, dated release notes, recent blog posts and an email signup. Plain sections, no animation library.",
+      "registryDependencies": [
+        "https://tapasui.tahmid.space/r/blog-grid.json",
+        "https://tapasui.tahmid.space/r/changelog.json",
+        "https://tapasui.tahmid.space/r/footer.json",
+        "https://tapasui.tahmid.space/r/hero.json",
+        "https://tapasui.tahmid.space/r/navbar.json",
+        "https://tapasui.tahmid.space/r/newsletter.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/merge.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/product-shot.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/changelog/content.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/changelog/changelog-layout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/changelog/changelog.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-changelog-motion",
+      "type": "registry:block",
+      "title": "Template: Changelog page (motion)",
+      "description": "The changelog page with motion sections where they add meaning; follows reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapasui.tahmid.space/r/template-changelog.json",
+        "https://tapasui.tahmid.space/r/blog-grid-motion.json",
+        "https://tapasui.tahmid.space/r/hero-motion.json",
+        "https://tapasui.tahmid.space/r/newsletter-motion.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/changelog/changelog-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-mobile-app",
+      "type": "registry:block",
+      "title": "Template: Mobile app page",
+      "description": "A mobile app landing page: floating navbar, split hero with a phone shot, feature rows, testimonials and CTA. Plain sections, no animation library.",
+      "registryDependencies": [
+        "https://tapasui.tahmid.space/r/cta-split.json",
+        "https://tapasui.tahmid.space/r/feature-rows.json",
+        "https://tapasui.tahmid.space/r/footer.json",
+        "https://tapasui.tahmid.space/r/hero-split.json",
+        "https://tapasui.tahmid.space/r/navbar-floating.json",
+        "https://tapasui.tahmid.space/r/testimonials-wall.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/merge.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/product-shot.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/mobile-app/content.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/mobile-app/mobile-app-layout.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/components/templates/mobile-app/mobile-app.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "template-mobile-app-motion",
+      "type": "registry:block",
+      "title": "Template: Mobile app page (motion)",
+      "description": "The mobile app page with motion sections where they add meaning; follows reduced motion.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapasui.tahmid.space/r/template-mobile-app.json",
+        "https://tapasui.tahmid.space/r/cta-split-motion.json",
+        "https://tapasui.tahmid.space/r/feature-rows-motion.json",
+        "https://tapasui.tahmid.space/r/hero-split-motion.json",
+        "https://tapasui.tahmid.space/r/navbar-floating-motion.json",
+        "https://tapasui.tahmid.space/r/testimonials-wall-motion.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/templates/mobile-app/mobile-app-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "motion-lift",
       "type": "registry:component",
       "title": "Motion lift (helper)",
