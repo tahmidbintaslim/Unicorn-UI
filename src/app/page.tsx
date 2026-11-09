@@ -91,10 +91,19 @@ export default function Home() {
               <CopyCommand command={installCommand("hero")} className="h-11 w-full sm:w-auto sm:max-w-md" />
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
-              <Link href="/examples/ledgerline" className="font-medium text-foreground underline underline-offset-4 hover:text-brand">
-                See a live demo site
-              </Link>{" "}
-              with a working waitlist.
+              Live demo sites with a working waitlist:{" "}
+              {[
+                ["Ledgerline", "/examples/ledgerline"],
+                ["Patchnote", "/examples/patchnote"],
+                ["Stackwise", "/examples/stackwise"],
+              ].map(([label, href], i) => (
+                <span key={href}>
+                  {i > 0 && ", "}
+                  <Link href={href} className="font-medium text-foreground underline underline-offset-4 hover:text-brand">
+                    {label}
+                  </Link>
+                </span>
+              ))}
             </p>
           </section>
           <div className="mx-auto max-w-6xl px-4 pb-6 sm:px-6 lg:px-8">
