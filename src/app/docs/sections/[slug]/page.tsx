@@ -1,3 +1,4 @@
+import { pageMeta } from "@/app/_site/meta";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -16,6 +17,9 @@ import { VariantSwitch } from "../../_variant-switch";
 
 type Params = { slug: string };
 
+// Every slug is built ahead of time; anything else is a 404.
+export const dynamicParams = false;
+
 export function generateStaticParams(): Params[] {
   return SECTIONS.map((s) => ({ slug: s.slug }));
 }
@@ -23,10 +27,11 @@ export function generateStaticParams(): Params[] {
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const section = getSection((await params).slug);
   if (!section) return {};
-  return {
-    title: `${section.title} | Tapas UI`,
-    description: `${section.description} Install with one shadcn CLI command.`,
-  };
+  return pageMeta(
+    `${section.title} | Tapas UI`,
+    `${section.description} Install with one shadcn CLI command.`,
+    `/docs/sections/${section.slug}`,
+  );
 }
 
 /** A component's real source, read at build time so the Code tab never drifts. */

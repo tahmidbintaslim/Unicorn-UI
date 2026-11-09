@@ -1,12 +1,10 @@
+import { pageMeta } from "@/app/_site/meta";
 import { SiteFooter } from "../_site/site-footer";
 import { SiteHeader } from "../_site/site-header";
 import { TemplateCard } from "../_site/template-card";
 import { TEMPLATES } from "../_site/templates";
 
-export const metadata = {
-  title: "Free templates | Tapas UI",
-  description: "Free landing page templates built from Tapas sections, each in a plain and a motion version.",
-};
+export const metadata = pageMeta("Free templates | Tapas UI", "Free landing page templates built from Tapas sections, each in a plain and a motion version.", "/templates");
 
 export default function TemplatesIndex() {
   return (

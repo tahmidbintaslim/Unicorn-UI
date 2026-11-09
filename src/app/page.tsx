@@ -18,6 +18,8 @@ import { Reveal } from "./_site/reveal";
 import { TemplateCard } from "./_site/template-card";
 import { TEMPLATES } from "./_site/templates";
 
+export const metadata = { alternates: { canonical: "/" } };
+
 /** Sections shown in the catalogue grid, in reading order. */
 const MENU = [
   "hero-split",

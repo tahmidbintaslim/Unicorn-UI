@@ -17,3 +17,13 @@ describe("StatsBandMotion count-up", () => {
     expect(animate.mock.calls.length).toBe(started);
   });
 });
+
+describe("StatsBandMotion above the fold", () => {
+  it("keeps the final numbers when the band is already on screen at load", () => {
+    const rect = vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockReturnValue({ top: 10, bottom: 60 } as DOMRect);
+    animate.mockClear();
+    render(<StatsBandMotion stats={[{ value: 120, label: "Sample teams" }]} />);
+    expect(animate).not.toHaveBeenCalled();
+    rect.mockRestore();
+  });
+});

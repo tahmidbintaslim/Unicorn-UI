@@ -82,8 +82,8 @@ export function HeroCommandMotion({
         </span>
         <code className="relative min-w-0 flex-1 overflow-x-auto whitespace-nowrap">
           <span className="sr-only">{command}</span>
-          {/* Reserve the full width so the box doesn't grow while typing. */}
-          <span aria-hidden="true" className="invisible">
+          {/* Holds the full width and stays readable (dimmed) while typing, so the command never vanishes. */}
+          <span aria-hidden="true" className={animate && !done ? "text-muted-foreground/40" : "invisible"}>
             {command}
           </span>
           <span aria-hidden="true" className="absolute inset-0">

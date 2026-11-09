@@ -3,7 +3,12 @@ import { FooterSimple } from "@/components/custom/footer-simple/footer-simple";
 import { NavbarFloating } from "@/components/custom/navbar-floating/navbar-floating";
 import { content as c } from "./content";
 
-export const metadata = { title: { default: "Patchnote: a Tapas UI demo", template: "%s | Patchnote (Tapas UI demo)" } };
+// A made-up company: keep it out of search results so nobody mistakes it for a real product.
+export const metadata = {
+  title: { default: "Patchnote: a Tapas UI demo", template: "%s | Patchnote (Tapas UI demo)" },
+  description: "A fictional demo site built entirely from Tapas UI sections.",
+  robots: { index: false, follow: true },
+};
 
 /** The demo site's frame: notice, floating navbar and footer, all from content.ts. */
 export default function PatchnoteLayout({ children }: { children: React.ReactNode }) {

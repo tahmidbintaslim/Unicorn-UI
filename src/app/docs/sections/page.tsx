@@ -1,11 +1,9 @@
+import { pageMeta } from "@/app/_site/meta";
 import { SectionCard } from "../../_site/section-card";
 import { GROUPED, SECTIONS } from "../../_site/sections";
 import { DocsHeader } from "../_ui";
 
-export const metadata = {
-  title: "Sections | Tapas UI",
-  description: "Every Tapas UI section and card, each installable with one shadcn CLI command.",
-};
+export const metadata = pageMeta("Sections | Tapas UI", "Every Tapas UI section and card, each installable with one shadcn CLI command.", "/docs/sections");
 
 export default function SectionsIndex() {
   const groups = GROUPED.map((g) => ({ title: g.name, items: g.items }));

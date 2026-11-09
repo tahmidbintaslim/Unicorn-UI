@@ -1,12 +1,10 @@
+import { pageMeta } from "@/app/_site/meta";
 import { CopyCommand } from "../../_site/copy-command";
 import { installCommand } from "../../_site/links";
 import { registriesSnippet } from "../../_site/prompts";
 import { C, CodeBlock, DocsHeader, H2, P } from "../_ui";
 
-export const metadata = {
-  title: "Installation | Tapas UI",
-  description: "Add Tapas UI sections to a Next.js project with the shadcn CLI.",
-};
+export const metadata = pageMeta("Installation | Tapas UI", "Add Tapas UI sections to a Next.js project with the shadcn CLI.", "/docs/installation");
 
 export default function Installation() {
   return (

@@ -9,7 +9,10 @@ const noop = () => () => {};
 /** False on the server and during hydration, true once mounted in the browser. */
 const useMounted = () => React.useSyncExternalStore(noop, () => true, () => false);
 
-/** Counts from 0 to the stat once it scrolls into view. Final value is the server text. */
+/**
+ * Counts from 0 to the stat once it scrolls into view. Final value is the server text.
+ * A band already on screen at load keeps its numbers, so nothing a visitor just read blanks out.
+ */
 function CountUp({ stat }: { stat: Stat }) {
   const ref = React.useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.6 });
@@ -18,8 +21,13 @@ function CountUp({ stat }: { stat: Stat }) {
   const latest = React.useRef(stat);
   latest.current = stat;
   const key = formatStat(stat);
+  const onScreenAtLoad = React.useRef<boolean | null>(null);
   React.useEffect(() => {
-    if (!inView || !ref.current) return;
+    const r = ref.current?.getBoundingClientRect();
+    onScreenAtLoad.current = !!r && r.top < window.innerHeight && r.bottom > 0;
+  }, []);
+  React.useEffect(() => {
+    if (!inView || !ref.current || onScreenAtLoad.current) return;
     const node = ref.current;
     const controls = animate(0, latest.current.value, {
       duration: 1.4,

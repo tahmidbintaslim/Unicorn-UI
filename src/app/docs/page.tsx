@@ -1,12 +1,10 @@
+import { pageMeta } from "@/app/_site/meta";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { SECTIONS } from "../_site/sections";
 import { C, DocsHeader, H2, P } from "./_ui";
 
-export const metadata = {
-  title: "Introduction | Tapas UI",
-  description: "Tapas UI is a free, open-source set of landing-page sections for Next.js and shadcn/ui.",
-};
+export const metadata = pageMeta("Introduction | Tapas UI", "Tapas UI is a free, open-source set of landing-page sections for Next.js and shadcn/ui.", "/docs");
 
 const NEXT = [
   { href: "/docs/installation", title: "Installation", body: "Set up shadcn/ui and add your first section." },
