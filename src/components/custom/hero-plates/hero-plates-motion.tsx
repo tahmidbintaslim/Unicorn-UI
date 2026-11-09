@@ -9,7 +9,7 @@ const noop = () => () => {};
 /** False on the server and during hydration, true once mounted in the browser. */
 const useMounted = () => React.useSyncExternalStore(noop, () => true, () => false);
 
-function PlateItem({ plate, index, count, progress }: { plate: Plate; index: number; count: number; progress: MotionValue<number> }) {
+function PlateItem({ plate, index, count, progress, on }: { plate: Plate; index: number; count: number; progress: MotionValue<number>; on: boolean }) {
   // Each plate lands a little after the one above it.
   const start = (index / count) * 0.35;
   const end = start + 0.3;
@@ -18,7 +18,7 @@ function PlateItem({ plate, index, count, progress }: { plate: Plate; index: num
   const rotate = useTransform(progress, [start, end], [index % 2 ? 4 : -4, 0], { clamp: true });
   const opacity = useTransform(progress, [start, end], [0.35, 1], { clamp: true });
   return (
-    <motion.li style={{ x, rotate, opacity }} className={cn(plateClass, index % 2 ? "ml-6" : "mr-6")}>
+    <motion.li style={on ? { x, rotate, opacity } : undefined} className={cn(plateClass, index % 2 ? "ml-6" : "mr-6")}>
       {plate.label}
       {plate.content}
     </motion.li>
@@ -47,16 +47,9 @@ export function HeroPlatesMotion(props: HeroPlatesProps) {
     >
       <HeroPlatesCopy {...{ eyebrow, title, description, primaryAction, secondaryAction, titleAs }} />
       <ul className="mx-auto flex w-full max-w-md flex-col gap-3">
-        {plates.map((plate, i) =>
-          animate ? (
-            <PlateItem key={plate.label} plate={plate} index={i} count={plates.length} progress={scrollYProgress} />
-          ) : (
-            <li key={plate.label} className={cn(plateClass, i % 2 ? "ml-6" : "mr-6")}>
-              {plate.label}
-              {plate.content}
-            </li>
-          ),
-        )}
+        {plates.map((plate, i) => (
+          <PlateItem key={plate.label} plate={plate} index={i} count={plates.length} progress={scrollYProgress} on={animate} />
+        ))}
       </ul>
     </section>
   );

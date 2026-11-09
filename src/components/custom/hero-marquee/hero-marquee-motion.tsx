@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Pause, Play } from "lucide-react";
 import { motion, useAnimationFrame, useMotionValue, useReducedMotion } from "motion/react";
 import React from "react";
-import { HeroMarquee, MarqueeEntry, type HeroMarqueeProps } from "./hero-marquee";
+import { MarqueeEntry, type HeroMarqueeProps } from "./hero-marquee";
 
 const noop = () => () => {};
 
@@ -21,7 +21,8 @@ const useMounted = () => React.useSyncExternalStore(noop, () => true, () => fals
 /**
  * HeroMarquee with motion: the row scrolls endlessly. It pauses on hover, on
  * keyboard focus and with the visible pause button. Reduced motion gets the
- * plain wrapped row.
+ * plain wrapped row. One tree from server to client: the wrapped row turns into
+ * the track after mount, so hydration keeps the server's DOM.
  */
 export function HeroMarqueeMotion(props: HeroMarqueeProps) {
   const { eyebrow, title, titleAs: TitleTag = "h1", description, primaryAction, secondaryAction, items, speed = 30, className, ...rest } = props;
@@ -55,8 +56,6 @@ export function HeroMarqueeMotion(props: HeroMarqueeProps) {
     x.set(next);
   });
 
-  if (!animate) return <HeroMarquee {...props} />;
-
   return (
     <section className={cn("mx-auto max-w-5xl px-4 py-16 text-center", className)} {...rest}>
       {eyebrow && <Badge variant="secondary">{eyebrow}</Badge>}
@@ -78,19 +77,26 @@ export function HeroMarqueeMotion(props: HeroMarqueeProps) {
       )}
       <div
         ref={frame}
-        className="mt-12 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]"
+        className={cn("mt-12", animate && "overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]")}
         onPointerEnter={() => setHeld(true)}
         onPointerLeave={() => setHeld(false)}
         onFocus={() => setHeld(true)}
         onBlur={() => setHeld(false)}
       >
-        <motion.div ref={track} className="flex w-max" style={{ x }}>
-          <ul ref={first} className="flex shrink-0 items-center gap-12 pr-12">
+        <motion.div ref={track} className={cn(animate && "flex w-max")} style={animate ? { x } : undefined}>
+          <ul
+            ref={first}
+            className={
+              animate
+                ? "flex shrink-0 items-center gap-12 pr-12"
+                : "flex flex-wrap items-center justify-center gap-x-12 gap-y-6"
+            }
+          >
             {items.map((item) => (
               <MarqueeEntry key={item.name} item={item} />
             ))}
           </ul>
-          {Array.from({ length: copies - 1 }, (_, c) => (
+          {animate && Array.from({ length: copies - 1 }, (_, c) => (
             <ul key={c} data-slot="marquee-clone" aria-hidden="true" inert className="flex shrink-0 items-center gap-12 pr-12">
               {items.map((item) => (
                 <MarqueeEntry key={item.name} item={item} />
@@ -99,6 +105,7 @@ export function HeroMarqueeMotion(props: HeroMarqueeProps) {
           ))}
         </motion.div>
       </div>
+      {animate && (
       <button
         type="button"
         aria-pressed={paused}
@@ -108,6 +115,7 @@ export function HeroMarqueeMotion(props: HeroMarqueeProps) {
       >
         {paused ? <Play aria-hidden="true" className="size-3.5" /> : <Pause aria-hidden="true" className="size-3.5" />}
       </button>
+      )}
     </section>
   );
 }

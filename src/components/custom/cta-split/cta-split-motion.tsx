@@ -18,18 +18,12 @@ export function CtaSplitMotion({ media, className, ...props }: CtaSplitProps) {
     <section className={cn("mx-auto max-w-6xl px-4 py-16", className)} {...rest}>
       <div className="grid items-center gap-10 overflow-hidden rounded-2xl border bg-muted/40 p-8 sm:p-12 lg:grid-cols-2">
         <CtaSplitCopy {...{ title, description, primaryAction, secondaryAction }} />
-        {/* Keyed so it remounts once motion is on: motion reads `initial` only at mount. */}
+        {/* Keyframes rather than `initial`, so the server's media node stays and only starts moving after mount. */}
         <motion.div
-          key={animate ? "motion" : "static"}
           className="min-w-0"
-          {...(animate
-            ? {
-                initial: { opacity: 0.001, y: 32, rotate: -2 },
-                whileInView: { opacity: 1, y: 0, rotate: 0 },
-                viewport: { once: true, amount: 0.4 },
-                transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-              }
-            : {})}
+          whileInView={animate ? { opacity: [0.001, 1], y: [32, 0], rotate: [-2, 0] } : undefined}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           {media}
         </motion.div>

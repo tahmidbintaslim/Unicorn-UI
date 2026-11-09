@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Pause, Play } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import React from "react";
-import { DEFAULT_CYCLE_THEMES, HeroThemeCycle, splitAccent, type HeroThemeCycleProps } from "./hero-theme-cycle";
+import { DEFAULT_CYCLE_THEMES, splitAccent, type HeroThemeCycleProps } from "./hero-theme-cycle";
 
 const noop = () => () => {};
 /** False on the server and during hydration, true once mounted in the browser. */
@@ -15,7 +15,8 @@ const useMounted = () => React.useSyncExternalStore(noop, () => true, () => fals
 /**
  * HeroThemeCycle with motion: every `interval` the hero switches to the next
  * theme, so the accent word, badge and buttons all re-color. It stops on
- * hover, on keyboard focus and with the visible pause button.
+ * hover, on keyboard focus and with the visible pause button. One tree from
+ * server to client: cycling switches on after mount, so hydration keeps the DOM.
  */
 export function HeroThemeCycleMotion(props: HeroThemeCycleProps) {
   const {
@@ -45,15 +46,13 @@ export function HeroThemeCycleMotion(props: HeroThemeCycleProps) {
     return () => window.clearInterval(id);
   }, [animate, paused, held, interval, themes.length]);
 
-  if (!animate) return <HeroThemeCycle {...props} />;
-
   const theme = themes[index % themes.length];
   const parts = splitAccent(title, accentWord);
-  const vars = { "--primary": theme.primary, "--primary-foreground": theme.primaryForeground } as React.CSSProperties;
+  const vars = animate ? ({ "--primary": theme.primary, "--primary-foreground": theme.primaryForeground } as React.CSSProperties) : undefined;
 
   return (
     <section
-      className={cn("mx-auto max-w-3xl px-4 py-16 text-center [&_*]:transition-colors [&_*]:duration-500", className)}
+      className={cn("mx-auto max-w-3xl px-4 py-16 text-center", animate && "[&_*]:transition-colors [&_*]:duration-500", className)}
       style={{ ...style, ...vars }}
       onPointerEnter={() => setHeld(true)}
       onPointerLeave={() => setHeld(false)}
@@ -70,8 +69,8 @@ export function HeroThemeCycleMotion(props: HeroThemeCycleProps) {
               key={index}
               // Inline (not inline-block) so the word keeps wrapping with the punctuation after it.
               className="text-primary"
-              initial={{ filter: "blur(6px)" }}
-              animate={{ filter: "blur(0px)" }}
+              initial={animate ? { filter: "blur(6px)" } : false}
+              animate={animate ? { filter: "blur(0px)" } : undefined}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
               {parts[1]}
@@ -97,6 +96,7 @@ export function HeroThemeCycleMotion(props: HeroThemeCycleProps) {
           )}
         </div>
       )}
+      {animate && (
       <div className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
         <button
           type="button"
@@ -113,6 +113,7 @@ export function HeroThemeCycleMotion(props: HeroThemeCycleProps) {
         </button>
         <span aria-live="off">{theme.name}</span>
       </div>
+      )}
     </section>
   );
 }

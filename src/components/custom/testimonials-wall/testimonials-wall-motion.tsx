@@ -60,6 +60,7 @@ export function TestimonialsWallMotion(props: TestimonialsWallProps) {
   const { title, description, items, className, ...rest } = props;
   const reduced = useReducedMotion();
   const animate = useMounted() && !reduced;
+  const on = animate && items.length > 0;
   const [paused, setPaused] = React.useState(false);
   const [held, setHeld] = React.useState(false);
   const ys = [useMotionValue(0), useMotionValue(0), useMotionValue(0)];
@@ -81,14 +82,14 @@ export function TestimonialsWallMotion(props: TestimonialsWallProps) {
     });
   });
 
-  if (!animate || items.length === 0) return <TestimonialsWall {...props} />;
-
   const columns = [0, 1, 2].map((c) => items.filter((_, i) => i % 3 === c));
 
   return (
     <>
-      {/* Below lg only one column would fit, so smaller screens get the plain wall with every quote. */}
-      <TestimonialsWall {...props} className={cn(className, "lg:hidden")} />
+      {/* Below lg only one column would fit, so smaller screens get the plain wall with every quote.
+          It is also the server render; the drifting wall is added beside it after mount, so hydration keeps its DOM. */}
+      <TestimonialsWall {...props} className={cn(className, on && "lg:hidden")} />
+      {on && (
       <section
         className={cn(
           "mx-auto hidden max-w-6xl px-4 py-16 lg:block",
@@ -138,6 +139,7 @@ export function TestimonialsWallMotion(props: TestimonialsWallProps) {
           </button>
         </div>
       </section>
+      )}
     </>
   );
 }
