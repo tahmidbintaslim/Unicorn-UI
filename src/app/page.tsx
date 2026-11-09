@@ -122,7 +122,11 @@ export default function Home() {
               <Link href="/examples/ledgerline" className="font-medium text-foreground underline underline-offset-4 hover:text-brand">
                 see a working demo site
               </Link>{" "}
-              with a real waitlist and test checkout.
+              (or{" "}
+              <Link href="/examples/patchnote" className="font-medium text-foreground underline underline-offset-4 hover:text-brand">
+                its motion twin
+              </Link>
+              ) with a real waitlist and test checkout.
             </p>
           </section>
           <div className="mx-auto max-w-6xl px-4 pb-6 sm:px-6 lg:px-8">

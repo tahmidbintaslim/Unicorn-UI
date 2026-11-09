@@ -3,18 +3,11 @@ import { Faq } from "@/components/custom/faq/faq";
 import { FeatureGrid } from "@/components/custom/feature-grid/feature-grid";
 import { HeroWaitlist } from "@/components/custom/hero-waitlist/hero-waitlist";
 import { Steps } from "@/components/custom/steps/steps";
+import { statusMessage } from "../_lib/waitlist";
 import { content as c } from "./content";
 
-const MESSAGES: Record<string, string> = {
-  "1": "You're on the list. We'll email you once, at launch.",
-  demo: "Demo mode: the form works, but no email list is connected, so nothing was stored.",
-  invalid: "That email doesn't look right. Please check it and try again.",
-  error: "We couldn't add you just now. Please try again in a minute.",
-};
-
 export default async function LedgerlineHome({ searchParams }: { searchParams: Promise<{ joined?: string; checkout?: string }> }) {
-  const { joined, checkout } = await searchParams;
-  const message = checkout === "success" ? "Test checkout complete. Nothing was charged." : joined && Object.hasOwn(MESSAGES, joined) ? MESSAGES[joined] : undefined;
+  const message = statusMessage(await searchParams);
   return (
     <>
       <HeroWaitlist id="join" action="/examples/ledgerline/api/waitlist" honeypotName="website" {...c.hero} />
