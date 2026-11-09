@@ -19,7 +19,7 @@ export default function TemplatesIndex() {
             All names and figures in them are fictional samples.
           </p>
         </header>
-        <ul className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {TEMPLATES.map((t) => (
             <li key={t.slug}>
               <TemplateCard template={t} />

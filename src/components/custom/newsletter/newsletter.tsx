@@ -16,7 +16,7 @@ export interface NewsletterProps extends Omit<React.ComponentProps<"section">, "
 }
 
 export const inputClass =
-  "h-10 min-w-0 flex-1 rounded-md border bg-background px-3 text-sm shadow-xs outline-none transition-shadow focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50";
+  "h-11 min-w-0 rounded-md border bg-background px-3 text-base shadow-xs sm:h-10 sm:flex-1 sm:text-sm outline-none transition-shadow focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50";
 
 /** Hidden field that bots fill and people never see. */
 export function Honeypot({ name }: { name?: string }) {

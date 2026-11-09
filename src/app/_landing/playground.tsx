@@ -113,7 +113,7 @@ export function Playground({ sources }: { sources: Record<string, { plain: strin
             </pre>
           </TabsContent>
         </Tabs>
-        <div className="min-w-0 lg:pt-12">
+        <div className="order-first min-w-0 lg:order-none lg:pt-12">
           {/* Not inert: the theme-cycle preview's pause button must stay reachable. */}
           <div
             role="region"
