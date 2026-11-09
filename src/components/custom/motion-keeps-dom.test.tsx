@@ -2,6 +2,12 @@ import { act } from "@testing-library/react";
 import { hydrateRoot } from "react-dom/client";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import { AnnouncementBarMotion } from "./announcement-bar/announcement-bar-motion";
+import { ChangelogMotion } from "./changelog/changelog-motion";
+import { ComingSoonMotion } from "./coming-soon/coming-soon-motion";
+import { ComparisonTableMotion } from "./comparison-table/comparison-table-motion";
+import { FaqTwoColumnMotion } from "./faq-two-column/faq-two-column-motion";
+import { TeamMotion } from "./team/team-motion";
 import { BentoGridMotion } from "./bento-grid/bento-grid-motion";
 import { BlogGridMotion } from "./blog-grid/blog-grid-motion";
 import { CtaBannerMotion } from "./cta-banner/cta-banner-motion";
@@ -46,6 +52,12 @@ const CASES: [string, React.ReactElement][] = [
   ["TestimonialsWallMotion", <TestimonialsWallMotion key="tw" title="T" items={[{ quote: "Q", author: "A" }]} />],
   ["NotFoundMotion", <NotFoundMotion key="nf" />],
   ["NavbarFloatingMotion", <NavbarFloatingMotion key="nv" brand="B" links={[{ label: "Docs", href: "#d" }]} />],
+  ["AnnouncementBarMotion", <AnnouncementBarMotion key="ab" message="M" link={{ label: "L", href: "#l" }} dismissible />],
+  ["ChangelogMotion", <ChangelogMotion key="cl" entries={[{ date: "2026-01-01", title: "A", items: ["a"] }]} />],
+  ["ComingSoonMotion", <ComingSoonMotion key="cs2" titleAs="h2" title="T" action="#n" />],
+  ["ComparisonTableMotion", <ComparisonTableMotion key="ct" title="T" caption="C" plans={["A"]} rows={[{ feature: "F", values: [true] }]} />],
+  ["FaqTwoColumnMotion", <FaqTwoColumnMotion key="f2" items={[{ question: "Q", answer: "A" }]} />],
+  ["TeamMotion", <TeamMotion key="tm" title="T" people={[{ name: "Ana Diaz", role: "Founder" }]} />],
 ];
 
 describe("motion sections keep the server DOM after hydration", () => {

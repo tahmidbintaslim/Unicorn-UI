@@ -19,7 +19,7 @@ export interface ComparisonTableProps extends Omit<React.ComponentProps<"section
   featureLabel?: string;
 }
 
-function Cell({ value }: { value: boolean | string }) {
+export function ComparisonCell({ value }: { value: boolean | string }) {
   if (typeof value === "string") return <>{value}</>;
   return value ? (
     <>
@@ -77,7 +77,7 @@ export function ComparisonTable({
                 </th>
                 {row.values.map((value, i) => (
                   <td key={i} className="px-4 py-3 text-center text-muted-foreground">
-                    <Cell value={value} />
+                    <ComparisonCell value={value} />
                   </td>
                 ))}
               </tr>

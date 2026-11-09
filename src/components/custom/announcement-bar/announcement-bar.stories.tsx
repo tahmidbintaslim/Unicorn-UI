@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { AnnouncementBar } from "./announcement-bar";
+import { AnnouncementBarMotion } from "./announcement-bar-motion";
 
 const meta = {
   title: "Utility/Announcement bar",
@@ -10,3 +11,4 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Plain: Story = {};
+export const Motion: Story = { render: (args) => <AnnouncementBarMotion {...args} /> };

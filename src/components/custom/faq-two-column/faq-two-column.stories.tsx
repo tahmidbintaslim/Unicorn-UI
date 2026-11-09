@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 
 import { FaqTwoColumn } from "./faq-two-column";
+import { FaqTwoColumnMotion } from "./faq-two-column-motion";
 
 const meta = {
   title: "Company/FAQ two column",
@@ -11,3 +12,4 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Plain: Story = {};
+export const Motion: Story = { render: (args) => <FaqTwoColumnMotion {...args} /> };
