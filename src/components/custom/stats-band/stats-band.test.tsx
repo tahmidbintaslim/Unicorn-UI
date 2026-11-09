@@ -32,7 +32,8 @@ describe("StatsBandMotion", () => {
     mockReducedMotion(true);
     const { container } = render(<StatsBandMotion stats={stats} />);
     expect(animatedElements(container)).toHaveLength(0);
-    expect(screen.getByText("12,000+")).toBeTruthy();
+    // Visible number (aria-hidden) plus its sr-only twin, same markup as the server render.
+    expect(screen.getAllByText("12,000+")).toHaveLength(2);
   });
   it("SSR output has no hidden content", () => {
     expect(renderToString(<StatsBandMotion stats={stats} />)).not.toMatch(/opacity:\s*0[;"]/);

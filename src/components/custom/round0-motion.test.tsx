@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Zap } from "lucide-react";
 import { renderToString } from "react-dom/server";
 import { afterEach, describe, expect, it } from "vitest";
@@ -35,9 +35,33 @@ describe.each(cases)("%s", (_, make, text) => {
     expect(html).not.toMatch(/opacity:\s*0[;"]/);
   });
 
-  it("animates when motion is allowed", () => {
-    const { container } = render(make());
-    expect(animatedElements(container).length).toBeGreaterThan(0);
+  it("animates when motion is allowed", async () => {
+    // Motion switches on after mount (one tree from server to client), and the in-view
+    // entrances and the scroll-away bar only start once seen or scrolled, so trigger both.
+    const io = globalThis.IntersectionObserver;
+    globalThis.IntersectionObserver = class {
+      constructor(private cb: IntersectionObserverCallback) {}
+      observe(target: Element) {
+        // Async, like a real observer.
+        setTimeout(() => this.cb([{ isIntersecting: true, target, intersectionRatio: 1 } as IntersectionObserverEntry], this as never));
+      }
+      unobserve() {}
+      disconnect() {}
+      takeRecords() {
+        return [];
+      }
+    } as never;
+    try {
+      const { container } = render(make());
+      act(() => {
+        Object.defineProperty(window, "scrollY", { configurable: true, value: 300 });
+        window.dispatchEvent(new Event("scroll"));
+      });
+      await waitFor(() => expect(animatedElements(container).length).toBeGreaterThan(0));
+    } finally {
+      globalThis.IntersectionObserver = io;
+      Object.defineProperty(window, "scrollY", { configurable: true, value: 0 });
+    }
   });
 });
 

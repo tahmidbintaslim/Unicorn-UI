@@ -53,7 +53,7 @@ describe("motion sections keep the server DOM after hydration", () => {
     const host = document.createElement("div");
     host.innerHTML = renderToString(el);
     document.body.append(host);
-    const before = host.querySelector("h2, h3, a, button, li, blockquote");
+    const before = host.querySelector("h2, h3, a, button, li, blockquote, p");
     expect(before).not.toBeNull();
     await act(async () => {
       hydrateRoot(host, el);
