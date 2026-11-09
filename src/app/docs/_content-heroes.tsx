@@ -5,6 +5,7 @@ import { HeroShowcase, HeroShowcaseMotion } from "@/components/custom/hero-showc
 import { HeroThemeCycle, HeroThemeCycleMotion } from "@/components/custom/hero-theme-cycle";
 import { HeroVideo, HeroVideoMotion } from "@/components/custom/hero-video";
 import { HeroSplit, HeroSplitMotion } from "@/components/custom/hero-split";
+import { HeroShader, HeroShaderMotion } from "@/components/custom/hero-shader";
 import { HeroSpotlight, HeroSpotlightMotion } from "@/components/custom/hero-spotlight";
 import { HeroWaitlist, HeroWaitlistMotion } from "@/components/custom/hero-waitlist";
 import type { PropDoc, SectionDoc } from "./_content";
@@ -52,6 +53,13 @@ const command = {
   description: "Then edit it like any other file in your project.",
   command: "npx shadcn@latest add https://tapasui.tahmid.space/r/hero.json",
   primaryAction: { label: "Read the docs", href: "#docs" },
+};
+
+const shader = {
+  eyebrow: "Beta",
+  title: "A hero that moves like light on water",
+  description: "A WebGL gradient in your primary color. Sample copy.",
+  primaryAction: { label: "Get started", href: "#start" },
 };
 
 const spotlight = {
@@ -177,6 +185,24 @@ export const HERO_DOCS: Record<string, SectionDoc> = {
       preview: <HeroSpotlightMotion titleAs="h2" {...spotlight} />,
       importLine: `import { HeroSpotlightMotion } from "@/components/custom/hero-spotlight/hero-spotlight-motion";`,
       usage: `<HeroSpotlightMotion title="Your product, under the spotlight" />`,
+    },
+  },
+  "hero-shader": {
+    preview: <HeroShader titleAs="h2" {...shader} />,
+    importLine: `import { HeroShader } from "@/components/custom/hero-shader";`,
+    usage: `<HeroShader
+  eyebrow="Beta"
+  title="A hero that moves like light on water"
+  primaryAction={{ label: "Get started", href: "/signup" }}
+/>`,
+    props: [...BASE_PROPS, ROOT],
+    a11y: ["The gradient and canvas are decorative and hidden from screen readers.", "Text sits on a light tint of your primary color, so check contrast if your primary is very light."],
+    motion: {
+      summary:
+        "The gradient flows, painted with plain WebGL (no 3D library). It only draws while on screen, stops for reduced motion, has a Pause background button, and falls back to the CSS gradient where WebGL isn't available.",
+      preview: <HeroShaderMotion titleAs="h2" {...shader} />,
+      importLine: `import { HeroShaderMotion } from "@/components/custom/hero-shader/hero-shader-motion";`,
+      usage: `<HeroShaderMotion title="A hero that moves like light on water" />`,
     },
   },
   "hero-showcase": {

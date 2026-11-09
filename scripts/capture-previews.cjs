@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports -- plain Node script; require() resolves a globally installed Playwright via NODE_PATH */
 // Screenshots each section's docs preview into public/previews/<slug>.jpg for the section cards.
-// Usage: pnpm build && pnpm start, then: node scripts/capture-previews.cjs http://localhost:3000
+// Usage: pnpm build && pnpm start, then: node scripts/capture-previews.cjs http://localhost:3000 [slug ...]
+// Pass slugs to capture only those sections.
 // Needs Playwright with Chromium (installed globally, or `npm i -g playwright`; set NODE_PATH if needed).
 const { chromium } = require("playwright");
 const { readFileSync } = require("node:fs");
@@ -9,7 +10,8 @@ const base = process.argv[2] ?? "http://localhost:3000";
 // Same filter as src/app/_site/sections.ts: plain sections only.
 const slugs = JSON.parse(readFileSync("registry.json", "utf8"))
   .items.map((i) => i.name)
-  .filter((n) => !n.endsWith("-motion") && !n.startsWith("template-") && n !== "motion-lift");
+  .filter((n) => !n.endsWith("-motion") && !n.startsWith("template-") && n !== "motion-lift")
+  .filter((n) => process.argv.length <= 3 || process.argv.slice(3).includes(n));
 
 (async () => {
 const browser = await chromium.launch();
