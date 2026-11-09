@@ -11,7 +11,7 @@ export interface TemplateMeta {
   sections: string[];
 }
 
-const SLUGS = ["saas", "waitlist", "ai"] as const;
+const SLUGS = ["saas", "waitlist", "ai", "pricing", "changelog", "mobile-app"] as const;
 
 /** Free page templates, read from registry.json so the gallery never drifts from it. */
 export const TEMPLATES: TemplateMeta[] = SLUGS.map((slug) => {
