@@ -71,7 +71,7 @@ export const content = {
     title: "Questions",
     items: [
       { question: "Is Patchnote real?", answer: "No. It's a sample product that shows Tapas UI motion sections working together." },
-      { question: "Does the beta form work?", answer: "Yes. It posts to a route that adds the email to a Resend audience once keys are set." },
+      { question: "Does the beta form work?", answer: "Yes. It posts to a route that adds the email to a Resend segment once keys are set." },
       { question: "Does checkout work?", answer: "Yes, in Stripe test mode. Use card 4242 4242 4242 4242 and any future date." },
       { question: "Can I run the command?", answer: "No. Patchnote isn't published; the command is sample text." },
     ],

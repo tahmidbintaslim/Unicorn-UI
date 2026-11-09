@@ -18,7 +18,7 @@ Owner's plan, adopted 2026-11-08. Status notes in *italics*.
   *GitHub-registry install (`shadcn add owner/repo/...`) was not adopted: unverified, and the static
   registry already needs no server.*
 - **Working stubs, no Tapas backend:** waitlist forms post to the user's own endpoint (the demo uses a
-  route that adds to a Resend audience) and pricing links to hosted checkout (Stripe Payment Links).
+  route that adds to a Resend segment) and pricing links to hosted checkout (Stripe Payment Links).
   *Done in the demo, including per-period (`yearlyHref`) checkout links and a honeypot field.*
 
 ## Marketing and sales

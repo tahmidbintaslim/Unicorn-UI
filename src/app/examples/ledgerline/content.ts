@@ -87,7 +87,7 @@ export const content = {
   faq: {
     items: [
       { question: "Is Ledgerline real?", answer: "No. It's a sample product that shows Tapas UI sections working together." },
-      { question: "Does the waitlist work?", answer: "Yes. The form posts to a route that adds the email to a Resend audience once keys are set." },
+      { question: "Does the waitlist work?", answer: "Yes. The form posts to a route that adds the email to a Resend segment once keys are set." },
       { question: "Does checkout work?", answer: "Yes, in Stripe test mode. Use card 4242 4242 4242 4242 and any future date." },
     ],
   },
