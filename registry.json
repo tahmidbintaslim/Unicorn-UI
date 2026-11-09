@@ -873,6 +873,24 @@
       ]
     },
     {
+      "name": "comparison-table-motion",
+      "type": "registry:component",
+      "title": "Comparison table (motion)",
+      "description": "The comparison table with rows fading in top to bottom.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapasui.tahmid.space/r/comparison-table.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/comparison-table/comparison-table-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "cta-split",
       "type": "registry:component",
       "title": "CTA: split",
@@ -1205,6 +1223,24 @@
       ]
     },
     {
+      "name": "team-motion",
+      "type": "registry:component",
+      "title": "Team (motion)",
+      "description": "The team grid with people rising in one after another.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapasui.tahmid.space/r/team.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/team/team-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "changelog",
       "type": "registry:component",
       "title": "Changelog",
@@ -1217,6 +1253,25 @@
       ],
       "registryDependencies": [
         "badge"
+      ]
+    },
+    {
+      "name": "changelog-motion",
+      "type": "registry:component",
+      "title": "Changelog (motion)",
+      "description": "The changelog with each release rising in and its dot popping onto the rail.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "https://tapasui.tahmid.space/r/changelog.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/changelog/changelog-motion.tsx",
+          "type": "registry:component"
+        }
       ]
     },
     {
@@ -1268,6 +1323,25 @@
       ],
       "dependencies": [
         "lucide-react"
+      ]
+    },
+    {
+      "name": "faq-two-column-motion",
+      "type": "registry:component",
+      "title": "FAQ: two column (motion)",
+      "description": "The two-column FAQ with answers that slide open.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapasui.tahmid.space/r/faq-two-column.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/faq-two-column/faq-two-column-motion.tsx",
+          "type": "registry:component"
+        }
       ]
     },
     {
@@ -1336,6 +1410,26 @@
       ]
     },
     {
+      "name": "coming-soon-motion",
+      "type": "registry:component",
+      "title": "Coming soon (motion)",
+      "description": "The pre-launch section with badge, title, copy and form rising in one after another.",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "https://tapasui.tahmid.space/r/coming-soon.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/coming-soon/coming-soon-motion.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "announcement-bar",
       "type": "registry:component",
       "title": "Announcement bar",
@@ -1352,6 +1446,25 @@
       ],
       "dependencies": [
         "lucide-react"
+      ]
+    },
+    {
+      "name": "announcement-bar-motion",
+      "type": "registry:component",
+      "title": "Announcement bar (motion)",
+      "description": "The announcement bar with a short one-time nudge on the link arrow.",
+      "dependencies": [
+        "lucide-react",
+        "motion"
+      ],
+      "registryDependencies": [
+        "https://tapasui.tahmid.space/r/announcement-bar.json"
+      ],
+      "files": [
+        {
+          "path": "src/components/custom/announcement-bar/announcement-bar-motion.tsx",
+          "type": "registry:component"
+        }
       ]
     },
     {

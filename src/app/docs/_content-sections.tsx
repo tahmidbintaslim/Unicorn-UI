@@ -1,14 +1,14 @@
-import { AnnouncementBar } from "@/components/custom/announcement-bar";
+import { AnnouncementBar, AnnouncementBarMotion } from "@/components/custom/announcement-bar";
 import { BlogGrid, BlogGridMotion } from "@/components/custom/blog-grid";
-import { ComingSoon } from "@/components/custom/coming-soon";
+import { ComingSoon, ComingSoonMotion } from "@/components/custom/coming-soon";
 import { FooterSimple } from "@/components/custom/footer-simple";
 import { NavbarFloating, NavbarFloatingMotion } from "@/components/custom/navbar-floating";
 import { NotFound, NotFoundMotion } from "@/components/custom/not-found";
-import { Changelog } from "@/components/custom/changelog";
-import { ComparisonTable } from "@/components/custom/comparison-table";
+import { Changelog, ChangelogMotion } from "@/components/custom/changelog";
+import { ComparisonTable, ComparisonTableMotion } from "@/components/custom/comparison-table";
 import { Contact } from "@/components/custom/contact";
-import { FaqTwoColumn } from "@/components/custom/faq-two-column";
-import { Team } from "@/components/custom/team";
+import { FaqTwoColumn, FaqTwoColumnMotion } from "@/components/custom/faq-two-column";
+import { Team, TeamMotion } from "@/components/custom/team";
 import { FeatureGrid, FeatureGridMotion } from "@/components/custom/feature-grid";
 import { FeatureRows, FeatureRowsMotion } from "@/components/custom/feature-rows";
 import { IntegrationsGrid, IntegrationsGridMotion } from "@/components/custom/integrations-grid";
@@ -166,6 +166,12 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
       ROOT,
     ],
     a11y: ["Real table markup with a caption, column headers and row headers.", "Checks and dashes read as “Included” and “Not included”.", "On narrow screens the table scrolls inside a focusable region."],
+    motion: {
+      summary: "Rows fade in top to bottom as the table scrolls into view, so it reads feature by feature.",
+      preview: <ComparisonTableMotion {...comparison} />,
+      importLine: `import { ComparisonTableMotion } from "@/components/custom/comparison-table/comparison-table-motion";`,
+      usage: `<ComparisonTableMotion caption="Plans compared" plans={plans} rows={rows} />`,
+    },
   },
   "cta-split": {
     preview: <CtaSplit {...cta} media={<DemoScreen />} />,
@@ -419,6 +425,12 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
       ROOT,
     ],
     a11y: ["Each person's name is an h3.", "Links are named “Ana Diaz on GitHub”, not just “GitHub”."],
+    motion: {
+      summary: "People rise in one after another as the grid scrolls into view.",
+      preview: <TeamMotion title="The people behind it" description="Sample people." people={samplePeople} />,
+      importLine: `import { TeamMotion } from "@/components/custom/team/team-motion";`,
+      usage: `<TeamMotion people={people} />`,
+    },
   },
   changelog: {
     preview: <Changelog entries={sampleChangelog} />,
@@ -432,6 +444,12 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
       ROOT,
     ],
     a11y: ["Dates use <time datetime> and format in UTC, so server and browser agree.", "Each release is an article in an ordered list."],
+    motion: {
+      summary: "Each release rises in as it scrolls into view and its dot pops onto the rail.",
+      preview: <ChangelogMotion entries={sampleChangelog} />,
+      importLine: `import { ChangelogMotion } from "@/components/custom/changelog/changelog-motion";`,
+      usage: `<ChangelogMotion entries={entries} />`,
+    },
   },
   "blog-grid": {
     preview: <BlogGrid title="From the blog" description="Sample posts." posts={samplePosts} viewAll={{ label: "All posts", href: "#blog" }} />,
@@ -480,6 +498,21 @@ export const SECTION_DOCS: Record<string, SectionDoc> = {
       ROOT,
     ],
     a11y: ["Native details/summary: keyboard and screen-reader support with no JavaScript."],
+    motion: {
+      summary: "Answers slide open instead of snapping. Still native details/summary underneath.",
+      preview: (
+        <FaqTwoColumnMotion
+          description="Can't find what you need? Sample copy."
+          contact={{ label: "Email us", href: "#contact" }}
+          items={[
+            { question: "Is it free?", answer: "Yes, MIT licensed." },
+            { question: "Do I need a package?", answer: "No, the code lands in your project." },
+          ]}
+        />
+      ),
+      importLine: `import { FaqTwoColumnMotion } from "@/components/custom/faq-two-column/faq-two-column-motion";`,
+      usage: `<FaqTwoColumnMotion items={items} />`,
+    },
   },
   contact: {
     preview: (
@@ -547,6 +580,12 @@ export default function NotFoundPage() {
       ROOT,
     ],
     a11y: ["A labelled email field; the form works without JavaScript.", "No countdown timer, so nothing changes on screen every second."],
+    motion: {
+      summary: "Badge, title, copy and the notify form rise in one after another, ending on the form.",
+      preview: <ComingSoonMotion titleAs="h2" title="Something new is cooking" description="Leave your email and hear first. Sample copy." action="#notify" launchDate="2026-12-01" />,
+      importLine: `import { ComingSoonMotion } from "@/components/custom/coming-soon/coming-soon-motion";`,
+      usage: `<ComingSoonMotion title="Something new is cooking" action="/api/notify" />`,
+    },
   },
   "announcement-bar": {
     preview: <AnnouncementBar message="New: pricing tables and feature grids." link={{ label: "See what's new", href: "#changelog" }} dismissible />,
@@ -563,6 +602,12 @@ export default function NotFoundPage() {
       { name: "...props", type: `React.ComponentProps<"div">`, description: "Any other div attribute goes to the root element." },
     ],
     a11y: ["The close button is labelled “Dismiss announcement”."],
+    motion: {
+      summary: "The link's arrow nudges twice after the page loads, then stays still.",
+      preview: <AnnouncementBarMotion message="New: pricing tables and feature grids." link={{ label: "See what's new", href: "#changelog" }} dismissible />,
+      importLine: `import { AnnouncementBarMotion } from "@/components/custom/announcement-bar/announcement-bar-motion";`,
+      usage: `<AnnouncementBarMotion message="New: pricing tables." link={{ label: "See what's new", href: "/changelog" }} />`,
+    },
   },
   "navbar-floating": {
     preview: (
