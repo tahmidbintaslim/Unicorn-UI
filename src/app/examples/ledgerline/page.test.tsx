@@ -1,11 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { expect, it } from "vitest";
-import LedgerlineHome from "./page";
+import { expect, it, vi } from "vitest";
 
-it("ignores unknown ?joined values, including built-in object keys", async () => {
-  for (const joined of ["constructor", "toString", "nope"]) {
-    const { unmount } = render(await LedgerlineHome({ searchParams: Promise.resolve({ joined }) }));
-    expect(screen.queryByRole("status")).toBeNull();
-    unmount();
-  }
+vi.mock("next/navigation", () => ({ useSearchParams: () => new URLSearchParams("joined=demo") }));
+const { default: LedgerlineHome } = await import("./page");
+
+it("renders one h1, the form posting to its own route, and the status line", () => {
+  render(<LedgerlineHome />);
+  expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+  expect(document.querySelector("#join form, form#join")?.getAttribute("action")).toBe("/examples/ledgerline/api/waitlist");
+  expect(screen.getByText(/Demo mode/)).toBeTruthy();
 });

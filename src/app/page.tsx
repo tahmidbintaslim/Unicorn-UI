@@ -14,6 +14,7 @@ import { Pricing } from "./_landing/pricing";
 import { PLAYGROUND } from "./_landing/playground-data";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { JsonLd } from "./_site/json-ld";
 import { Reveal } from "./_site/reveal";
 import { TemplateCard } from "./_site/template-card";
 import { TEMPLATES } from "./_site/templates";
@@ -50,6 +51,18 @@ export default function Home() {
   return (
     // The landing page is always dark, whatever the visitor's theme; the docs follow their choice.
     <div className="dark min-h-screen bg-background text-foreground [color-scheme:dark]">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareSourceCode",
+          name: "Tapas UI",
+          description: "Free, open-source landing page sections for Next.js and shadcn/ui.",
+          url: "https://tapasui.tahmid.space",
+          codeRepository: GITHUB_URL,
+          programmingLanguage: ["TypeScript", "React"],
+          license: "https://opensource.org/licenses/MIT",
+        }}
+      />
       <SiteHeader />
       <main>
         <HeroCanvas>

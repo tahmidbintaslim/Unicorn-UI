@@ -61,7 +61,7 @@ export async function SiteHeader({
             <Link href="/docs">Get started</Link>
           </Button>
           {/* Phones and small tablets: the same links in a no-JS disclosure menu. */}
-          <details className="relative md:hidden">
+          <details data-menu className="relative md:hidden">
             <summary className="flex size-11 cursor-pointer list-none items-center justify-center rounded-md hover:bg-muted focus-visible:outline-2 focus-visible:outline-brand [&::-webkit-details-marker]:hidden">
               <Menu aria-hidden="true" className="size-5" />
               <span className="sr-only">Menu</span>

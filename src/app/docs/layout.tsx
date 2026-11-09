@@ -13,7 +13,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
         </aside>
         <div className="min-w-0 flex-1 py-10">
           {/* Phones and tablets get the sidebar as a disclosure above the content. */}
-          <details className="group mb-8 rounded-xl border bg-card lg:hidden">
+          <details data-menu className="group mb-8 rounded-xl border bg-card lg:hidden">
             <summary className="cursor-pointer list-none px-4 py-3 text-sm font-medium [&::-webkit-details-marker]:hidden">
               Browse the docs
               <span aria-hidden="true" className="float-right text-muted-foreground group-open:rotate-180">

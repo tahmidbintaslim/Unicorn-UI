@@ -5,7 +5,8 @@ import { FeatureRowsMotion } from "@/components/custom/feature-rows/feature-rows
 import { HeroCommandMotion } from "@/components/custom/hero-command/hero-command-motion";
 import { NewsletterMotion } from "@/components/custom/newsletter/newsletter-motion";
 import { PricingTableMotion } from "@/components/custom/pricing-table/pricing-table-motion";
-import { statusMessage } from "../_lib/waitlist";
+import { Suspense } from "react";
+import { StatusLine } from "../_lib/status-line";
 import { content as c } from "./content";
 
 // Motion sections are client components, so icons cross as rendered elements, not component functions.
@@ -21,8 +22,7 @@ function Sample({ lines }: { lines: string[] }) {
   );
 }
 
-export default async function PatchnoteHome({ searchParams }: { searchParams: Promise<{ joined?: string; checkout?: string }> }) {
-  const message = statusMessage(await searchParams);
+export default function PatchnoteHome() {
   const media = [<Sample key="d" lines={["$ " + c.hero.command, ...SAMPLE_NOTES]} />, <Sample key="p" lines={SAMPLE_NOTES} />];
   return (
     <>
@@ -33,11 +33,9 @@ export default async function PatchnoteHome({ searchParams }: { searchParams: Pr
       <FaqTwoColumn id="faq" {...c.faq} />
       <NewsletterMotion id="join" action="/examples/patchnote/api/waitlist" honeypotName="website" {...c.newsletter} />
       {/* Under the form: the redirect lands on #join, so the outcome shows where the reader is. */}
-      {message && (
-        <p role="status" className="mx-4 -mt-6 mb-16 max-w-md sm:mx-auto rounded-lg border bg-muted/50 px-4 py-3 text-center text-sm">
-          {message}
-        </p>
-      )}
+      <Suspense fallback={null}>
+        <StatusLine className="mx-4 -mt-6 mb-16 max-w-md sm:mx-auto rounded-lg border bg-muted/50 px-4 py-3 text-center text-sm" />
+      </Suspense>
     </>
   );
 }
