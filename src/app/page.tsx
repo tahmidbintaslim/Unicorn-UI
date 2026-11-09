@@ -18,6 +18,8 @@ import { Reveal } from "./_site/reveal";
 import { TemplateCard } from "./_site/template-card";
 import { TEMPLATES } from "./_site/templates";
 
+export const metadata = { alternates: { canonical: "/" } };
+
 /** Sections shown in the catalogue grid, in reading order. */
 const MENU = [
   "hero-split",
@@ -133,10 +135,10 @@ export default function Home() {
                 </Link>
               </Button>
             </div>
-            <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <ul className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
               {TEMPLATES.map((t) => (
                 <li key={t.slug}>
-                  <TemplateCard template={t} headingLevel="h3" />
+                  <TemplateCard template={t} headingLevel="h3" compact />
                 </li>
               ))}
             </ul>

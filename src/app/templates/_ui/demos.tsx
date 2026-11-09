@@ -1,10 +1,11 @@
+import { pageMeta } from "@/app/_site/meta";
 import { notFound } from "next/navigation";
 import { getTemplate } from "../../_site/templates";
 import { TemplateBar } from "./template-bar";
 
 export const templateMetadata = (slug: string, motion: boolean) => {
   const t = getTemplate(slug);
-  return t ? { title: `${t.title}${motion ? " (motion)" : ""} template | Tapas UI`, description: t.description } : {};
+  return t ? pageMeta(`${t.title}${motion ? " (motion)" : ""} template | Tapas UI`, t.description, `/templates/${slug}${motion ? "/motion" : ""}`) : {};
 };
 
 /**

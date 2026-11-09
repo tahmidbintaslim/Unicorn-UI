@@ -11,10 +11,25 @@ export interface NewsletterProps extends Omit<React.ComponentProps<"section">, "
   inputLabel?: string;
   buttonLabel?: string;
   note?: string;
+  /** Name of a hidden spam-trap field; your endpoint should drop submissions that fill it. */
+  honeypotName?: string;
 }
 
 export const inputClass =
-  "h-10 min-w-0 flex-1 rounded-md border bg-background px-3 text-sm shadow-xs outline-none transition-shadow focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50";
+  "h-11 min-w-0 rounded-md border bg-background px-3 text-base shadow-xs sm:h-10 sm:flex-1 sm:text-sm outline-none transition-shadow focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50";
+
+/** Hidden field that bots fill and people never see. */
+export function Honeypot({ name }: { name?: string }) {
+  if (!name) return null;
+  return (
+    <div aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden">
+      <label>
+        Leave this empty
+        <input name={name} tabIndex={-1} autoComplete="off" />
+      </label>
+    </div>
+  );
+}
 
 /** Newsletter signup band. A plain HTML form: works without JavaScript. */
 export function Newsletter({
@@ -25,6 +40,7 @@ export function Newsletter({
   inputLabel = "Email address",
   buttonLabel = "Subscribe",
   note,
+  honeypotName,
   className,
   ...props
 }: NewsletterProps) {
@@ -43,6 +59,7 @@ export function Newsletter({
             </label>
             <input id={id} name="email" type="email" required autoComplete="email" placeholder="you@example.com" className={inputClass} />
             <Button type="submit">{buttonLabel}</Button>
+            <Honeypot name={honeypotName} />
           </form>
           {note && <p className="mt-2 text-xs text-muted-foreground">{note}</p>}
         </div>

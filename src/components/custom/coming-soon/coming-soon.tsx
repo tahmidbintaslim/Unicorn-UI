@@ -52,7 +52,7 @@ export function ComingSoon({ titleAs: TitleTag = "h1",
           required
           autoComplete="email"
           placeholder="you@example.com"
-          className="placeholder:text-muted-foreground h-10 min-w-0 flex-1 rounded-md border bg-background px-3 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+          className="placeholder:text-muted-foreground h-11 min-w-0 rounded-md border bg-background px-3 text-base shadow-xs sm:h-10 sm:flex-1 sm:text-sm outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
         />
         <Button type="submit" size="lg">
           {buttonLabel}

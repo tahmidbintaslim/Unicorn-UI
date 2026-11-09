@@ -78,3 +78,12 @@ describe("waitlist route", () => {
     expect(fetch).not.toHaveBeenCalled();
   });
 });
+
+describe("waitlist origin check", () => {
+  it("rejects a form posted from another site", async () => {
+    const body = new FormData();
+    body.set("email", "a@b.co");
+    const res = await POST(new Request("http://site/x", { method: "POST", body, headers: { Origin: "https://evil.example" } }));
+    expect(res.status).toBe(403);
+  });
+});

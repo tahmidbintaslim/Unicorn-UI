@@ -7,7 +7,7 @@ export const waitlistContent = {
     title: "Notes that organize themselves",
     description: "Write anywhere. Nimbus files, links and summarizes it for you. Join the waitlist for early access.",
     action: "#join",
-    note: "One email when your invite is ready. No spam.",
+    note: "Sample form: it submits nowhere until you point action at your API.",
   },
   proof: { text: "300 people joined this week (sample)", people: ["Ana", "Ben", "Cy", "Dee", "Eli"] },
   features: {

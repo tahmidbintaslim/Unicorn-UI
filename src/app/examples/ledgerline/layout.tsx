@@ -3,7 +3,12 @@ import { FooterSimple } from "@/components/custom/footer-simple/footer-simple";
 import { Navbar } from "@/components/custom/navbar/navbar";
 import { content as c } from "./content";
 
-export const metadata = { title: { default: "Ledgerline: a Tapas UI demo", template: "%s | Ledgerline (Tapas UI demo)" } };
+// A made-up company: keep it out of search results so nobody mistakes it for a real product.
+export const metadata = {
+  title: { default: "Ledgerline: a Tapas UI demo", template: "%s | Ledgerline (Tapas UI demo)" },
+  description: "A fictional demo site built entirely from Tapas UI sections.",
+  robots: { index: false, follow: true },
+};
 
 /** The demo site's frame: notice, navbar and footer, all from content.ts. */
 export default function LedgerlineLayout({ children }: { children: React.ReactNode }) {

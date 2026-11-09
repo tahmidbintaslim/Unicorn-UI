@@ -1,9 +1,7 @@
+import { pageMeta } from "@/app/_site/meta";
 import { C, CodeBlock, DocsHeader, H2, P } from "../_ui";
 
-export const metadata = {
-  title: "Theming | Tapas UI",
-  description: "Tapas UI sections use your shadcn theme variables for color, radius and dark mode.",
-};
+export const metadata = pageMeta("Theming | Tapas UI", "Tapas UI sections use your shadcn theme variables for color, radius and dark mode.", "/docs/theming");
 
 export default function Theming() {
   return (

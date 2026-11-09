@@ -31,7 +31,7 @@ export default async function PatchnoteHome({ searchParams }: { searchParams: Pr
       <FeatureRowsMotion title={c.rows.title} rows={c.rows.rows.map((r, n) => ({ ...r, media: media[n] }))} />
       <PricingTableMotion id="pricing" {...c.pricing} />
       <FaqTwoColumn id="faq" {...c.faq} />
-      <NewsletterMotion id="join" action="/examples/patchnote/api/waitlist" {...c.newsletter} />
+      <NewsletterMotion id="join" action="/examples/patchnote/api/waitlist" honeypotName="website" {...c.newsletter} />
       {/* Under the form: the redirect lands on #join, so the outcome shows where the reader is. */}
       {message && (
         <p role="status" className="mx-4 -mt-6 mb-16 max-w-md sm:mx-auto rounded-lg border bg-muted/50 px-4 py-3 text-center text-sm">

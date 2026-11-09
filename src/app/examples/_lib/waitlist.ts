@@ -5,6 +5,9 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Handles a waitlist form post, then redirects back to `page` (a fixed site path) with `?joined=<outcome>`. */
 export async function handleWaitlist(request: Request, page: string, anchor = "join") {
+  // Browsers send Origin on form posts: refuse other sites posting visitors' browsers into the list.
+  const origin = request.headers.get("origin");
+  if (origin && origin !== new URL(request.url).origin) return new Response("Forbidden", { status: 403 });
   // A body that isn't a form (JSON, empty) counts as invalid input, not a server error.
   const form = await request.formData().catch(() => null);
   const email = String(form?.get("email") ?? "").trim().toLowerCase();
