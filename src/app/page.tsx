@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Github, LayoutGrid, Palette, PersonStanding, Server, Terminal, SquarePen } from "lucide-react";
+import { ArrowRight, Github } from "lucide-react";
 import Link from "next/link";
 import { CopyCommand } from "./_site/copy-command";
 import { GITHUB_URL, GOOD_FIRST_ISSUES_URL, installCommand } from "./_site/links";
@@ -34,49 +34,8 @@ const MENU = [
   "footer",
 ];
 
-const STEPS = [
-  {
-    icon: LayoutGrid,
-    title: "Pick a section",
-    body: "Browse hero, pricing, FAQ, footer and more. Preview each one in light and dark, in your colors.",
-    code: "tapasui.tahmid.space/docs/sections",
-  },
-  {
-    icon: Terminal,
-    title: "Run one command",
-    body: "The shadcn CLI copies the component and its dependencies into your project. No package to keep updated.",
-    code: "npx shadcn@latest add …/r/faq.json",
-  },
-  {
-    icon: SquarePen,
-    title: "Make it yours",
-    body: "It is your code now. Change the copy, move things around, ship. Sections render as server components.",
-    code: "<Faq items={faqs} />",
-  },
-];
-
-const REASONS = [
-  {
-    icon: Palette,
-    title: "Your theme, not ours",
-    body: "Sections use shadcn tokens such as primary and muted, so they match the rest of your app with no extra setup.",
-  },
-  {
-    icon: SquarePen,
-    title: "You own the code",
-    body: "Nothing to import from node_modules. The component lands in your repo, readable and editable.",
-  },
-  {
-    icon: Server,
-    title: "Server-first",
-    body: "Sections render as React Server Components. Only interactive parts, like a copy button, ship JavaScript.",
-  },
-  {
-    icon: PersonStanding,
-    title: "Accessible by default",
-    body: "Semantic HTML, keyboard support and screen-reader labels, with contrast checked in light and dark.",
-  },
-];
+/** The four promises, set large instead of as icon cards. */
+const PROMISES = ["Your theme.", "Your code.", "Server-first.", "Accessible."];
 
 /** Real component source for the playground's code tab, read at build time. */
 function playgroundSources() {
@@ -93,23 +52,14 @@ export default function Home() {
       <main>
         <HeroCanvas>
           <section aria-labelledby="hero-title" className="px-4 pt-24 pb-14 text-center sm:pt-28">
-            <Link
-              href="/templates"
-              className="inline-flex items-center gap-2 rounded-full border bg-card px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-            >
-              <span aria-hidden="true" className="size-1.5 rounded-full bg-brand" />
-              New: 3 free page templates, plain or motion
-              <ArrowRight aria-hidden="true" className="size-3.5" />
-            </Link>
             <h1
               id="hero-title"
-              className="mx-auto mt-7 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.05] font-semibold tracking-[-0.035em] text-balance"
+              className="mx-auto max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.05] font-semibold tracking-[-0.035em] text-balance"
             >
               Landing page sections you copy, <span className="text-brand">own</span> and ship.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-[19px]">
-              Free, open-source heroes, pricing, FAQ, footer and more for Next.js and shadcn/ui. Each comes plain or
-              with motion, installs with one command and picks up your theme.
+              Free shadcn/ui sections for Next.js. One command each, in your colors.
             </p>
             <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild size="lg" className="h-11 px-6 text-[15px]">
@@ -118,15 +68,10 @@ export default function Home() {
               <CopyCommand command={installCommand("hero")} className="h-11 w-full sm:w-auto sm:max-w-md" />
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
-              Or{" "}
               <Link href="/examples/ledgerline" className="font-medium text-foreground underline underline-offset-4 hover:text-brand">
-                see a working demo site
+                See a live demo site
               </Link>{" "}
-              (or{" "}
-              <Link href="/examples/patchnote" className="font-medium text-foreground underline underline-offset-4 hover:text-brand">
-                its motion twin
-              </Link>
-              ) with a real waitlist and test checkout.
+              with a working waitlist.
             </p>
           </section>
           <div className="mx-auto max-w-6xl px-4 pb-6 sm:px-6 lg:px-8">
@@ -134,52 +79,12 @@ export default function Home() {
           </div>
         </HeroCanvas>
 
-        {/* Built for */}
-        <section aria-labelledby="stack-title" className="px-4 pt-24 pb-24 text-center">
-          <h2 id="stack-title" className="text-[13px] font-medium text-muted-foreground">
-            Built for the stack you already use
-          </h2>
-          <ul className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-x-14 gap-y-4 text-lg font-semibold text-muted-foreground/90 sm:text-xl">
-            {["Next.js", "shadcn/ui", "Tailwind CSS", "React 19", "TypeScript"].map((name) => (
-              <li key={name}>{name}</li>
-            ))}
-          </ul>
-        </section>
-
-        {/* How it works */}
-        <section aria-labelledby="how-title" className="border-t">
-          <Reveal className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-            <h2 id="how-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
-              From blank page to launch in three steps.
-            </h2>
-            <ol className="mt-12 grid gap-5 md:grid-cols-3">
-              {STEPS.map((step, i) => (
-                <li key={step.title} className="flex flex-col gap-4 rounded-2xl border bg-card p-7">
-                  <span className="flex items-center gap-3 text-brand">
-                    <step.icon aria-hidden="true" className="size-5" />
-                    <span className="font-mono text-sm">Step {i + 1}</span>
-                  </span>
-                  <h3 className="text-[22px] font-semibold tracking-tight">{step.title}</h3>
-                  <p className="leading-relaxed text-muted-foreground">{step.body}</p>
-                  <code className="mt-auto truncate rounded-lg border bg-background px-3 py-2.5 font-mono text-xs">
-                    {step.code}
-                  </code>
-                </li>
-              ))}
-            </ol>
-          </Reveal>
-        </section>
-
         {/* Playground */}
         <section aria-labelledby="playground-title" className="border-t">
           <Reveal className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
             <h2 id="playground-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
               Try it before you install it.
             </h2>
-            <p className="mt-4 max-w-xl text-[17px] text-muted-foreground">
-              Pick a hero, switch between plain and motion, change the color and spacing. The code on the left is what
-              you would paste.
-            </p>
             <div className="mt-10">
               <Playground sources={playgroundSources()} />
             </div>
@@ -190,14 +95,9 @@ export default function Home() {
         <section aria-labelledby="menu-title" className="border-t">
           <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-              <div className="space-y-4">
-                <h2 id="menu-title" className="text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+              <h2 id="menu-title" className="text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
                   Every section a landing page needs.
                 </h2>
-                <p className="text-[17px] text-muted-foreground">
-                  Each one is a single install. Preview it, copy the command, done.
-                </p>
-              </div>
               <Button asChild variant="outline" className="w-fit">
                 <Link href="/docs/sections">
                   View all {SECTIONS.length} sections
@@ -223,14 +123,9 @@ export default function Home() {
         <section aria-labelledby="templates-title" className="border-t">
           <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-              <div className="space-y-4">
-                <h2 id="templates-title" className="text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+              <h2 id="templates-title" className="text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
                   Or start from a whole page.
                 </h2>
-                <p className="text-[17px] text-muted-foreground">
-                  {TEMPLATES.length} free templates, each plain or with motion. Swap in your copy through one prop.
-                </p>
-              </div>
               <Button asChild variant="outline" className="w-fit">
                 <Link href="/templates">
                   All templates
@@ -248,18 +143,16 @@ export default function Home() {
           </Reveal>
         </section>
 
-        {/* Why */}
+        {/* Why: one bold statement instead of four icon cards */}
         <section aria-labelledby="why-title" className="border-t">
           <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
-            <h2 id="why-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
-              Built like shadcn/ui. Made for marketing pages.
+            <h2 id="why-title" className="text-[13px] font-medium text-muted-foreground">
+              Built like shadcn/ui, made for marketing pages
             </h2>
-            <ul className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
-              {REASONS.map((reason) => (
-                <li key={reason.title} className="space-y-3 border-t pt-6">
-                  <reason.icon aria-hidden="true" className="size-5 text-brand" />
-                  <h3 className="text-lg font-semibold">{reason.title}</h3>
-                  <p className="leading-relaxed text-muted-foreground">{reason.body}</p>
+            <ul className="mt-8 text-[clamp(2.75rem,8vw,6rem)] leading-[1] font-semibold tracking-[-0.04em]">
+              {PROMISES.map((p, i) => (
+                <li key={p} className={i % 2 ? "text-muted-foreground" : undefined}>
+                  {p}
                 </li>
               ))}
             </ul>
@@ -291,8 +184,7 @@ export default function Home() {
             Pull up a chair. Bring a section.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-pretty text-muted-foreground">
-            Tapas UI is MIT licensed and built in the open. Star the repo to follow along, or pick a good first
-            issue and add the next section.
+            MIT licensed. Pick a good first issue and add the next section.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="h-11 px-6 text-[15px]">
