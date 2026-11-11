@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs";
 import { ComparisonTable } from "./comparison-table";
+import { ComparisonTableMotion } from "./comparison-table-motion";
 
 const meta = {
   title: "Marketing/Comparison table",
@@ -20,3 +21,4 @@ type Story = StoryObj<typeof meta>;
 
 export const Plain: Story = {};
 export const Phone: Story = { globals: { viewport: { value: "mobile1" } } };
+export const Motion: Story = { render: (args) => <ComparisonTableMotion {...args} /> };

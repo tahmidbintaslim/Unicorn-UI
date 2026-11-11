@@ -83,7 +83,7 @@ export function Playground({ sources }: { sources: Record<string, { plain: strin
           <span aria-hidden="true" className="text-muted-foreground">
             Theme
           </span>
-          <ThemeSwatches name="pg-theme" />
+          <ThemeSwatches name="pg-theme" defaultValue="orange" />
         </fieldset>
         <button
           type="button"

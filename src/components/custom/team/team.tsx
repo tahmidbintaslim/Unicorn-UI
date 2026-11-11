@@ -16,7 +16,7 @@ export interface TeamProps extends Omit<React.ComponentProps<"section">, "title"
   people: TeamMember[];
 }
 
-const initials = (name: string) =>
+export const initials = (name: string) =>
   name
     .split(" ")
     .map((p) => p.charAt(0))

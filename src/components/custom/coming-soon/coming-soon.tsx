@@ -16,7 +16,7 @@ export interface ComingSoonProps extends Omit<React.ComponentProps<"section">, "
   buttonLabel?: string;
 }
 
-const formatDate = (iso: string) =>
+export const formatLaunchDate = (iso: string) =>
   new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
 
 /** Pre-launch page section: what's coming, when, and a way to get notified. */
@@ -38,7 +38,7 @@ export function ComingSoon({ titleAs: TitleTag = "h1",
       {description && <p className="mt-4 text-lg text-pretty text-muted-foreground">{description}</p>}
       {launchDate && (
         <p className="mt-4 text-sm font-medium">
-          Launching <time dateTime={launchDate}>{formatDate(launchDate)}</time>
+          Launching <time dateTime={launchDate}>{formatLaunchDate(launchDate)}</time>
         </p>
       )}
       <form action={action} method="post" className="mt-8 flex w-full max-w-md flex-col gap-2 sm:flex-row">

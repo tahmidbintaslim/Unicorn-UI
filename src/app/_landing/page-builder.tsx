@@ -322,7 +322,7 @@ export function PageBuilder() {
               Theme color for the example page
             </legend>
             <span aria-hidden="true">Theme</span>
-            <ThemeSwatches name="builder-theme" />
+            <ThemeSwatches name="builder-theme" defaultValue="orange" />
           </fieldset>
           <div className="flex items-center gap-2">
             <label htmlFor="builder-hero-layout">Hero layout</label>

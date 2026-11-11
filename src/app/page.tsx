@@ -8,6 +8,8 @@ import { SiteFooter } from "./_site/site-footer";
 import { SiteHeader } from "./_site/site-header";
 import { SectionCard } from "./_site/section-card";
 import { HeroCanvas } from "./_landing/hero-canvas";
+import { HeroMark } from "./_landing/hero-mark";
+import { MenuRibbon } from "./_landing/menu-ribbon";
 import { PageBuilder } from "./_landing/page-builder";
 import { Playground } from "./_landing/playground";
 import { Pricing } from "./_landing/pricing";
@@ -38,7 +40,12 @@ const MENU = [
 ];
 
 /** The four promises, set large instead of as icon cards. */
-const PROMISES = ["Your theme.", "Your code.", "Server-first.", "Accessible."];
+const PROMISES = [
+  { text: "Your theme.", plate: "bg-saffron" },
+  { text: "Your code.", plate: "bg-paprika" },
+  { text: "Server-first.", plate: "bg-olive" },
+  { text: "Accessible.", plate: "bg-foreground" },
+];
 
 /** Real component source for the playground's code tab, read at build time. */
 function playgroundSources() {
@@ -66,10 +73,11 @@ export default function Home() {
       <SiteHeader />
       <main>
         <HeroCanvas>
-          <section aria-labelledby="hero-title" className="px-4 pt-24 pb-14 text-center sm:pt-28">
+          <section aria-labelledby="hero-title" className="px-4 pt-16 pb-14 text-center sm:pt-20">
+            <HeroMark />
             <h1
               id="hero-title"
-              className="mx-auto max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.05] font-semibold tracking-[-0.035em] text-balance"
+              className="mx-auto mt-8 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.05] font-semibold tracking-[-0.035em] text-balance"
             >
               Landing page sections you copy, <span className="text-brand">own</span> and ship.
             </h1>
@@ -83,10 +91,19 @@ export default function Home() {
               <CopyCommand command={installCommand("hero")} className="h-11 w-full sm:w-auto sm:max-w-md" />
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
-              <Link href="/examples/ledgerline" className="font-medium text-foreground underline underline-offset-4 hover:text-brand">
-                See a live demo site
-              </Link>{" "}
-              with a working waitlist.
+              Live demo sites with a working waitlist:{" "}
+              {[
+                ["Ledgerline", "/examples/ledgerline"],
+                ["Patchnote", "/examples/patchnote"],
+                ["Stackwise", "/examples/stackwise"],
+              ].map(([label, href], i) => (
+                <span key={href}>
+                  {i > 0 && ", "}
+                  <Link href={href} className="font-medium text-foreground underline underline-offset-4 hover:text-brand">
+                    {label}
+                  </Link>
+                </span>
+              ))}
             </p>
           </section>
           <div className="mx-auto max-w-6xl px-4 pb-6 sm:px-6 lg:px-8">
@@ -94,11 +111,13 @@ export default function Home() {
           </div>
         </HeroCanvas>
 
+        <MenuRibbon items={SECTIONS.map(({ slug, title }) => ({ slug, title }))} />
+
         {/* Playground */}
         <section aria-labelledby="playground-title" className="border-t">
           <Reveal className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
             <h2 id="playground-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
-              Try it before you install it.
+              Try it before you <span className="text-olive">install</span> it.
             </h2>
             <div className="mt-10">
               <Playground sources={playgroundSources()} />
@@ -111,7 +130,7 @@ export default function Home() {
           <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <h2 id="menu-title" className="text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
-                  Every section a landing page needs.
+                  Every section a landing page <span className="text-paprika">needs</span>.
                 </h2>
               <Button asChild variant="outline" className="w-fit">
                 <Link href="/docs/sections">
@@ -139,7 +158,7 @@ export default function Home() {
           <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
             <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
               <h2 id="templates-title" className="text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
-                  Or start from a whole page.
+                  Or start from a <span className="text-saffron">whole page</span>.
                 </h2>
               <Button asChild variant="outline" className="w-fit">
                 <Link href="/templates">
@@ -165,9 +184,11 @@ export default function Home() {
               Built like shadcn/ui, made for marketing pages
             </h2>
             <ul className="mt-8 text-[clamp(2.75rem,8vw,6rem)] leading-[1] font-semibold tracking-[-0.04em]">
-              {PROMISES.map((p, i) => (
-                <li key={p} className={i % 2 ? "text-muted-foreground" : undefined}>
-                  {p}
+              {PROMISES.map((p) => (
+                <li key={p.text} className="flex items-center gap-[0.3em]">
+                  {/* A plate from the logo marks each promise. */}
+                  <span aria-hidden="true" className={`size-[0.55em] shrink-0 rounded-full ring-[0.08em] ring-background ring-inset ${p.plate}`} />
+                  {p.text}
                 </li>
               ))}
             </ul>
@@ -178,7 +199,7 @@ export default function Home() {
         <section aria-labelledby="pricing-title" className="border-t">
           <Reveal className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
             <h2 id="pricing-title" className="mx-auto max-w-2xl text-center text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
-              Free to use. Pro when you want whole pages.
+              Free to use. <span className="text-saffron">Pro</span> when you want whole pages.
             </h2>
             <div className="mt-12">
               <Pricing />
@@ -193,10 +214,10 @@ export default function Home() {
         >
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_50%_0%,color-mix(in_oklch,var(--brand)_16%,transparent),transparent)]"
+            className="absolute inset-0 -z-10 bg-[radial-gradient(40%_70%_at_20%_0%,color-mix(in_oklch,var(--olive)_14%,transparent),transparent),radial-gradient(45%_80%_at_50%_0%,color-mix(in_oklch,var(--saffron)_18%,transparent),transparent),radial-gradient(40%_70%_at_80%_0%,color-mix(in_oklch,var(--paprika)_16%,transparent),transparent)]"
           />
           <h2 id="oss-title" className="mx-auto max-w-3xl text-4xl leading-tight font-semibold tracking-[-0.035em] text-balance sm:text-[52px]">
-            Pull up a chair. Bring a section.
+            Pull up a chair. Bring a <span className="text-paprika">section</span>.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-pretty text-muted-foreground">
             MIT licensed. Pick a good first issue and add the next section.
