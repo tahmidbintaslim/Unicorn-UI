@@ -1761,7 +1761,8 @@
         "https://tapasui.tahmid.space/r/cta-banner-motion.json",
         "https://tapasui.tahmid.space/r/faq-motion.json",
         "https://tapasui.tahmid.space/r/hero-motion.json",
-        "https://tapasui.tahmid.space/r/pricing-table-motion.json"
+        "https://tapasui.tahmid.space/r/pricing-table-motion.json",
+        "https://tapasui.tahmid.space/r/comparison-table-motion.json"
       ],
       "files": [
         {
@@ -1818,7 +1819,8 @@
         "https://tapasui.tahmid.space/r/template-changelog.json",
         "https://tapasui.tahmid.space/r/blog-grid-motion.json",
         "https://tapasui.tahmid.space/r/hero-motion.json",
-        "https://tapasui.tahmid.space/r/newsletter-motion.json"
+        "https://tapasui.tahmid.space/r/newsletter-motion.json",
+        "https://tapasui.tahmid.space/r/changelog-motion.json"
       ],
       "files": [
         {

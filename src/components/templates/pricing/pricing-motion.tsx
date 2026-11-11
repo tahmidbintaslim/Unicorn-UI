@@ -1,4 +1,4 @@
-import { ComparisonTable } from "@/components/custom/comparison-table/comparison-table";
+import { ComparisonTableMotion } from "@/components/custom/comparison-table/comparison-table-motion";
 import { CtaBannerMotion } from "@/components/custom/cta-banner/cta-banner-motion";
 import { FaqMotion } from "@/components/custom/faq/faq-motion";
 import { Footer } from "@/components/custom/footer/footer";
@@ -9,7 +9,7 @@ import { mergeContent, type ContentOverrides } from "../merge";
 import { pricingContent, type PricingContent } from "./content";
 import { PricingLayout } from "./pricing-layout";
 
-/** The pricing template with motion sections where they exist; the rest stay plain. */
+/** The pricing template with motion sections; the navbar and footer stay plain. */
 export function PricingTemplateMotion({ content }: { content?: ContentOverrides<PricingContent> }) {
   return (
     <PricingLayout
@@ -18,7 +18,7 @@ export function PricingTemplateMotion({ content }: { content?: ContentOverrides<
         Navbar,
         Hero: HeroMotion,
         PricingTable: PricingTableMotion,
-        ComparisonTable,
+        ComparisonTable: ComparisonTableMotion,
         Faq: FaqMotion,
         CtaBanner: CtaBannerMotion,
         Footer,
