@@ -42,6 +42,7 @@ const DONE = [
   { text: "Blocks spam", href: "/docs/sections/newsletter" },
   { text: "Accessible", href: "/docs" },
   { text: "Uses your theme", href: "/docs/theming" },
+  { text: "Agent-ready", href: "/docs/installation" },
 ];
 
 const DEMOS = [
@@ -85,7 +86,8 @@ export default function Home() {
               Launch pages that actually <span className="text-brand">work</span>.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-[19px]">
-              Waitlist, pricing and checkout sections for Next.js and shadcn/ui. Free, wired up and ready to ship.
+              {SECTIONS.length} free sections, {TEMPLATES.length} page templates and {DEMOS.length} working demo sites for Next.js and shadcn/ui.
+              Copy them in, or let Claude Code, Cursor or any agent with the shadcn MCP server install them.
             </p>
             <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild size="lg" className="h-11 px-6 text-[15px]">
@@ -95,6 +97,13 @@ export default function Home() {
             </div>
             <LaunchDemo checkoutHref={TEST_CHECKOUT} />
           </section>
+          {/* The product itself, live: real sections stacked into a page. */}
+          <div className="mx-auto max-w-6xl px-4 pb-10 sm:px-6 lg:px-8">
+            <h2 className="mb-5 text-center text-sm font-medium text-muted-foreground">
+              Or stack real sections into a page, in your colors
+            </h2>
+            <PageBuilder />
+          </div>
         </HeroCanvas>
 
         {/* Done for you */}
@@ -186,18 +195,6 @@ export default function Home() {
             </h2>
             <div className="mt-10">
               <Playground sources={playgroundSources()} />
-            </div>
-          </Reveal>
-        </section>
-
-        {/* Page builder */}
-        <section aria-labelledby="builder-title" className="border-t">
-          <Reveal className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:px-8">
-            <h2 id="builder-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
-              Stack sections into a page, in your colors.
-            </h2>
-            <div className="mt-10">
-              <PageBuilder />
             </div>
           </Reveal>
         </section>
