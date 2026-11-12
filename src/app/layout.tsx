@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tapas UI: copy-paste cards and landing blocks",
+  title: "Tapas UI: launch pages that actually work",
   description:
-    "Copy-paste cards and landing blocks for React, Tailwind and shadcn/ui. Install each with one command.",
+    "Free waitlist, pricing and checkout sections for Next.js and shadcn/ui, wired up and ready to ship. Install each with one command.",
   keywords: [
     "tapas-ui",
     "ui",
@@ -35,17 +35,17 @@ export const metadata: Metadata = {
   // The deployed demo. Update this when the Vercel project or domain is renamed.
   metadataBase: new URL("https://tapasui.tahmid.space"),
   openGraph: {
-    title: "Tapas UI: copy-paste cards and landing blocks",
+    title: "Tapas UI: launch pages that actually work",
     description:
-      "Copy-paste cards and landing blocks for React, Tailwind and shadcn/ui. Install each with one command.",
+      "Free waitlist, pricing and checkout sections for Next.js and shadcn/ui, wired up and ready to ship. Install each with one command.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tapas UI: copy-paste cards and landing blocks",
+    title: "Tapas UI: launch pages that actually work",
     description:
-      "Copy-paste cards and landing blocks for React, Tailwind and shadcn/ui. Install each with one command.",
+      "Free waitlist, pricing and checkout sections for Next.js and shadcn/ui, wired up and ready to ship. Install each with one command.",
   },
 };
 

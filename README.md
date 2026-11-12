@@ -1,8 +1,10 @@
 # Tapas UI
 
-Small plates for your landing page: copy-paste cards and sections for marketing
-and SaaS pages, built with React, TypeScript and Tailwind CSS on top of
-[shadcn/ui](https://ui.shadcn.com/).
+Launch pages that actually work: free waitlist, pricing and checkout sections
+for Next.js, wired up and ready to ship. Built with React, TypeScript and
+Tailwind CSS on top of [shadcn/ui](https://ui.shadcn.com/). The forms store
+emails, the pricing buttons take a checkout link, and every section is
+accessible and uses your theme.
 
 [![CI](https://github.com/tahmidbintaslim/tapas-ui/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/tahmidbintaslim/tapas-ui/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)

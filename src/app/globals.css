@@ -236,3 +236,11 @@
     transform: translateX(-50%);
   }
 }
+
+/* Landing hero demo: each check line slides in. */
+@keyframes launch-step {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}

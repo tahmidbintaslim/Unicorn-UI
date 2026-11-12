@@ -27,7 +27,8 @@ Between shadcn/ui blocks (app UI, plain) and animation-first libraries such as A
 - Undecided: the full section list for v1, which page templates ship first, Storybook setup.
 
 ## Brand Commitments
-- Name: Tapas UI (renamed from Unicorn UI). Tagline in use: "Small plates for your landing page."
+- Name: Tapas UI (renamed from Unicorn UI). Tagline in use: "Launch pages that actually work."
+- Identity (confirmed 2026-11-11): the landing page kit that works on launch day, for indie founders shipping a SaaS or AI product. Lead with what the sections do (store emails, take a checkout link, block spam, accessible, themed), shown by a thing the visitor can try. The name and warm plate colors are the look only: no food metaphors in copy.
 - MIT license.
 
 ## Evidence on Hand

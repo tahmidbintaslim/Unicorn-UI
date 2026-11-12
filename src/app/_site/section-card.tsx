@@ -9,7 +9,7 @@ import type { SectionMeta } from "./sections";
  * Catalogue card: a real screenshot of the section, a title that links to its
  * docs (the link covers the card), and copy actions kept outside the link.
  */
-export function SectionCard({ section: s, headingLevel: H = "h3" }: { section: SectionMeta; headingLevel?: "h2" | "h3" }) {
+export function SectionCard({ section: s, headingLevel: H = "h3" }: { section: SectionMeta; headingLevel?: "h2" | "h3" | "h4" }) {
   return (
     <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card transition-[border-color,translate,box-shadow] duration-300 focus-within:border-brand/60 hover:border-brand/50 motion-safe:hover:-translate-y-1 hover:shadow-[0_24px_60px_-28px_color-mix(in_oklch,var(--saffron)_45%,transparent)]">
       <div className="relative aspect-[16/10] overflow-hidden border-b bg-white">

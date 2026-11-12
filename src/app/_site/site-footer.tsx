@@ -47,7 +47,7 @@ export async function SiteFooter() {
             Tapas UI
           </p>
           <p className="text-sm leading-relaxed text-muted-foreground">
-            Small plates for your landing page. MIT licensed. Built by Tahmid Bin Taslim.
+            Launch pages that actually work. MIT licensed. Built by Tahmid Bin Taslim.
           </p>
           <StarButton count={stars} />
         </div>
