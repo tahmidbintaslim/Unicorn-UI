@@ -4,7 +4,7 @@ import Link from "next/link";
 import { SECTIONS } from "../_site/sections";
 import { C, DocsHeader, H2, P } from "./_ui";
 
-export const metadata = pageMeta("Introduction | Tapas UI", "Tapas UI is a free, open-source set of landing-page sections for Next.js and shadcn/ui.", "/docs");
+export const metadata = pageMeta("Introduction | Tapas UI", "Tapas UI is a free, open-source set of launch page sections for Next.js and shadcn/ui: waitlist, pricing and checkout, wired up.", "/docs");
 
 const NEXT = [
   { href: "/docs/installation", title: "Installation", body: "Set up shadcn/ui and add your first section." },
@@ -17,7 +17,7 @@ export default function DocsIntro() {
     <article className="max-w-3xl space-y-8">
       <DocsHeader
         title="Introduction"
-        lead="Tapas UI is a free, open-source collection of landing-page sections for Next.js and shadcn/ui. You install a section with one command, and its code lands in your project for you to own and edit."
+        lead="Tapas UI is a free, open-source set of sections for the page you launch with: waitlist forms that store emails, pricing that takes a checkout link, and the rest of a landing page around them. You install a section with one command, and its code lands in your project for you to own and edit."
       />
       <section aria-labelledby="how" className="space-y-4">
         <H2 id="how">How it works</H2>

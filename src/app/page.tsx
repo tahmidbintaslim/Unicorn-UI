@@ -9,6 +9,7 @@ import { SiteHeader } from "./_site/site-header";
 import { SectionCard } from "./_site/section-card";
 import { HeroCanvas } from "./_landing/hero-canvas";
 import { HeroMark } from "./_landing/hero-mark";
+import { LaunchDemo } from "./_landing/launch-demo";
 import { MenuRibbon } from "./_landing/menu-ribbon";
 import { PageBuilder } from "./_landing/page-builder";
 import { Playground } from "./_landing/playground";
@@ -23,28 +24,31 @@ import { TEMPLATES } from "./_site/templates";
 
 export const metadata = { alternates: { canonical: "/" } };
 
-/** Sections shown in the catalogue grid, in reading order. */
-const MENU = [
-  "hero-split",
-  "hero-theme-cycle",
-  "hero-plates",
-  "hero-command",
-  "hero-spotlight",
-  "hero",
-  "navbar",
-  "bento-grid",
-  "pricing-card",
-  "faq",
-  "cta-banner",
-  "footer",
+// A Stripe test-mode payment link (also used by the demo sites): no real charge is possible.
+const TEST_CHECKOUT = "https://buy.stripe.com/test_28EbJ0ckZ5xd3rgg6l1ck02";
+
+/** What a launch page has to do, and the sections that do it. */
+const JOBS = [
+  { title: "Collect sign-ups", color: "text-saffron", body: "Forms that post to your API, work without JavaScript and carry a spam trap.", slugs: ["hero-waitlist", "newsletter", "coming-soon"] },
+  { title: "Price it and get paid", color: "text-paprika", body: "Plans with a monthly and yearly switch, and buttons that take any checkout link.", slugs: ["pricing-table", "comparison-table", "pricing-card"] },
+  { title: "Explain the product", color: "text-olive", body: "Heroes and feature layouts that show your product, not ours.", slugs: ["hero-split", "feature-rows", "bento-grid"] },
+  { title: "Answer questions, earn trust", color: "text-saffron", body: "FAQ, quotes and numbers, readable by screen readers and search engines.", slugs: ["faq", "testimonials-wall", "stats-band"] },
 ];
 
-/** The four promises, set large instead of as icon cards. */
-const PROMISES = [
-  { text: "Your theme.", plate: "bg-saffron" },
-  { text: "Your code.", plate: "bg-paprika" },
-  { text: "Server-first.", plate: "bg-olive" },
-  { text: "Accessible.", plate: "bg-foreground" },
+/** Launch-day work each section already does. Facts about the code, not usage numbers. */
+const DONE = [
+  { text: "Stores emails", href: "/docs/sections/hero-waitlist" },
+  { text: "Takes payments", href: "/docs/sections/pricing-table" },
+  { text: "Blocks spam", href: "/docs/sections/newsletter" },
+  { text: "Accessible", href: "/docs" },
+  { text: "Uses your theme", href: "/docs/theming" },
+  { text: "Agent-ready", href: "/docs/installation" },
+];
+
+const DEMOS = [
+  { name: "Ledgerline", href: "/examples/ledgerline", body: "Invoicing for freelancers. Three pages, plain sections, no animation library." },
+  { name: "Patchnote", href: "/examples/patchnote", body: "AI release notes. One page built from the motion sections." },
+  { name: "Stackwise", href: "/examples/stackwise", body: "An AI dependency agent. WebGL hero, pricing page and comparison table." },
 ];
 
 /** Real component source for the playground's code tab, read at build time. */
@@ -63,7 +67,7 @@ export default function Home() {
           "@context": "https://schema.org",
           "@type": "SoftwareSourceCode",
           name: "Tapas UI",
-          description: "Free, open-source landing page sections for Next.js and shadcn/ui.",
+          description: "Free, open-source launch page sections for Next.js and shadcn/ui: waitlist, pricing and checkout, wired up.",
           url: "https://tapasui.tahmid.space",
           codeRepository: GITHUB_URL,
           programmingLanguage: ["TypeScript", "React"],
@@ -79,39 +83,109 @@ export default function Home() {
               id="hero-title"
               className="mx-auto mt-8 max-w-4xl text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.05] font-semibold tracking-[-0.035em] text-balance"
             >
-              Landing page sections you copy, <span className="text-brand">own</span> and ship.
+              Launch pages that actually <span className="text-brand">work</span>.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground sm:text-[19px]">
-              Free shadcn/ui sections for Next.js. One command each, in your colors.
+              {SECTIONS.length} free sections, {TEMPLATES.length} page templates and {DEMOS.length} working demo sites for Next.js and shadcn/ui.
+              Copy them in, or let Claude Code, Cursor or any agent with the shadcn MCP server install them.
             </p>
             <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center justify-center gap-3 sm:flex-row">
               <Button asChild size="lg" className="h-11 px-6 text-[15px]">
                 <Link href="/docs/installation">Get started (free)</Link>
               </Button>
-              <CopyCommand command={installCommand("hero")} className="h-11 w-full sm:w-auto sm:max-w-md" />
+              <CopyCommand command={installCommand("hero-waitlist")} className="h-11 w-full sm:w-auto sm:max-w-md" />
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Live demo sites with a working waitlist:{" "}
-              {[
-                ["Ledgerline", "/examples/ledgerline"],
-                ["Patchnote", "/examples/patchnote"],
-                ["Stackwise", "/examples/stackwise"],
-              ].map(([label, href], i) => (
-                <span key={href}>
-                  {i > 0 && ", "}
-                  <Link href={href} className="font-medium text-foreground underline underline-offset-4 hover:text-brand">
-                    {label}
-                  </Link>
-                </span>
-              ))}
-            </p>
+            <LaunchDemo checkoutHref={TEST_CHECKOUT} />
           </section>
-          <div className="mx-auto max-w-6xl px-4 pb-6 sm:px-6 lg:px-8">
+          {/* The product itself, live: real sections stacked into a page. */}
+          <div className="mx-auto max-w-6xl px-4 pb-10 sm:px-6 lg:px-8">
+            <h2 className="mb-5 text-center text-sm font-medium text-muted-foreground">
+              Or stack real sections into a page, in your colors
+            </h2>
             <PageBuilder />
           </div>
         </HeroCanvas>
 
+        {/* Done for you */}
+        <section aria-labelledby="done-title" className="border-t px-4 py-10">
+          <h2 id="done-title" className="text-center text-[13px] font-medium text-muted-foreground">
+            Already done in every section
+          </h2>
+          <ul className="mx-auto mt-5 flex max-w-5xl flex-wrap items-center justify-center gap-x-10 gap-y-3 text-lg font-semibold sm:text-xl">
+            {DONE.map((d, i) => (
+              <li key={d.text}>
+                <Link href={d.href} className="flex min-h-11 items-center gap-2.5 hover:text-brand focus-visible:outline-2 focus-visible:outline-brand">
+                  <span aria-hidden="true" className={`size-2.5 rounded-full ${["bg-saffron", "bg-paprika", "bg-olive"][i % 3]}`} />
+                  {d.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <MenuRibbon items={SECTIONS.map(({ slug, title }) => ({ slug, title }))} />
+
+        {/* Sections by launch job */}
+        <section aria-labelledby="jobs-title" className="border-t">
+          <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
+            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+              <h2 id="jobs-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+                Everything a launch page has to do.
+              </h2>
+              <Button asChild variant="outline" className="w-fit">
+                <Link href="/docs/sections">
+                  View all {SECTIONS.length} sections
+                  <ArrowRight aria-hidden="true" />
+                </Link>
+              </Button>
+            </div>
+            {JOBS.map((job) => (
+              <div key={job.title} className="mt-16">
+                <h3 className={`text-2xl font-semibold tracking-tight ${job.color}`}>{job.title}</h3>
+                <p className="mt-2 max-w-xl text-muted-foreground">{job.body}</p>
+                <ul className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  {job.slugs.map((slug) => {
+                    const section = getSection(slug);
+                    return section ? (
+                      <li key={slug}>
+                        <SectionCard section={section} headingLevel="h4" />
+                      </li>
+                    ) : null;
+                  })}
+                </ul>
+              </div>
+            ))}
+          </Reveal>
+        </section>
+
+        {/* Demo sites as proof */}
+        <section aria-labelledby="demos-title" className="border-t">
+          <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
+            <h2 id="demos-title" className="max-w-2xl text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
+              Three working sites, built only from these sections.
+            </h2>
+            <p className="mt-4 max-w-xl text-muted-foreground">
+              The companies are made up. The waitlists and test checkouts are real.
+            </p>
+            <ul className="mt-12 grid gap-5 md:grid-cols-3">
+              {DEMOS.map((d) => (
+                <li key={d.name}>
+                  <Link
+                    href={d.href}
+                    className="group flex h-full flex-col gap-3 rounded-2xl border bg-card p-6 transition-[border-color,translate] duration-300 hover:border-brand/50 focus-visible:outline-2 focus-visible:outline-brand motion-safe:hover:-translate-y-1"
+                  >
+                    <h3 className="text-xl font-semibold tracking-tight">{d.name}</h3>
+                    <p className="text-muted-foreground">{d.body}</p>
+                    <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-medium text-brand">
+                      Open the site
+                      <ArrowRight aria-hidden="true" className="size-4 transition-transform motion-safe:group-hover:translate-x-0.5" />
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </section>
 
         {/* Playground */}
         <section aria-labelledby="playground-title" className="border-t">
@@ -122,34 +196,6 @@ export default function Home() {
             <div className="mt-10">
               <Playground sources={playgroundSources()} />
             </div>
-          </Reveal>
-        </section>
-
-        {/* Catalogue */}
-        <section aria-labelledby="menu-title" className="border-t">
-          <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
-            <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-              <h2 id="menu-title" className="text-4xl leading-tight font-semibold tracking-[-0.03em] text-balance sm:text-[44px]">
-                  Every section a landing page <span className="text-paprika">needs</span>.
-                </h2>
-              <Button asChild variant="outline" className="w-fit">
-                <Link href="/docs/sections">
-                  View all {SECTIONS.length} sections
-                  <ArrowRight aria-hidden="true" />
-                </Link>
-              </Button>
-            </div>
-            <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {MENU.map((slug) => {
-                const section = getSection(slug);
-                if (!section) return null;
-                return (
-                  <li key={slug}>
-                    <SectionCard section={section} />
-                  </li>
-                );
-              })}
-            </ul>
           </Reveal>
         </section>
 
@@ -171,24 +217,6 @@ export default function Home() {
               {TEMPLATES.map((t) => (
                 <li key={t.slug}>
                   <TemplateCard template={t} headingLevel="h3" compact />
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </section>
-
-        {/* Why: one bold statement instead of four icon cards */}
-        <section aria-labelledby="why-title" className="border-t">
-          <Reveal className="mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8">
-            <h2 id="why-title" className="text-[13px] font-medium text-muted-foreground">
-              Built like shadcn/ui, made for marketing pages
-            </h2>
-            <ul className="mt-8 text-[clamp(2.75rem,8vw,6rem)] leading-[1] font-semibold tracking-[-0.04em]">
-              {PROMISES.map((p) => (
-                <li key={p.text} className="flex items-center gap-[0.3em]">
-                  {/* A plate from the logo marks each promise. */}
-                  <span aria-hidden="true" className={`size-[0.55em] shrink-0 rounded-full ring-[0.08em] ring-background ring-inset ${p.plate}`} />
-                  {p.text}
                 </li>
               ))}
             </ul>
@@ -217,7 +245,7 @@ export default function Home() {
             className="absolute inset-0 -z-10 bg-[radial-gradient(40%_70%_at_20%_0%,color-mix(in_oklch,var(--olive)_14%,transparent),transparent),radial-gradient(45%_80%_at_50%_0%,color-mix(in_oklch,var(--saffron)_18%,transparent),transparent),radial-gradient(40%_70%_at_80%_0%,color-mix(in_oklch,var(--paprika)_16%,transparent),transparent)]"
           />
           <h2 id="oss-title" className="mx-auto max-w-3xl text-4xl leading-tight font-semibold tracking-[-0.035em] text-balance sm:text-[52px]">
-            Pull up a chair. Bring a <span className="text-paprika">section</span>.
+            Open source. Add the next <span className="text-paprika">section</span>.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-[17px] leading-relaxed text-pretty text-muted-foreground">
             MIT licensed. Pick a good first issue and add the next section.
